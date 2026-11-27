@@ -1,0 +1,56 @@
+name: Technical research & proposal
+description: 记录外部开源项目、数据源或技术方案的调研与吸收评估
+title: "[Research]: "
+labels: ["research"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        本模板用于提交经过预读初筛的技术调研与方案评估。请仅写清需求背景、公开参考来源与协议、评估要点和结论方向；**严禁粘贴密钥、私有服务器信息、本机路径或整段第三方源码**。
+  - type: textarea
+    id: background
+    attributes:
+      label: 背景与要解决的问题
+      description: 简述 EOStage 当前缺口或希望改进的科学/工程场景。
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: 参考来源与许可协议
+      description: 请附带公开仓库地址、论文或数据源链接，并标明其开源协议/使用条款（如 MIT / Apache-2.0 / CC-BY-4.0）。
+      placeholder: |
+        - 项目或论文：https://github.com/example/project （MIT License）
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: 评估要点与预期成果
+      description: 列出需要核实的技术细节、模块边界、许可证与依赖风险，以及验收方向。
+      placeholder: |
+        - 接口与运行时兼容性评估
+        - 依赖与数据许可证核验
+        - 明确预期产物或验证方式
+    validations:
+      required: true
+  - type: dropdown
+    id: adoption
+    attributes:
+      label: 初步吸收方向
+      options:
+        - 待进一步评估
+        - 借鉴设计思路自行实现
+        - 直接集成现有工具/服务
+        - 仅作观察记录（暂不排期）
+    validations:
+      required: true
+  - type: checkboxes
+    id: compliance_checks
+    attributes:
+      label: 公开合规自检
+      options:
+        - label: 已核对参考项目、依赖或数据的开源/使用许可边界
+          required: true
+        - label: 已确认本提案不包含密钥、私有服务器信息、本机路径或整段复制的第三方源码
+          required: true
