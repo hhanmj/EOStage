@@ -1,0 +1,6 @@
+{
+  "fixture_contract": "AsfNisarMutationFixtureV1",
+  "base": "granule-provisional-multi-asset-valid.json",
+  "mutation": {"path": "/collection/concept_id", "value": "C2853147928-ASF"},
+  "expected_result": {"kind": "reject", "error": "ASF_COLLECTION_IDENTITY_MISMATCH"}
+}

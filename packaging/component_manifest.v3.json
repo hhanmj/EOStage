@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "app_version": "2.2.0-beta.0",
+  "channel": "public",
+  "delivery_model": "tauri-component-layout-v1",
+  "distribution_sources": [],
+  "components": [
+    {
+      "id": "eostage-core",
+      "kind": "application",
+      "version": "2.2.0-beta.0",
+      "runtime": "Tauri + React + Rust ApplicationService",
+      "install_root": ".",
+      "entry": "EOStage.exe",
+      "required_for_startup": true,
+      "capabilities": [
+        "desktop-ui",
+        "workspace",
+        "settings",
+        "credential-keyring",
+        "catalogue",
+        "task-store",
+        "download-orchestration"
+      ]
+    },
+    {
+      "id": "compat-worker",
+      "kind": "managed_runtime",
+      "version": "artifact-defined",
+      "install_root": "runtime/compat-worker",
+      "entry": "runtime/compat-worker/eostage-compat-worker.exe",
+      "required_for_startup": false,
+      "capabilities": [
+        "bounded-compatibility-operations"
+      ]
+    },
+    {
+      "id": "native-gis-runtime",
+      "kind": "runtime",
+      "version": "artifact-defined",
+      "runtime": "Private GDAL + PROJ native closure",
+      "install_root": "runtime/gis",
+      "required_for_startup": false,
+      "capabilities": [
+        "dem-gdal-proj",
+        "gtiff",
+        "envi",
+        "sarscape-output"
+      ]
+    },
+    {
+      "id": "vertical-grid-egm96",
+      "kind": "scientific_resource",
+      "version": "artifact-defined",
+      "install_root": "runtime/vertical-grids",
+      "required_for_startup": false,
+      "depends_on": [
+        "native-gis-runtime"
+      ],
+      "capabilities": [
+        "egm96"
+      ]
+    },
+    {
+      "id": "vertical-grid-egm2008",
+      "kind": "scientific_resource",
+      "version": "artifact-defined",
+      "install_root": "runtime/vertical-grids",
+      "required_for_startup": false,
+      "depends_on": [
+        "native-gis-runtime"
+      ],
+      "capabilities": [
+        "egm2008"
+      ]
+    }
+  ],
+  "rollback": {
+    "kind": "component-layout",
+    "preserve_user_data": true,
+    "user_data_root": "%LOCALAPPDATA%/EOStage"
+  }
+}

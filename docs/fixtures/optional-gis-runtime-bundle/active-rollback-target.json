@@ -1,0 +1,24 @@
+{
+  "architecture": "x86_64",
+  "base": {
+    "extension_id": null,
+    "bundle_set_id": "gis-runtime-base",
+    "set_kind": "base",
+    "set_version": "0.9.0",
+    "manifest_sha256": "0560a671145cc44fe40f846ce028fd68437b7039259ec14024b6d12915b438e9",
+    "release_sequence": 90,
+    "member_ids": [
+      "gis-dem-worker-win-x64",
+      "gis-gdal-runtime-win-x64",
+      "gis-notices-win-x64",
+      "gis-proj-data-win-x64"
+    ]
+  },
+  "channel": "beta",
+  "contract": "ActiveRuntimeRegistry",
+  "extensions": [],
+  "platform": "windows",
+  "registry_version": 1,
+  "updated_at": "2026-07-22T01:00:04Z",
+  "selection_digest": "3788ed70d614046c953c8d332e31535376fb15729165cc049a63ab606ec4e897"
+}

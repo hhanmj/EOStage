@@ -1,0 +1,13 @@
+{
+  "fixture_metadata": {
+    "fixture_version": 1,
+    "fixture_kind": "codec",
+    "fixture_name": "row-envelope-output-root-mismatch",
+    "offline": true
+  },
+  "base": "v3_single",
+  "mutations": [],
+  "expected": {
+    "row_envelope_issue": "output_root"
+  }
+}

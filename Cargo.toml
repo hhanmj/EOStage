@@ -1,0 +1,33 @@
+[workspace]
+members = [
+    "crates/insar-agent",
+    "crates/insar-core",
+    "crates/insar-gis",
+    "crates/insar-download",
+    "crates/insar-application-service",
+    "crates/insar-provider",
+    "crates/insar-service",
+    "crates/insar-store",
+    "crates/insar-subset-lab",
+    "crates/insar-agent-model",
+    "crates/insar-agent-mcp",
+    "src-tauri",
+]
+resolver = "2"
+
+[workspace.package]
+edition = "2021"
+license = "GPL-3.0-or-later"
+repository = "https://github.com/hhanmj/EOStage"
+
+# Large archive validation is common in development acceptance gates. Keep the
+# application debuggable while avoiding the pathological unoptimized MD5 CPU
+# cost observed on the accepted 60 GB ALOS-2 artifact.
+[profile.dev.package.md-5]
+opt-level = 3
+
+# Downloader enhancement D1d: a NISAR planning revalidation digests its
+# planning material (195 MB per S-band item in the L4 run) with SHA-256; an
+# unoptimized sha2 made that the dominant cost of debug-build revalidations.
+[profile.dev.package.sha2]
+opt-level = 3

@@ -1,0 +1,110 @@
+# ---- Security: never commit credentials ----
+.env
+*.env
+.netrc
+*.netrc
+credentials.yaml
+secrets.yaml
+*.key
+*.token
+*.pem
+
+# ---- Local task databases and transfer checkpoints (never product source) ----
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+.insar-nisar-range/
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+ui/dist-tauri/
+wheels/
+release/
+
+# ---- uv / virtualenv ----
+.venv/
+venv/
+.uv-cache/
+.uv-python/
+uv.lock.bak
+
+# ---- Rust ----
+target/
+/target-e1-release-vs18/
+
+# ---- PyInstaller / packaging artifacts ----
+*.spec
+*.manifest
+pyinstaller-build/
+smoke_package/
+.install-smoke/
+.internal-smoke/
+*.exe
+/runtime/*
+!/runtime/plugins/
+/_hub_dist/
+/src-tauri/gen/schemas/macOS-schema.json
+
+# ---- Test / lint / type caches ----
+.pytest_cache/
+.pytest_tmp_direct/
+.pytest-tmp-*/
+.pytest_task*/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+.tmp*/
+.tmp_*
+.ui_preview*/
+_shots/
+
+# ---- OS / editor / agent-local state ----
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+.codex/
+.ai-bridge/
+.cursor/
+.release-assets/
+
+# ---- InSAR data: never commit user data or downloaded products ----
+*.SAFE
+*.SAFE/
+*.zip
+!docs/fixtures/optional-gis-runtime-bundle/archives/*.zip
+*.tif
+*.tiff
+*.dem
+*.SLC
+*.tar
+*.tar.gz
+*.tgz
+*.7z
+*.rar
+*.hgt
+*.img
+*.grd
+*.nc
+*.h5
+*.hdf5
+*.he5
+*.vrt
+
+# ---- Local study material / private docs / bulky cached data ----
+sentinel2/
+
+notes/
+
+# ---- Server-ready onboarding high-res pack (previewed locally via /atlas-cdn, never committed) ----
+/atlas-cdn-pack/
+/ui/atlas-cdn-pack/

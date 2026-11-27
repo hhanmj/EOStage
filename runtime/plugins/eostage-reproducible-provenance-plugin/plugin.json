@@ -1,0 +1,24 @@
+{
+  "id": "eostage-reproducible-provenance-plugin",
+  "name": "EOStage 地学可复现实验数据血缘与归档插件",
+  "version": "1.2.0",
+  "author": "EOStage",
+  "license": "GPL-3.0-or-later",
+  "discipline": "skill-engineering",
+  "description": "自动审计地学数据处理血缘、核验传感器产品 ID / 精密轨道 / DEM 基准面参数链，并生成符合学术期刊规范的可复现元数据清单。",
+  "tags": [
+    "可复现性",
+    "数据血缘",
+    "学术归档",
+    "RO-Crate"
+  ],
+  "enabled": true,
+  "bundledSkills": [
+    {
+      "id": "plugin-skill-geoscience-provenance-audit",
+      "name": "地学实验数据血缘与可复现性自动审计",
+      "description": "核验传感器产品 ID、轨道精密星历版本、DEM 基准面与坐标转换参数链完整性",
+      "path": "skills/plugin-skill-geoscience-provenance-audit/SKILL.md"
+    }
+  ]
+}

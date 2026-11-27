@@ -1,0 +1,1 @@
+{"value":[{"Id":"00000000-0000-4000-8000-000000000019","Name":"S2_CONFLICTING_CHECKSUMS.SAFE","Collection":{"Name":"SENTINEL-2"},"ContentLength":1,"ContentDate":{"Start":"2026-01-01T10:00:00Z"},"Online":true,"Checksum":[{"Algorithm":"SHA256","Value":"aaaaaaaa"},{"Algorithm":"SHA256","Value":"bbbbbbbb"}],"Attributes":[{"Name":"productType","Value":"S2MSI2A"}]}]}

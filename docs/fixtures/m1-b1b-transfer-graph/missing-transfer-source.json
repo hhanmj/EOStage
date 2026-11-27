@@ -1,0 +1,31 @@
+{
+  "fixture_metadata": {
+    "fixture_version": 1,
+    "fixture_kind": "invalid",
+    "fixture_name": "missing-transfer-source",
+    "payload_contract": "FrozenTaskSnapshotV3",
+    "offline": true
+  },
+  "base": "single",
+  "mutations": [
+    {
+      "op": "set",
+      "path": "/transfer_items/0/source_item_ids",
+      "value": [
+        "missing-source"
+      ]
+    }
+  ],
+  "expected": {
+    "accepted": false,
+    "error": {
+      "variant": "missing_reference",
+      "reference": "transfer_source",
+      "at": {
+        "kind": "transfer_source_item",
+        "transfer_index": 0,
+        "source_index": 0
+      }
+    }
+  }
+}

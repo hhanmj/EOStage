@@ -1,0 +1,76 @@
+{
+  "architecture": "x86_64",
+  "archive_sha256": "95d6e23822cedc4a50ee49e34786800dd60b2c3626aad5ca68ade6b0ea43e2e8",
+  "bundle_set_id": "gis-runtime-base",
+  "channel": "beta",
+  "component_id": "gis-proj-data-win-x64",
+  "contract": "ComponentManifest",
+  "expires_at": "2027-07-22T00:00:00Z",
+  "files": [
+    {
+      "path": "LICENSES/fixture-MIT.txt",
+      "size_bytes": 347,
+      "sha256": "83b5cc2f6ea394c4cdc2854cd56f287d717869c8cbaa8cc68303dd59be8c9966"
+    },
+    {
+      "path": "NOTICE",
+      "size_bytes": 128,
+      "sha256": "7f1639fad5a223cf585d997983f86ce47ad0aad9be67363f2eb2f52fed593391"
+    },
+    {
+      "path": "bundle-proj.payload",
+      "size_bytes": 21,
+      "sha256": "505d3d30b9217e04efcded7412fa369ede61d4a2b672e338716618628213d45b"
+    }
+  ],
+  "issued_at": "2026-07-22T00:00:00Z",
+  "license": {
+    "notice_file": "LICENSES/fixture-MIT.txt",
+    "spdx": "MIT"
+  },
+  "manifest_version": 1,
+  "minimum_app_version": "2.2.0",
+  "notices": "NOTICE",
+  "platform": "windows",
+  "protocol": {
+    "major": 1,
+    "minor": 0,
+    "name": "gis-worker"
+  },
+  "provides": [
+    "gis.proj-transform.v1"
+  ],
+  "requires": [],
+  "rollback_group": "gis-runtime-base",
+  "self_test": {
+    "operation": "proj_database_v1",
+    "args": {
+      "expected_database": "proj.db"
+    },
+    "timeout_ms": 30000
+  },
+  "size": {
+    "archive_bytes": 844,
+    "unpacked_bytes": 496
+  },
+  "source_urls": [
+    {
+      "class": "oss-cn",
+      "url": "https://components.example.invalid/oss/gis-proj-data-win-x64-9.5.1.zip"
+    },
+    {
+      "class": "cos-cn",
+      "url": "https://components.example.invalid/cos/gis-proj-data-win-x64-9.5.1.zip"
+    },
+    {
+      "class": "github-release",
+      "url": "https://components.example.invalid/github-release/gis-proj-data-win-x64-9.5.1.zip"
+    }
+  ],
+  "version": "9.5.1",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "fixture-root-2026",
+    "value": "3sXwz3UcV3FtEqFeUQ57srtc2bPrjQexDckyT4urblOXEYo34y9pnNDw3N2rZT9Np928GqmC18Hk6/qOLHAtAQ=="
+  }
+}

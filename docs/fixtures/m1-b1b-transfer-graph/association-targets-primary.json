@@ -1,0 +1,34 @@
+{
+  "fixture_metadata": {
+    "fixture_version": 1,
+    "fixture_kind": "invalid",
+    "fixture_name": "association-targets-primary",
+    "payload_contract": "FrozenTaskSnapshotV3",
+    "offline": true
+  },
+  "base": "single",
+  "mutations": [
+    {
+      "op": "set",
+      "path": "/orbit_associations/0/orbit_transfer_item_id",
+      "value": "primary-a"
+    }
+  ],
+  "expected": {
+    "accepted": false,
+    "error": {
+      "variant": "invalid_transfer_graph",
+      "issue": {
+        "kind": "association_targets_non_companion",
+        "association": {
+          "kind": "orbit_association",
+          "index": 0
+        },
+        "transfer": {
+          "kind": "transfer_item",
+          "index": 0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,141 @@
+{
+  "fixture_contract": "AsfNisarRslcGranuleFixtureV1",
+  "status": "synthetic_accepted_for_offline_mapper_tests",
+  "collection": {
+    "concept_id": "C2853145197-ASF",
+    "short_name": "NISAR_L1_RSLC_PROVISIONAL_V1",
+    "version": "1"
+  },
+  "granule": {
+    "concept_id": "G9900000001-ASF",
+    "producer_granule_id": "NISAR_L1_PR_RSLC_SYNTHETIC_P05023_0001",
+    "asf_product_id": "NISAR_L1_PR_RSLC_SYNTHETIC_P05023_0001",
+    "processing_level": "RSLC",
+    "science_level": "L1",
+    "quality_status": "Provisional",
+    "production_configuration": "PR",
+    "band": "L",
+    "crid": "P05023",
+    "pge_version": "5.0.23",
+    "acquisition_start_utc": "2026-06-18T10:00:00Z",
+    "acquisition_end_utc": "2026-06-18T10:01:30Z",
+    "frame_coverage": "PARTIAL",
+    "frame": 112,
+    "track": 37,
+    "relative_orbit": 37,
+    "flight_direction": "ASCENDING",
+    "look_direction": "RIGHT",
+    "frequency_a_polarization": "HH+HV",
+    "frequency_b_polarization": "HH",
+    "range_bandwidth": "20+5",
+    "joint_observation": true,
+    "footprint": {"type": "Polygon", "coordinates": [[[117.0, 30.0], [120.0, 30.0], [120.0, 32.0], [117.0, 32.0], [117.0, 30.0]]]},
+    "assets": {
+      "raw_resource_count": 13,
+      "records": [
+        {
+          "asset_id": "science-rslc-hdf5",
+          "native_roles": ["ARCHIVE:HDF5", "GET DATA", "GET DATA VIA DIRECT ACCESS"],
+          "native_evidence": {
+            "archive_name": "NISAR_L1_PR_RSLC_SYNTHETIC_P05023_0001.h5",
+            "product_match": true,
+            "url_types": ["GET DATA", "GET DATA VIA DIRECT ACCESS"],
+            "url_subtypes": [],
+            "formats": ["HDF5"]
+          },
+          "normalized_role": "primary",
+          "file_name": "NISAR_L1_PR_RSLC_SYNTHETIC_P05023_0001.h5",
+          "media_type": "application/x-hdf5",
+          "size_bytes": 12000000000,
+          "checksum": {"algorithm": "SHA-256", "value": "f2c78f09a49e5f1f304b19f930dfed10f197d235e383075e8377ddaa7c33d181"},
+          "routes": [
+            {"scheme": "https", "locator": "https://example.invalid/nisar/NISAR_L1_PR_RSLC_SYNTHETIC_P05023_0001.h5"},
+            {"scheme": "s3", "locator": "s3://example-invalid/nisar/NISAR_L1_PR_RSLC_SYNTHETIC_P05023_0001.h5"}
+          ]
+        },
+        {
+          "asset_id": "browse-main",
+          "native_roles": ["ARCHIVE:PNG", "GET RELATED VISUALIZATION"],
+          "native_evidence": {"archive_name": "NISAR_L1_PR_RSLC_SYNTHETIC_P05023_0001_LATLON.png", "product_match": false, "url_types": ["GET RELATED VISUALIZATION"], "url_subtypes": [], "formats": ["PNG"]},
+          "normalized_role": "preview",
+          "file_name": "NISAR_L1_PR_RSLC_SYNTHETIC_P05023_0001_LATLON.png",
+          "media_type": "image/png",
+          "routes": [{"scheme": "https", "locator": "https://example.invalid/nisar/NISAR_L1_PR_RSLC_SYNTHETIC_P05023_0001_LATLON.png"}]
+        },
+        {
+          "asset_id": "browse-thumbnail",
+          "native_roles": ["ARCHIVE:PNG", "GET RELATED VISUALIZATION"],
+          "native_evidence": {"archive_name": "NISAR_L1_PR_RSLC_SYNTHETIC_P05023_0001_thumbnail.png", "product_match": false, "url_types": ["GET RELATED VISUALIZATION"], "url_subtypes": [], "formats": ["PNG"]},
+          "normalized_role": "thumbnail",
+          "file_name": "NISAR_L1_PR_RSLC_SYNTHETIC_P05023_0001_thumbnail.png",
+          "media_type": "image/png",
+          "routes": [{"scheme": "https", "locator": "https://example.invalid/nisar/NISAR_L1_PR_RSLC_SYNTHETIC_P05023_0001_thumbnail.png"}]
+        },
+        {
+          "asset_id": "iso-xml",
+          "native_roles": ["ARCHIVE:XML", "EXTENDED METADATA"],
+          "native_evidence": {"archive_name": "NISAR_L1_PR_RSLC_SYNTHETIC_P05023_0001.h5.iso.xml", "product_match": false, "url_types": ["EXTENDED METADATA"], "url_subtypes": [], "formats": ["XML"]},
+          "normalized_role": "metadata",
+          "file_name": "NISAR_L1_PR_RSLC_SYNTHETIC_P05023_0001.h5.iso.xml",
+          "media_type": "application/xml",
+          "routes": []
+        },
+        {
+          "asset_id": "run-config",
+          "native_roles": ["ARCHIVE:YAML", "EXTENDED METADATA"],
+          "native_evidence": {"archive_name": "NISAR_L1_PR_RSLC_SYNTHETIC_P05023_0001.rc.yaml", "product_match": false, "url_types": ["EXTENDED METADATA"], "url_subtypes": [], "formats": ["YAML"]},
+          "normalized_role": "metadata",
+          "file_name": "NISAR_L1_PR_RSLC_SYNTHETIC_P05023_0001.rc.yaml",
+          "media_type": "application/yaml",
+          "routes": []
+        },
+        {
+          "asset_id": "qa-summary",
+          "native_roles": ["ARCHIVE:CSV", "PRODUCT QUALITY ASSESSMENT"],
+          "native_evidence": {"archive_name": "NISAR_L1_PR_RSLC_SYNTHETIC_P05023_0001_QA_SUMMARY.csv", "product_match": false, "url_types": ["VIEW RELATED INFORMATION"], "url_subtypes": ["PRODUCT QUALITY ASSESSMENT"], "formats": ["CSV"]},
+          "normalized_role": "metadata",
+          "file_name": "NISAR_L1_PR_RSLC_SYNTHETIC_P05023_0001_QA_SUMMARY.csv",
+          "media_type": "text/csv",
+          "routes": []
+        },
+        {
+          "asset_id": "footprint-kml",
+          "native_roles": ["ARCHIVE:KML", "EXTENDED METADATA"],
+          "native_evidence": {"archive_name": "NISAR_L1_PR_RSLC_SYNTHETIC_P05023_0001.kml", "product_match": false, "url_types": ["EXTENDED METADATA"], "url_subtypes": [], "formats": ["KML"]},
+          "normalized_role": "auxiliary",
+          "file_name": "NISAR_L1_PR_RSLC_SYNTHETIC_P05023_0001.kml",
+          "media_type": "application/vnd.google-earth.kml+xml",
+          "routes": []
+        },
+        {
+          "asset_id": "qa-report",
+          "native_roles": ["ARCHIVE:PDF", "PRODUCT QUALITY ASSESSMENT"],
+          "native_evidence": {"archive_name": "NISAR_L1_PR_RSLC_SYNTHETIC_P05023_0001_QA_REPORT.pdf", "product_match": false, "url_types": ["VIEW RELATED INFORMATION"], "url_subtypes": ["PRODUCT QUALITY ASSESSMENT"], "formats": ["PDF"]},
+          "normalized_role": "auxiliary",
+          "file_name": "NISAR_L1_PR_RSLC_SYNTHETIC_P05023_0001_QA_REPORT.pdf",
+          "media_type": "application/pdf",
+          "routes": []
+        },
+        {
+          "asset_id": "qa-statistics-hdf5",
+          "native_roles": ["ARCHIVE:HDF5", "PRODUCT QUALITY ASSESSMENT"],
+          "native_evidence": {"archive_name": "NISAR_L1_PR_RSLC_SYNTHETIC_P05023_0001_QA_STATS.h5", "product_match": false, "url_types": ["VIEW RELATED INFORMATION"], "url_subtypes": ["PRODUCT QUALITY ASSESSMENT"], "formats": ["HDF5"]},
+          "normalized_role": "auxiliary",
+          "file_name": "NISAR_L1_PR_RSLC_SYNTHETIC_P05023_0001_QA_STATS.h5",
+          "media_type": "application/x-hdf5",
+          "routes": []
+        }
+      ]
+    },
+    "rejected_related_urls": [
+      {"classification": "internal_log", "locator": "https://example.invalid/private/processing.log"}
+    ]
+  },
+  "expected_result": {
+    "kind": "accept",
+    "provider_product_count": 1,
+    "primary_asset_count": 1,
+    "executable_asset_ids": ["science-rslc-hdf5"],
+    "s_band_asset_count": 0
+  }
+}

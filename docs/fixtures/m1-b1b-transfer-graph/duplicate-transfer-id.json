@@ -1,0 +1,32 @@
+{
+  "fixture_metadata": {
+    "fixture_version": 1,
+    "fixture_kind": "invalid",
+    "fixture_name": "duplicate-transfer-id",
+    "payload_contract": "FrozenTaskSnapshotV3",
+    "offline": true
+  },
+  "base": "single",
+  "mutations": [
+    {
+      "op": "append_copy",
+      "from": "/transfer_items/0",
+      "path": "/transfer_items"
+    }
+  ],
+  "expected": {
+    "accepted": false,
+    "error": {
+      "variant": "duplicate_identity",
+      "identity": "transfer_item_id",
+      "first": {
+        "kind": "transfer_item",
+        "index": 0
+      },
+      "duplicate": {
+        "kind": "transfer_item",
+        "index": 2
+      }
+    }
+  }
+}

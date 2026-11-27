@@ -1,0 +1,35 @@
+{
+  "sentinel1": {
+    "batch_id": "batch-s1-20240115",
+    "provider_id": "asf.sentinel1",
+    "aoi_name": "全国",
+    "aoi_geojson": {
+      "type": "MultiPolygon",
+      "coordinates": [[[[73.5, 18.2], [134.8, 18.2], [134.8, 53.6], [73.5, 53.6], [73.5, 18.2]]]]
+    },
+    "candidate_prefix": "S1A-IW-SLC-",
+    "candidate_count": 500,
+    "initial_selected_ids": ["S1A-IW-SLC-000", "S1A-IW-SLC-499"],
+    "checked_item_ids": ["S1A-IW-SLC-499"],
+    "page_index": 20,
+    "page_size": 24,
+    "layout": "sentinel1_slc"
+  },
+  "orbit": {
+    "batch_id": "batch-orbit-20240115",
+    "provider_id": "esa.sentinel1_orbit",
+    "aoi_name": "上海市长宁区",
+    "aoi_geojson": {
+      "type": "Polygon",
+      "coordinates": [[[121.33, 31.16], [121.45, 31.16], [121.45, 31.24], [121.33, 31.24], [121.33, 31.16]]]
+    },
+    "candidate_prefix": "S1A-POEORB-",
+    "candidate_count": 3,
+    "initial_selected_ids": ["S1A-POEORB-001"],
+    "checked_item_ids": ["S1A-POEORB-001"],
+    "page_index": 0,
+    "page_size": 24,
+    "layout": "sentinel_orbit_aux_poeorb"
+  },
+  "shared_output_root": "E:/InSAR/internal-test/downloads"
+}

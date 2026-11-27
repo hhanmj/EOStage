@@ -1,0 +1,14 @@
+# EOStage Citation Metadata (Citation File Format 1.2)
+cff-version: 1.2.0
+type: software
+title: EOStage
+message: "If you use EOStage in your research, please cite it using this metadata."
+authors:
+  - family-names: Han
+    given-names: Mengjia
+    orcid: "https://orcid.org/0009-0000-8905-7457"
+    alias: hhanmj
+license: GPL-3.0-or-later
+repository-code: "https://github.com/hhanmj/EOStage"
+version: "2.2.0-beta.0"
+date-released: 2026-11-24

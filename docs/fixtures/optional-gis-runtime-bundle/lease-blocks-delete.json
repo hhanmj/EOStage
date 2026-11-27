@@ -1,0 +1,7 @@
+{
+  "fixture_kind": "runtime-lease-delete-scenario",
+  "lease_file": "lease-base-extension.json",
+  "requested_action": "remove elevation extension",
+  "expected_error": "GIS_INSTALL_BUSY",
+  "active_set_after": "unchanged"
+}

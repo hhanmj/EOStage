@@ -1,0 +1,1 @@
+{"type":"FeatureCollection","features":[{"type":"Feature","id":"00000000-0000-4000-8000-000000000001","collection":"sentinel-2-l2a","properties":{},"geometry":null,"bbox":null,"assets":{},"links":[]}],"links":[{"rel":"next","href":"https://stac.example.invalid/v1/search?page=2"}]}

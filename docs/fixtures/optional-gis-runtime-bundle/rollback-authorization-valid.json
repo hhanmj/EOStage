@@ -1,0 +1,55 @@
+{
+  "contract": "GISRuntimeRollbackAuthorization",
+  "authorization_version": 1,
+  "authorization_id": "fixture-rollback-base-90-once",
+  "action": "activate_older_runtime_set",
+  "platform": "windows",
+  "architecture": "x86_64",
+  "channel": "beta",
+  "rollback_groups": [
+    "gis-runtime-base"
+  ],
+  "target": {
+    "base": {
+      "extension_id": null,
+      "bundle_set_id": "gis-runtime-base",
+      "set_kind": "base",
+      "set_version": "0.9.0",
+      "manifest_sha256": "0560a671145cc44fe40f846ce028fd68437b7039259ec14024b6d12915b438e9",
+      "release_sequence": 90,
+      "member_ids": [
+        "gis-dem-worker-win-x64",
+        "gis-gdal-runtime-win-x64",
+        "gis-notices-win-x64",
+        "gis-proj-data-win-x64"
+      ]
+    },
+    "extensions": [],
+    "selection_digest": "3788ed70d614046c953c8d332e31535376fb15729165cc049a63ab606ec4e897"
+  },
+  "authorized_floors": [
+    {
+      "stream_key": "gis-runtime-base/base/beta/windows/x86_64",
+      "last_release_sequence": 100,
+      "last_manifest_sha256": "e0fb53d6b47bc3d2da500cd83f3e92f6208055de16a20e2c458abe0cc7d9c694"
+    },
+    {
+      "stream_key": "gis-runtime-elevation/extension/beta/windows/x86_64",
+      "last_release_sequence": 100,
+      "last_manifest_sha256": "9de61242583e33aa6606d7405c02ff164117a839d45658e15aefc1ea7deb9410"
+    }
+  ],
+  "authorized_replay_generation": 3,
+  "authorized_replay_ledger_sha256": "d97d8b310777352012bfee646eaff508f755240c42bda6b7195edee7345ea00c",
+  "minimum_app_version": "2.2.0",
+  "maximum_app_version": "2.2.0",
+  "issued_at": "2026-07-22T00:30:00Z",
+  "not_before": "2026-07-22T00:30:00Z",
+  "expires_at": "2026-07-29T00:30:00Z",
+  "use_policy": "single_use",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "fixture-root-2026",
+    "value": "hx+ghj9hRv8kIAlKPjkz+vNFGTU10N7dgwZUwh9T5mMeDg4bfSAEMd1fCS6wS23hENQZHzuVNV8yFBfrKpOZCw=="
+  }
+}

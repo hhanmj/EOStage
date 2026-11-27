@@ -1,0 +1,78 @@
+{
+  "architecture": "x86_64",
+  "archive_sha256": "4271d69e02810abf0df451cd10030a42dce06ffddbeddbb64d0a9dd937cca975",
+  "bundle_set_id": "gis-runtime-elevation",
+  "channel": "beta",
+  "component_id": "gis-elevation-grids-win-x64",
+  "contract": "ComponentManifest",
+  "expires_at": "2027-07-22T00:00:00Z",
+  "files": [
+    {
+      "path": "LICENSES/fixture-MIT.txt",
+      "size_bytes": 347,
+      "sha256": "83b5cc2f6ea394c4cdc2854cd56f287d717869c8cbaa8cc68303dd59be8c9966"
+    },
+    {
+      "path": "NOTICE",
+      "size_bytes": 128,
+      "sha256": "7f1639fad5a223cf585d997983f86ce47ad0aad9be67363f2eb2f52fed593391"
+    },
+    {
+      "path": "bundle-elevation.payload",
+      "size_bytes": 26,
+      "sha256": "a40b17790267eb612d041a891b748fc69c9e3d01bd4e1af9483424d175a77b0a"
+    }
+  ],
+  "issued_at": "2026-07-22T00:00:00Z",
+  "license": {
+    "notice_file": "LICENSES/fixture-MIT.txt",
+    "spdx": "MIT"
+  },
+  "manifest_version": 1,
+  "minimum_app_version": "2.2.0",
+  "notices": "NOTICE",
+  "platform": "windows",
+  "protocol": {
+    "major": 1,
+    "minor": 0,
+    "name": "gis-worker"
+  },
+  "provides": [
+    "gis.convert-dem-vertical-datum.v1"
+  ],
+  "requires": [
+    "gis-proj-data-win-x64"
+  ],
+  "rollback_group": "gis-runtime-elevation",
+  "self_test": {
+    "operation": "elevation_grid_v1",
+    "args": {
+      "grid_id": "fixture-geoid-v1"
+    },
+    "timeout_ms": 30000
+  },
+  "size": {
+    "archive_bytes": 859,
+    "unpacked_bytes": 501
+  },
+  "source_urls": [
+    {
+      "class": "oss-cn",
+      "url": "https://components.example.invalid/oss/gis-elevation-grids-win-x64-2026.07.zip"
+    },
+    {
+      "class": "cos-cn",
+      "url": "https://components.example.invalid/cos/gis-elevation-grids-win-x64-2026.07.zip"
+    },
+    {
+      "class": "github-release",
+      "url": "https://components.example.invalid/github-release/gis-elevation-grids-win-x64-2026.07.zip"
+    }
+  ],
+  "version": "2026.07",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "fixture-root-2026",
+    "value": "5GQiJkl/zJtOgFlFBeTsw0f7TR5agrPghkU1sUOENcl+hUbPdv/lkWo0BGbhXqeGTRDAenFMmUWfYO+IV/aYCg=="
+  }
+}

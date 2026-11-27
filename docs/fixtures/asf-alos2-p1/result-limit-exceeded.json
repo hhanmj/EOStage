@@ -1,0 +1,8 @@
+{
+  "fixture_contract": "AsfCatalogueLimitFixtureV1",
+  "status": "synthetic_proposed",
+  "local_complete_batch_limit": 500,
+  "unique_accepted_product_count": 501,
+  "publication": "none",
+  "expected_result": {"kind": "reject", "error": "CATALOGUE_RESULT_LIMIT_EXCEEDED"}
+}

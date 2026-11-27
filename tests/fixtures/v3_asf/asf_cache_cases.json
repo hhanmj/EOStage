@@ -1,0 +1,81 @@
+{
+  "coverage": [
+    {
+      "name": "exact",
+      "cached": {"version": 1, "dataset": "SENTINEL-1", "bbox": null, "aoi": "", "start": "2024-01-01", "end": "2024-03-31", "product_type": "SLC", "beam_mode": "IW", "polarization": "DV", "orbit_direction": "ASCENDING", "relative_orbit": "40-50", "frame": "450-470"},
+      "requested": {"version": 1, "dataset": "SENTINEL-1", "bbox": null, "aoi": "", "start": "2024-01-01", "end": "2024-03-31", "product_type": "SLC", "beam_mode": "IW", "polarization": "DV", "orbit_direction": "ASCENDING", "relative_orbit": "40-50", "frame": "450-470"},
+      "expected": true
+    },
+    {
+      "name": "broad_to_narrow",
+      "cached": {"version": 1, "dataset": "SENTINEL-1", "bbox": null, "aoi": "", "start": "", "end": "", "product_type": "SLC", "beam_mode": "", "polarization": "", "orbit_direction": "", "relative_orbit": null, "frame": null},
+      "requested": {"version": 1, "dataset": "SENTINEL-1", "bbox": null, "aoi": "", "start": "2024-01-01", "end": "2024-03-31", "product_type": "SLC", "beam_mode": "IW", "polarization": "DV", "orbit_direction": "DESCENDING", "relative_orbit": "42", "frame": "456"},
+      "expected": true
+    },
+    {
+      "name": "narrow_date_cannot_cover_broad",
+      "cached": {"version": 1, "dataset": "SENTINEL-1", "bbox": null, "aoi": "", "start": "2024-02-01", "end": "2024-02-29", "product_type": "SLC", "beam_mode": "IW", "polarization": "", "orbit_direction": "", "relative_orbit": null, "frame": null},
+      "requested": {"version": 1, "dataset": "SENTINEL-1", "bbox": null, "aoi": "", "start": "2024-01-01", "end": "2024-03-31", "product_type": "SLC", "beam_mode": "IW", "polarization": "", "orbit_direction": "", "relative_orbit": null, "frame": null},
+      "expected": false
+    },
+    {
+      "name": "range_gap_does_not_cover",
+      "cached": {"version": 1, "dataset": "SENTINEL-1", "bbox": null, "aoi": "", "start": "", "end": "", "product_type": "SLC", "beam_mode": "", "polarization": "", "orbit_direction": "", "relative_orbit": "1-10,20-30", "frame": null},
+      "requested": {"version": 1, "dataset": "SENTINEL-1", "bbox": null, "aoi": "", "start": "", "end": "", "product_type": "SLC", "beam_mode": "IW", "polarization": "", "orbit_direction": "", "relative_orbit": "8-22", "frame": null},
+      "expected": false
+    }
+  ],
+  "reuse": [
+    {
+      "name": "finite_sufficient",
+      "complete": false,
+      "requested_limit": 2,
+      "scenes": [
+        {"acquisition_datetime": "2024-03-01T00:00:00Z"},
+        {"acquisition_datetime": "2024-02-01T00:00:00Z"},
+        {"acquisition_datetime": "2024-01-01T00:00:00Z"}
+      ],
+      "expected_reuse": true,
+      "expected_count": 2
+    },
+    {
+      "name": "finite_insufficient",
+      "complete": false,
+      "requested_limit": 4,
+      "scenes": [
+        {"acquisition_datetime": "2024-03-01T00:00:00Z"},
+        {"acquisition_datetime": "2024-02-01T00:00:00Z"},
+        {"acquisition_datetime": "2024-01-01T00:00:00Z"}
+      ],
+      "expected_reuse": false,
+      "expected_count": 0
+    },
+    {
+      "name": "unlimited_complete",
+      "complete": true,
+      "requested_limit": null,
+      "scenes": [{"acquisition_datetime": "2024-01-01T00:00:00Z"}],
+      "expected_reuse": true,
+      "expected_count": 1
+    },
+    {
+      "name": "unlimited_incomplete",
+      "complete": false,
+      "requested_limit": null,
+      "scenes": [{"acquisition_datetime": "2024-01-01T00:00:00Z"}],
+      "expected_reuse": false,
+      "expected_count": 0
+    }
+  ],
+  "incremental": [
+    {
+      "name": "oldest_acquisition_is_inclusive_end",
+      "scenes": [
+        {"acquisition_datetime": "2024-03-01T10:00:00Z"},
+        {"acquisition_datetime": "2024-01-13T10:00:00Z"},
+        {"acquisition_datetime": "2024-02-01T10:00:00Z"}
+      ],
+      "expected_end": "2024-01-13T10:00:00Z"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "fixture_kind": "authorized-rollback-scenario",
+  "evaluation_time": "2026-07-22T01:00:00Z",
+  "request_file": "rollback-request-valid.json",
+  "primary_ledger_file": "replay-ledger-valid.json",
+  "backup_ledger_file": "replay-ledger-valid.json",
+  "active_before_file": "active-after.json",
+  "authorization_file": "rollback-authorization-valid.json",
+  "target_bundle_set_file": "bundle-set-base-previous-valid.json",
+  "target_active_file": "active-rollback-target.json",
+  "existing_lease_files": ["lease-base-extension.json"],
+  "expected": {
+    "result": "authorized-rollback-committed",
+    "error_code": null,
+    "primary_after_file": "replay-ledger-rollback-candidate.json",
+    "backup_after_file": "replay-ledger-rollback-candidate.json",
+    "active_after_file": "active-rollback-target.json",
+    "receipt_after_file": "rollback-receipt-committed.json",
+    "journal_after": "absent",
+    "accepted_base_replay_floor": 100,
+    "active_base_release_sequence": 90,
+    "existing_leases_unchanged": true
+  }
+}

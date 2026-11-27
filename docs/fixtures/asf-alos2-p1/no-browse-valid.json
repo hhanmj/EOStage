@@ -1,0 +1,6 @@
+{
+  "fixture_contract": "AsfAlos2MutationFixtureV1",
+  "base": "granule-wbd-valid.json",
+  "mutation": {"path": "/granule/browse", "value": null},
+  "expected_result": {"kind": "accept", "preview": "ASF_PREVIEW_UNAVAILABLE"}
+}

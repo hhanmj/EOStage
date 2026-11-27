@@ -1,0 +1,50 @@
+{
+  "contract": "NisarSubsetCanonicalParityV1",
+  "base_fixture": "request-manifest-v1.json",
+  "valid_cases": [
+    {
+      "case": "numeric_sort_2_vs_10",
+      "builder": "two_windows_numeric",
+      "expected_sha256": "e39bb1c66028035b47b84ceec1c56206c53a94a12baad4ed43924281791b16f1"
+    },
+    {
+      "case": "ratio_equal_one",
+      "builder": "ratio_equal_one",
+      "expected_sha256": "d13a1dddb1d36fd8b5286e3c2b2e10300ad6abea6749503709becb7b84419f15"
+    },
+    {
+      "case": "ratio_very_small",
+      "builder": "ratio_very_small",
+      "expected_sha256": "5a1f18b1c93dd3c4fdd69278d6ba6d21418d6d8d41d67dc990267540cbc1cfeb"
+    },
+    {
+      "case": "near_max_safe_integer",
+      "builder": "near_max_safe_integer",
+      "expected_sha256": "e798382ec5eee40a64bd58d3ed4cbbbdc2c8d3ef1e2d8138bdea997f5a6dc664"
+    },
+    {
+      "case": "same_initial_key_different_end",
+      "builder": "same_prefix_different_end",
+      "expected_sha256": "8044c03c626c78f72524f88982fd397a4a5261aa010a8ee22af1b453c78454a8"
+    },
+    {
+      "case": "different_input_array_order",
+      "builder": "two_windows_numeric_reversed",
+      "expected_sha256": "e39bb1c66028035b47b84ceec1c56206c53a94a12baad4ed43924281791b16f1"
+    },
+    {
+      "case": "utf8_order_bmp_boundary_before_supplementary_plane",
+      "builder": "unicode_bmp_supplementary_order",
+      "expected_sha256": "e2dc58fd1df5bf0539520c2d139558bac59d3e495564576d2eb2f135c9af0f7a"
+    }
+  ],
+  "invalid_cases": [
+    {"case": "request_over_32k", "builder": "oversized_request", "target": "request", "expected_code": "NISAR_SUBSET_MANIFEST_TOO_LARGE"},
+    {"case": "invalid_mapping_algorithm", "builder": "invalid_mapping_algorithm", "target": "request", "expected_code": "NISAR_SUBSET_UNSUPPORTED_SCOPE"},
+    {"case": "invalid_mapping_version", "builder": "invalid_mapping_version", "target": "request", "expected_code": "NISAR_SUBSET_UNSUPPORTED_SCOPE"},
+    {"case": "negative_margin", "builder": "negative_margin", "target": "request", "expected_code": "NISAR_SUBSET_MANIFEST_INVALID"},
+    {"case": "artifact_invalid_polarization", "builder": "artifact_invalid_polarization", "target": "artifact", "expected_code": "NISAR_SUBSET_UNSUPPORTED_SCOPE"},
+    {"case": "mask_path_backslash", "builder": "mask_path_backslash", "target": "artifact", "expected_code": "NISAR_SUBSET_WINDOW_INVALID"},
+    {"case": "source_validator_specification_mismatch", "builder": "source_validator_specification_mismatch", "target": "artifact", "expected_code": "NISAR_SUBSET_IDENTITY_MISMATCH"}
+  ]
+}

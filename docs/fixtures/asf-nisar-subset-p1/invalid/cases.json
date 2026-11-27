@@ -1,0 +1,92 @@
+[
+  {
+    "case": "unknown_field",
+    "target": "request",
+    "fixture": "invalid/unknown-field.json"
+  },
+  {
+    "case": "missing_source_identity",
+    "target": "request",
+    "fixture": "invalid/missing-source-identity.json"
+  },
+  {
+    "case": "wrong_authority",
+    "target": "request",
+    "fixture": "invalid/wrong-authority.json"
+  },
+  {
+    "case": "temporary_url",
+    "target": "request",
+    "fixture": "invalid/temporary-url.json"
+  },
+  {
+    "case": "sensitive_key",
+    "target": "request",
+    "fixture": "invalid/sensitive-key.json"
+  },
+  {
+    "case": "overlapping_range",
+    "target": "transfer",
+    "fixture": "invalid/overlapping-range.json"
+  },
+  {
+    "case": "window_out_of_bounds",
+    "target": "request",
+    "fixture": "invalid/window-out-of-bounds.json"
+  },
+  {
+    "case": "mixed_frequency",
+    "target": "request",
+    "fixture": "invalid/mixed-frequency.json"
+  },
+  {
+    "case": "obsolete_ratio_field",
+    "target": "artifact",
+    "fixture": "invalid/obsolete-ratio-field.json"
+  },
+  {
+    "case": "complete_without_validator",
+    "target": "artifact",
+    "fixture": "invalid/complete-without-validator.json"
+  },
+  {
+    "case": "provider_generated",
+    "target": "artifact",
+    "fixture": "invalid/provider-generated.json"
+  },
+  {
+    "case": "invalid_mapping_algorithm",
+    "target": "request",
+    "fixture": "invalid/invalid-mapping-algorithm.json"
+  },
+  {
+    "case": "invalid_mapping_version",
+    "target": "request",
+    "fixture": "invalid/invalid-mapping-version.json"
+  },
+  {
+    "case": "negative_margin",
+    "target": "request",
+    "fixture": "invalid/negative-margin.json"
+  },
+  {
+    "case": "artifact_invalid_polarization",
+    "target": "artifact",
+    "fixture": "invalid/artifact-invalid-polarization.json"
+  },
+  {
+    "case": "mask_path_backslash",
+    "target": "artifact",
+    "fixture": "invalid/mask-path-backslash.json"
+  },
+  {
+    "case": "source_validator_specification_mismatch",
+    "target": "artifact",
+    "fixture": "invalid/source-validator-specification-mismatch.json"
+  },
+  {
+    "case": "request_over_32k",
+    "target": "request",
+    "fixture": "invalid/request-over-32k.json"
+  }
+]

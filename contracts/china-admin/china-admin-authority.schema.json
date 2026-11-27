@@ -1,0 +1,287 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eostage.local/contracts/china-admin/china-admin-authority.schema.json",
+  "title": "EOStage China Administrative Authority",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "authority_version",
+    "authority_status",
+    "effective_date",
+    "generated_at",
+    "content_sha256",
+    "content_hash_scope",
+    "source_manifest",
+    "policy_version",
+    "units"
+  ],
+  "properties": {
+    "schema_version": { "const": "1.0.0" },
+    "authority_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+    },
+    "authority_status": {
+      "enum": [
+        "non_production_migration_reference",
+        "production_candidate",
+        "production_approved"
+      ]
+    },
+    "effective_date": {
+      "oneOf": [
+        { "type": "string", "format": "date" },
+        { "type": "null" }
+      ]
+    },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "content_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "content_hash_scope": { "const": "canonical_json_without_content_sha256_v1" },
+    "source_manifest": { "$ref": "#/$defs/source_manifest" },
+    "policy_version": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+    },
+    "units": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/unit" }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "authority_status": {
+            "enum": ["production_candidate", "production_approved"]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "effective_date": { "type": "string", "format": "date" }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": { "authority_status": { "const": "production_approved" } }
+      },
+      "then": {
+        "properties": {
+          "source_manifest": {
+            "properties": {
+              "administrative_effective_date_verified": { "const": true },
+              "license_status": { "const": "approved" },
+              "production_distribution_approved": { "const": true }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "source_manifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_kind",
+        "source_id",
+        "source_path",
+        "source_commit",
+        "source_sha256",
+        "administrative_effective_date_verified",
+        "license_status",
+        "production_distribution_approved",
+        "notes"
+      ],
+      "properties": {
+        "source_kind": {
+          "enum": ["repository_legacy_index", "official_snapshot", "licensed_snapshot"]
+        },
+        "source_id": { "type": "string", "minLength": 1, "maxLength": 256 },
+        "source_path": { "type": ["string", "null"], "maxLength": 512 },
+        "source_commit": {
+          "oneOf": [
+            { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+            { "type": "null" }
+          ]
+        },
+        "source_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "source_title": {
+          "oneOf": [
+            { "type": "string", "minLength": 1, "maxLength": 512 },
+            { "type": "null" }
+          ]
+        },
+        "publishing_authority": {
+          "oneOf": [
+            { "type": "string", "minLength": 1, "maxLength": 256 },
+            { "type": "null" }
+          ]
+        },
+        "reference_date": {
+          "oneOf": [
+            { "type": "string", "format": "date" },
+            { "type": "null" }
+          ]
+        },
+        "retrieval_date": {
+          "oneOf": [
+            { "type": "string", "format": "date" },
+            { "type": "null" }
+          ]
+        },
+        "source_location": {
+          "oneOf": [
+            { "type": "string", "format": "uri", "maxLength": 1024 },
+            { "type": "null" }
+          ]
+        },
+        "raw_sha256": {
+          "oneOf": [
+            { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+            { "type": "null" }
+          ]
+        },
+        "normalization_version": {
+          "oneOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128,
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+            },
+            { "type": "null" }
+          ]
+        },
+        "administrative_effective_date_verified": { "type": "boolean" },
+        "license_status": {
+          "enum": ["unresolved", "review_required", "restricted", "approved"]
+        },
+        "production_distribution_approved": { "type": "boolean" },
+        "notes": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1, "maxLength": 1024 },
+          "maxItems": 32
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "source_kind": { "const": "official_snapshot" } },
+            "required": ["source_kind"]
+          },
+          "then": {
+            "required": [
+              "source_title",
+              "publishing_authority",
+              "reference_date",
+              "retrieval_date",
+              "source_location",
+              "raw_sha256",
+              "normalization_version"
+            ],
+            "properties": {
+              "source_title": { "type": "string" },
+              "publishing_authority": { "type": "string" },
+              "reference_date": { "type": "string", "format": "date" },
+              "retrieval_date": { "type": "string", "format": "date" },
+              "source_location": { "type": "string", "format": "uri" },
+              "raw_sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+              "normalization_version": { "type": "string" }
+            }
+          }
+        }
+      ]
+    },
+    "unit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "adcode",
+        "name_zh",
+        "aliases",
+        "administrative_level",
+        "unit_type",
+        "parent_adcode",
+        "selectable",
+        "supported",
+        "special_tags",
+        "sort_order"
+      ],
+      "properties": {
+        "adcode": { "type": "string", "pattern": "^[0-9]{6}$" },
+        "name_zh": { "type": "string", "minLength": 1, "maxLength": 128 },
+        "aliases": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1, "maxLength": 128 },
+          "maxItems": 32
+        },
+        "administrative_level": {
+          "enum": ["country", "province", "prefecture", "county"]
+        },
+        "unit_type": {
+          "enum": [
+            "country",
+            "province",
+            "autonomous_region",
+            "municipality",
+            "special_administrative_region",
+            "prefecture_city",
+            "autonomous_prefecture",
+            "league",
+            "region",
+            "urban_district",
+            "county",
+            "autonomous_county",
+            "county_city",
+            "banner",
+            "autonomous_banner",
+            "forestry_district",
+            "special_district"
+          ]
+        },
+        "parent_adcode": {
+          "oneOf": [
+            { "type": "string", "pattern": "^[0-9]{6}$" },
+            { "type": "null" }
+          ]
+        },
+        "selectable": { "type": "boolean" },
+        "supported": { "type": "boolean" },
+        "special_tags": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "municipality",
+              "autonomous_prefecture",
+              "league",
+              "region",
+              "province_direct_county",
+              "municipality_direct_county",
+              "urban_district",
+              "county",
+              "autonomous_county",
+              "county_city",
+              "banner",
+              "autonomous_banner",
+              "forestry_district",
+              "special_district",
+              "special_administrative_region"
+            ]
+          },
+          "maxItems": 16
+        },
+        "sort_order": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}

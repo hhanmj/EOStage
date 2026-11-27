@@ -1,0 +1,536 @@
+{
+  "fixture_schema": 4,
+  "trust_root": "trust-root-fixture.json",
+  "archives": [
+    {
+      "file": "archives/gis-dem-worker-win-x64-1.4.2.zip",
+      "component_id": "gis-dem-worker-win-x64",
+      "size_bytes": 837,
+      "sha256": "edd46acd5da08710344ca1480b873626615d227624e1848ae46cc3135c40f4f0"
+    },
+    {
+      "file": "archives/gis-gdal-runtime-win-x64-3.10.1.zip",
+      "component_id": "gis-gdal-runtime-win-x64",
+      "size_bytes": 847,
+      "sha256": "3bc8db5c63e83fedaf054f6b45a59baf73e976894dd710491079b79866d95c08"
+    },
+    {
+      "file": "archives/gis-proj-data-win-x64-9.5.1.zip",
+      "component_id": "gis-proj-data-win-x64",
+      "size_bytes": 844,
+      "sha256": "95d6e23822cedc4a50ee49e34786800dd60b2c3626aad5ca68ade6b0ea43e2e8"
+    },
+    {
+      "file": "archives/gis-notices-win-x64-2026.07.zip",
+      "component_id": "gis-notices-win-x64",
+      "size_bytes": 1333,
+      "sha256": "719ed8a5fce6ea280260319f29f59cf67c0ba13e8136eb6da193acc8084d7126"
+    },
+    {
+      "file": "archives/gis-elevation-grids-win-x64-2026.07.zip",
+      "component_id": "gis-elevation-grids-win-x64",
+      "size_bytes": 859,
+      "sha256": "4271d69e02810abf0df451cd10030a42dce06ffddbeddbb64d0a9dd937cca975"
+    }
+  ],
+  "component_manifests": [
+    {
+      "file": "manifest-valid.json",
+      "component_id": "gis-dem-worker-win-x64",
+      "sha256": "f26c8da938e6c0901eac6f6610f43dab97a44cb492ef8a70f6e096ad2971e96a"
+    },
+    {
+      "file": "manifest-gdal-valid.json",
+      "component_id": "gis-gdal-runtime-win-x64",
+      "sha256": "7752457ec33b385c3c75b72c53f1c748a6784fc4aa1ba099d4bba0bacc95ea05"
+    },
+    {
+      "file": "manifest-proj-valid.json",
+      "component_id": "gis-proj-data-win-x64",
+      "sha256": "01fc73032bb189a605a7a76acd782be8382428d9e5f6b1d10365970c4eb12c61"
+    },
+    {
+      "file": "manifest-notices-valid.json",
+      "component_id": "gis-notices-win-x64",
+      "sha256": "f92ff99f2c74f2f7e9c9a7e2eedcdd7fd8cbcfb1be6b7f1c04af8abb2a025a30"
+    },
+    {
+      "file": "manifest-elevation-grids-valid.json",
+      "component_id": "gis-elevation-grids-win-x64",
+      "sha256": "4d0e095fb4e28a1a57ce0585a45231026822add66cc7ef4f9d5b67b94c250c97"
+    }
+  ],
+  "bundle_set_manifests": [
+    {
+      "file": "bundle-set-valid.json",
+      "bundle_set_id": "gis-runtime-base",
+      "set_kind": "base",
+      "sha256": "e0fb53d6b47bc3d2da500cd83f3e92f6208055de16a20e2c458abe0cc7d9c694"
+    },
+    {
+      "file": "bundle-set-base-previous-valid.json",
+      "bundle_set_id": "gis-runtime-base",
+      "set_kind": "base",
+      "sha256": "0560a671145cc44fe40f846ce028fd68437b7039259ec14024b6d12915b438e9"
+    },
+    {
+      "file": "bundle-set-extension-valid.json",
+      "bundle_set_id": "gis-runtime-elevation",
+      "set_kind": "extension",
+      "sha256": "9de61242583e33aa6606d7405c02ff164117a839d45658e15aefc1ea7deb9410"
+    }
+  ],
+  "rollback_authorizations": [
+    {
+      "file": "rollback-authorization-valid.json",
+      "authorization_id": "fixture-rollback-base-90-once",
+      "sha256": "63f7fb78c57b453dd4fafb249f7c0182bdb4431b948c0294c89bd90e66d80d74",
+      "use_policy": "single_use"
+    }
+  ],
+  "payloads": [
+    {
+      "file": "bundle-valid.payload",
+      "sha256": "d6e969212877c6e64b6af39a741f1adbce59735da80c9d824a73e8860895b0e1",
+      "size_bytes": 22
+    },
+    {
+      "file": "bundle-gdal.payload",
+      "sha256": "3348242049f9ee7f8ca9205ec1b331b865d036a7377c394763896fe26fa14025",
+      "size_bytes": 24
+    },
+    {
+      "file": "bundle-proj.payload",
+      "sha256": "505d3d30b9217e04efcded7412fa369ede61d4a2b672e338716618628213d45b",
+      "size_bytes": 21
+    },
+    {
+      "file": "bundle-notices.payload",
+      "sha256": "ad1a7a8213965c9a127b0e531422c7929b3364c06c28fc5e8d5655d80f5d5658",
+      "size_bytes": 19
+    },
+    {
+      "file": "bundle-elevation.payload",
+      "sha256": "a40b17790267eb612d041a891b748fc69c9e3d01bd4e1af9483424d175a77b0a",
+      "size_bytes": 26
+    },
+    {
+      "file": "bundle-valid.payload.part",
+      "sha256": "679a052d531c269fc53ea3336bc1cd079e794a9adfbce298fd2e8719ef85bbcf",
+      "size_bytes": 13
+    }
+  ],
+  "cases": [
+    {
+      "file": "manifest-valid.json",
+      "expected": "schema-valid-and-signed"
+    },
+    {
+      "file": "manifest-gdal-valid.json",
+      "expected": "schema-valid-and-signed"
+    },
+    {
+      "file": "manifest-proj-valid.json",
+      "expected": "schema-valid-and-signed"
+    },
+    {
+      "file": "manifest-notices-valid.json",
+      "expected": "schema-valid-and-signed"
+    },
+    {
+      "file": "manifest-elevation-grids-valid.json",
+      "expected": "schema-valid-and-signed"
+    },
+    {
+      "file": "bundle-set-valid.json",
+      "expected": "complete-atomic-base-set"
+    },
+    {
+      "file": "bundle-set-extension-valid.json",
+      "expected": "complete-atomic-elevation-extension"
+    },
+    {
+      "file": "manifest-invalid-signature.json",
+      "expected": "GIS_SIGNATURE_INVALID"
+    },
+    {
+      "file": "bundle-set-invalid-signature.json",
+      "expected": "GIS_SIGNATURE_INVALID"
+    },
+    {
+      "file": "manifest-wrong-signature.json",
+      "expected": "GIS_SIGNATURE_INVALID"
+    },
+    {
+      "file": "manifest-sha-mismatch.json",
+      "expected": "GIS_CHECKSUM_MISMATCH"
+    },
+    {
+      "file": "manifest-incompatible-platform.json",
+      "expected": "GIS_PLATFORM_UNSUPPORTED"
+    },
+    {
+      "file": "manifest-expired.json",
+      "expected": "GIS_MANIFEST_EXPIRED"
+    },
+    {
+      "file": "manifest-replayed.json",
+      "expected": "GIS_MANIFEST_REPLAYED"
+    },
+    {
+      "file": "manifest-integer-out-of-range.json",
+      "expected": "GIS_INTEGER_OUT_OF_RANGE"
+    },
+    {
+      "file": "manifest-selftest-shell-command.json",
+      "expected": "GIS_MANIFEST_INVALID"
+    },
+    {
+      "file": "manifest-missing-grid.json",
+      "expected": "GIS_GRID_MISSING"
+    },
+    {
+      "file": "manifest-selftest-failure.json",
+      "expected": "GIS_RUNTIME_SELFTEST_FAILED"
+    },
+    {
+      "file": "bundle-set-mixed-version.json",
+      "expected": "GIS_BUNDLE_SET_MEMBER_VERSION_MISMATCH"
+    },
+    {
+      "file": "bundle-set-missing-member.json",
+      "expected": "GIS_BUNDLE_SET_MEMBER_MISSING"
+    },
+    {
+      "file": "bundle-set-duplicate-member.json",
+      "expected": "GIS_BUNDLE_SET_MEMBER_DUPLICATE"
+    },
+    {
+      "file": "active-invalid-single-member.json",
+      "expected": "GIS_BUNDLE_SET_MEMBER_MISSING"
+    },
+    {
+      "file": "archive-unsafe-path.json",
+      "expected": "GIS_ARCHIVE_UNSAFE"
+    },
+    {
+      "file": "archive-windows-reserved-name.json",
+      "expected": "GIS_ARCHIVE_RESERVED_NAME"
+    },
+    {
+      "file": "archive-case-collision.json",
+      "expected": "GIS_ARCHIVE_PATH_COLLISION"
+    },
+    {
+      "file": "archive-trailing-dot-space.json",
+      "expected": "GIS_ARCHIVE_TRAILING_DOT_SPACE"
+    },
+    {
+      "file": "archive-alternate-data-stream.json",
+      "expected": "GIS_ARCHIVE_ALTERNATE_STREAM"
+    },
+    {
+      "file": "archive-duplicate-path.json",
+      "expected": "GIS_ARCHIVE_DUPLICATE_PATH"
+    },
+    {
+      "file": "archive-limit-exceeded.json",
+      "expected": "GIS_ARCHIVE_LIMIT_EXCEEDED"
+    },
+    {
+      "file": "replay-ledger-valid.json",
+      "expected": "independent-base-extension-replay-streams"
+    },
+    {
+      "file": "replay-ledger-corrupt.json",
+      "expected": "GIS_REPLAY_LEDGER_CORRUPT"
+    },
+    {
+      "file": "replay-ledger-backup-valid.json",
+      "expected": "restore-valid-backup-without-reset"
+    },
+    {
+      "file": "activation-journal-staged.json",
+      "expected": "crash-recovery-keeps-previous-pointer"
+    },
+    {
+      "file": "activation-journal-corrupt.json",
+      "expected": "GIS_ACTIVATION_JOURNAL_CORRUPT"
+    },
+    {
+      "file": "lease-blocks-delete.json",
+      "expected": "GIS_INSTALL_BUSY"
+    },
+    {
+      "file": "lease-corrupt.json",
+      "expected": "GIS_RUNTIME_LEASE_CORRUPT"
+    },
+    {
+      "file": "lease-task-mismatch.json",
+      "expected": "GIS_RUNTIME_LEASE_CORRUPT"
+    },
+    {
+      "file": "bundle-valid.payload.part",
+      "expected": "resume-from-part-state"
+    },
+    {
+      "file": "part-state.json",
+      "expected": "resume-metadata"
+    },
+    {
+      "file": "range-206-valid.json",
+      "expected": "append-and-full-hash"
+    },
+    {
+      "file": "range-if-range-mismatch.json",
+      "expected": "GIS_SOURCE_OBJECT_CHANGED"
+    },
+    {
+      "file": "range-server-200.json",
+      "expected": "restart-from-zero"
+    },
+    {
+      "file": "range-content-range-invalid.json",
+      "expected": "GIS_CONTENT_RANGE_INVALID"
+    },
+    {
+      "file": "runtime-selection-base.json",
+      "expected": "base-selection-without-extension"
+    },
+    {
+      "file": "runtime-selection-vertical.json",
+      "expected": "base-plus-elevation-selection"
+    },
+    {
+      "file": "runtime-selection-incompatible.json",
+      "expected": "GIS_BUNDLE_SET_INCOMPATIBLE_COMPONENTS"
+    },
+    {
+      "file": "extension-required.json",
+      "expected": "GIS_EXTENSION_REQUIRED"
+    },
+    {
+      "file": "lease-base-extension.json",
+      "expected": "lease-pins-base-and-extension"
+    },
+    {
+      "file": "active-before.json",
+      "expected": "old-pointer"
+    },
+    {
+      "file": "active-after.json",
+      "expected": "atomic-pointer-switch"
+    },
+    {
+      "file": "install-state-success.json",
+      "expected": "atomic-activation"
+    },
+    {
+      "file": "install-state-rollback.json",
+      "expected": "previous-version-retained"
+    },
+    {
+      "file": "replay-ledger-previous.json",
+      "expected": "previous-ledger-snapshot-for-activation"
+    },
+    {
+      "file": "replay-ledger-candidate.json",
+      "expected": "candidate-ledger-generation-and-extension-stream"
+    },
+    {
+      "file": "activation-journal-verified.json",
+      "expected": "verified-phase-recovery"
+    },
+    {
+      "file": "activation-journal-ledger-swapped.json",
+      "expected": "ledger-swapped-phase-recovery"
+    },
+    {
+      "file": "activation-journal-pointer-pending.json",
+      "expected": "pointer-pending-phase-recovery"
+    },
+    {
+      "file": "activation-pointer-pending-match.json",
+      "expected": "pointer-pending-candidate-match-finishes-commit"
+    },
+    {
+      "file": "activation-pointer-pending-mismatch.json",
+      "expected": "pointer-pending-mismatch-rolls-back"
+    },
+    {
+      "file": "activation-journal-pointer-swapped.json",
+      "expected": "pointer-swapped-phase-recovery"
+    },
+    {
+      "file": "activation-journal-committed.json",
+      "expected": "committed-phase-recovery"
+    },
+    {
+      "file": "activation-journal-rollback-required.json",
+      "expected": "rollback-required-phase-recovery"
+    },
+    {
+      "file": "bundle-set-base-previous-valid.json",
+      "expected": "schema-valid-signed-previous-base-set-sequence-90"
+    },
+    {
+      "file": "active-rollback-target.json",
+      "expected": "below-floor-active-target-requires-committed-receipt"
+    },
+    {
+      "file": "replay-ledger-rollback-candidate.json",
+      "expected": "generation-increments-with-all-replay-floors-unchanged"
+    },
+    {
+      "file": "replay-ledger-divergent-valid.json",
+      "expected": "independently-valid-ledger-for-divergence-rejection"
+    },
+    {
+      "file": "startup-recovery-record-repaired-primary.json",
+      "expected": "typed-audit-record-for-primary-repair"
+    },
+    {
+      "file": "startup-recovery-record-blocked-divergence.json",
+      "expected": "typed-audit-record-for-divergence-block"
+    },
+    {
+      "file": "rollback-request-valid.json",
+      "expected": "exact-explicit-user-rollback-request"
+    },
+    {
+      "file": "rollback-request-reuse.json",
+      "expected": "second-explicit-request-for-consumed-authorization"
+    },
+    {
+      "file": "rollback-authorization-valid.json",
+      "expected": "schema-valid-signed-single-use-exact-target-authorization"
+    },
+    {
+      "file": "rollback-receipt-reserved.json",
+      "expected": "authorization-consumed-transaction-not-committed"
+    },
+    {
+      "file": "rollback-receipt-committed.json",
+      "expected": "committed-receipt-binds-target-and-preserved-floor"
+    },
+    {
+      "file": "rollback-receipt-aborted.json",
+      "expected": "aborted-receipt-remains-consumed"
+    },
+    {
+      "file": "rollback-journal-pointer-swapped.json",
+      "expected": "finish-candidate-ledger-backup-and-commit-receipt"
+    },
+    {
+      "file": "rollback-journal-committed.json",
+      "expected": "verify-ledgers-active-and-receipt-then-remove-journal"
+    },
+    {
+      "file": "rollback-journal-rollback-required.json",
+      "expected": "verified-prior-pair-awaits-explicit-recovery-acknowledgement"
+    },
+    {
+      "file": "rollback-recovery-record-journal-archived.json",
+      "expected": "typed-explicit-acknowledgement-archives-rollback-required"
+    },
+    {
+      "file": "startup-no-journal-clean.json",
+      "expected": "ready"
+    },
+    {
+      "file": "startup-no-journal-primary-corrupt.json",
+      "expected": "repaired_primary"
+    },
+    {
+      "file": "startup-no-journal-primary-missing.json",
+      "expected": "repaired_primary"
+    },
+    {
+      "file": "startup-no-journal-backup-corrupt.json",
+      "expected": "repaired_backup"
+    },
+    {
+      "file": "startup-no-journal-backup-missing.json",
+      "expected": "repaired_backup"
+    },
+    {
+      "file": "startup-no-journal-backup-stale.json",
+      "expected": "GIS_REPLAY_LEDGER_DIVERGED"
+    },
+    {
+      "file": "startup-no-journal-diverged.json",
+      "expected": "GIS_REPLAY_LEDGER_DIVERGED"
+    },
+    {
+      "file": "startup-no-journal-both-invalid-active.json",
+      "expected": "GIS_REPLAY_LEDGER_CORRUPT"
+    },
+    {
+      "file": "startup-no-journal-both-missing-active.json",
+      "expected": "GIS_REPLAY_LEDGER_CORRUPT"
+    },
+    {
+      "file": "startup-no-journal-empty.json",
+      "expected": "uninitialized-first-install"
+    },
+    {
+      "file": "startup-no-journal-active-mismatch.json",
+      "expected": "GIS_RUNTIME_REGISTRY_LEDGER_MISMATCH"
+    },
+    {
+      "file": "startup-no-journal-active-invalid.json",
+      "expected": "GIS_RUNTIME_SELECTION_INVALID"
+    },
+    {
+      "file": "startup-no-journal-active-missing.json",
+      "expected": "inactive-with-replay-floors-retained"
+    },
+    {
+      "file": "startup-no-journal-authorized-rollback.json",
+      "expected": "ready_authorized_rollback"
+    },
+    {
+      "file": "rollback-success.json",
+      "expected": "authorized-rollback-committed-with-floor-unchanged"
+    },
+    {
+      "file": "rollback-lower-sequence-without-authorization.json",
+      "expected": "GIS_MANIFEST_REPLAYED"
+    },
+    {
+      "file": "rollback-request-without-authorization.json",
+      "expected": "GIS_ROLLBACK_AUTHORIZATION_REQUIRED"
+    },
+    {
+      "file": "rollback-authorization-expired.json",
+      "expected": "GIS_ROLLBACK_AUTHORIZATION_EXPIRED"
+    },
+    {
+      "file": "rollback-authorization-target-mismatch.json",
+      "expected": "GIS_ROLLBACK_TARGET_MISMATCH"
+    },
+    {
+      "file": "rollback-authorization-reused.json",
+      "expected": "GIS_ROLLBACK_AUTHORIZATION_REPLAYED"
+    },
+    {
+      "file": "rollback-crash-recovery.json",
+      "expected": "deterministic-recovery-for-every-rollback-phase"
+    },
+    {
+      "file": "rollback-active-lease.json",
+      "expected": "rollback-does-not-mutate-running-runtime-lease"
+    },
+    {
+      "file": "install-state-before.json",
+      "expected": "running-operation-retains-its-leased-runtime"
+    },
+    {
+      "file": "THIRD_PARTY_NOTICES.json",
+      "expected": "deterministic-third-party-notice-inventory"
+    }
+  ],
+  "network": "forbidden",
+  "credentials": "forbidden",
+  "production_install": "forbidden"
+}

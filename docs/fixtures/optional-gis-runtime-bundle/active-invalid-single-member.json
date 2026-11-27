@@ -1,0 +1,22 @@
+{
+  "architecture": "x86_64",
+  "base": {
+    "extension_id": null,
+    "bundle_set_id": "gis-runtime-base",
+    "set_kind": "base",
+    "set_version": "1.0.0",
+    "manifest_sha256": "e0fb53d6b47bc3d2da500cd83f3e92f6208055de16a20e2c458abe0cc7d9c694",
+    "release_sequence": 100,
+    "member_ids": [
+      "gis-gdal-runtime-win-x64"
+    ]
+  },
+  "channel": "beta",
+  "contract": "ActiveRuntimeRegistry",
+  "extensions": [],
+  "platform": "windows",
+  "registry_version": 1,
+  "updated_at": "2026-07-22T00:00:00Z",
+  "selection_digest": "fixture-invalid-selection",
+  "expected_error": "GIS_BUNDLE_SET_MEMBER_MISSING"
+}

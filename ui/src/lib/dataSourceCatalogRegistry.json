@@ -1,0 +1,1845 @@
+{
+  "science.sentinel-1.standard.v1": {
+    "name": "Sentinel-1",
+    "subtitle": "C 波段 · 2014–至今 · Earthdata",
+    "band": "C 波段 (5.405 GHz)",
+    "bandTag": "C",
+    "era": "2014–至今",
+    "provider": "Earthdata",
+    "group": "orbiting",
+    "category": "primary-sar",
+    "subcategories": [
+      "primary-all",
+      "primary-sar"
+    ],
+    "defaultStatus": "available",
+    "description": "C 波段雷达，不受云雨影响，常用于形变、洪涝和变化监测。",
+    "satellites": "S1A · S1B · S1C · S1D",
+    "timeRange": "2014-10 至今",
+    "accountRequirement": "account_required",
+    "requiredAccountIds": [
+      "earthdata"
+    ],
+    "accountText": "Earthdata（已接入）",
+    "filters": [
+      "产品类型",
+      "极化",
+      "轨道方向",
+      "波束模式",
+      "卫星",
+      "相对轨道",
+      "Frame"
+    ],
+    "companionDownloads": [
+      "精密轨道",
+      "GACOS 对流层延迟",
+      "ERA5 大气再分析"
+    ]
+  },
+  "science.sentinel-1.slc-burst.v1": {
+    "name": "Sentinel-1 SLC Burst",
+    "subtitle": "C 波段 · 单个 burst · Earthdata",
+    "band": "C 波段 (5.405 GHz)",
+    "bandTag": "C",
+    "era": "2014–至今",
+    "provider": "Earthdata",
+    "group": "orbiting",
+    "category": "primary-sar",
+    "subcategories": [
+      "primary-all",
+      "primary-sar"
+    ],
+    "defaultStatus": "available",
+    "description": "亚景级 Burst 单突发模式，针对单突发干涉测量，大幅节省下载与存储。",
+    "satellites": "S1A · S1B · S1C · S1D",
+    "timeRange": "2014-10 至今",
+    "accountRequirement": "account_required",
+    "requiredAccountIds": [
+      "earthdata"
+    ],
+    "accountText": "Earthdata（已接入）",
+    "filters": [
+      "极化",
+      "轨道方向",
+      "波束模式",
+      "卫星"
+    ],
+    "companionDownloads": [
+      "精密轨道",
+      "GACOS 对流层延迟",
+      "ERA5 大气再分析"
+    ]
+  },
+  "science.opera.disp-s1.v1": {
+    "name": "NASA OPERA 地表位移与配准 (DISP-S1 / CSLC)",
+    "subtitle": "C 波段 · 2016–至今 · ASF / Earthdata · 预配准干涉成品",
+    "band": "C 波段 (5.405 GHz)",
+    "bandTag": "C",
+    "era": "2016–至今",
+    "provider": "ASF / Earthdata",
+    "group": "orbiting",
+    "category": "primary-sar",
+    "subcategories": [
+      "primary-all",
+      "primary-sar"
+    ],
+    "defaultStatus": "available",
+    "description": "NASA JPL OPERA 官方生产的 Sentinel-1 地面配准单视复数 (CSLC-S1)、辐射地形校正 (RTC-S1) 与地表视线向位移成品 (DISP-S1)，免除繁琐本地配准与解缠即可直接提取形变时序。",
+    "satellites": "S1A · S1B · S1C (OPERA L2/L3)",
+    "timeRange": "2016 至今",
+    "accountRequirement": "account_required",
+    "requiredAccountIds": [
+      "earthdata"
+    ],
+    "accountText": "Earthdata（已接入）",
+    "filters": [
+      "产品子类 (DISP-S1 / CSLC-S1 / RTC-S1)",
+      "Burst ID / Frame ID",
+      "轨道方向"
+    ],
+    "companionDownloads": [
+      "ERA5 大气再分析",
+      "GACOS 对流层延迟"
+    ]
+  },
+  "science.comet.licsar.v1": {
+    "name": "COMET-LiCSAR 全球干涉图与相干图",
+    "subtitle": "C 波段 · 2014–至今 · COMET (英国利兹大学) · 免账号",
+    "band": "C 波段 (干涉相位 / 解缠 / 相干图)",
+    "bandTag": "C",
+    "era": "2014–至今",
+    "provider": "COMET LiCSAR Portal",
+    "group": "orbiting",
+    "category": "primary-sar",
+    "subcategories": [
+      "primary-all",
+      "primary-sar"
+    ],
+    "defaultStatus": "available",
+    "description": "英国国家地球观测中心 COMET 自动化生产的全球构造活跃带 Sentinel-1 InSAR 标准帧干涉图 (.geo.unw.tif / .geo.cc.tif)，公开免账号直连，适合断层形变、火山与滑坡快速研判。",
+    "satellites": "Sentinel-1 InSAR Frame",
+    "timeRange": "2014-10 至今",
+    "accountRequirement": "free",
+    "accountText": "免账号",
+    "filters": [
+      "LiCSAR Frame ID",
+      "主从影像日期对",
+      "产物类型 (解缠相位 / 相干图 / DEM)"
+    ],
+    "companionDownloads": [
+      "GACOS 对流层延迟",
+      "ERA5 大气再分析"
+    ]
+  },
+  "science.nisar.l.rslc.provisional.v1": {
+    "name": "NISAR L 波段 SAR",
+    "subtitle": "L 波段 · 2025–至今 · Earthdata · 支持在线裁剪",
+    "band": "L 波段 (1.25 GHz)",
+    "bandTag": "L",
+    "era": "2025–至今",
+    "provider": "Earthdata",
+    "group": "orbiting",
+    "category": "primary-sar",
+    "subcategories": [
+      "primary-all",
+      "primary-sar"
+    ],
+    "defaultStatus": "available",
+    "supportsOnlineCropping": true,
+    "description": "NASA-ISRO 合成孔径雷达 L 波段全系列产品（RSLC / GSLC / GCOV / GUNW / GOFF / RIFG / RUNW / ROFF / SME2），穿透力强，支持完整归档下载与在线 AOI 范围裁剪。",
+    "satellites": "NISAR",
+    "timeRange": "2025 至今",
+    "accountRequirement": "account_required",
+    "requiredAccountIds": [
+      "earthdata"
+    ],
+    "accountText": "Earthdata（已接入）",
+    "filters": [
+      "产品级别",
+      "极化",
+      "轨道方向",
+      "相对轨道",
+      "Frame",
+      "在线 AOI 裁剪"
+    ]
+  },
+  "science.nisar.s.ssar.rslc.v1": {
+    "name": "NISAR S 波段 SAR",
+    "subtitle": "S 波段 · 2025–至今 · Bhoonidhi · 支持在线裁剪",
+    "band": "S 波段 (3.2 GHz)",
+    "bandTag": "S",
+    "era": "2025–至今",
+    "provider": "Bhoonidhi",
+    "group": "orbiting",
+    "category": "primary-sar",
+    "subcategories": [
+      "primary-all",
+      "primary-sar"
+    ],
+    "defaultStatus": "available",
+    "supportsOnlineCropping": true,
+    "description": "ISRO 提供的 S 波段雷达全系列产品（RSLC / GSLC / GCOV / GUNW / GOFF / RIFG / RUNW / ROFF），支持农业、土壤湿度与近地表结构观测，支持完整产品下载与在线 AOI 范围裁剪。",
+    "satellites": "NISAR",
+    "timeRange": "2025 至今",
+    "accountRequirement": "account_required",
+    "requiredAccountIds": [
+      "bhoonidhi"
+    ],
+    "accountText": "Bhoonidhi（已接入）",
+    "filters": [
+      "极化",
+      "轨道方向",
+      "在线 AOI 裁剪"
+    ]
+  },
+  "science.alos-2.palsar-2.scansar-l1.1.v1": {
+    "name": "ALOS-2 PALSAR-2 ScanSAR",
+    "subtitle": "L 波段 · 2014–至今 · Earthdata",
+    "band": "L 波段 (1.27 GHz)",
+    "bandTag": "L",
+    "era": "2014–至今",
+    "provider": "Earthdata",
+    "group": "orbiting",
+    "category": "primary-sar",
+    "subcategories": [
+      "primary-all",
+      "primary-sar"
+    ],
+    "defaultStatus": "available",
+    "description": "JAXA L 波段宽幅雷达，长波长抗去相干能力强，适用于大区域构造与地表形变监测。",
+    "satellites": "ALOS-2",
+    "timeRange": "2014-05 至今",
+    "accountRequirement": "account_required",
+    "requiredAccountIds": [
+      "earthdata"
+    ],
+    "accountText": "Earthdata",
+    "filters": [
+      "极化",
+      "轨道方向",
+      "波束模式",
+      "视向",
+      "Path",
+      "Frame"
+    ]
+  },
+  "science.alos.palsar.v1": {
+    "name": "ALOS PALSAR",
+    "subtitle": "L 波段 · 2006–2011 · Earthdata",
+    "band": "L 波段",
+    "bandTag": "L",
+    "era": "2006–2011",
+    "provider": "Earthdata",
+    "group": "historical",
+    "category": "primary-sar",
+    "subcategories": [
+      "primary-all",
+      "primary-sar"
+    ],
+    "defaultStatus": "available",
+    "description": "日本第一代 ALOS 卫星 L 波段雷达历史存档，适合长基线形变回溯分析。",
+    "satellites": "ALOS",
+    "timeRange": "2006-2011",
+    "accountRequirement": "account_required",
+    "requiredAccountIds": [
+      "earthdata"
+    ],
+    "accountText": "Earthdata",
+    "filters": [
+      "极化",
+      "轨道方向",
+      "视向",
+      "Path",
+      "Frame"
+    ]
+  },
+  "science.seasat.sar.v1": {
+    "name": "SEASAT",
+    "subtitle": "L 波段 · 1978 · Earthdata",
+    "band": "L 波段",
+    "bandTag": "L",
+    "era": "1978",
+    "provider": "Earthdata",
+    "group": "historical",
+    "category": "primary-sar",
+    "subcategories": [
+      "primary-all",
+      "primary-sar"
+    ],
+    "defaultStatus": "available",
+    "description": "世界上首颗载有民用合成孔径雷达的海洋卫星，历史基准价值显著。",
+    "satellites": "SEASAT",
+    "timeRange": "1978",
+    "accountRequirement": "account_required",
+    "requiredAccountIds": [
+      "earthdata"
+    ],
+    "accountText": "Earthdata",
+    "filters": [
+      "极化",
+      "轨道方向"
+    ]
+  },
+  "science.sentinel-2.l2a.v1": {
+    "name": "Sentinel-2",
+    "subtitle": "MSI 多光谱传感器 · L2A 地表反射率 / L1C 表观反射率 · Copernicus CDSE / MPC / Earth Search",
+    "band": "MSI 光学多光谱 (13 波段 · 10m–60m)",
+    "bandTag": "optical",
+    "era": "2015–至今",
+    "provider": "Copernicus CDSE / MPC / Earth Search",
+    "group": "orbiting",
+    "category": "primary-optical",
+    "subcategories": [
+      "primary-all",
+      "primary-optical"
+    ],
+    "defaultStatus": "available",
+    "supportsOnlineCropping": true,
+    "description": "哥白尼 Sentinel-2 多光谱光学卫星（13 波段，10m–60m 分辨率），支持在条件面板中按需切换 L2A 地表反射率与 L1C 表观反射率，以及 CDSE 原档与 MPC / AWS Earth Search 公开单波段 COG 通道。",
+    "satellites": "S2A · S2B · S2C",
+    "timeRange": "2015-06 至今",
+    "accountRequirement": "account_required",
+    "requiredAccountIds": [
+      "cdse"
+    ],
+    "accountText": "CDSE 账号 / MPC · Earth Search 免账号",
+    "filters": [
+      "L2A 地表反射率 / L1C 表观反射率",
+      "最大云量",
+      "卫星平台"
+    ]
+  },
+  "science.sentinel-2.l1c.v1": {
+    "name": "Sentinel-2 L1C",
+    "subtitle": "MSI 多光谱传感器 · L1C 大气层顶表观反射率 (TOA) · Copernicus CDSE",
+    "band": "MSI 光学多光谱 (13 波段 · 10m–60m)",
+    "bandTag": "optical",
+    "era": "2015–至今",
+    "provider": "Copernicus CDSE",
+    "group": "orbiting",
+    "category": "primary-optical",
+    "subcategories": [
+      "primary-all",
+      "primary-optical"
+    ],
+    "defaultStatus": "available",
+    "supportsOnlineCropping": true,
+    "description": "哥白尼 Sentinel-2 多光谱 L1C 表观反射率（TOA）产品，已完成几何正射校正，保留大气顶辐射特性，适用于辐射定标、自定义大气校正与历史序列分析；支持按 AOI 在线波段裁剪（不含 SCL 云掩膜）。",
+    "satellites": "S2A · S2B · S2C",
+    "timeRange": "2015-06 至今",
+    "accountRequirement": "account_required",
+    "requiredAccountIds": [
+      "cdse"
+    ],
+    "accountText": "CDSE 账号",
+    "filters": [
+      "L1C 表观反射率",
+      "最大云量",
+      "卫星平台"
+    ]
+  },
+  "science.landsat.c2-l2.v1": {
+    "name": "Landsat 4-9 C2-L2",
+    "subtitle": "光学多光谱 · 1982–至今 · USGS / MPC",
+    "band": "光学 (30 米分辨率)",
+    "bandTag": "optical",
+    "era": "1982–至今",
+    "provider": "USGS / MPC",
+    "group": "orbiting",
+    "category": "primary-optical",
+    "subcategories": [
+      "primary-all",
+      "primary-optical"
+    ],
+    "defaultStatus": "available",
+    "supportsOnlineCropping": true,
+    "description": "USGS Collection 2 Level-2 表面反射率产品，30 米空间分辨率，长时序陆地观测标准；MPC 云原生单景波段支持按 AOI 在线裁切与近同步空间镶嵌。",
+    "satellites": "Landsat 4 · Landsat 5 · Landsat 7 · Landsat 8 · Landsat 9",
+    "timeRange": "1982-07 至今",
+    "accountRequirement": "account_required",
+    "requiredAccountIds": [
+      "usgs_m2m"
+    ],
+    "accountText": "MPC 免账号 / USGS 账号",
+    "filters": [
+      "最大云量",
+      "卫星平台",
+      "产品类型"
+    ]
+  },
+  "science.sentinel-3.standard.v1": {
+    "name": "Sentinel-3 OLCI / SLSTR / SRAL",
+    "subtitle": "海陆综合观测 · 2016–至今 · Copernicus CDSE",
+    "band": "光学 / 热红外 / 测高",
+    "bandTag": "optical",
+    "era": "2016–至今",
+    "provider": "Copernicus CDSE",
+    "group": "orbiting",
+    "category": "primary-optical",
+    "subcategories": [
+      "primary-all",
+      "primary-optical"
+    ],
+    "defaultStatus": "available",
+    "description": "欧洲海陆观测卫星，搭载海陆颜色仪 (OLCI)、海陆表面温度辐射计 (SLSTR) 及雷达高度计 (SRAL)。",
+    "satellites": "S3A · S3B",
+    "timeRange": "2016-02 至今",
+    "accountRequirement": "account_required",
+    "requiredAccountIds": [
+      "cdse"
+    ],
+    "accountText": "CDSE 账号",
+    "filters": [
+      "最大云量",
+      "卫星平台",
+      "产品类型"
+    ]
+  },
+  "science.hls.l30.v2": {
+    "name": "HLS L30 (Landsat)",
+    "subtitle": "光学多光谱 · 2013–至今 · NASA LP DAAC / MPC",
+    "band": "光学 (30 米网格)",
+    "bandTag": "optical",
+    "era": "2013–至今",
+    "provider": "NASA LP DAAC / MPC",
+    "group": "orbiting",
+    "category": "primary-optical",
+    "subcategories": [
+      "primary-all",
+      "primary-optical"
+    ],
+    "defaultStatus": "available",
+    "supportsOnlineCropping": true,
+    "description": "协调无缝的 Landsat 8-9 30 米地表反射率数据集，与 S30 形成 2-3 天高频重访序列，支持按 AOI 在线裁切与近同步空间镶嵌。",
+    "satellites": "Landsat 8 · Landsat 9",
+    "timeRange": "2013 至今",
+    "accountRequirement": "free",
+    "requiredAccountIds": [],
+    "accountText": "MPC 免账号",
+    "filters": [
+      "最大云量"
+    ]
+  },
+  "science.hls.s30.v2": {
+    "name": "HLS S30 (Sentinel-2)",
+    "subtitle": "光学多光谱 · 2015–至今 · NASA LP DAAC / MPC",
+    "band": "光学 (30 米网格)",
+    "bandTag": "optical",
+    "era": "2015–至今",
+    "provider": "NASA LP DAAC / MPC",
+    "group": "orbiting",
+    "category": "primary-optical",
+    "subcategories": [
+      "primary-all",
+      "primary-optical"
+    ],
+    "defaultStatus": "available",
+    "supportsOnlineCropping": true,
+    "description": "协调无缝的 Sentinel-2 30 米地表反射率数据集，经过大气校正与几何配准，支持按 AOI 在线裁切与近同步空间镶嵌。",
+    "satellites": "Sentinel-2A · Sentinel-2B",
+    "timeRange": "2015 至今",
+    "accountRequirement": "free",
+    "requiredAccountIds": [],
+    "accountText": "MPC 免账号",
+    "filters": [
+      "最大云量"
+    ]
+  },
+  "dem.cop30.v1": {
+    "name": "Copernicus DEM GLO-30（30米）",
+    "subtitle": "30 米分辨率 · EGM2008 正高 · 免账号",
+    "band": "30 米分辨率 (1 弧秒 · EGM2008 正高)",
+    "bandTag": "other",
+    "era": "2021",
+    "provider": "Copernicus / AWS",
+    "group": "dem",
+    "category": "primary-dem",
+    "subcategories": [
+      "primary-all",
+      "primary-dem"
+    ],
+    "defaultStatus": "available",
+    "description": "欧空局哥白尼计划全球 30 米空间分辨率（1 弧秒）高精度数字高程模型，基于 TanDEM-X 雷达干涉测量生成，垂直基准为 EGM2008 正高（支持自动转为 WGS84 椭球高），是 InSAR 地形相位去除的首选参考高程。",
+    "satellites": "TanDEM-X 衍生",
+    "timeRange": "全球覆盖（2011–2015 TanDEM-X 静态观测基准）",
+    "accountRequirement": "free",
+    "accountText": "免账号",
+    "filters": [
+      "空间范围",
+      "转为 WGS84 椭球高"
+    ]
+  },
+  "dem.cop90.v1": {
+    "name": "Copernicus DEM GLO-90（90米）",
+    "subtitle": "90 米分辨率 · EGM2008 正高 · 免账号",
+    "band": "90 米分辨率 (3 弧秒 · EGM2008 正高)",
+    "bandTag": "other",
+    "era": "2021",
+    "provider": "Copernicus / AWS",
+    "group": "dem",
+    "category": "primary-dem",
+    "subcategories": [
+      "primary-all",
+      "primary-dem"
+    ],
+    "defaultStatus": "available",
+    "description": "欧空局哥白尼计划全球 90 米空间分辨率（3 弧秒）数字高程模型，源自 GLO-30 聚合重采样，垂直基准为 EGM2008 正高（支持转为 WGS84 椭球高），适合超大区域背景形变反演与快速处理。",
+    "satellites": "TanDEM-X 衍生",
+    "timeRange": "全球覆盖（2011–2015 TanDEM-X 静态观测基准）",
+    "accountRequirement": "free",
+    "accountText": "免账号",
+    "filters": [
+      "空间范围",
+      "转为 WGS84 椭球高"
+    ]
+  },
+  "dem.nasadem.v1": {
+    "name": "NASADEM Global 30m（30米）",
+    "subtitle": "30 米分辨率 · EGM96 正高 · Earthdata / OpenTopography",
+    "band": "30 米分辨率 (1 弧秒 · EGM96 正高)",
+    "bandTag": "other",
+    "era": "2020",
+    "provider": "Earthdata / OpenTopography",
+    "group": "dem",
+    "category": "primary-dem",
+    "subcategories": [
+      "primary-all",
+      "primary-dem"
+    ],
+    "defaultStatus": "available",
+    "description": "NASA 基于 SRTM 原始雷达回波结合 ASTER GDEM 与 ICESat 激光测高重新处理的 30 米空间分辨率（1 弧秒）全球无缝高程模型，垂直基准为 EGM96 正高（支持转为 WGS84 椭球高）。",
+    "satellites": "SRTM / ASTER 融合",
+    "timeRange": "南北纬 60°–56° 间",
+    "accountRequirement": "account_required",
+    "requiredAccountIds": [
+      "opentopography"
+    ],
+    "accountText": "OpenTopography API Key / Earthdata",
+    "filters": [
+      "空间范围",
+      "转为 WGS84 椭球高"
+    ]
+  },
+  "dem.aw3d30.v1": {
+    "name": "ALOS World 3D 30m（正高 · 30米）",
+    "subtitle": "30 米分辨率 · EGM96 正高 · OpenTopography",
+    "band": "30 米分辨率 (1 弧秒 · EGM96 正高)",
+    "bandTag": "other",
+    "era": "2015–至今",
+    "provider": "JAXA / OpenTopography",
+    "group": "dem",
+    "category": "primary-dem",
+    "subcategories": [
+      "primary-all",
+      "primary-dem"
+    ],
+    "defaultStatus": "available",
+    "description": "日本宇宙航空研究开发机构（JAXA）利用 ALOS PRISM 光学立体像对构建的全球 30 米空间分辨率（1 弧秒）数字地表模型，垂直基准为 EGM96 正高（支持转为 WGS84 椭球高）。",
+    "satellites": "ALOS PRISM",
+    "timeRange": "全球陆地 (82°N–82°S)",
+    "accountRequirement": "account_required",
+    "requiredAccountIds": [
+      "opentopography"
+    ],
+    "accountText": "OpenTopography API Key",
+    "filters": [
+      "空间范围",
+      "转为 WGS84 椭球高"
+    ]
+  },
+  "dem.aw3d30-ellipsoidal.v1": {
+    "name": "ALOS World 3D 30m（椭球高 · 30米）",
+    "subtitle": "30 米分辨率 · WGS84 椭球高 · OpenTopography",
+    "band": "30 米分辨率 (1 弧秒 · WGS84 椭球高)",
+    "bandTag": "other",
+    "era": "2015–至今",
+    "provider": "JAXA / OpenTopography",
+    "group": "dem",
+    "category": "primary-dem",
+    "subcategories": [
+      "primary-all",
+      "primary-dem"
+    ],
+    "defaultStatus": "available",
+    "description": "JAXA ALOS World 3D 全球 30 米空间分辨率（1 弧秒）高程模型的原生 WGS84 椭球高版本，无需二次大地水准面转换即可直接用于 InSAR 几何配准与地形相位校正。",
+    "satellites": "ALOS PRISM",
+    "timeRange": "全球陆地 (82°N–82°S)",
+    "accountRequirement": "account_required",
+    "requiredAccountIds": [
+      "opentopography"
+    ],
+    "accountText": "OpenTopography API Key",
+    "filters": [
+      "空间范围"
+    ]
+  },
+  "dem.nisar-dem.v1": {
+    "name": "NISAR 科学参考 DEM（椭球高 · 30米）",
+    "subtitle": "30 米分辨率 · WGS84 椭球高 · Earthdata",
+    "band": "30 米分辨率 (1 弧秒 · WGS84 椭球高)",
+    "bandTag": "other",
+    "era": "2024–至今",
+    "provider": "ASF / Earthdata",
+    "group": "dem",
+    "category": "primary-dem",
+    "subcategories": [
+      "primary-all",
+      "primary-dem"
+    ],
+    "defaultStatus": "available",
+    "description": "NASA/ISRO 为 NISAR 任务官方定标制作的全球 30 米空间分辨率（1 弧秒）参考数字高程模型，基于 Copernicus GLO-30 预转换为 WGS84 椭球高并填补水体与冰川空洞。",
+    "satellites": "NISAR / Copernicus GLO-30",
+    "timeRange": "全球覆盖",
+    "accountRequirement": "account_required",
+    "requiredAccountIds": [
+      "earthdata"
+    ],
+    "accountText": "Earthdata（已接入）",
+    "filters": [
+      "空间范围"
+    ]
+  },
+  "dem.fabdem.v1": {
+    "name": "FABDEM V1-2 30m（裸地正高 · 30米）",
+    "subtitle": "30 米分辨率 · EGM2008 裸地正高 · 免账号",
+    "band": "30 米分辨率 (1 弧秒 · 去树冠/建筑裸地)",
+    "bandTag": "other",
+    "era": "2023–至今",
+    "provider": "University of Bristol / Fathom",
+    "group": "dem",
+    "category": "primary-dem",
+    "subcategories": [
+      "primary-all",
+      "primary-dem"
+    ],
+    "defaultStatus": "available",
+    "description": "英国布里斯托大学与 Fathom 基于 Copernicus GLO-30 机器学习去除森林冠层与建筑物高度构建的 30 米空间分辨率（1 弧秒）裸地数字地形模型，垂直基准为 EGM2008 正高（支持转为 WGS84 椭球高）。",
+    "satellites": "Copernicus GLO-30 Bare-Earth DTM",
+    "timeRange": "60°S–80°N 陆地（2023 发布）",
+    "accountRequirement": "free",
+    "requiredAccountIds": [],
+    "accountText": "免账号",
+    "filters": [
+      "空间范围",
+      "转为 WGS84 椭球高"
+    ],
+    "usageNotes": [
+      "数据缺失范围：高纬极区（80°N 以北、60°S 以南）及海洋区域无陆地图幅。",
+      "许可证限制：采用 CC BY-NC-SA 4.0 协议，仅限非商业科学研究与教育使用，严禁直接用于商业交付或盈利工程（商用需另购授权，或改选 Copernicus DEM GLO-30）。"
+    ]
+  },
+  "dem.gem15-dtm.v1": {
+    "name": "Google GEM-15 DTM 15m（裸地正高 · 15米）",
+    "subtitle": "15 米分辨率 (0.5 弧秒) · EGM96 裸地正高 · 免账号",
+    "band": "15 米分辨率 (0.5 弧秒 · 裸地地形 DTM)",
+    "bandTag": "other",
+    "era": "2026–至今",
+    "provider": "Google Research / Google Cloud",
+    "group": "dem",
+    "category": "primary-dem",
+    "subcategories": [
+      "primary-all",
+      "primary-dem"
+    ],
+    "defaultStatus": "available",
+    "description": "Google Research 发布的 15 米空间分辨率（0.5 弧秒）裸地数字地形模型（GEM-15 DTM v1），去除森林冠层与建筑物高度，下载后自动完成 UTM 分带转 WGS84 经纬度拼接及 EGM96 转 WGS84 椭球高。",
+    "satellites": "GEM-15 Bare-Earth DTM",
+    "timeRange": "61°S–84°N（2018–2025 观测合成）",
+    "accountRequirement": "free",
+    "requiredAccountIds": [],
+    "accountText": "免账号",
+    "filters": [
+      "空间范围",
+      "转为 WGS84 椭球高"
+    ],
+    "usageNotes": [
+      "数据缺失范围：官方 v1 不包含中国大陆、俄罗斯、蒙古、朝鲜、格陵兰和南极洲，公海及高纬部分海域亦为空缺（缺口区域请改选 Copernicus DEM GLO-30 或 FABDEM V1-2）。",
+      "许可证说明：采用 CC BY 4.0 协议，支持商业与科研用途，成果发布需署名 Google。"
+    ]
+  },
+  "dem.gem15-dsm.v1": {
+    "name": "Google GEM-15 DSM 15m（地表正高 · 15米）",
+    "subtitle": "15 米分辨率 (0.5 弧秒) · EGM96 地表正高 · 免账号",
+    "band": "15 米分辨率 (0.5 弧秒 · 地表模型 DSM)",
+    "bandTag": "other",
+    "era": "2026–至今",
+    "provider": "Google Research / Google Cloud",
+    "group": "dem",
+    "category": "primary-dem",
+    "subcategories": [
+      "primary-all",
+      "primary-dem"
+    ],
+    "defaultStatus": "available",
+    "description": "Google Research 发布的 15 米空间分辨率（0.5 弧秒）数字表面模型（GEM-15 DSM v1），保留树冠与建筑物高度，下载后自动提取主高程波段完成 UTM 分带转 WGS84 经纬度拼接及 EGM96 转 WGS84 椭球高。",
+    "satellites": "GEM-15 Surface DSM",
+    "timeRange": "61°S–84°N（2018–2025 观测合成）",
+    "accountRequirement": "free",
+    "requiredAccountIds": [],
+    "accountText": "免账号",
+    "filters": [
+      "空间范围",
+      "转为 WGS84 椭球高"
+    ],
+    "usageNotes": [
+      "数据缺失范围：官方 v1 不包含中国大陆、俄罗斯、蒙古、朝鲜、格陵兰和南极洲，公海及高纬部分海域亦为空缺（缺口区域请改选 Copernicus DEM GLO-30；如需裸地地形请选 GEM-15 DTM 或 FABDEM V1-2）。",
+      "许可证说明：采用 CC BY 4.0 协议，支持商业与科研用途，成果发布需署名 Google。"
+    ]
+  },
+  "dem.srtm-gl1.v1": {
+    "name": "SRTM GL1 Global 30m（正高 · 30米）",
+    "subtitle": "30 米分辨率 · EGM96 正高 · OpenTopography",
+    "band": "30 米分辨率 (1 弧秒 · EGM96 正高)",
+    "bandTag": "other",
+    "era": "2000",
+    "provider": "OpenTopography",
+    "group": "dem",
+    "category": "primary-dem",
+    "subcategories": [
+      "primary-all",
+      "primary-dem"
+    ],
+    "defaultStatus": "available",
+    "description": "美国航天飞机雷达地形测绘使命（SRTM Version 3）全球 30 米空间分辨率（1 弧秒）经典数字高程模型，垂直基准为 EGM96 正高（支持转为 WGS84 椭球高）。",
+    "satellites": "SRTM (Endeavour)",
+    "timeRange": "南北纬 60°–56° 间",
+    "accountRequirement": "account_required",
+    "requiredAccountIds": [
+      "opentopography"
+    ],
+    "accountText": "OpenTopography API Key",
+    "filters": [
+      "空间范围",
+      "转为 WGS84 椭球高"
+    ]
+  },
+  "dem.srtm-gl1-ellipsoidal.v1": {
+    "name": "SRTM GL1 Global 30m（椭球高 · 30米）",
+    "subtitle": "30 米分辨率 · WGS84 椭球高 · OpenTopography",
+    "band": "30 米分辨率 (1 弧秒 · WGS84 椭球高)",
+    "bandTag": "other",
+    "era": "2000",
+    "provider": "OpenTopography",
+    "group": "dem",
+    "category": "primary-dem",
+    "subcategories": [
+      "primary-all",
+      "primary-dem"
+    ],
+    "defaultStatus": "available",
+    "description": "SRTM GL1 全球 30 米空间分辨率（1 弧秒）高程模型的 WGS84 椭球高版本，已移除 EGM96 大地水准面起伏，可直接作为 InSAR 雷达坐标配准高程输入。",
+    "satellites": "SRTM (Endeavour)",
+    "timeRange": "南北纬 60°–56° 间",
+    "accountRequirement": "account_required",
+    "requiredAccountIds": [
+      "opentopography"
+    ],
+    "accountText": "OpenTopography API Key",
+    "filters": [
+      "空间范围"
+    ]
+  },
+  "dem.srtm-gl3.v1": {
+    "name": "SRTM GL3 Global 90m（90米）",
+    "subtitle": "90 米分辨率 · EGM96 正高 · OpenTopography",
+    "band": "90 米分辨率 (3 弧秒 · EGM96 正高)",
+    "bandTag": "other",
+    "era": "2000",
+    "provider": "OpenTopography",
+    "group": "dem",
+    "category": "primary-dem",
+    "subcategories": [
+      "primary-all",
+      "primary-dem"
+    ],
+    "defaultStatus": "available",
+    "description": "SRTM Version 3 全球 90 米空间分辨率（3 弧秒）数字高程模型，覆盖北纬 60° 至南纬 56°，数据体积小，垂直基准为 EGM96 正高（支持转为 WGS84 椭球高）。",
+    "satellites": "SRTM (Endeavour)",
+    "timeRange": "南北纬 60°–56° 间",
+    "accountRequirement": "account_required",
+    "requiredAccountIds": [
+      "opentopography"
+    ],
+    "accountText": "OpenTopography API Key",
+    "filters": [
+      "空间范围",
+      "转为 WGS84 椭球高"
+    ]
+  },
+  "dem.aster-gdem.v3": {
+    "name": "ASTER GDEM v3 Global 30m（30米）",
+    "subtitle": "30 米分辨率 · EGM96 正高 · NASA LP DAAC / Earthdata",
+    "band": "30 米分辨率 (1 弧秒 · 83°N–83°S 高纬覆盖)",
+    "bandTag": "other",
+    "era": "2000–2019",
+    "provider": "NASA LP DAAC / METI",
+    "group": "dem",
+    "category": "primary-dem",
+    "subcategories": [
+      "primary-all",
+      "primary-dem"
+    ],
+    "defaultStatus": "available",
+    "description": "NASA 与日本经济产业省 (METI) 基于 Terra 卫星 ASTER 近红外立体像对生成的全球 30 米高程模型第 3 版，覆盖南北纬 83° 极高纬度区域（填补 SRTM 60° 以外空白），复用 Earthdata 账号直接下载。",
+    "satellites": "Terra ASTER",
+    "timeRange": "南北纬 83°N–83°S",
+    "accountRequirement": "account_required",
+    "requiredAccountIds": [
+      "earthdata"
+    ],
+    "accountText": "Earthdata（已接入）",
+    "filters": [
+      "空间范围",
+      "转为 WGS84 椭球高"
+    ]
+  },
+  "orbit.sentinel-1.poeorb.v1": {
+    "name": "Sentinel-1 精密轨道 (POEORB/RESORB)",
+    "subtitle": "厘米级精密定轨 · 主动检索与本地匹配 · 也支持随 SAR 配套附带 · 免账号",
+    "band": "精密轨道",
+    "bandTag": "other",
+    "era": "2014–至今",
+    "provider": "Copernicus POD",
+    "group": "auxiliary",
+    "category": "auxiliary-orbit",
+    "subcategories": [
+      "primary-all",
+      "auxiliary-all",
+      "auxiliary-orbit"
+    ],
+    "defaultStatus": "available",
+    "description": "欧空局官方精确轨道星历文件（POEORB 采后约 20 天发布，未发布时自动回退 RESORB），轨道精度优于 5 厘米。支持直接按 AOI/日期主动下载或对本地 SAR 文件夹批量匹配，亦可在下载 Sentinel-1 时勾选自动附带。",
+    "satellites": "S1A · S1B · S1C · S1D",
+    "timeRange": "2014-10 至今",
+    "accountRequirement": "free",
+    "accountText": "免账号",
+    "filters": [
+      "空间范围 (AOI) 与日期",
+      "本地 SAR 文件夹批量匹配",
+      "轨道类型 (POEORB/RESORB)",
+      "卫星平台"
+    ]
+  },
+  "orbit.nisar.oe.v1": {
+    "name": "NISAR 精密/标称轨道历书 (POE/MOE/NOE/FOE)",
+    "subtitle": "L/S 双频任务轨道状态向量 · NASA ASF / JPL (NISAR_OE) · .xml",
+    "band": "精密轨道",
+    "bandTag": "other",
+    "era": "2025–至今",
+    "provider": "NASA ASF / JPL",
+    "group": "auxiliary",
+    "category": "auxiliary-orbit",
+    "subcategories": [
+      "primary-all",
+      "auxiliary-all",
+      "auxiliary-orbit"
+    ],
+    "defaultStatus": "available",
+    "description": "NASA JPL / ASF DAAC 发布的 NISAR 卫星任务轨道历书 XML 文件（NISAR_OE，涵盖 POE 事后精密定轨、MOE 中精度、NOE 标称与 FOE 预报轨道），按全球起止时间检索、无需研究区多边形，供 ISCE3 / COMPASS L 与 S 波段干涉几何定标使用。",
+    "satellites": "NISAR",
+    "timeRange": "2025-10 至今",
+    "accountRequirement": "account_required",
+    "requiredAccountIds": [
+      "earthdata"
+    ],
+    "accountText": "检索免账号 · 下载需 Earthdata",
+    "filters": [
+      "轨道历书等级 (POE/MOE/NOE/FOE)",
+      "起止日期"
+    ]
+  },
+  "orbit.copernicus.pod.v1": {
+    "name": "Sentinel-2 / Sentinel-3 精密轨道 (POD POEORB)",
+    "subtitle": "哥白尼精密定轨服务 · S2 AUX_POEORB / S3 SR___POE_AX · CDSE",
+    "band": "精密轨道",
+    "bandTag": "other",
+    "era": "2016–至今",
+    "provider": "Copernicus POD (CDSE)",
+    "group": "auxiliary",
+    "category": "auxiliary-orbit",
+    "subcategories": [
+      "primary-all",
+      "auxiliary-all",
+      "auxiliary-orbit"
+    ],
+    "defaultStatus": "available",
+    "description": "欧空局哥白尼精密定轨服务 (Copernicus POD) 发布的 Sentinel-2 多光谱几何精校正轨道 (AUX_POEORB .EOF) 与 Sentinel-3 雷达高度计/海陆观测精密轨道 (SR___POE_AX)，支持按卫星族与日期主动检索，并在配置 CDSE 账号后直连下载。",
+    "satellites": "S2A · S2B · S2C · S3A · S3B",
+    "timeRange": "2016-02 至今",
+    "accountRequirement": "account_required",
+    "requiredAccountIds": [
+      "cdse"
+    ],
+    "accountText": "检索免账号 · 下载需 CDSE",
+    "filters": [
+      "任务卫星族 (S2/S3)",
+      "起止日期"
+    ]
+  },
+  "event.usgs.earthquake.v1": {
+    "name": "USGS 全球地震事件目录与同震定位",
+    "subtitle": "震中/震级/发震时刻/ShakeMap · 实时更新 · 免账号",
+    "band": "地震事件触发与同震配对",
+    "bandTag": "other",
+    "era": "历史至今",
+    "provider": "USGS Earthquake Hazards Program",
+    "group": "auxiliary",
+    "category": "auxiliary-geodesy",
+    "subcategories": [
+      "primary-all",
+      "auxiliary-all",
+      "auxiliary-geodesy"
+    ],
+    "defaultStatus": "available",
+    "description": "美国地质调查局 (USGS) 全球地震 FDSN 事件服务，支持按震级、时间或事件名自动生成同震 AOI 缓冲区，并划分震前/震后 SAR 干涉配对时间窗。",
+    "satellites": "全球地震台网 (ANSS / NEIC)",
+    "timeRange": "实时与历史归档",
+    "accountRequirement": "free",
+    "accountText": "免账号",
+    "filters": [
+      "最小震级 (Mw)",
+      "发震时间窗",
+      "同震缓冲区半径"
+    ]
+  },
+  "geodesy.ngl.gnss.v1": {
+    "name": "NGL 全球 GNSS 基准站位移时间序列",
+    "subtitle": "每日三维坐标解 (ENU / IGS14) · 17,000+ 站点 · 免账号",
+    "band": "大地测量外部定标与参考点约束",
+    "bandTag": "other",
+    "era": "1994–至今",
+    "provider": "Nevada Geodetic Laboratory (NGL)",
+    "group": "auxiliary",
+    "category": "auxiliary-geodesy",
+    "subcategories": [
+      "primary-all",
+      "auxiliary-all",
+      "auxiliary-geodesy"
+    ],
+    "defaultStatus": "available",
+    "description": "内华达大地测量实验室 (NGL) 全球 17,000+ 连续运行 GNSS 站点每日三分量 (.tenv3) 位移序列，用于 InSAR 绝对参考基准固定、轨道趋势面校正与 LOS 投影精度验证。",
+    "satellites": "GPS / GLONASS / Galileo / BDS",
+    "timeRange": "1994 至今",
+    "accountRequirement": "free",
+    "accountText": "免账号",
+    "filters": [
+      "研究区站点检索",
+      "时间跨度重合率",
+      "LOS 视线向投影"
+    ]
+  },
+  "atmospheric.gacos.ztd.v1": {
+    "name": "GACOS 大气延迟改正",
+    "subtitle": "对流层水汽延迟改正 · 主动按 AOI/日期申请 · 也支持配套自动附带 · 需邮箱",
+    "band": "大气改正 (约 90 米网格)",
+    "bandTag": "other",
+    "era": "历史至今",
+    "provider": "GACOS Service",
+    "group": "auxiliary",
+    "category": "auxiliary-atmospheric",
+    "subcategories": [
+      "primary-all",
+      "auxiliary-all",
+      "auxiliary-atmospheric"
+    ],
+    "defaultStatus": "account_required",
+    "description": "纽卡斯尔大学提供的通用大气改正服务，分离地形相关与湍流对流层相位延迟（约 90 米空间网格）。支持在工作台直接按 AOI 与日期提交申请，也可在下载 Sentinel-1 影像时勾选配套附带。",
+    "satellites": "ECMWF / HRES 对流层模型",
+    "timeRange": "按请求生成",
+    "accountRequirement": "account_required",
+    "requiredAccountIds": [
+      "gacos"
+    ],
+    "accountText": "需配置邮箱",
+    "filters": [
+      "空间范围 (AOI)",
+      "日期与时刻列表",
+      "空间缓冲范围"
+    ]
+  },
+  "atmospheric.era5.reanalysis.v1": {
+    "name": "ERA5 再分析大气延迟数据",
+    "subtitle": "全球逐小时 37 层气压面 · PyAPS / MintPy 标准输入 · 免排队直取",
+    "band": "大气改正 (0.25° × 0.25° 三维温湿压场)",
+    "bandTag": "other",
+    "era": "1940–至今",
+    "provider": "ECMWF / Copernicus CDS & ARCO-ERA5",
+    "group": "auxiliary",
+    "category": "auxiliary-atmospheric",
+    "subcategories": [
+      "primary-all",
+      "auxiliary-all",
+      "auxiliary-atmospheric"
+    ],
+    "defaultStatus": "available",
+    "description": "欧洲中期天气预报中心 (ECMWF) 第五代全球大气再分析三维温湿压数据，支持按 SAR 过境时刻就近整点与研究区外扩范围自动拉取，无需等待邮件队列，直接兼容 PyAPS / MintPy / ISCE2 对流层积分校正。",
+    "satellites": "ECMWF ERA5 Pressure Levels",
+    "timeRange": "1940 至今（逐小时）",
+    "accountRequirement": "free",
+    "accountText": "ARCO-ERA5 云原生免账号 / CDS",
+    "filters": [
+      "SAR 过境时刻对齐",
+      "气压层 (37 层)",
+      "空间外扩缓冲"
+    ]
+  },
+  "ionospheric.igs.gim.v1": {
+    "name": "IGS / CODE 全球电离层延迟格网 (IONEX GIM)",
+    "subtitle": "全球 TEC 总电子含量格网 · L 波段 InSAR 必备 · Earthdata",
+    "band": "电离层改正 (IONEX TEC 格网)",
+    "bandTag": "other",
+    "era": "1998–至今",
+    "provider": "NASA CDDIS / CODE (伯尔尼大学)",
+    "group": "auxiliary",
+    "category": "auxiliary-atmospheric",
+    "subcategories": [
+      "primary-all",
+      "auxiliary-all",
+      "auxiliary-atmospheric"
+    ],
+    "defaultStatus": "available",
+    "description": "国际 GNSS 服务组织 (IGS) 与瑞士伯尔尼大学 CODE 分析中心发布的全球电离层总电子含量 (TEC) 标准 IONEX 文件，复用 NASA Earthdata 账号按年/年积日自动匹配，消除 ALOS-2 与 NISAR L 波段长波长电离层相位条纹。",
+    "satellites": "IGS Global GNSS Network",
+    "timeRange": "1998 至今",
+    "accountRequirement": "account_required",
+    "requiredAccountIds": [
+      "earthdata"
+    ],
+    "accountText": "Earthdata（已接入）",
+    "filters": [
+      "分析中心 (CODE / IGS / JPL)",
+      "影像获取日期 (年积日 DOY)"
+    ]
+  },
+  "auxiliary.xyz-tiles.v1": {
+    "name": "全球高清卫星与底图瓦片 (XYZ Tiles)",
+    "subtitle": "15 种内置图源 (含 Wayback 历史存档) + 自定义 URL · 瓦片拼接导出 · 免账号",
+    "band": "多图源底图、历史存档与卫星瓦片 (Z1–Z22)",
+    "bandTag": "other",
+    "era": "2014–至今历史存档 + 实时在线底图",
+    "provider": "Esri / Esri Wayback / Google / 高德 / 天地图 / OpenTopoMap / OSM / Carto / 自定义",
+    "group": "orbiting",
+    "category": "primary-thematic",
+    "subcategories": [
+      "primary-all",
+      "primary-thematic"
+    ],
+    "defaultStatus": "available",
+    "supportsOnlineCropping": true,
+    "description": "聚合 Esri Wayback (2014–至今) 历史卫星影像存档、14 种实时高清底图（含高德 GCJ-02 自动坐标纠偏）及自定义 XYZ/TMS 模板，支持分期扫描、研究区最高层级自动探测，以及 GeoTIFF、COG、MBTiles 或配准栅格批量导出。",
+    "satellites": "Esri · Esri Wayback · Google · 高德 · 天地图 · OpenTopoMap · OSM · Carto · 自定义 XYZ/TMS",
+    "timeRange": "2014–至今 (Wayback) / 实时在线底图",
+    "accountRequirement": "free",
+    "accountText": "免账号",
+    "filters": [
+      "内置 15 种图源 (含 Wayback 历史影像) + 自定义 URL",
+      "多级缩放 (Z1–Z22 · Wayback 按区动态探测上限)",
+      "GeoTIFF / COG / MBTiles / PNG 导出",
+      "压缩算法与金字塔 (Overviews)"
+    ]
+  },
+  "science.esa.worldcover.v1": {
+    "name": "ESA WorldCover 全球 10 米土地利用分类",
+    "subtitle": "10 米全球地表覆盖分类 (11 类) · 2020–2021 · MPC 免账号",
+    "band": "10 米土地覆盖分类 (Sentinel-1/2 融合)",
+    "bandTag": "other",
+    "era": "2020–2021",
+    "provider": "ESA / Microsoft Planetary Computer",
+    "group": "orbiting",
+    "category": "primary-thematic",
+    "subcategories": [
+      "primary-all",
+      "primary-thematic"
+    ],
+    "defaultStatus": "available",
+    "supportsOnlineCropping": true,
+    "description": "欧空局 (ESA) 基于 Sentinel-1 雷达与 Sentinel-2 光学数据融合制作的全球 10 米高分辨率土地覆盖分类图（含水体、林地、耕地、建筑区、裸地、湿地等 11 类标准地物），支持免账号在线检索、按研究区 AOI 在线裁剪与整幅 GeoTIFF 下载，常用于 InSAR 水体掩膜与相干性分类建模。",
+    "satellites": "Sentinel-1 · Sentinel-2 融合",
+    "timeRange": "仅 v100 (2020) · v200 (2021) 两期静态发布，非逐年更新",
+    "accountRequirement": "free",
+    "accountText": "MPC 免账号",
+    "filters": [
+      "空间范围",
+      "产品版本 (v200 / v100)",
+      "按 AOI 自动裁剪"
+    ]
+  },
+  "science.jrc.gsw.v1": {
+    "name": "JRC 全球地表水体动态分布 (GSW)",
+    "subtitle": "30 米水体出现频率与季节变化 · 1984–至今 · MPC 免账号",
+    "band": "30 米全球水体掩膜与多年动态",
+    "bandTag": "other",
+    "era": "1984–至今",
+    "provider": "EC JRC / Microsoft Planetary Computer",
+    "group": "orbiting",
+    "category": "primary-thematic",
+    "subcategories": [
+      "primary-all",
+      "primary-thematic"
+    ],
+    "defaultStatus": "available",
+    "supportsOnlineCropping": true,
+    "description": "欧盟联合研究中心 (EC JRC) 基于近 40 年 Landsat 影像构建的全球 30 米地表水体动态数据集（含水体出现频率 Occurrence、季节性 Seasonality、最大水体范围 Extent 及水体变迁 Change），免账号直连下载，是高精度 InSAR 永久与季节性水体相位解缠掩膜的权威数据源。",
+    "satellites": "Landsat 5/7/8/9 历史全序列",
+    "timeRange": "1984 至今",
+    "accountRequirement": "free",
+    "accountText": "MPC 免账号",
+    "filters": [
+      "空间范围",
+      "水体图层 (occurrence / extent / seasonality / change)"
+    ]
+  },
+  "science.alos.palsar-mosaic.v1": {
+    "name": "ALOS PALSAR 全球 25 米年度雷达拼图",
+    "subtitle": "L 波段 HH+HV 双极化正射拼图 · 2007–至今 · JAXA / MPC 免账号",
+    "band": "L 波段 SAR (25 米正射拼图)",
+    "bandTag": "L",
+    "era": "2007–至今",
+    "provider": "JAXA / Microsoft Planetary Computer",
+    "group": "orbiting",
+    "category": "primary-sar",
+    "subcategories": [
+      "primary-all",
+      "primary-sar"
+    ],
+    "defaultStatus": "available",
+    "supportsOnlineCropping": true,
+    "description": "日本宇宙航空研究开发机构 (JAXA) 发布的全球 25 米分辨率 L 波段（ALOS PALSAR 与 ALOS-2 PALSAR-2）年度地形辐射校正正射拼图，包含 HH、HV 双极化后向散射与局部入射角图层，免账号直连检索与按 AOI 下载。",
+    "satellites": "ALOS PALSAR · ALOS-2 PALSAR-2",
+    "timeRange": "2007 至今（逐年拼图）",
+    "accountRequirement": "free",
+    "accountText": "MPC 免账号",
+    "filters": [
+      "空间范围",
+      "年度时间窗",
+      "极化图层 (HH / HV / mask)"
+    ]
+  },
+  "science.modis.ndvi.v1": {
+    "name": "MODIS 全球植被指数与地表反射率 (MOD13Q1)",
+    "subtitle": "250 米 16 天合成 NDVI / EVI · 2000–至今 · NASA / MPC 免账号",
+    "band": "专题植被指数 (250 米网格)",
+    "bandTag": "other",
+    "era": "2000–至今",
+    "provider": "NASA LP DAAC / Microsoft Planetary Computer",
+    "group": "orbiting",
+    "category": "primary-thematic",
+    "subcategories": [
+      "primary-all",
+      "primary-thematic"
+    ],
+    "defaultStatus": "available",
+    "supportsOnlineCropping": true,
+    "description": "NASA Terra/Aqua MODIS 全球 250 米分辨率 16 天合成归一化植被指数 (NDVI) 与增强型植被指数 (EVI) 标准产品 (MOD13Q1/MYD13Q1 v061)，免账号检索与下载，常用于评估植被生长周期对 InSAR 时间序列相干性失相干的影响。",
+    "satellites": "Terra MODIS · Aqua MODIS",
+    "timeRange": "2000 至今",
+    "accountRequirement": "free",
+    "accountText": "MPC 免账号",
+    "filters": [
+      "空间范围",
+      "时间窗",
+      "指数波段 (250m_16_days_NDVI / EVI)"
+    ]
+  },
+  "science.aria.s1-gunw.v1": {
+    "name": "NASA ARIA Sentinel-1 标准解缠干涉图 (S1-GUNW)",
+    "subtitle": "C 波段地理编码解缠相位与相干图 · 90 米 · ASF / Earthdata",
+    "band": "C 波段标准干涉图 (GUNW)",
+    "bandTag": "C",
+    "era": "2014–至今",
+    "provider": "NASA JPL / ASF DAAC",
+    "group": "orbiting",
+    "category": "primary-sar",
+    "subcategories": [
+      "primary-all",
+      "primary-sar"
+    ],
+    "defaultStatus": "available",
+    "requiredAccountIds": [
+      "earthdata"
+    ],
+    "description": "NASA JPL 与加州理工学院 ARIA 项目生产的 Sentinel-1 标准地理编码解缠干涉图产品 (S1-GUNW NetCDF)，内含解缠相位、相干系数、连通域掩膜、入射角及垂直基线格网，复用已配置的 Earthdata 账号即可检索与下载，可直接输入 MintPy 与 ARIA-tools 进行时序反演。",
+    "satellites": "Sentinel-1A · Sentinel-1B",
+    "timeRange": "2014 至今",
+    "accountRequirement": "account_required",
+    "accountText": "Earthdata（已接入）",
+    "filters": [
+      "空间范围",
+      "时间窗",
+      "轨道方向"
+    ]
+  },
+  "atmospheric.sentinel-5p.l2.v1": {
+    "name": "Sentinel-5P 大气污染与温室气体监测 (TROPOMI)",
+    "subtitle": "全球每日 NO2 / CH4 / SO2 / CO / O3 / 气溶胶 · 2018–至今 · MPC 免账号",
+    "band": "大气化学与水汽/气溶胶柱浓度",
+    "bandTag": "other",
+    "era": "2018–至今",
+    "provider": "Copernicus / Microsoft Planetary Computer",
+    "group": "orbiting",
+    "category": "primary-thematic",
+    "subcategories": [
+      "primary-all",
+      "primary-thematic"
+    ],
+    "defaultStatus": "available",
+    "description": "欧空局哥白尼计划 Sentinel-5 Precursor (TROPOMI) 大气成分监测卫星 Level-2 标准产品，支持免账号检索并下载二氧化氮 (NO2)、甲烷 (CH4)、二氧化硫 (SO2)、一氧化碳 (CO)、臭氧 (O3) 及气溶胶指数 NetCDF 数据，适用于火山喷发 SO2 通量与油气田沉降伴随 CH4 排放联合监测。",
+    "satellites": "Sentinel-5P TROPOMI",
+    "timeRange": "2018 至今",
+    "accountRequirement": "free",
+    "accountText": "MPC 免账号",
+    "filters": [
+      "空间范围",
+      "时间窗",
+      "气体产品 (NO2 / CH4 / SO2 / CO / O3 / AER_AI)"
+    ]
+  },
+  "science.gee.catalog.v1": {
+    "name": "Google Earth Engine (GEE) 全球公共目录",
+    "subtitle": "25 个内置公共遥感数据集 · 自定义 Asset ID · 按 AOI 在线裁剪",
+    "band": "全谱段多源遥感 (GEE)",
+    "bandTag": "other",
+    "era": "1972–至今",
+    "provider": "Google Earth Engine",
+    "group": "orbiting",
+    "category": "gee-catalog",
+    "subcategories": [
+      "gee-catalog"
+    ],
+    "defaultStatus": "available",
+    "supportsOnlineCropping": true,
+    "description": "GEE 全球公共遥感目录与云端栅格库，默认全选全部公共数据集，支持按研究区在线裁剪下载及自定义 Asset ID。",
+    "satellites": "Sentinel · Landsat · MODIS · DEM · GEE",
+    "timeRange": "1972 至今",
+    "accountRequirement": "free",
+    "accountText": "免账号直连 / GEE 账号",
+    "filters": [
+      "专题与公共目录",
+      "时间窗",
+      "AOI 裁剪"
+    ]
+  },
+  "science.gee.s2-sr.v1": {
+    "name": "GEE: Sentinel-2 L2A 地表反射率 (MSI)",
+    "subtitle": "10m MSI 多光谱 · COPERNICUS/S2_SR_HARMONIZED",
+    "band": "可见光 / 近红外 / 红边 / 短波红外",
+    "bandTag": "optical",
+    "era": "2017–至今",
+    "provider": "Google Earth Engine",
+    "group": "orbiting",
+    "category": "gee-catalog",
+    "subcategories": [
+      "gee-catalog"
+    ],
+    "defaultStatus": "available",
+    "supportsOnlineCropping": true,
+    "geeAssetId": "COPERNICUS/S2_SR_HARMONIZED",
+    "description": "GEE 收录的 Sentinel-2 MSI L2A 地表反射率数据集，已完成大气校正，支持按研究区在线裁剪导出。",
+    "satellites": "Sentinel-2A · Sentinel-2B",
+    "timeRange": "2017 至今",
+    "accountRequirement": "free",
+    "accountText": "免账号云直连 / GEE 账号",
+    "filters": [
+      "空间范围 (AOI 裁剪)",
+      "时间窗",
+      "云量阈值"
+    ]
+  },
+  "science.gee.s1-grd.v1": {
+    "name": "GEE: Sentinel-1 C 波段 SAR GRD",
+    "subtitle": "10m 雷达地距 · COPERNICUS/S1_GRD",
+    "band": "C 波段 (5.405 GHz)",
+    "bandTag": "C",
+    "era": "2014–至今",
+    "provider": "Google Earth Engine",
+    "group": "orbiting",
+    "category": "gee-catalog",
+    "subcategories": [
+      "gee-catalog"
+    ],
+    "defaultStatus": "available",
+    "supportsOnlineCropping": true,
+    "geeAssetId": "COPERNICUS/S1_GRD",
+    "description": "GEE 预处理的 Sentinel-1 C 波段雷达地距后向散射强度数据集，已做轨道与辐射定标。",
+    "satellites": "Sentinel-1A · Sentinel-1B",
+    "timeRange": "2014 至今",
+    "accountRequirement": "free",
+    "accountText": "免账号云直连 / GEE 账号",
+    "filters": [
+      "极化 (VV / VH / HH / HV)",
+      "轨道方向 (升轨 / 降轨)",
+      "仪器模式 (IW / EW / SM)"
+    ]
+  },
+  "science.gee.landsat9.v1": {
+    "name": "GEE: Landsat 9 C2-L2 地表反射率",
+    "subtitle": "30m 光学/热红外 · LANDSAT/LC09/C02/T1_L2",
+    "band": "可见光 / 近红外 / 短波红外 / 热红外",
+    "bandTag": "optical",
+    "era": "2021–至今",
+    "provider": "Google Earth Engine",
+    "group": "orbiting",
+    "category": "gee-catalog",
+    "subcategories": [
+      "gee-catalog"
+    ],
+    "defaultStatus": "available",
+    "supportsOnlineCropping": true,
+    "geeAssetId": "LANDSAT/LC09/C02/T1_L2",
+    "description": "Landsat 9 C2 L2 地表反射率与表面温度数据集，已完成大气校正。",
+    "satellites": "Landsat 9 OLI-2 / TIRS-2",
+    "timeRange": "2021 至今",
+    "accountRequirement": "free",
+    "accountText": "免账号云直连 / GEE 账号",
+    "filters": [
+      "空间范围",
+      "时间窗",
+      "云量覆盖"
+    ]
+  },
+  "science.gee.landsat8.v1": {
+    "name": "GEE: Landsat 8 C2-L2 地表反射率",
+    "subtitle": "30m 光学/热红外 · LANDSAT/LC08/C02/T1_L2",
+    "band": "可见光 / 近红外 / 短波红外 / 热红外",
+    "bandTag": "optical",
+    "era": "2013–至今",
+    "provider": "Google Earth Engine",
+    "group": "orbiting",
+    "category": "gee-catalog",
+    "subcategories": [
+      "gee-catalog"
+    ],
+    "defaultStatus": "available",
+    "supportsOnlineCropping": true,
+    "geeAssetId": "LANDSAT/LC08/C02/T1_L2",
+    "description": "Landsat 8 C2 L2 地表反射率与热红外温度数据集，含云/阴影质量掩膜。",
+    "satellites": "Landsat 8 OLI / TIRS",
+    "timeRange": "2013 至今",
+    "accountRequirement": "free",
+    "accountText": "免账号云直连 / GEE 账号",
+    "filters": [
+      "空间范围",
+      "时间窗",
+      "云量覆盖"
+    ]
+  },
+  "science.gee.dynamic-world.v1": {
+    "name": "GEE: Dynamic World 10m 近实时地表覆盖",
+    "subtitle": "10m 土地利用分类概率 · GOOGLE/DYNAMICWORLD/V1",
+    "band": "水体 / 植被 / 建筑 / 裸地 / 作物 概率图层",
+    "bandTag": "optical",
+    "era": "2015–至今",
+    "provider": "Google / WRI / National Geographic",
+    "group": "orbiting",
+    "category": "gee-catalog",
+    "subcategories": [
+      "gee-catalog"
+    ],
+    "defaultStatus": "available",
+    "supportsOnlineCropping": true,
+    "geeAssetId": "GOOGLE/DYNAMICWORLD/V1",
+    "description": "基于 Sentinel-2 的全球 10 米近实时 9 类土地利用概率数据集。",
+    "satellites": "Sentinel-2 (AI 推理产物)",
+    "timeRange": "2015 至今",
+    "accountRequirement": "free",
+    "accountText": "免账号云直连 / GEE 账号",
+    "filters": [
+      "空间范围",
+      "时间窗",
+      "地类置信度"
+    ]
+  },
+  "science.gee.worldcover.v1": {
+    "name": "GEE: ESA WorldCover 全球 10 米土地利用",
+    "subtitle": "10m 全球 11 类基准分类 · ESA/WorldCover/v200",
+    "band": "全球 11 类离散土地利用栅格",
+    "bandTag": "optical",
+    "era": "2020–2021",
+    "provider": "ESA / Google Earth Engine",
+    "group": "orbiting",
+    "category": "gee-catalog",
+    "subcategories": [
+      "gee-catalog"
+    ],
+    "defaultStatus": "available",
+    "supportsOnlineCropping": true,
+    "geeAssetId": "ESA/WorldCover/v200",
+    "description": "欧空局 Sentinel-1/2 融合的全球 10 米离散土地覆盖产品。",
+    "satellites": "Sentinel-1 + Sentinel-2 融合",
+    "timeRange": "2020 - 2021",
+    "accountRequirement": "free",
+    "accountText": "免账号云直连 / GEE 账号",
+    "filters": [
+      "版本 (v200 / v100)",
+      "空间范围"
+    ]
+  },
+  "science.gee.gsw.v1": {
+    "name": "GEE: JRC 全球地表水体动态分布 (GSW)",
+    "subtitle": "30m 水体发生率与变迁 · JRC/GSW1_4/GlobalSurfaceWater",
+    "band": "水体发生率 / 季节性 / 永久变化",
+    "bandTag": "optical",
+    "era": "1984–2021",
+    "provider": "European Commission JRC / GEE",
+    "group": "orbiting",
+    "category": "gee-catalog",
+    "subcategories": [
+      "gee-catalog"
+    ],
+    "defaultStatus": "available",
+    "supportsOnlineCropping": true,
+    "geeAssetId": "JRC/GSW1_4/GlobalSurfaceWater",
+    "description": "JRC 基于多年 Landsat 影像统计的全球 30 米地表水体发生率与变化数据集。",
+    "satellites": "Landsat 5 / 7 / 8 时序",
+    "timeRange": "1984 - 2021",
+    "accountRequirement": "free",
+    "accountText": "免账号云直连 / GEE 账号",
+    "filters": [
+      "水体子图层 (发生率 / 变迁 / 季节性)",
+      "空间范围"
+    ]
+  },
+  "science.gee.dem-glo30.v1": {
+    "name": "GEE: Copernicus DEM GLO-30 全球 30m 高程",
+    "subtitle": "30m 哥白尼正高 DEM · COPERNICUS/DEM/GLO30",
+    "band": "数字高程模型 (DEM)",
+    "bandTag": "dem",
+    "era": "2011–2015",
+    "provider": "Airbus / ESA / GEE",
+    "group": "dem",
+    "category": "gee-catalog",
+    "subcategories": [
+      "gee-catalog"
+    ],
+    "defaultStatus": "available",
+    "supportsOnlineCropping": true,
+    "geeAssetId": "COPERNICUS/DEM/GLO30",
+    "description": "ESA 基于 TanDEM-X 生产的全球 30 米数字高程模型，适用于 InSAR 地形相位仿真。",
+    "satellites": "TanDEM-X",
+    "timeRange": "2015 基准",
+    "accountRequirement": "free",
+    "accountText": "免账号云直连 / GEE 账号",
+    "filters": [
+      "空间范围 (按 AOI 裁剪)"
+    ]
+  },
+  "science.gee.nasadem.v1": {
+    "name": "GEE: NASA NASADEM 全球 30m 高程",
+    "subtitle": "30m 重处理 SRTM 优化版 · NASA/NASADEM_HGT/001",
+    "band": "数字高程模型 (DEM)",
+    "bandTag": "dem",
+    "era": "2000–2020",
+    "provider": "NASA JPL / GEE",
+    "group": "dem",
+    "category": "gee-catalog",
+    "subcategories": [
+      "gee-catalog"
+    ],
+    "defaultStatus": "available",
+    "supportsOnlineCropping": true,
+    "geeAssetId": "NASA/NASADEM_HGT/001",
+    "description": "NASA JPL 重处理 SRTM 并融合多源高程优化的全球 30 米 DEM。",
+    "satellites": "Space Shuttle Endeavour (STS-99)",
+    "timeRange": "2000 基准 (2020 发布)",
+    "accountRequirement": "free",
+    "accountText": "免账号云直连 / GEE 账号",
+    "filters": [
+      "空间范围 (按 AOI 裁剪)"
+    ]
+  },
+  "science.gee.gem-15.v1": {
+    "name": "GEE: Google GEM-15 15m 高程 (DTM + DSM)",
+    "subtitle": "15m 裸地地形 DTM 与地表 DSM · projects/climate-and-sustainability/assets/gem-15_v1",
+    "band": "15m 裸地 DTM + 地表 DSM (EGM96 正高)",
+    "bandTag": "dem",
+    "era": "2018–2025",
+    "provider": "Google Research / GEE",
+    "group": "dem",
+    "category": "gee-catalog",
+    "subcategories": [
+      "gee-catalog"
+    ],
+    "defaultStatus": "available",
+    "supportsOnlineCropping": true,
+    "geeAssetId": "projects/climate-and-sustainability/assets/gem-15_v1",
+    "description": "Google Research 基于多源立体光测融合发布的 15 米空间分辨率数字高程模型（v1），同一集合同时提供裸地地形 DTM 与地表模型 DSM 波段，垂直基准为 EGM96 正高。",
+    "satellites": "Google 多源立体光测融合",
+    "timeRange": "2018–2025 (2026 发布)",
+    "accountRequirement": "free",
+    "accountText": "GEE 账号云端裁剪 / 亦可用 GEM-15 直连",
+    "filters": [
+      "空间范围 (按 AOI 裁剪)"
+    ],
+    "usageNotes": [
+      "数据缺失范围：官方 v1 不包含中国大陆、俄罗斯、蒙古、朝鲜、格陵兰和南极洲，公海及高纬部分海域亦为空缺（若无需 GEE 云端算子，也可在「高程 DEM」中选用免账号直连的 GEM-15 DTM / DSM）。",
+      "许可证说明：采用 CC BY 4.0 协议，支持商业与科研用途，成果发布需署名 Google。"
+    ]
+  },
+  "science.gee.modis-ndvi.v1": {
+    "name": "GEE: MODIS 全球 250m 植被指数 (MOD13Q1)",
+    "subtitle": "250m 16 天合成 NDVI / EVI · MODIS/061/MOD13Q1",
+    "band": "NDVI / EVI / 红外反射率",
+    "bandTag": "optical",
+    "era": "2000–至今",
+    "provider": "NASA LP DAAC / GEE",
+    "group": "orbiting",
+    "category": "gee-catalog",
+    "subcategories": [
+      "gee-catalog"
+    ],
+    "defaultStatus": "available",
+    "supportsOnlineCropping": true,
+    "geeAssetId": "MODIS/061/MOD13Q1",
+    "description": "Terra MODIS 全球 250 米分辨率 16 天合成 NDVI 与 EVI 植被指数产品。",
+    "satellites": "Terra MODIS",
+    "timeRange": "2000 至今",
+    "accountRequirement": "free",
+    "accountText": "免账号云直连 / GEE 账号",
+    "filters": [
+      "植被指数 (NDVI / EVI)",
+      "时间窗",
+      "空间范围"
+    ]
+  },
+  "science.gee.era5-land.v1": {
+    "name": "GEE: ECMWF ERA5-Land 逐小时气象再分析",
+    "subtitle": "9km 逐小时地表气象 · ECMWF/ERA5_LAND/HOURLY",
+    "band": "温度 / 气压 / 露点 / 降水 / 辐射",
+    "bandTag": "other",
+    "era": "1950–至今",
+    "provider": "ECMWF / Copernicus / GEE",
+    "group": "auxiliary",
+    "category": "gee-catalog",
+    "subcategories": [
+      "gee-catalog"
+    ],
+    "defaultStatus": "available",
+    "supportsOnlineCropping": true,
+    "geeAssetId": "ECMWF/ERA5_LAND/HOURLY",
+    "description": "ECMWF 全球 0.1 度逐小时陆面气象再分析数据集，支持温度、气压、降水与水汽协同分析。",
+    "satellites": "ECMWF 数值预报模式",
+    "timeRange": "1950 至今",
+    "accountRequirement": "free",
+    "accountText": "免账号云直连 / GEE 账号",
+    "filters": [
+      "气象要素波段",
+      "时间窗",
+      "空间范围"
+    ]
+  },
+  "science.gee.s5p-no2.v1": {
+    "name": "GEE: Sentinel-5P 大气 NO2 对流层柱浓度",
+    "subtitle": "每日全球空气质量格网 · COPERNICUS/S5P/OFFL/L3_NO2",
+    "band": "对流层二氧化氮斜柱/垂直柱浓度",
+    "bandTag": "other",
+    "era": "2018–至今",
+    "provider": "Copernicus / GEE",
+    "group": "auxiliary",
+    "category": "gee-catalog",
+    "subcategories": [
+      "gee-catalog"
+    ],
+    "defaultStatus": "available",
+    "supportsOnlineCropping": true,
+    "geeAssetId": "COPERNICUS/S5P/OFFL/L3_NO2",
+    "description": "Sentinel-5P TROPOMI 对流层二氧化氮日度格网产品，用于监测大气排放与空气质量。",
+    "satellites": "Sentinel-5P TROPOMI",
+    "timeRange": "2018 至今",
+    "accountRequirement": "free",
+    "accountText": "免账号云直连 / GEE 账号",
+    "filters": [
+      "空间范围",
+      "时间窗",
+      "质量标识"
+    ]
+  },
+  "science.whu.clcd.v1": {
+    "name": "武汉大学中国年度 30m 土地覆盖 (CLCD v1.0.4)",
+    "subtitle": "中国逐年 30m 土地利用分类 (9 类) · 1985–2023 · Zenodo CC-BY-4.0",
+    "band": "30 米逐年土地覆盖分类 (耕地/森林/水体/不透水面)",
+    "bandTag": "other",
+    "era": "1985–2023",
+    "provider": "武汉大学 Yang & Huang / Zenodo",
+    "group": "orbiting",
+    "category": "primary-thematic",
+    "subcategories": [
+      "primary-all",
+      "primary-thematic"
+    ],
+    "defaultStatus": "available",
+    "supportsOnlineCropping": true,
+    "description": "武汉大学杨杰与黄昕团队发布的中国首套基于 Landsat 全序列制作的 30 米年度土地覆盖数据集（CLCD v1.0.4），涵盖 1985–2023 年耕地、森林、灌木、草地、水体、冰雪、裸地、不透水面与湿地 9 个标准一级类，整体精度约 79.3%。",
+    "satellites": "Landsat 5/7/8/9",
+    "timeRange": "1985–2023 年度连续",
+    "accountRequirement": "free",
+    "accountText": "免账号 (CC-BY-4.0)",
+    "filters": [
+      "目标年份",
+      "9 级土地覆盖分类",
+      "空间范围"
+    ]
+  },
+  "science.tum.eot20.v1": {
+    "name": "TUM EOT20 全球经验海洋潮汐模型",
+    "subtitle": "DGFI-TUM 0.125° 全球海洋潮汐与浅水分潮 · SEANOE CC-BY-4.0",
+    "band": "17 个主要分潮振幅与格林尼治迟角 (NetCDF)",
+    "bandTag": "other",
+    "era": "多任务卫星测高调和",
+    "provider": "DGFI-TUM / SEANOE",
+    "group": "auxiliary",
+    "category": "primary-thematic",
+    "subcategories": [
+      "primary-all",
+      "primary-thematic"
+    ],
+    "defaultStatus": "available",
+    "description": "慕尼黑工业大学大地测量研究所 (DGFI-TUM) 基于 11 颗雷达测高卫星研制的经验海洋潮汐模型 EOT20，重点提升近岸与陆架海潮汐模拟精度，配合 pyTMD 用于沿海 InSAR 海洋潮汐负荷改正。",
+    "satellites": "TOPEX/Poseidon · Jason · Envisat · CryoSat-2",
+    "timeRange": "全球调和静态模型",
+    "accountRequirement": "free",
+    "accountText": "免账号 (CC-BY-4.0)",
+    "filters": [
+      "分潮成分 (M2/S2/K1/O1 等)",
+      "空间范围"
+    ]
+  },
+  "science.gebco.bathymetry-2026.v1": {
+    "name": "GEBCO 全球 15 弧秒海底地形网格",
+    "subtitle": "全球海域水深与陆地地形连续格网 (15 arc-second) · 公开数据",
+    "band": "全球海底水深与陆地高程 (EPSG:4326)",
+    "bandTag": "dem",
+    "era": "全球编图最新归档",
+    "provider": "GEBCO / BODC",
+    "group": "dem",
+    "category": "primary-thematic",
+    "subcategories": [
+      "primary-all",
+      "primary-thematic"
+    ],
+    "defaultStatus": "available",
+    "supportsOnlineCropping": true,
+    "description": "大洋通用水深图计划 (GEBCO) 发布的 15 弧秒（约 450 米）全球无缝海陆高程/水深网格及数据来源识别码 (TID)，适用于海岸带水深分级、潮汐模型底边界及大尺度海陆掩膜构建。",
+    "satellites": "多波束声呐 · 卫星重力测高反演",
+    "timeRange": "全球静态参考网格",
+    "accountRequirement": "free",
+    "accountText": "免账号",
+    "filters": [
+      "高程/水深网格",
+      "空间范围"
+    ]
+  },
+  "science.noaa.etopo-2022.v1": {
+    "name": "NOAA ETOPO 2022 全球无缝地形水深模型",
+    "subtitle": "15 弧秒基岩 (Bed) 与冰面 (Ice Surface) 网格 · NOAA NCEI",
+    "band": "全球基岩高程 / 冰盖表面 / 海底水深",
+    "bandTag": "dem",
+    "era": "2022 基准编图",
+    "provider": "NOAA NCEI",
+    "group": "dem",
+    "category": "primary-thematic",
+    "subcategories": [
+      "primary-all",
+      "primary-thematic"
+    ],
+    "defaultStatus": "available",
+    "supportsOnlineCropping": true,
+    "description": "美国国家海洋和大气管理局 (NOAA NCEI) 发布的 ETOPO 2022 全球 15 弧秒无缝地形与水深模型，整合 Copernicus DEM、FABDEM、ICESat-2 与最新多波束水深，并区分基岩 (Bed) 与冰盖表面 (Ice Surface)。",
+    "satellites": "ICESat-2 · Copernicus DEM · 水深测绘编图",
+    "timeRange": "全球静态参考模型 (2022 版)",
+    "accountRequirement": "free",
+    "accountText": "免账号",
+    "filters": [
+      "层类型 (Bed 基岩 / Surface 表面)",
+      "空间范围"
+    ]
+  },
+  "science.nasa.black-marble.v1": {
+    "name": "NASA Black Marble 全球夜光 (VIIRS)",
+    "subtitle": "500m 夜光辐射度 · 2012–至今 · NASA LAADS DAAC / Earthdata",
+    "band": "VIIRS DNB 夜光辐射度 (500 米格网 · HDF5)",
+    "bandTag": "optical",
+    "era": "2012–至今",
+    "provider": "NASA LAADS DAAC / Earthdata",
+    "group": "orbiting",
+    "category": "primary-thematic",
+    "subcategories": [
+      "primary-all",
+      "primary-thematic"
+    ],
+    "defaultStatus": "available",
+    "description": "NASA Suomi-NPP VIIRS Black Marble 标准夜光辐射度套件，已完成月光（BRDF）、大气气溶胶与杂散光校正，支持月度合成 (VNP46A3)、年度合成 (VNP46A4) 与逐日校正 (VNP46A2)，适用于震后停电评估、灾后恢复与城镇活动监测。",
+    "satellites": "Suomi-NPP VIIRS",
+    "timeRange": "2012-01 至今",
+    "accountRequirement": "account_required",
+    "requiredAccountIds": [
+      "earthdata"
+    ],
+    "accountText": "Earthdata",
+    "filters": [
+      "产品周期 (月度 VNP46A3 / 年度 VNP46A4 / 逐日 VNP46A2)",
+      "空间范围",
+      "时间窗"
+    ]
+  },
+  "science.nasa.emit.l2a.v1": {
+    "name": "NASA EMIT 高光谱地表反射率与矿物",
+    "subtitle": "60m 285 波段高光谱 · 2022–至今 · NASA LP DAAC / Earthdata",
+    "band": "高光谱 VSWIR (380–2500 nm · 285 波段 · 60m)",
+    "bandTag": "optical",
+    "era": "2022–至今",
+    "provider": "NASA LP DAAC / Earthdata",
+    "group": "orbiting",
+    "category": "primary-optical",
+    "subcategories": [
+      "primary-all",
+      "primary-optical"
+    ],
+    "defaultStatus": "available",
+    "description": "国际空间站搭载的 NASA JPL EMIT 成像光谱仪科学数据，60 米空间分辨率、285 个连续可见光至短波红外波段，支持公开快视图浏览以及 L2A 地表反射率 (EMITL2ARFL) 与 L2B 矿物丰度 (EMITL2BMIN) NetCDF4 归档下载。",
+    "satellites": "ISS EMIT",
+    "timeRange": "2022-08 至今",
+    "accountRequirement": "account_required",
+    "requiredAccountIds": [
+      "earthdata"
+    ],
+    "accountText": "Earthdata",
+    "filters": [
+      "产品级别 (L2A 地表反射率 / L2B 矿物丰度)",
+      "空间范围",
+      "时间窗"
+    ]
+  },
+  "science.dlr.enmap.l2a.v1": {
+    "name": "DLR EnMAP 高光谱 L2A 地表反射率",
+    "subtitle": "30m 224 波段高光谱 · 2022–至今 · 德国宇航中心 DLR EOC（仅公开目录检索）",
+    "band": "高光谱 VNIR+SWIR (420–2450 nm · 224 波段 · 30m)",
+    "bandTag": "optical",
+    "era": "2022–至今",
+    "provider": "DLR EOC Geoservice STAC",
+    "group": "orbiting",
+    "category": "primary-optical",
+    "subcategories": [
+      "primary-all",
+      "primary-optical"
+    ],
+    "defaultStatus": "search_only",
+    "description": "德国国家环境测绘与分析高光谱卫星 (EnMAP) L2A 地表反射率开放目录（30 米分辨率、224 波段）。支持免账号公开 STAC 目录检索、云量与空间足迹核查；原始影像归档受 DLR EOC CAS 网页单点登录保护，需前往 EOWEB 门户下载。",
+    "satellites": "EnMAP",
+    "timeRange": "2022-04 至今",
+    "accountRequirement": "free",
+    "requiredAccountIds": [],
+    "accountText": "免账号检索（下载需 DLR EOWEB 门户 SSO）",
+    "filters": [
+      "空间范围",
+      "时间窗"
+    ],
+    "usageNotes": [
+      "DLR EOC Geoservice STAC 支持免账号公开目录检索与空间范围足迹核查。",
+      "原始 .TIF 高光谱栅格归档链接会跳转至德国宇航中心 CAS 单点登录 (sso.eoc.dlr.de)，请记录检索到的景号后前往 https://eoweb.dlr.de 门户登录获取。"
+    ]
+  },
+  "science.nasa.ecostress.l2t.v1": {
+    "name": "NASA ECOSTRESS 地表温度与蒸散发",
+    "subtitle": "70m 热红外 LST / ET · 2018–至今 · NASA LP DAAC / Earthdata",
+    "band": "热红外地表温度 (LST) / 宽波段发射率 / 日蒸散发 (70m COG)",
+    "bandTag": "other",
+    "era": "2018–至今",
+    "provider": "NASA LP DAAC / Earthdata",
+    "group": "orbiting",
+    "category": "primary-thematic",
+    "subcategories": [
+      "primary-all",
+      "primary-thematic"
+    ],
+    "defaultStatus": "available",
+    "description": "国际空间站搭载的 NASA JPL ECOSTRESS 热红外辐射计 MGRS 分块云优化 GeoTIFF (COG) 产品，70 米高空间分辨率，支持地表温度 (ECO_L2T_LSTE)、宽波段发射率与日蒸散发 (ECO_L3T_JET) 检索下载，适用于火山地热异常、断层热红外与干旱监测。",
+    "satellites": "ISS ECOSTRESS",
+    "timeRange": "2018-07 至今",
+    "accountRequirement": "account_required",
+    "requiredAccountIds": [
+      "earthdata"
+    ],
+    "accountText": "Earthdata",
+    "filters": [
+      "热红外图层 (地表温度 LST / 发射率 EmisWB / 日蒸散发 ETdaily)",
+      "空间范围",
+      "时间窗"
+    ]
+  },
+  "science.aws.sentinel-1-grd.v1": {
+    "name": "Sentinel-1 GRD (AWS Open Data)",
+    "subtitle": "C 波段地距多视 COG · Element 84 STAC · 免账号 AWS S3",
+    "band": "C 波段 SAR (5.405 GHz · VV/VH/HH/HV 云原生 COG)",
+    "bandTag": "C",
+    "era": "2014–至今",
+    "provider": "AWS Open Data / Element 84",
+    "group": "orbiting",
+    "category": "primary-sar",
+    "subcategories": [
+      "primary-all",
+      "primary-sar"
+    ],
+    "defaultStatus": "available",
+    "supportsOnlineCropping": true,
+    "description": "托管于 AWS Open Data (sentinel-s1-l1c) 与 Element 84 Earth Search STAC 的全天候 Sentinel-1 GRD 云原生 GeoTIFF (COG) 影像集，免账号即可直接检索与下载，并支持内置 GDAL /vsicurl/ 按 AOI 裁剪。",
+    "satellites": "Sentinel-1A / 1C / 1D",
+    "timeRange": "2014-10 至今",
+    "accountRequirement": "free",
+    "accountText": "免账号",
+    "filters": [
+      "空间范围",
+      "时间窗",
+      "极化方式 (VV / VH / HH / HV)"
+    ]
+  },
+  "science.noaa.aws-weather.v1": {
+    "name": "NOAA GFS / GOES 气象卫星 (AWS Open Data)",
+    "subtitle": "GFS 0.25° 预报 .idx 子集与 GOES ABI 静止卫星 · 免账号 AWS S3",
+    "band": "气象模式要素 / 静止红外与可见光通道 (GRIB2 / NetCDF4)",
+    "bandTag": "other",
+    "era": "实时–近 48 小时滚动归档",
+    "provider": "NOAA / AWS Open Data",
+    "group": "auxiliary",
+    "category": "auxiliary-atmospheric",
+    "subcategories": [
+      "primary-all",
+      "auxiliary-all",
+      "auxiliary-atmospheric"
+    ],
+    "defaultStatus": "available",
+    "description": "AWS Open Data 免费托管的 NOAA 开放气象套件，支持 GFS 0.25° 全球预报模式通过 .idx 索引按变量进行 HTTP Byte-Range 轻量裁剪下载 (TMP/UGRD/VGRD/PRMSL/APCP)，以及 GOES-19/18 ABI 辐射亮温 NetCDF 直连。",
+    "satellites": "NOAA GFS 0.25° · GOES-19 / GOES-18 ABI",
+    "timeRange": "滚动近实时与历史周期",
+    "accountRequirement": "free",
+    "accountText": "免账号",
+    "filters": [
+      "产品模式 (GFS / GOES)",
+      "气象变量关键词",
+      "空间范围"
+    ]
+  },
+  "science.overture.maps.v1": {
+    "name": "Overture Maps 全球开源矢量 (AWS Open Data)",
+    "subtitle": "建筑轮廓 / 路网 / 兴趣点 / 行政区 GeoParquet · 免账号 AWS S3",
+    "band": "开放矢量几何与属性 (Zstd GeoParquet / DuckDB GeoJSON)",
+    "bandTag": "other",
+    "era": "2024–最新月度发布",
+    "provider": "Overture Maps Foundation / AWS S3",
+    "group": "orbiting",
+    "category": "primary-thematic",
+    "subcategories": [
+      "primary-all",
+      "primary-thematic"
+    ],
+    "defaultStatus": "available",
+    "description": "Overture Maps Foundation 发布于 AWS S3 的全球标准化矢量数据集，基于 STAC 分片空间索引按 AOI 精确匹配 GeoParquet 分区文件（建筑、道路、兴趣点、行政界线），支持直接下载或借助本机 DuckDB Spatial 导出区域 GeoJSON。",
+    "satellites": "Overture Maps Release STAC",
+    "timeRange": "最新稳定月度快照",
+    "accountRequirement": "free",
+    "accountText": "免账号",
+    "filters": [
+      "主题类别 (buildings / places / transportation / divisions)",
+      "空间范围"
+    ]
+  }
+}

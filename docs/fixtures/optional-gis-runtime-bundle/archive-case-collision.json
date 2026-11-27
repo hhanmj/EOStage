@@ -1,0 +1,4 @@
+{
+  "archive_entries": ["data/Tile.TIF", "data/tile.tif"],
+  "expected_error": "GIS_ARCHIVE_PATH_COLLISION"
+}

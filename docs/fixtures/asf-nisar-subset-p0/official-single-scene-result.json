@@ -1,0 +1,168 @@
+{
+  "schema": "NisarOfficialSingleSceneEvidenceV1",
+  "source": {
+    "granule_id": "NISAR_L1_PR_RSLC_026_093_D_083_2005_DHDH_A_20260726T155803_20260726T155837_P05023_N_F_J_001",
+    "size_bytes": 14252244992,
+    "sha256": "ee3de9b9877b4f8e35153369725dcb4174ef5f2423af167e77f843e08860a9a0",
+    "sha256_recomputed_during_gate": true,
+    "product_version": "1.0.11",
+    "product_specification_version": "1.5.0",
+    "composite_release_id": "P05023"
+  },
+  "independent_reference": {
+    "engine": "isce3.geometry.geo2rdr_bracket",
+    "isce3_version": "0.25.12",
+    "radar_grid_doppler": "zero_hz",
+    "product_doppler_centroid_used": false,
+    "node_self_check": {
+      "count": 9,
+      "max_abs_azimuth_time_error_seconds": 5.602487362921238e-10,
+      "max_abs_slant_range_error_m": 2.561137080192566e-09,
+      "passed": true
+    },
+    "densification_degrees": [
+      0.002,
+      0.001,
+      0.0005
+    ],
+    "all_logical_and_chunk_windows_stable": true,
+    "benchmark_family_sha256": "3d2d4c8ac55d67f64bfeaac619584bd00f3d20eace6e87bd13cc6e4446ca45c0"
+  },
+  "geometry_gate": {
+    "legacy_bbox_nodes": {
+      "passed": false,
+      "false_no_overlap_cases": [
+        "subgrid_small:A",
+        "subgrid_small:B"
+      ],
+      "undercoverage_cases": [
+        "height_envelope:A"
+      ]
+    },
+    "hardened_cells_halo0": {
+      "passed": true,
+      "zero_false_no_overlap": true,
+      "zero_undercoverage": true,
+      "maximum_candidate_to_reference_chunk_area_ratio": 1.3333333333333333,
+      "admission_area_ratio_maximum": 1.5
+    },
+    "hardened_cells_halo1": {
+      "passed": true,
+      "maximum_candidate_to_reference_chunk_area_ratio": 9.0
+    },
+    "selected_method": "sparse_grid_polygon_cells_v1",
+    "selected_chunk_halo": 0
+  },
+  "selection": {
+    "case_name": "subgrid_small",
+    "representative_height_m": 2000.0,
+    "requested_aoi_sha256": "ef57c7102808f8c921393592f3e744638dae05f984ac23bb0f047b867ae8cee8",
+    "requested_aoi": {
+      "type": "Polygon",
+      "coordinates": [
+        [
+          [
+            37.720222204639484,
+            10.857787104635449
+          ],
+          [
+            37.721296026021705,
+            10.857533983552843
+          ],
+          [
+            37.721144257142576,
+            10.85690570018474
+          ],
+          [
+            37.720070447767895,
+            10.857158813483217
+          ],
+          [
+            37.720222204639484,
+            10.857787104635449
+          ]
+        ]
+      ]
+    },
+    "windows": {
+      "A": {
+        "row_start": 26112,
+        "row_stop": 26624,
+        "column_start": 12800,
+        "column_stop": 13312
+      },
+      "B": {
+        "row_start": 26112,
+        "row_stop": 26624,
+        "column_start": 3072,
+        "column_stop": 3584
+      }
+    }
+  },
+  "science": {
+    "datasets": [
+      "frequencyA/HH",
+      "frequencyA/HV",
+      "frequencyB/HH",
+      "frequencyB/HV"
+    ],
+    "qa_masks": [
+      "frequencyA/inputDataExceptionMask",
+      "frequencyB/inputDataExceptionMask"
+    ],
+    "reference_local_array_equal": true,
+    "reference_range_array_equal": true,
+    "all_mismatch_counts": 0,
+    "max_complex_error": 0.0,
+    "max_amplitude_error": 0.0,
+    "max_wrapped_phase_error": 0.0
+  },
+  "metadata": {
+    "source_dataset_path_count": 207,
+    "all_source_dataset_paths_present": true,
+    "metadata_complete_local": true,
+    "metadata_complete_range": true,
+    "science_statistics_scope": "derived_subset",
+    "science_statistics_recomputed_local": true,
+    "science_statistics_recomputed_range": true,
+    "root_group_dataset_attribute_dtype_shape_verified": true,
+    "dimension_scales_verified": true,
+    "metadata_inventory_sha256": "86a615c78d3a9d1407ec3b5f4ddc76a10a5aff157b473bba48d9d31865e71500"
+  },
+  "output": {
+    "local_size_bytes": 173806009,
+    "range_size_bytes": 173806009,
+    "local_sha256": "3c2c408ff8fab29cc1035eab2a19f4bd7b6496af13f53bf8f4aaf64a61e23912",
+    "range_sha256": "3c2c408ff8fab29cc1035eab2a19f4bd7b6496af13f53bf8f4aaf64a61e23912",
+    "byte_for_byte_equal": true,
+    "atomic_promotion": true,
+    "validated_before_promotion": true,
+    "plan_sha256": "b2e6d1c7384e8c6c3425c90f3642f21de7954f0e2bba029d59bb5dad856d2bc9"
+  },
+  "transfer": {
+    "request_count": 192,
+    "all_responses_206": true,
+    "all_requests_used_if_range": true,
+    "metadata_fileobj_bytes": 195035136,
+    "raw_chunk_bytes": 3960021,
+    "actual_received_bytes": 198995157,
+    "full_product_bytes": 14252244992,
+    "transfer_full_ratio": 0.013962372742799396,
+    "savings_ratio": 0.9860376272572006,
+    "budget_full_ratio_maximum": 0.35,
+    "budget_passed": true
+  },
+  "fault_contract": {
+    "evidence_contract": "NisarRslcSubsetP0AValidationResultV1",
+    "evidence_file_sha256": "8a54706d5b10fe3acf286fc9c0f03554031f34f2ea11202dfe19753c229bfe7c",
+    "transport_matrix_sha256": "1c82a0e44addd326a8cf198cd05b1c946a2412b3b493051149d70b3f2f7101b4",
+    "status": "passed",
+    "false_final_file": false
+  },
+  "conclusion": {
+    "implementation": "research_prototype",
+    "single_scene_validation": "passed",
+    "interferometric_validation": "not_started",
+    "production_verification": "not_verified"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "status": 200,
+  "request_range": "bytes=13-21",
+  "if_range": "\"fixture-validator-v1\"",
+  "etag": "\"different-object\"",
+  "content_length": 22,
+  "expected_action": "discard append attempt and restart from byte zero",
+  "expected_error": "GIS_SOURCE_OBJECT_CHANGED"
+}

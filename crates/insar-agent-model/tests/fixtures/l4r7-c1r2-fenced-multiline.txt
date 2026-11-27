@@ -1,0 +1,17 @@
+任务已创建并进入队列。
+
+```json
+{
+  "text": "已完成：对工作区「地图绘制矩形」检索了 2026-07-26 至 2026-10-26 的 Sentinel-1（纳入 100 条），最新一景为 S1D_IW_SLC__1SDV_20261025T230339（Sentinel-1D，降轨，Path 62 / Frame 485，获取时间 2026-10-25T23:03:39Z，VV+VH，约 4.7 GB）。已为该景创建下载任务（SLC 产品，sentinel1_slc 目录布局，并发 2），任务已入队开始下载。同一次获取还有 RAW 与 GRD_HD 产品，如需要可以再补建任务。",
+  "claims": [
+    {
+      "statement": "最新一景为 S1D_IW_SLC__1SDV_20261025T230339_20261025T230406_005178_009D3E_5E7E（Sentinel-1D，降轨 Path 62 / Frame 485，2026-10-25T23:03:39Z，VV+VH，约 4.7 GB）",
+      "refs": ["batch:batch-unified-9be8bc9d-826f-4a1b-b6a5-757fcdd1e775"]
+    },
+    {
+      "statement": "已为该景创建下载任务并入队（SLC 产品，sentinel1_slc 布局，并发 2）",
+      "refs": ["task:task-unified-65046dba-c55e-4a01-a49f-728eac13d277", "batch:batch-unified-9be8bc9d-826f-4a1b-b6a5-757fcdd1e775"]
+    }
+  ]
+}
+```

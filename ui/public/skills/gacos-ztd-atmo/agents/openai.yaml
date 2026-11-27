@@ -1,0 +1,4 @@
+interface:
+  display_name: "GACOS 大气改正规划"
+  short_description: "根据 SAR 成像时刻生成 GACOS 对流层延迟请求并校验导入结果"
+  default_prompt: "使用 /gacos-ztd-atmo 根据当前 SAR 影像列表生成 GACOS 大气改正请求参数。"

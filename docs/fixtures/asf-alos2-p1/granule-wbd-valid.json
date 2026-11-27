@@ -1,0 +1,42 @@
+{
+  "fixture_contract": "AsfAlos2GranuleFixtureV1",
+  "status": "pinned_upstream_excerpt_proposed",
+  "source_commit": "21f6b5d4bef7cc26dc87e44320f2f18545a3cedc",
+  "collection": {"concept_id": "C3315903479-ASF", "short_name": "ALOS2_L1_PSR2", "version": "1"},
+  "granule": {
+    "concept_id": "G3463311647-ASF",
+    "native_id": "ALOS2478123150-230331-WBDR1.1__D",
+    "producer_granule_id": "ALOS2478123150-230331",
+    "platform": "ALOS-2",
+    "instrument": "PALSAR-2",
+    "processing_level": "1.1",
+    "beam_mode": "WBD",
+    "operational_mode": "WD1",
+    "polarizations": ["HH", "HV"],
+    "acquisition_start_utc": "2023-03-31T19:20:46Z",
+    "acquisition_end_utc": "2023-03-31T19:21:38Z",
+    "flight_direction": "DESCENDING",
+    "look_direction": "RIGHT",
+    "off_nadir_angle": 34.9,
+    "orbit": 47812,
+    "path": 161,
+    "frame": 3150,
+    "footprint": {"type": "Polygon", "coordinates": [[[-113.442, 21.894], [-110.089, 21.314], [-109.418, 24.502], [-112.855, 25.074], [-113.442, 21.894]]]},
+    "assets": [
+      {
+        "asset_id": "ALOS2478123150-230331-WBDR1.1__D.zip",
+        "native_role": "archive",
+        "file_name": "ALOS2478123150-230331-WBDR1.1__D.zip",
+        "media_type": "application/zip",
+        "size_bytes": 60018405388,
+        "checksum": {"algorithm": "MD5", "value": "0f558597e19d964f24ca3a4bff11696c"},
+        "routes": [
+          {"scheme": "https", "locator": "https://example.invalid/alos2/wbd.zip"},
+          {"scheme": "s3", "locator": "s3://example-invalid/alos2/wbd.zip"}
+        ]
+      }
+    ],
+    "browse": null
+  },
+  "expected_result": {"kind": "accept", "primary_asset_count": 1, "alternate_route_count": 2, "preview": "unavailable"}
+}

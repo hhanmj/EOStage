@@ -1,0 +1,139 @@
+{
+  "valid": [
+    {
+      "input": "S1A_IW_SLC__1SDV_20240101T100000_20240101T100027_052000_064ABC_1234",
+      "expected": {
+        "scene_id": "S1A_IW_SLC__1SDV_20240101T100000_20240101T100027_052000_064ABC_1234",
+        "source_url": null,
+        "platform": "S1A",
+        "beam_mode": "IW",
+        "product_type": "SLC",
+        "resolution": "_",
+        "processing_level": 1,
+        "processing_class": "S",
+        "polarization": "DV",
+        "polarization_channels": ["VV", "VH"],
+        "acquisition_start": "20240101T100000",
+        "acquisition_stop": "20240101T100027",
+        "absolute_orbit": 52000,
+        "datatake_id": "064ABC",
+        "unique_id": "1234"
+      },
+      "derived_relative_orbit": 128
+    },
+    {
+      "input": "https://datapool.asf.alaska.edu/GRD/SB/S1B_EW_GRDM_1ADH_20240202T020304_20240202T020329_052100_0A1B2C_ABCD.zip?download=1",
+      "expected": {
+        "scene_id": "S1B_EW_GRDM_1ADH_20240202T020304_20240202T020329_052100_0A1B2C_ABCD",
+        "source_url": "https://datapool.asf.alaska.edu/GRD/SB/S1B_EW_GRDM_1ADH_20240202T020304_20240202T020329_052100_0A1B2C_ABCD.zip?download=1",
+        "platform": "S1B",
+        "beam_mode": "EW",
+        "product_type": "GRD",
+        "resolution": "M",
+        "processing_level": 1,
+        "processing_class": "A",
+        "polarization": "DH",
+        "polarization_channels": ["HH", "HV"],
+        "acquisition_start": "20240202T020304",
+        "acquisition_stop": "20240202T020329",
+        "absolute_orbit": 52100,
+        "datatake_id": "0A1B2C",
+        "unique_id": "ABCD"
+      },
+      "derived_relative_orbit": 99
+    },
+    {
+      "input": "C:/data/S1C_IW_SLC__1SSV_20240303T030405_20240303T030432_000123_00ABCD_0F0F.SAFE",
+      "expected": {
+        "scene_id": "S1C_IW_SLC__1SSV_20240303T030405_20240303T030432_000123_00ABCD_0F0F",
+        "source_url": null,
+        "platform": "S1C",
+        "beam_mode": "IW",
+        "product_type": "SLC",
+        "resolution": "_",
+        "processing_level": 1,
+        "processing_class": "S",
+        "polarization": "SV",
+        "polarization_channels": ["VV"],
+        "acquisition_start": "20240303T030405",
+        "acquisition_stop": "20240303T030432",
+        "absolute_orbit": 123,
+        "datatake_id": "00ABCD",
+        "unique_id": "0F0F"
+      },
+      "derived_relative_orbit": null
+    },
+    {
+      "input": "S1D_SM_RAWF_1SSH_20240404T040506_20240404T040533_000456_ABCDEF",
+      "expected": {
+        "scene_id": "S1D_SM_RAWF_1SSH_20240404T040506_20240404T040533_000456_ABCDEF",
+        "source_url": null,
+        "platform": "S1D",
+        "beam_mode": "SM",
+        "product_type": "RAW",
+        "resolution": "F",
+        "processing_level": 1,
+        "processing_class": "S",
+        "polarization": "SH",
+        "polarization_channels": ["HH"],
+        "acquisition_start": "20240404T040506",
+        "acquisition_stop": "20240404T040533",
+        "absolute_orbit": 456,
+        "datatake_id": "ABCDEF",
+        "unique_id": null
+      },
+      "derived_relative_orbit": null
+    },
+    {
+      "input": "S1A_WV_OCN__1SSV_20240505T050607_20240505T050634_000073_123ABC_9876",
+      "expected": {
+        "scene_id": "S1A_WV_OCN__1SSV_20240505T050607_20240505T050634_000073_123ABC_9876",
+        "source_url": null,
+        "platform": "S1A",
+        "beam_mode": "WV",
+        "product_type": "OCN",
+        "resolution": "_",
+        "processing_level": 1,
+        "processing_class": "S",
+        "polarization": "SV",
+        "polarization_channels": ["VV"],
+        "acquisition_start": "20240505T050607",
+        "acquisition_stop": "20240505T050634",
+        "absolute_orbit": 73,
+        "datatake_id": "123ABC",
+        "unique_id": "9876"
+      },
+      "derived_relative_orbit": 1
+    },
+    {
+      "input": "S1B_IW_GRDH_1SDH_20240606T060708_20240606T060735_000027_FEDCBA_1111.ZIP",
+      "expected": {
+        "scene_id": "S1B_IW_GRDH_1SDH_20240606T060708_20240606T060735_000027_FEDCBA_1111",
+        "source_url": null,
+        "platform": "S1B",
+        "beam_mode": "IW",
+        "product_type": "GRD",
+        "resolution": "H",
+        "processing_level": 1,
+        "processing_class": "S",
+        "polarization": "DH",
+        "polarization_channels": ["HH", "HV"],
+        "acquisition_start": "20240606T060708",
+        "acquisition_stop": "20240606T060735",
+        "absolute_orbit": 27,
+        "datatake_id": "FEDCBA",
+        "unique_id": "1111"
+      },
+      "derived_relative_orbit": 1
+    }
+  ],
+  "invalid": [
+    "",
+    "LC08_L1TP_120038_20240101_20240101_02_T1",
+    "S1E_IW_SLC__1SDV_20240101T100000_20240101T100027_052000_064ABC_1234",
+    "S1A_IW_SLC__1SXX_20240101T100000_20240101T100027_052000_064ABC_1234",
+    "S1A_IW_SLC__éé_20240101T100000_20240101T100027_052000_064ABC_1234",
+    "S1A_IW_SLC__1SDV_20240101T10000_20240101T100027_052000_064ABC_1234",
+    "S1A_IW_SLC__1SDV_20240101T100000_20240101T100027_052000_064ABC_1234.tar"
+  ]
+}

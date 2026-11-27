@@ -1,0 +1,20 @@
+{
+  "fixture_contract": "AsfAlos2P1FixtureIndexV1",
+  "status": "proposed",
+  "logical_dataset": "sar.alos-2.palsar-2.scansar.l1.1.v1",
+  "files": [
+    {"path": "collection-profile-valid.json", "expected": "accept"},
+    {"path": "granule-wbs-valid.json", "expected": "accept"},
+    {"path": "granule-wbd-valid.json", "expected": "accept"},
+    {"path": "granule-wbd-cmr-umm.json", "expected": "accept_raw_cmr_umm"},
+    {"path": "no-browse-valid.json", "expected": "accept_preview_unavailable"},
+    {"path": "wrong-level.json", "expected": "ASF_PRODUCT_SCOPE_MISMATCH"},
+    {"path": "wrong-mode.json", "expected": "ASF_PRODUCT_SCOPE_MISMATCH"},
+    {"path": "wrong-polarization.json", "expected": "ASF_PRODUCT_SCOPE_MISMATCH"},
+    {"path": "historical-alos-alias-rejected.json", "expected": "ASF_COLLECTION_IDENTITY_MISMATCH"},
+    {"path": "missing-primary-asset.json", "expected": "ASF_PRIMARY_ASSET_MISSING"},
+    {"path": "ambiguous-primary-assets.json", "expected": "ASF_PRIMARY_ASSET_AMBIGUOUS"},
+    {"path": "pagination-complete.json", "expected": "accept_complete_batch"},
+    {"path": "result-limit-exceeded.json", "expected": "CATALOGUE_RESULT_LIMIT_EXCEEDED"}
+  ]
+}

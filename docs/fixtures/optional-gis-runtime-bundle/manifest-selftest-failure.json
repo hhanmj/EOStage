@@ -1,0 +1,5 @@
+{
+  "fixture": "manifest-valid.json",
+  "mutation": "self_test.operation = fixture_selftest_v1 with a failing injected result",
+  "expected_error": "GIS_RUNTIME_SELFTEST_FAILED"
+}

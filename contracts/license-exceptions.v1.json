@@ -1,0 +1,26 @@
+{
+  "contract_id": "license-exceptions.v1",
+  "version": 1,
+  "policy": "Project license GPL-3.0-or-later; dependencies must be GPLv3-compatible (scripts/license_policy.py)",
+  "notes": [
+    "exceptions: Owner-granted, dated waivers for dependencies whose license is incompatible with GPLv3 or needs review. Honored only by `audit_tauri_host_licenses.py --mode l3` (listed as warnings); `--mode distribution` ignores them and fails. An exception matches on ecosystem + name + the exact license string (plus `version` if the entry pins one), so a license change lapses it.",
+    "license_file_reviews: reviewed classification of a dependency that publishes no SPDX `license` field but ships a license file. Pinned to ecosystem + name + version + license_file + SHA-256 of that file; any change returns the package to needs_review. Honored in both modes because it is a reviewed classification of the actual license text, not a waiver; reviewed_by and reviewed_on are required.",
+    "license_ref_allowlist: `LicenseRef-*` identifiers that have been reviewed as GPLv3-compatible. Empty means every LicenseRef is incompatible."
+  ],
+  "exceptions": [],
+  "license_file_reviews": [
+    {
+      "name": "hdf5-metno-src",
+      "ecosystem": "cargo",
+      "version": "0.10.2",
+      "license_file": "ext/hdf5/LICENSE",
+      "license_file_sha256": "b384492d25c6e4a49f371b646d9a81bc0a4b97cf0c66c2f3ed1b35f78a148732",
+      "classified_as": "BSD-3-Clause-LBNL",
+      "reason": "The crate's Cargo.toml has no `license` field; the bundled HDF5 LICENSE states \"This software library and utilities is covered by the 3-clause BSD License\" and adds the LBNL-style enhancements clause (voluntarily shared enhancements are licensed back to the authors), which grants rather than restricts; SPDX BSD-3-Clause-LBNL, GPLv3-compatible.",
+      "note": "Distribution obligation: the LICENSE also carries Lawrence Berkeley and UC LLNL support notices that must be retained in any redistribution of source, binaries and documentation; carry the full HDF5 LICENSE in the third-party notices.",
+      "reviewed_by": "EOStage maintainers (confirmed 2026-10-25)",
+      "reviewed_on": "2026-10-25"
+    }
+  ],
+  "license_ref_allowlist": []
+}

@@ -1,0 +1,18 @@
+{
+  "fixture_kind": "no-journal-startup-scenario",
+  "journal_state": "absent",
+  "primary": {"state": "missing", "file": null},
+  "backup": {"state": "missing", "file": null},
+  "active_registry": {"state": "missing", "file": null},
+  "rollback_receipt_file": null,
+  "expected": {
+    "outcome": "uninitialized",
+    "error_code": null,
+    "authoritative_ledger_file": null,
+    "repaired_path": null,
+    "quarantine_paths": [],
+    "first_install_allowed": true,
+    "new_lease_allowed": false,
+    "replay_floor_rebuilt": false
+  }
+}

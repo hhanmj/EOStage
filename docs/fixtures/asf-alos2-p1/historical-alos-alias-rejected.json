@@ -1,0 +1,10 @@
+{
+  "fixture_contract": "AsfAlos2MutationFixtureV1",
+  "base": "granule-wbd-valid.json",
+  "mutations": [
+    {"path": "/collection/concept_id", "value": "C1206485527-ASF"},
+    {"path": "/collection/short_name", "value": "ALOS_PSR_L1.1"}
+  ],
+  "attempted_profile": "asf.alos-palsar.v2",
+  "expected_result": {"kind": "reject", "error": "ASF_COLLECTION_IDENTITY_MISMATCH"}
+}

@@ -1,0 +1,23 @@
+[package]
+name = "insar-gis"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Bounded product-owned native GIS execution contracts for EOStage."
+
+[dependencies]
+flate2 = "1.1"
+libloading = "0.8"
+quick-xml = "0.41"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+thiserror = "1"
+
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61", features = ["Win32_Storage_FileSystem"] }
+

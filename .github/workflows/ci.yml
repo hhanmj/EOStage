@@ -1,0 +1,91 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  hygiene-and-frontend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check executable scripts for curly quotes
+        run: python3 scripts/check_ascii_quotes.py
+
+      - name: Run public repository hygiene gate
+        run: python3 scripts/check_public_hygiene.py
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24.14.1"
+          cache: npm
+          cache-dependency-path: ui/package-lock.json
+
+      - name: Install frontend dependencies
+        working-directory: ui
+        run: npm ci
+
+      - name: Check TypeScript types
+        working-directory: ui
+        run: npm run check
+
+      - name: Run frontend unit and interaction tests
+        working-directory: ui
+        run: npm test
+
+      - name: Build Tauri frontend bundle
+        working-directory: ui
+        run: npm run build:tauri
+
+      - name: Verify single-host frontend build graph isolation
+        run: node scripts/check_tauri_single_host_bundle.mjs
+
+  rust-and-licenses:
+    runs-on: windows-latest
+    env:
+      HDF5_PLUGIN_PRELOAD: "::"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install reviewed CMake
+        run: python -m pip install --disable-pip-version-check cmake==3.31.6
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24.14.1"
+          cache: npm
+          cache-dependency-path: ui/package-lock.json
+
+      - name: Build Tauri frontend bundle
+        working-directory: ui
+        run: npm ci && npm run build:tauri
+
+      - name: Check Rust formatting
+        run: cargo fmt --all -- --check
+
+      - name: Check Rust Clippy
+        shell: powershell
+        run: |
+          . .\scripts\initialize_windows_native_build.ps1
+          cargo clippy --locked --workspace --all-targets -- -D warnings
+
+      - name: Run Rust workspace tests (optional native GIS tests remain ignored without runtime/gis)
+        shell: powershell
+        run: |
+          . .\scripts\initialize_windows_native_build.ps1
+          cargo test --locked --workspace -- --test-threads=1
+
+      - name: Audit distribution dependency licenses
+        run: python scripts/audit_tauri_host_licenses.py --mode distribution

@@ -1,0 +1,5 @@
+{
+  "fixture": "bundle-set-valid.json",
+  "mutation": "signature.value = z7UmB98hKaQOrQ4Y5L1xMaAm6R460NwHc76j9/P1t6rhnY5nwDPaprdCi3V7mgKpXeHro7KUIfqhrtQg1WfOAA=",
+  "expected_error": "GIS_SIGNATURE_INVALID"
+}

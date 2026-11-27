@@ -1,0 +1,30 @@
+{
+  "fixture_metadata": {
+    "fixture_version": 1,
+    "fixture_kind": "invalid",
+    "fixture_name": "wrong-selected-product-role",
+    "payload_contract": "FrozenTaskSnapshotV3",
+    "offline": true
+  },
+  "base": "single",
+  "mutations": [
+    {
+      "op": "set",
+      "path": "/transfer_items/0/asset_access/role",
+      "value": "auxiliary"
+    }
+  ],
+  "expected": {
+    "accepted": false,
+    "error": {
+      "variant": "invalid_transfer_graph",
+      "issue": {
+        "kind": "selected_product_role_must_be_primary",
+        "transfer": {
+          "kind": "transfer_item",
+          "index": 0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "cases": [
+    {
+      "name": "single_filter_without_aoi",
+      "query": {
+        "version": 1,
+        "dataset": "SENTINEL-1",
+        "bbox": null,
+        "aoi": "",
+        "aoi_geojson": null,
+        "start": "",
+        "end": "",
+        "product_type": "SLC",
+        "beam_mode": "IW",
+        "polarization": "DV",
+        "orbit_direction": "",
+        "relative_orbit": null,
+        "frame": null,
+        "max_results": 30
+      },
+      "expected_requested_limit": 30,
+      "expected_query_limit": 30,
+      "expected_count": true,
+      "expected_aoi_mode": "none",
+      "expected_params": {
+        "dataset": "SENTINEL-1",
+        "processingLevel": "SLC",
+        "output": "geojson",
+        "maxResults": "30",
+        "beamMode": "IW",
+        "polarization": "VV+VH"
+      }
+    },
+    {
+      "name": "exact_polygon_with_local_multi_filters",
+      "query": {
+        "version": 1,
+        "dataset": "SENTINEL-1",
+        "bbox": {"west": -10.0, "east": 10.0, "south": -10.0, "north": 10.0, "crs": "EPSG:4326"},
+        "aoi": "province",
+        "aoi_geojson": {"type": "Polygon", "coordinates": [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]]},
+        "start": "2024/01/01",
+        "end": "2024-01-31",
+        "product_type": "GRD",
+        "beam_mode": "IW,EW",
+        "polarization": "DV,DH",
+        "orbit_direction": "ASCENDING,DESCENDING",
+        "relative_orbit": "42-48,50",
+        "frame": "100",
+        "max_results": 60
+      },
+      "expected_requested_limit": 60,
+      "expected_query_limit": 240,
+      "expected_count": true,
+      "expected_aoi_mode": "exact",
+      "expected_params": {
+        "dataset": "SENTINEL-1",
+        "processingLevel": "GRD",
+        "output": "geojson",
+        "maxResults": "240",
+        "start": "2024-01-01T00:00:00Z",
+        "end": "2024-01-31T23:59:59Z",
+        "intersectsWith": "POLYGON ((0 0, 1 0, 1 1, 0 1, 0 0))",
+        "relativeOrbit": "42-48,50",
+        "frame": "100"
+      }
+    },
+    {
+      "name": "bbox_direct_limit_one",
+      "query": {
+        "version": 1,
+        "dataset": "SENTINEL-1",
+        "bbox": {"west": -10.0, "east": 10.0, "south": -5.0, "north": 5.0, "crs": "EPSG:4326"},
+        "aoi": "bbox",
+        "aoi_geojson": null,
+        "start": "2024-02-01T12:30:00Z",
+        "end": "2024-02-02T12:30:00Z",
+        "product_type": "SLC",
+        "beam_mode": "IW",
+        "polarization": "VV",
+        "orbit_direction": "ASCENDING",
+        "relative_orbit": null,
+        "frame": null,
+        "max_results": 1
+      },
+      "expected_requested_limit": 1,
+      "expected_query_limit": 51,
+      "expected_count": false,
+      "expected_aoi_mode": "bbox",
+      "expected_params": {
+        "dataset": "SENTINEL-1",
+        "processingLevel": "SLC",
+        "output": "geojson",
+        "maxResults": "51",
+        "beamMode": "IW",
+        "polarization": "VV",
+        "start": "2024-02-01T12:30:00Z",
+        "end": "2024-02-02T12:30:00Z",
+        "intersectsWith": "POLYGON((-10.0 -5.0,10.0 -5.0,10.0 5.0,-10.0 5.0,-10.0 -5.0))",
+        "flightDirection": "ASCENDING"
+      }
+    }
+  ],
+  "split_windows": {
+    "start": "2014-10-01",
+    "end": "2015-04-01",
+    "now": "2026-07-13T00:00:00Z",
+    "expected": [
+      ["2014-10-04T00:00:00Z", "2015-04-01T23:59:59Z"],
+      ["2014-10-01T00:00:00Z", "2014-10-03T23:59:59Z"]
+    ]
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "cases": [
+    {
+      "name": "sentinel1_grd_hd",
+      "dataset": "SENTINEL-1",
+      "feature": {"type": "Feature", "properties": {"sceneName": "S1A_IW_GRDH_1SDV_20240101T100000_20240101T100027_052000_064ABC_1234", "platform": "Sentinel-1A", "instrument": "C-SAR", "processingLevel": "GRD_HD", "beamModeType": "IW", "polarization": "VV+VH", "flightDirection": "ASCENDING", "pathNumber": 88, "frameNumber": 456, "bytes": 1024, "url": "https://datapool.asf.alaska.edu/GRD_HD/SA/product.zip"}, "geometry": {"type": "Polygon", "coordinates": [[[100,30],[101,30],[101,31],[100,31],[100,30]]]}},
+      "expected": {"platform": "Sentinel-1A", "processing_level": "GRD_HD", "product_family": "GRD", "path": 88, "frame": 456}
+    },
+    {
+      "name": "alos_l11",
+      "dataset": "ALOS PALSAR",
+      "feature": {"type": "Feature", "properties": {"granuleName": "ALPSRP123", "fileID": "ALPSRP123-L1.1", "platform": "ALOS", "instrument": "PALSAR", "processingLevel": "L1.1", "beamModeType": "FBS", "polarization": "HH", "lookDirection": "RIGHT", "fileName": "ALPSRP123.tar.gz"}},
+      "expected": {"platform": "ALOS", "processing_level": "L1.1", "product_family": "SLC"}
+    },
+    {
+      "name": "ers_l1",
+      "dataset": "ERS",
+      "feature": {"type": "Feature", "properties": {"fileID": "E1_PRODUCT", "platform": "ERS-1", "processingLevel": "L1", "polarization": "VV"}},
+      "expected": {"platform": "ERS-1", "processing_level": "L1", "product_family": "SLC"}
+    },
+    {
+      "name": "jers_l0",
+      "dataset": "JERS-1",
+      "feature": {"type": "Feature", "properties": {"sceneName": "J1_PRODUCT", "fileID": "J1_PRODUCT", "platform": "JERS-1", "processingLevel": "L0", "polarization": "HH"}},
+      "expected": {"platform": "JERS-1", "processing_level": "L0", "product_family": "RAW"}
+    },
+    {
+      "name": "radarsat_l1",
+      "dataset": "RADARSAT-1",
+      "feature": {"type": "Feature", "properties": {"sceneName": "R1_PRODUCT", "productID": "R1_PRODUCT", "fileID": "R1_PRODUCT_FILE", "platform": "RADARSAT-1", "processingLevel": "L1", "polarization": "HH"}},
+      "expected": {"platform": "RADARSAT-1", "processing_level": "L1", "product_family": "SLC"}
+    },
+    {
+      "name": "seasat_l1",
+      "dataset": "SEASAT",
+      "feature": {"type": "Feature", "properties": {"sceneName": "SS_PRODUCT", "fileID": "SS_PRODUCT", "platform": "SEASAT 1", "processingLevel": "L1", "polarization": "HH"}},
+      "expected": {"platform": "SEASAT 1", "processing_level": null, "product_family": "OTHER", "path": 37, "frame": 2536}
+    },
+    {
+      "name": "incomplete",
+      "dataset": "ERS",
+      "feature": {"type": "Feature", "properties": {"name": "E2_DISPLAY_ONLY"}},
+      "expected": null,
+      "error_code": "ASF_IDENTITY_MISSING"
+    },
+    {
+      "name": "unknown_dataset",
+      "dataset": "FUTURE-SAR",
+      "feature": {"type": "Feature", "properties": {"productID": "FUTURE_PRODUCT", "platform": "FUTURE-1", "processingLevel": "NATIVE-X"}},
+      "expected": null,
+      "error_code": "ASF_COLLECTION_UNSUPPORTED"
+    }
+  ]
+}

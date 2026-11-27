@@ -1,0 +1,19 @@
+{
+  "fixture_kind": "no-journal-startup-scenario",
+  "journal_state": "absent",
+  "primary": {"state": "valid", "file": "replay-ledger-rollback-candidate.json"},
+  "backup": {"state": "valid", "file": "replay-ledger-rollback-candidate.json"},
+  "active_registry": {"state": "valid", "file": "active-rollback-target.json"},
+  "rollback_receipt_file": "rollback-receipt-committed.json",
+  "expected": {
+    "outcome": "ready_authorized_rollback",
+    "error_code": null,
+    "authoritative_ledger_file": "replay-ledger-rollback-candidate.json",
+    "repaired_path": null,
+    "quarantine_paths": [],
+    "new_lease_allowed": true,
+    "accepted_base_replay_floor": 100,
+    "active_base_release_sequence": 90,
+    "replay_floor_rebuilt": false
+  }
+}

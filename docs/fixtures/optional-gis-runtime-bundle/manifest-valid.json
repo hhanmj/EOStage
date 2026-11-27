@@ -1,0 +1,76 @@
+{
+  "architecture": "x86_64",
+  "archive_sha256": "edd46acd5da08710344ca1480b873626615d227624e1848ae46cc3135c40f4f0",
+  "bundle_set_id": "gis-runtime-base",
+  "channel": "beta",
+  "component_id": "gis-dem-worker-win-x64",
+  "contract": "ComponentManifest",
+  "expires_at": "2027-07-22T00:00:00Z",
+  "files": [
+    {
+      "path": "LICENSES/fixture-MIT.txt",
+      "size_bytes": 347,
+      "sha256": "83b5cc2f6ea394c4cdc2854cd56f287d717869c8cbaa8cc68303dd59be8c9966"
+    },
+    {
+      "path": "NOTICE",
+      "size_bytes": 128,
+      "sha256": "7f1639fad5a223cf585d997983f86ce47ad0aad9be67363f2eb2f52fed593391"
+    },
+    {
+      "path": "fixture.payload",
+      "size_bytes": 22,
+      "sha256": "d6e969212877c6e64b6af39a741f1adbce59735da80c9d824a73e8860895b0e1"
+    }
+  ],
+  "issued_at": "2026-07-22T00:00:00Z",
+  "license": {
+    "notice_file": "LICENSES/fixture-MIT.txt",
+    "spdx": "MIT"
+  },
+  "manifest_version": 1,
+  "minimum_app_version": "2.2.0",
+  "notices": "NOTICE",
+  "platform": "windows",
+  "protocol": {
+    "major": 1,
+    "minor": 0,
+    "name": "gis-worker"
+  },
+  "provides": [
+    "gis.inspect-raster.v1"
+  ],
+  "requires": [],
+  "rollback_group": "gis-runtime-base",
+  "self_test": {
+    "operation": "worker_handshake_v1",
+    "args": {
+      "expected_capability": "gis.inspect-raster.v1"
+    },
+    "timeout_ms": 30000
+  },
+  "size": {
+    "archive_bytes": 837,
+    "unpacked_bytes": 497
+  },
+  "source_urls": [
+    {
+      "class": "oss-cn",
+      "url": "https://components.example.invalid/oss/gis-dem-worker-win-x64-1.4.2.zip"
+    },
+    {
+      "class": "cos-cn",
+      "url": "https://components.example.invalid/cos/gis-dem-worker-win-x64-1.4.2.zip"
+    },
+    {
+      "class": "github-release",
+      "url": "https://components.example.invalid/github-release/gis-dem-worker-win-x64-1.4.2.zip"
+    }
+  ],
+  "version": "1.4.2",
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "fixture-root-2026",
+    "value": "NJxdO6tiAY0poi3C2H+bqunHwYgsR1eB2FzYeZSPHFoVYtJ1vCfUXLgJP97jSd3pPJu5rRsGyJYN0MBqEvo6Dg=="
+  }
+}

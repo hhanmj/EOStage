@@ -1,0 +1,19 @@
+{
+  "fixture_contract": "AsfCataloguePaginationFixtureV1",
+  "status": "synthetic_proposed",
+  "pages": [
+    {"request_index": 1, "granule_concept_ids": ["G9900000001-ASF", "G9900000002-ASF"], "next_cursor": "nisar-page-2"},
+    {"request_index": 2, "granule_concept_ids": ["G9900000002-ASF", "G9900000003-ASF"], "next_cursor": null}
+  ],
+  "expected_response": {
+    "fetched_record_count": 4,
+    "mapped_record_count": 4,
+    "exact_duplicate_record_count": 1,
+    "unique_provider_product_count": 3,
+    "returned_count": 3,
+    "next_cursor": null,
+    "truncated": false,
+    "item_errors": []
+  },
+  "expected_result": {"kind": "accept_complete_batch"}
+}

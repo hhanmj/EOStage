@@ -1,0 +1,9 @@
+{
+  "status": 206,
+  "request_range": "bytes=13-21",
+  "if_range": "\"fixture-validator-v1\"",
+  "etag": "\"fixture-validator-v1\"",
+  "content_range": "bytes 13-21/22",
+  "content_length": 9,
+  "expected": "append then hash complete 22-byte payload"
+}

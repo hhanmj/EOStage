@@ -1,0 +1,5 @@
+{
+  "capability": "gis.convert-dem-vertical-datum.v1",
+  "selected": "runtime-selection-base.json",
+  "expected_error": "GIS_EXTENSION_REQUIRED"
+}

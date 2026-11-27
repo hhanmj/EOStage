@@ -1,0 +1,17 @@
+{
+  "fixture_kind": "no-journal-startup-scenario",
+  "journal_state": "absent",
+  "primary": {"state": "valid", "file": "replay-ledger-valid.json"},
+  "backup": {"state": "valid", "file": "replay-ledger-valid.json"},
+  "active_registry": {"state": "invalid", "file": "active-invalid-single-member.json"},
+  "rollback_receipt_file": null,
+  "expected": {
+    "outcome": "blocked",
+    "error_code": "GIS_RUNTIME_SELECTION_INVALID",
+    "authoritative_ledger_file": "replay-ledger-valid.json",
+    "repaired_path": null,
+    "quarantine_paths": ["state/quarantine/startup-active-invalid/active.json"],
+    "new_lease_allowed": false,
+    "replay_floor_rebuilt": false
+  }
+}

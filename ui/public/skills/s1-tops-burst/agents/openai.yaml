@@ -1,0 +1,4 @@
+interface:
+  display_name: "Sentinel-1 Burst 级检索"
+  short_description: "按 Path、子测绘带 (IW1-3) 与 Burst ID 精确检索和下载单 Burst SLC"
+  default_prompt: "使用 /s1-tops-burst 检索当前研究区内的 Sentinel-1 TOPS Burst 影像序列。"

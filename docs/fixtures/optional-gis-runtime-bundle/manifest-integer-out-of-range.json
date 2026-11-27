@@ -1,0 +1,5 @@
+{
+  "fixture": "manifest-valid.json",
+  "mutation": "size.archive_bytes = 9007199254740992",
+  "expected_error": "GIS_INTEGER_OUT_OF_RANGE"
+}

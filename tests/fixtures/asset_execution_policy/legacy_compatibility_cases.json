@@ -1,0 +1,19 @@
+{
+  "cases": [
+    {"name": "old_asf_sentinel1", "provider_id": "asf.sentinel1", "dataset": "SENTINEL-1", "processing_level": "SLC", "policy": "missing", "collection_profile_id": null},
+    {"name": "url_only", "provider_id": "asf.catalog", "dataset": "SENTINEL-1", "processing_level": "SLC", "policy": "legacy", "collection_profile_id": null},
+    {"name": "live_cmr_compatibility", "provider_id": "asf.sentinel1", "dataset": "SENTINEL-1", "processing_level": "SLC", "policy": "missing", "collection_profile_id": null},
+    {"name": "historical_asf", "provider_id": "asf.catalog", "dataset": "ERS", "processing_level": "L0", "policy": "legacy", "collection_profile_id": "asf.ers.v1"},
+    {"name": "burst_tiff", "provider_id": "asf.catalog", "dataset": "SLC-BURST", "processing_level": "BURST", "policy": "legacy", "collection_profile_id": "asf.sentinel-1.burst.v1"},
+    {"name": "burst_xml", "provider_id": "asf.catalog", "dataset": "SLC-BURST", "processing_level": "BURST", "policy": "legacy", "collection_profile_id": "asf.sentinel-1.burst.v1"},
+    {"name": "orbit_scene_id", "provider_id": "esa.sentinel1_orbit", "dataset": "SENTINEL-1-ORBIT", "processing_level": null, "policy": "missing", "collection_profile_id": null},
+    {"name": "orbit_direct_eof", "provider_id": "esa.sentinel1_orbit", "dataset": "SENTINEL-1-ORBIT", "processing_level": null, "policy": "legacy", "collection_profile_id": null},
+    {"name": "raw", "provider_id": "asf.catalog", "dataset": "SENTINEL-1", "processing_level": "RAW", "policy": "legacy", "collection_profile_id": "asf.sentinel-1.standard.v1"},
+    {"name": "ocn", "provider_id": "asf.catalog", "dataset": "SENTINEL-1", "processing_level": "OCN", "policy": "legacy", "collection_profile_id": "asf.sentinel-1.standard.v1"},
+    {"name": "broad_grd", "provider_id": "asf.catalog", "dataset": "SENTINEL-1", "processing_level": "GRD", "policy": "legacy", "collection_profile_id": "asf.sentinel-1.standard.v1"},
+    {"name": "grd_fs", "provider_id": "asf.catalog", "dataset": "SENTINEL-1", "processing_level": "GRD_FS", "policy": "legacy", "collection_profile_id": "asf.sentinel-1.standard.v1"},
+    {"name": "missing_level", "provider_id": "asf.catalog", "dataset": "SENTINEL-1", "processing_level": null, "policy": "legacy", "collection_profile_id": "asf.sentinel-1.standard.v1"},
+    {"name": "unknown_level", "provider_id": "asf.catalog", "dataset": "SENTINEL-1", "processing_level": "LEVEL_X", "policy": "legacy", "collection_profile_id": "asf.sentinel-1.standard.v1"},
+    {"name": "unknown_profile_metadata", "provider_id": "asf.catalog", "dataset": "FUTURE-SAR", "processing_level": "L1", "policy": "legacy", "collection_profile_id": null}
+  ]
+}

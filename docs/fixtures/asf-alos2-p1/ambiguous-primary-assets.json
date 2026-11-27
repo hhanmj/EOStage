@@ -1,0 +1,12 @@
+{
+  "fixture_contract": "AsfAlos2MutationFixtureV1",
+  "base": "granule-wbd-valid.json",
+  "mutation": {
+    "path": "/granule/assets",
+    "value": [
+      {"asset_id": "candidate-a.zip", "native_role": "archive", "file_name": "candidate-a.zip", "media_type": "application/zip", "size_bytes": 60018405388},
+      {"asset_id": "candidate-b.zip", "native_role": "archive", "file_name": "candidate-b.zip", "media_type": "application/zip", "size_bytes": 60018405388}
+    ]
+  },
+  "expected_result": {"kind": "reject", "error": "ASF_PRIMARY_ASSET_AMBIGUOUS"}
+}

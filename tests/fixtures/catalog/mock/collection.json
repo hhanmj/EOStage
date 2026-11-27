@@ -1,0 +1,1 @@
+{"logical_dataset":"optical.sentinel-2.l2a","provider_id":"fixture.catalog","native_collection_id":"FIXTURE-S2-L2A","collection_profile_id":"fixture.catalog.collection.v1","identity_rule_id":"fixture.catalog.identity.v1","filename_rule_id":"fixture.catalog.filename.v1","delivery_model":"archive_first","production_enabled":false}

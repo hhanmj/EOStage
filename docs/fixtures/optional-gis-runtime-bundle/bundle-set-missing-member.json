@@ -1,0 +1,5 @@
+{
+  "fixture": "bundle-set-extension-valid.json",
+  "mutation": "remove member gis-elevation-grids-win-x64",
+  "expected_error": "GIS_BUNDLE_SET_MEMBER_MISSING"
+}

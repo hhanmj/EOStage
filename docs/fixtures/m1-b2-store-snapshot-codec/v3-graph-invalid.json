@@ -1,0 +1,26 @@
+{
+  "fixture_metadata": {
+    "fixture_version": 1,
+    "fixture_kind": "codec",
+    "fixture_name": "v3-graph-invalid",
+    "offline": true
+  },
+  "base": "v3_single",
+  "mutations": [
+    {
+      "op": "append_copy",
+      "from": "/transfer_items/0",
+      "path": "/transfer_items"
+    }
+  ],
+  "expected": {
+    "decode_any": {
+      "error_code": "V3_STORE_INVALID_SNAPSHOT",
+      "v3_validation_issue": "graph"
+    },
+    "v2_reader": {
+      "error_code": "V3_STORE_INVALID_SNAPSHOT",
+      "v3_validation_issue": "graph"
+    }
+  }
+}

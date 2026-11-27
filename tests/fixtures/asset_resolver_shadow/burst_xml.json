@@ -1,0 +1,10 @@
+{
+  "asset_class": "burst_xml",
+  "frozen": {
+    "reference": {"provider_id":"asf.catalog","collection_id":"SLC-BURST","provider_product_id":"BURST_FIXTURE","provider_product_key":"ASF::SLC-BURST::BURST_FIXTURE","canonical_product_key":null,"asset_key":"BURST_FIXTURE.xml","stable_asset_key":"ASF::SLC-BURST::BURST_FIXTURE::ASSET::BURST_FIXTURE.xml"},
+    "descriptor": {"resolver_id":"earthdata_https","scheme":"earthdata_https","stable_href":"https://sentinel1-burst.asf.alaska.edu/parent/IW2/VV/BURST_FIXTURE.xml","requires_credentials":true,"credential_profile":"earthdata-burst-session","resolver_parameters":{}},
+    "role":"metadata","file_name":"BURST_FIXTURE.xml","expected_size_bytes":null,"checksum_algorithm":null,"checksum_value":null
+  },
+  "legacy": {"provider_id":"asf.catalog","url":"https://sentinel1-burst.asf.alaska.edu/parent/IW2/VV/BURST_FIXTURE.xml","file_name":"BURST_FIXTURE.xml","auth_kind":"earthdata_session_cookie","expected_size":null,"checksum_algorithm":null,"checksum_value":null,"destination":"fixture-output/SLC-BURST/BURST/BURST_FIXTURE.xml","destination_layout":"sar_dataset_processing","asset_role":"metadata"},
+  "policy": {"output_root":"fixture-output","layout":"sar_dataset_processing","dataset":"SLC-BURST","processing_level":"BURST"}
+}

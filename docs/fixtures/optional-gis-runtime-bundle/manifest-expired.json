@@ -1,0 +1,6 @@
+{
+  "fixture": "manifest-valid.json",
+  "mutation": "expires_at = 2026-07-21T23:59:59Z",
+  "observed_at": "2026-07-22T00:00:00Z",
+  "expected_error": "GIS_MANIFEST_EXPIRED"
+}

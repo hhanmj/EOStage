@@ -1,0 +1,12 @@
+{
+  "active": {
+    "base_bundle_set_id": "gis-runtime-base",
+    "base_set_version": "0.9.0",
+    "extensions": [],
+    "platform": "windows",
+    "architecture": "x86_64",
+    "lease_count": 1
+  },
+  "staging": null,
+  "expected": "running operation keeps base set 0.9.0 active"
+}

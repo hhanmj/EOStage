@@ -1,0 +1,67 @@
+{
+  "schema": "nisar-p1-5-cmr-attempt-2-query-plan-redacted-v1",
+  "endpoint_class": "cmr_granules_umm_json",
+  "http_method": "GET",
+  "collection_concept_id": "C2853145197-ASF",
+  "temporal": "2026-07-26T15:00:00Z,2026-07-26T17:00:00Z",
+  "attributes": [
+    "string,PRODUCT_TYPE,RSLC",
+    "string,PRODUCTION_PIPELINE,PR"
+  ],
+  "options": {
+    "attribute": {
+      "exclude_collection": true
+    }
+  },
+  "page_size": 100,
+  "page_num": 1,
+  "sort_keys": [
+    "start_date",
+    "granule_ur"
+  ],
+  "polygon": "37.720222204639484,10.857787104635449,37.720070447767895,10.857158813483217,37.721144257142576,10.85690570018474,37.721296026021705,10.857533983552843,37.720222204639484,10.857787104635449",
+  "parameter_count": 10,
+  "parameters": [
+    [
+      "collection_concept_id",
+      "C2853145197-ASF"
+    ],
+    [
+      "temporal",
+      "2026-07-26T15:00:00Z,2026-07-26T17:00:00Z"
+    ],
+    [
+      "attribute[]",
+      "string,PRODUCT_TYPE,RSLC"
+    ],
+    [
+      "attribute[]",
+      "string,PRODUCTION_PIPELINE,PR"
+    ],
+    [
+      "options[attribute][exclude_collection]",
+      "true"
+    ],
+    [
+      "page_size",
+      "100"
+    ],
+    [
+      "sort_key[]",
+      "start_date"
+    ],
+    [
+      "sort_key[]",
+      "granule_ur"
+    ],
+    [
+      "page_num",
+      "1"
+    ],
+    [
+      "polygon",
+      "37.720222204639484,10.857787104635449,37.720070447767895,10.857158813483217,37.721144257142576,10.85690570018474,37.721296026021705,10.857533983552843,37.720222204639484,10.857787104635449"
+    ]
+  ],
+  "canonical_parameter_digest": "e4542a6bd3ecbbb0bd753cc9e4dc811b966d074bdda385822f40a91648bcffda"
+}

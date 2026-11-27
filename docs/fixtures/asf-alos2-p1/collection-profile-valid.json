@@ -1,0 +1,20 @@
+{
+  "fixture_contract": "AsfCollectionProfileFixtureV1",
+  "status": "proposed",
+  "profile": {
+    "provider_id": "asf.nasa.earthdata",
+    "logical_dataset": "sar.alos-2.palsar-2.scansar.l1.1.v1",
+    "native_collection_id": "C3315903479-ASF",
+    "collection_short_name": "ALOS2_L1_PSR2",
+    "collection_version": "1",
+    "collection_profile_id": "asf.alos-2.palsar-2.scansar.l1.1.v1",
+    "identity_rule_id": "asf.alos-2.cmr-granule.v1",
+    "filename_rule_id": "asf.alos-2.scansar-zip.v1",
+    "resolver_policy_id": "asf.alos-2.earthdata-complete-zip.v1",
+    "delivery_model": "archive_first",
+    "production_enabled": true,
+    "supported_beam_modes": ["WBS", "WBD"],
+    "supported_processing_levels": ["1.1"]
+  },
+  "expected_result": {"kind": "accept"}
+}

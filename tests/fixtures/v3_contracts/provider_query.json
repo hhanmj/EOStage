@@ -1,0 +1,24 @@
+{
+  "provider_id": "fixture.provider",
+  "source_kind": "sentinel1",
+  "product_kinds": ["sar_slc"],
+  "bbox": {
+    "west": 110.0,
+    "east": 111.0,
+    "south": 30.0,
+    "north": 31.0,
+    "crs": "EPSG:4326"
+  },
+  "time_range": {
+    "start": "2024-01-01T00:00:00Z",
+    "end": null
+  },
+  "max_results": 10,
+  "region_id": "fixture-region",
+  "region_safe_name": "fixture_region",
+  "output_root": "E:/InSAR/测试/输出",
+  "filters": {
+    "path_start": 1,
+    "path_end": 2
+  }
+}

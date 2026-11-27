@@ -1,0 +1,30 @@
+{
+  "fixture_metadata": {
+    "fixture_version": 1,
+    "fixture_kind": "invalid",
+    "fixture_name": "wrong-companion-role",
+    "payload_contract": "FrozenTaskSnapshotV3",
+    "offline": true
+  },
+  "base": "single",
+  "mutations": [
+    {
+      "op": "set",
+      "path": "/transfer_items/1/asset_access/role",
+      "value": "primary"
+    }
+  ],
+  "expected": {
+    "accepted": false,
+    "error": {
+      "variant": "invalid_transfer_graph",
+      "issue": {
+        "kind": "required_companion_role_must_be_auxiliary",
+        "transfer": {
+          "kind": "transfer_item",
+          "index": 1
+        }
+      }
+    }
+  }
+}

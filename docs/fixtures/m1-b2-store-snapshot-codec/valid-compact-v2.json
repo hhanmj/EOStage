@@ -1,0 +1,21 @@
+{
+  "fixture_metadata": {
+    "fixture_version": 1,
+    "fixture_kind": "codec",
+    "fixture_name": "valid-compact-v2",
+    "offline": true
+  },
+  "base": "compact_v2",
+  "mutations": [],
+  "expected": {
+    "decode_any": {
+      "outcome": "compact_v2"
+    },
+    "v2_reader": {
+      "outcome": "compact_v2"
+    },
+    "business_readers": {
+      "outcome": "accepted"
+    }
+  }
+}

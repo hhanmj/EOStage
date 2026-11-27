@@ -1,0 +1,77 @@
+{
+  "default_enabled": false,
+  "expected_output": {
+    "derived_artifact_id": "nisar-subset-fixture-0001-v1",
+    "estimated_output_bytes": 2000000,
+    "estimated_remote_bytes": 3000000,
+    "file_name": "NISAR_L1_PR_RSLC_SYNTHETIC_P05023_0001_subset_v1.h5",
+    "full_product_bytes": 14252244992
+  },
+  "implementation_scope": "offline_only",
+  "manifest_contract": "NisarSubsetRequestManifestV1",
+  "mapping": {
+    "algorithm": "sparse_grid_polygon_cells_v1",
+    "algorithm_version": 1,
+    "evidence_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "windows": [
+      {
+        "chunk_shape": [
+          128,
+          256
+        ],
+        "component_id": 0,
+        "dataset_path": "/science/LSAR/RSLC/swaths/frequencyA/HH",
+        "dtype": "CFloat32",
+        "expected_shape": [
+          200,
+          400
+        ],
+        "frequency": "A",
+        "line_end_exclusive": 1001,
+        "line_start": 100,
+        "mapping_confidence": "conservative",
+        "margin_lines": 16,
+        "margin_samples": 32,
+        "polarization": "HH",
+        "sample_end_exclusive": 600,
+        "sample_start": 200,
+        "source_shape": [
+          1000,
+          2000
+        ],
+        "swath": "1",
+        "validity_mask_required": true
+      }
+    ]
+  },
+  "mechanism": "RemoteHdf5SpatialWindow",
+  "output_authority": "client_derived",
+  "request": {
+    "aoi_component_count": 1,
+    "aoi_crs": "EPSG:4326",
+    "aoi_ring_count": 1,
+    "aoi_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "aoi_vertex_count": 5,
+    "frequency": "A",
+    "polarization": "HH",
+    "subset_method": "range_hyperslab",
+    "swath": "1"
+  },
+  "schema_version": 1,
+  "source": {
+    "checksum": {
+      "algorithm": "sha256",
+      "value": "ee3de9b9877b4f8e35153369725dcb4174ef5f2423af167e77f843e08860a9a0"
+    },
+    "collection_id": "C2853145197-ASF",
+    "collection_profile_id": "asf.nisar.l.rslc.provisional.v1",
+    "crid": "P05023",
+    "expected_size_bytes": 14252244992,
+    "file_name": "NISAR_L1_PR_RSLC_026_093_D_083_2005_DHDH_A_20260726T155803_20260726T155837_P05023_N_F_J_001.h5",
+    "product_specification_version": "1.5.0",
+    "provider_id": "asf.nasa.earthdata",
+    "provider_product_id": "G9900000001-ASF",
+    "provider_product_key": "PROVIDER::asf.nasa.earthdata::COLLECTION::C2853145197-ASF::ITEM::G9900000001-ASF",
+    "stable_asset_key": "PROVIDER::asf.nasa.earthdata::COLLECTION::C2853145197-ASF::ITEM::G9900000001-ASF::ASSET::science-rslc-hdf5"
+  }
+}

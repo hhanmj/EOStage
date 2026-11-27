@@ -1,0 +1,6 @@
+{
+  "fixture_contract": "AsfNisarMutationFixtureV1",
+  "base": "granule-provisional-multi-asset-valid.json",
+  "mutation": {"operation": "remove_asset", "asset_id": "science-rslc-hdf5"},
+  "expected_result": {"kind": "reject", "error": "ASF_PRIMARY_ASSET_MISSING"}
+}

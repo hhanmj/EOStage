@@ -1,0 +1,139 @@
+{
+  "cases": [
+    {
+      "name": "authoritative_metadata_topology_dedup_and_invalid_rows",
+      "query": {
+        "beam_mode": "IW,EW,SM",
+        "polarization": "DV,DH,SV,SH",
+        "orbit_direction": "",
+        "max_results": null,
+        "aoi_geojson": {
+          "type": "Polygon",
+          "coordinates": [[[0, 0], [2, 0], [2, 2], [0, 2], [0, 0]]]
+        }
+      },
+      "features": [
+        {
+          "type": "Feature",
+          "properties": {
+            "sceneName": "S1A_IW_SLC__1SDV_20240101T100000_20240101T100027_052000_064ABC_1234",
+            "pathNumber": "88",
+            "frameNumber": "456",
+            "flightDirection": "ASCENDING",
+            "bytes": "1073741824",
+            "url": "https://datapool.asf.alaska.edu/SLC/SA/S1A_IW_SLC__1SDV_20240101T100000_20240101T100027_052000_064ABC_1234.zip"
+          },
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[[0.5, 0.5], [1.5, 0.5], [1.5, 1.5], [0.5, 1.5], [0.5, 0.5]]]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "sceneName": "S1B_EW_SLC__1SDH_20240113T100000_20240113T100027_034000_064DEF_5678",
+            "relativeOrbit": 42,
+            "frame": 900,
+            "orbitDirection": "DESCENDING"
+          },
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[[-1, -1], [3, -1], [3, 3], [-1, 3], [-1, -1]]]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "sceneName": "S1A_SM_GRDH_1SSV_20240125T100000_20240125T100027_052200_064AAA_9999"
+          },
+          "geometry": {
+            "type": "MultiPolygon",
+            "coordinates": [
+              [[[0, 0], [0.4, 0], [0.4, 0.4], [0, 0.4], [0, 0]]],
+              [[[1.6, 1.6], [2, 1.6], [2, 2], [1.6, 2], [1.6, 1.6]]]
+            ]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "sceneName": "S1B_IW_GRDM_1SSH_20240206T100000_20240206T100027_034175_064BBB_ABCD"
+          },
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[[3, 3], [4, 3], [4, 4], [3, 4], [3, 3]]]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {
+            "sceneName": "S1A_IW_SLC__1SDV_20240101T100000_20240101T100027_052000_064ABC_1234",
+            "pathNumber": "88",
+            "frameNumber": "456",
+            "flightDirection": "ASCENDING",
+            "bytes": "1073741824",
+            "url": "https://datapool.asf.alaska.edu/SLC/SA/S1A_IW_SLC__1SDV_20240101T100000_20240101T100027_052000_064ABC_1234.zip"
+          },
+          "geometry": {
+            "type": "Polygon",
+            "coordinates": [[[0.5, 0.5], [1.5, 0.5], [1.5, 1.5], [0.5, 1.5], [0.5, 0.5]]]
+          }
+        },
+        {
+          "type": "Feature",
+          "properties": {"sceneName": "not-a-sentinel-scene"}
+        }
+      ],
+      "expected_scenes": [
+        {
+          "scene_id": "S1B_EW_SLC__1SDH_20240113T100000_20240113T100027_034000_064DEF_5678",
+          "url": null,
+          "platform": "S1B",
+          "product_type": "SLC",
+          "beam_mode": "EW",
+          "polarization": "DH",
+          "acquisition_datetime": "2024-01-13T10:00:00+00:00",
+          "absolute_orbit": 34000,
+          "path": 42,
+          "frame": 900,
+          "orbit_direction": "DESCENDING",
+          "file_size_remote": null,
+          "footprint_bbox": {"west": -1.0, "east": 3.0, "south": -1.0, "north": 3.0, "crs": "EPSG:4326"},
+          "footprint_geojson": {"type": "Polygon", "coordinates": [[[-1, -1], [3, -1], [3, 3], [-1, 3], [-1, -1]]]}
+        },
+        {
+          "scene_id": "S1A_IW_SLC__1SDV_20240101T100000_20240101T100027_052000_064ABC_1234",
+          "url": "https://datapool.asf.alaska.edu/SLC/SA/S1A_IW_SLC__1SDV_20240101T100000_20240101T100027_052000_064ABC_1234.zip",
+          "platform": "S1A",
+          "product_type": "SLC",
+          "beam_mode": "IW",
+          "polarization": "DV",
+          "acquisition_datetime": "2024-01-01T10:00:00+00:00",
+          "absolute_orbit": 52000,
+          "path": 88,
+          "frame": 456,
+          "orbit_direction": "ASCENDING",
+          "file_size_remote": 1073741824,
+          "footprint_bbox": {"west": 0.5, "east": 1.5, "south": 0.5, "north": 1.5, "crs": "EPSG:4326"},
+          "footprint_geojson": {"type": "Polygon", "coordinates": [[[0.5, 0.5], [1.5, 0.5], [1.5, 1.5], [0.5, 1.5], [0.5, 0.5]]]}
+        },
+        {
+          "scene_id": "S1A_SM_GRDH_1SSV_20240125T100000_20240125T100027_052200_064AAA_9999",
+          "url": null,
+          "platform": "S1A",
+          "product_type": "GRD",
+          "beam_mode": "SM",
+          "polarization": "SV",
+          "acquisition_datetime": "2024-01-25T10:00:00+00:00",
+          "absolute_orbit": 52200,
+          "path": null,
+          "frame": null,
+          "orbit_direction": null,
+          "file_size_remote": null,
+          "footprint_bbox": {"west": 0.0, "east": 2.0, "south": 0.0, "north": 2.0, "crs": "EPSG:4326"},
+          "footprint_geojson": {"type": "MultiPolygon", "coordinates": [[[[0, 0], [0.4, 0], [0.4, 0.4], [0, 0.4], [0, 0]]], [[[1.6, 1.6], [2, 1.6], [2, 2], [1.6, 2], [1.6, 1.6]]]]}
+        }
+      ]
+    }
+  ]
+}

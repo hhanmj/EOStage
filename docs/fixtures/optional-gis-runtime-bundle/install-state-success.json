@@ -1,0 +1,8 @@
+{
+  "previous_active": {"base_set_version": "0.9.0", "extensions": []},
+  "candidate": {"base_set_version": "1.0.0", "extensions": ["elevation-grids"]},
+  "candidate_checks": ["signature", "size", "sha256", "files", "self_test"],
+  "active": {"base_set_version": "1.0.0", "extensions": ["elevation-grids"]},
+  "previous_retained": true,
+  "expected": "new base plus extension registry becomes active atomically"
+}

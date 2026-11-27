@@ -1,0 +1,6 @@
+{
+  "fixture_kind": "activation-recovery-observation",
+  "journal_file": "activation-journal-pointer-pending.json",
+  "observed_active_sha256": "9550089727d4d2946c132ff05a24b8c4113756680ed508ebc89494809d99a463",
+  "expected": "restore-previous-pointer-and-mark-rollback-required"
+}

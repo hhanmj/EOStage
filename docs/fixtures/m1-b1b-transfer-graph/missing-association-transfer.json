@@ -1,0 +1,28 @@
+{
+  "fixture_metadata": {
+    "fixture_version": 1,
+    "fixture_kind": "invalid",
+    "fixture_name": "missing-association-transfer",
+    "payload_contract": "FrozenTaskSnapshotV3",
+    "offline": true
+  },
+  "base": "single",
+  "mutations": [
+    {
+      "op": "set",
+      "path": "/orbit_associations/0/orbit_transfer_item_id",
+      "value": "missing-transfer"
+    }
+  ],
+  "expected": {
+    "accepted": false,
+    "error": {
+      "variant": "missing_reference",
+      "reference": "association_orbit_transfer",
+      "at": {
+        "kind": "orbit_association",
+        "index": 0
+      }
+    }
+  }
+}

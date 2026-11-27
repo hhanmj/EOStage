@@ -1,0 +1,23 @@
+{
+  "id": "eostage-pyqgis-cartography-plugin",
+  "name": "EOStage PyQGIS 空间自动化与出版级制图插件",
+  "version": "1.4.0",
+  "author": "EOStage",
+  "license": "GPL-3.0-or-later",
+  "discipline": "gis-spatial",
+  "description": "提供 QGIS Processing 批处理脚本生成、矢量拓扑修复、等面积/等距投影核验与出版级专题图自动排版扩展技能。",
+  "tags": [
+    "PyQGIS",
+    "专题图排版",
+    "拓扑修复"
+  ],
+  "enabled": true,
+  "bundledSkills": [
+    {
+      "id": "plugin-skill-pyqgis-layout-publisher",
+      "name": "PyQGIS 专题地图自动排版与出版审查",
+      "description": "自动生成带发散色标、比例尺、指北针与 CRS 元数据标注的 QGIS 工程与 PDF 图件",
+      "path": "skills/plugin-skill-pyqgis-layout-publisher/SKILL.md"
+    }
+  ]
+}

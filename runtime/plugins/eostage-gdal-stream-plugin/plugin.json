@@ -1,0 +1,32 @@
+{
+  "id": "eostage-gdal-stream-plugin",
+  "name": "EOStage GDAL /vsicurl/ 在线流式读取与地形光谱计算插件",
+  "version": "1.2.0",
+  "author": "EOStage",
+  "license": "GPL-3.0-or-later",
+  "discipline": "insar-sar",
+  "description": "免整景下载直接通过 HTTP Range (/vsicurl/) 在线探测与按 AOI 窗口读取云端 COG / STAC 资产，原位执行窗口裁剪、DEM 地形算子（坡度/坡向/山体阴影/TPI/TRI/粗糙度）与多光谱波段指数（NDVI/NDWI/NBR）计算。",
+  "tags": [
+    "GDAL /vsicurl/",
+    "COG 在线流式读取",
+    "STAC",
+    "DEM 坡度山影",
+    "NDVI 波段运算"
+  ],
+  "enabled": true,
+  "bundledSkills": [
+    {
+      "id": "plugin-skill-gdal-vsicurl-stream",
+      "name": "GDAL /vsicurl/ 云端 COG 流式窗口计算与地形派生",
+      "description": "免整景下载直接对 STAC/COG 资产按 AOI 窗口流式读取并原位计算坡度、山影、TPI/TRI 与 NDVI/NDWI/NBR",
+      "path": "skills/plugin-skill-gdal-vsicurl-stream/SKILL.md"
+    }
+  ],
+  "bundledConnector": {
+    "id": "plugin-mcp-eostage-gdal-stream",
+    "name": "EOStage Native GDAL /vsicurl/ Stream Engine",
+    "transport": "stdio",
+    "endpoint": "tauri://application_gis_raster_process",
+    "description": "由 EOStage 内置 Native GIS (GDAL/PROJ) 驱动的 /vsicurl/ 在线流式窗口裁剪、地形派生与波段代数执行器"
+  }
+}

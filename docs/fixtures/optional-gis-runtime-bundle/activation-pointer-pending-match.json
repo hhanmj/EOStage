@@ -1,0 +1,6 @@
+{
+  "fixture_kind": "activation-recovery-observation",
+  "journal_file": "activation-journal-pointer-pending.json",
+  "observed_active_sha256": "18a5c62ad5f5c4eb50c97dbdb5ec64c7d6ebd523f8ea7ccbf466a9ac3bac8279",
+  "expected": "finish-candidate-pointer-and-rotate-ledger-backup"
+}

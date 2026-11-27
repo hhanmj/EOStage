@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "eostage-stac-catalog-mcp": {
+      "id": "plugin-mcp-eostage-stac",
+      "name": "EOStage Local STAC Indexer MCP",
+      "transport": "stdio",
+      "command": "python -m eostage_stac_mcp --catalog-root ./stac_catalog",
+      "description": "由 EOStage STAC 谐波合成插件挂载的本地 STAC 资产索引与波段元数据校验连接器"
+    }
+  }
+}

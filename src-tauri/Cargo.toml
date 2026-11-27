@@ -1,0 +1,69 @@
+[package]
+name = "eostage-desktop"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Desktop host for EOStage."
+build = "build.rs"
+
+[features]
+bhoonidhi-auth-revoke-acceptance = ["insar-application-service/bhoonidhi-auth-revoke-acceptance"]
+default = []
+s1-live-acceptance = [
+    "insar-application-service/s1-live-acceptance",
+]
+
+[build-dependencies]
+tauri-build = { version = "=2.6.3", features = [] }
+
+[dependencies]
+base64 = "0.22"
+chrono = "0.4"
+flate2 = "1.1"
+insar-agent = { path = "../crates/insar-agent" }
+insar-agent-model = { path = "../crates/insar-agent-model" }
+insar-application-service = { path = "../crates/insar-application-service" }
+insar-core = { path = "../crates/insar-core" }
+insar-download = { path = "../crates/insar-download" }
+insar-gis = { path = "../crates/insar-gis" }
+insar-provider = { path = "../crates/insar-provider" }
+keyring = "4.1.6"
+ring = "0.17"
+rusqlite = { version = "0.40.1", features = ["bundled"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+reqwest = { version = "0.12", default-features = false, features = ["blocking", "cookies", "json", "rustls-tls-native-roots", "rustls-tls-webpki-roots", "system-proxy"] }
+tauri = { version = "=2.11.5", features = [] }
+tauri-plugin-dialog = "=2.7.2"
+thiserror = "2"
+zip = { version = "=9.8.2", default-features = false, features = ["deflate"] }
+
+[target.'cfg(target_os = "macos")'.dependencies]
+objc2 = "0.6"
+objc2-app-kit = { version = "0.3.2", default-features = false, features = [
+    "NSButton",
+    "NSControl",
+    "NSResponder",
+    "NSView",
+    "NSWindow",
+] }
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61", features = [
+    "Win32_Foundation",
+    "Win32_Graphics_Dwm",
+    "Win32_Storage_FileSystem",
+    "Win32_System_Console",
+    "Win32_System_Threading",
+    "Win32_UI_Shell",
+    "Win32_UI_WindowsAndMessaging",
+] }
+
+[dev-dependencies]
+# Tests never pause on a nearly full development drive (W2d test isolation).
+insar-download = { path = "../crates/insar-download", features = ["test-plenty-disk-space"] }
+
+[target.'cfg(windows)'.dev-dependencies]
+tao = "=0.35.3"

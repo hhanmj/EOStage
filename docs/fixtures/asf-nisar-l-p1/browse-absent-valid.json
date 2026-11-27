@@ -1,0 +1,6 @@
+{
+  "fixture_contract": "AsfNisarMutationFixtureV1",
+  "base": "granule-provisional-multi-asset-valid.json",
+  "mutation": {"operation": "remove_roles", "roles": ["preview", "thumbnail"]},
+  "expected_result": {"kind": "accept", "preview": "ASF_PREVIEW_UNAVAILABLE", "primary_asset_count": 1}
+}

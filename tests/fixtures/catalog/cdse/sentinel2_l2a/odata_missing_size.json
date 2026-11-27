@@ -1,0 +1,1 @@
+{"value":[{"Id":"00000000-0000-4000-8000-000000000006","Name":"S2_FIXTURE_NO_SIZE.SAFE","Collection":{"Name":"SENTINEL-2"},"ContentDate":{"Start":"2026-01-01T10:00:00Z"},"Online":true,"GeoFootprint":{"type":"Polygon","coordinates":[[[110,30],[111,30],[111,31],[110,30]]]},"Attributes":[{"Name":"productType","Value":"S2MSI2A"}]}]}

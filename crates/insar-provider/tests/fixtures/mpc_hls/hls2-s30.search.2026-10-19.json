@@ -1,0 +1,1918 @@
+{
+  "type": "FeatureCollection",
+  "links": [
+    {
+      "rel": "root",
+      "type": "application/json",
+      "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+    },
+    {
+      "rel": "self",
+      "type": "application/geo+json",
+      "href": "https://planetarycomputer.microsoft.com/api/stac/v1/search?collections=hls2-s30"
+    }
+  ],
+  "features": [
+    {
+      "id": "HLS.S30.T49RCP.2024175T031521.v2.0",
+      "bbox": [
+        108.911397,
+        29.726049,
+        110.067231,
+        30.72965
+      ],
+      "type": "Feature",
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/hls2-s30"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/hls2-s30"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/hls2-s30/items/HLS.S30.T49RCP.2024175T031521.v2.0"
+        },
+        {
+          "rel": "preview",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=hls2-s30&item=HLS.S30.T49RCP.2024175T031521.v2.0",
+          "title": "Map of item",
+          "type": "text/html"
+        }
+      ],
+      "assets": {
+        "B01": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/23/HLS.S30.T49RCP.2024175T031521.v2.0/HLS.S30.T49RCP.2024175T031521.v2.0.B01.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B01",
+              "common_name": "coastal",
+              "center_wavelength": 0.4439,
+              "full_width_half_max": 0.027
+            }
+          ]
+        },
+        "B02": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/23/HLS.S30.T49RCP.2024175T031521.v2.0/HLS.S30.T49RCP.2024175T031521.v2.0.B02.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B02",
+              "common_name": "blue",
+              "center_wavelength": 0.4966,
+              "full_width_half_max": 0.098
+            }
+          ]
+        },
+        "B03": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/23/HLS.S30.T49RCP.2024175T031521.v2.0/HLS.S30.T49RCP.2024175T031521.v2.0.B03.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B03",
+              "common_name": "green",
+              "center_wavelength": 0.56,
+              "full_width_half_max": 0.045
+            }
+          ]
+        },
+        "B04": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/23/HLS.S30.T49RCP.2024175T031521.v2.0/HLS.S30.T49RCP.2024175T031521.v2.0.B04.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B04",
+              "common_name": "red",
+              "center_wavelength": 0.6645,
+              "full_width_half_max": 0.038
+            }
+          ]
+        },
+        "B05": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/23/HLS.S30.T49RCP.2024175T031521.v2.0/HLS.S30.T49RCP.2024175T031521.v2.0.B05.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B05",
+              "center_wavelength": 0.7039,
+              "full_width_half_max": 0.019
+            }
+          ]
+        },
+        "B06": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/23/HLS.S30.T49RCP.2024175T031521.v2.0/HLS.S30.T49RCP.2024175T031521.v2.0.B06.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B06",
+              "center_wavelength": 0.7402,
+              "full_width_half_max": 0.018
+            }
+          ]
+        },
+        "B07": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/23/HLS.S30.T49RCP.2024175T031521.v2.0/HLS.S30.T49RCP.2024175T031521.v2.0.B07.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B07",
+              "center_wavelength": 0.7825,
+              "full_width_half_max": 0.028
+            }
+          ]
+        },
+        "B08": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/23/HLS.S30.T49RCP.2024175T031521.v2.0/HLS.S30.T49RCP.2024175T031521.v2.0.B08.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B08",
+              "common_name": "nir",
+              "center_wavelength": 0.8351,
+              "full_width_half_max": 0.145
+            }
+          ]
+        },
+        "B09": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/23/HLS.S30.T49RCP.2024175T031521.v2.0/HLS.S30.T49RCP.2024175T031521.v2.0.B09.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B09",
+              "center_wavelength": 0.945,
+              "full_width_half_max": 0.026
+            }
+          ]
+        },
+        "B10": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/23/HLS.S30.T49RCP.2024175T031521.v2.0/HLS.S30.T49RCP.2024175T031521.v2.0.B10.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B10",
+              "common_name": "cirrus",
+              "center_wavelength": 1.3735,
+              "full_width_half_max": 0.075
+            }
+          ]
+        },
+        "B11": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/23/HLS.S30.T49RCP.2024175T031521.v2.0/HLS.S30.T49RCP.2024175T031521.v2.0.B11.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B11",
+              "common_name": "swir16",
+              "center_wavelength": 1.6137,
+              "full_width_half_max": 0.143
+            }
+          ]
+        },
+        "B12": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/23/HLS.S30.T49RCP.2024175T031521.v2.0/HLS.S30.T49RCP.2024175T031521.v2.0.B12.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B12",
+              "common_name": "swir22",
+              "center_wavelength": 2.22024,
+              "full_width_half_max": 0.242
+            }
+          ]
+        },
+        "B8A": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/23/HLS.S30.T49RCP.2024175T031521.v2.0/HLS.S30.T49RCP.2024175T031521.v2.0.B8A.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B8A",
+              "center_wavelength": 0.8648,
+              "full_width_half_max": 0.033
+            }
+          ]
+        },
+        "SAA": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/23/HLS.S30.T49RCP.2024175T031521.v2.0/HLS.S30.T49RCP.2024175T031521.v2.0.SAA.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "SAA"
+            }
+          ]
+        },
+        "SZA": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/23/HLS.S30.T49RCP.2024175T031521.v2.0/HLS.S30.T49RCP.2024175T031521.v2.0.SZA.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "SZA"
+            }
+          ]
+        },
+        "VAA": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/23/HLS.S30.T49RCP.2024175T031521.v2.0/HLS.S30.T49RCP.2024175T031521.v2.0.VAA.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "VAA"
+            }
+          ]
+        },
+        "VZA": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/23/HLS.S30.T49RCP.2024175T031521.v2.0/HLS.S30.T49RCP.2024175T031521.v2.0.VZA.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "VZA"
+            }
+          ]
+        },
+        "Fmask": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/23/HLS.S30.T49RCP.2024175T031521.v2.0/HLS.S30.T49RCP.2024175T031521.v2.0.Fmask.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "Fmask"
+            }
+          ]
+        },
+        "thumbnail": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/23/HLS.S30.T49RCP.2024175T031521.v2.0/HLS.S30.T49RCP.2024175T031521.v2.0.jpg",
+          "type": "image/jpeg",
+          "roles": [
+            "thumbnail"
+          ]
+        },
+        "tilejson": {
+          "title": "TileJSON with default rendering",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=hls2-s30&item=HLS.S30.T49RCP.2024175T031521.v2.0&assets=B04&assets=B03&assets=B02&color_formula=gamma%20RGB%202.7,%20saturation%201.5,%20sigmoidal%20RGB%2015%200.55&format=png",
+          "type": "application/json",
+          "roles": [
+            "tiles"
+          ]
+        },
+        "rendered_preview": {
+          "title": "Rendered preview",
+          "rel": "preview",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=hls2-s30&item=HLS.S30.T49RCP.2024175T031521.v2.0&assets=B04&assets=B03&assets=B02&color_formula=gamma%20RGB%202.7,%20saturation%201.5,%20sigmoidal%20RGB%2015%200.55&format=png",
+          "roles": [
+            "overview"
+          ],
+          "type": "image/png"
+        }
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                108.911397,
+                30.716264
+              ],
+              [
+                110.05783,
+                30.72965
+              ],
+              [
+                110.067231,
+                29.738917
+              ],
+              [
+                108.932223,
+                29.726049
+              ],
+              [
+                108.911397,
+                30.716264
+              ]
+            ]
+          ]
+        ]
+      },
+      "collection": "hls2-s30",
+      "properties": {
+        "sci:doi": "10.5067/HLS/HLSS30.002",
+        "datetime": "2024-06-23T03:29:46.751600Z",
+        "platform": "sentinel-2a",
+        "proj:epsg": 32649,
+        "proj:shape": [
+          3660,
+          3660
+        ],
+        "instruments": [
+          "msi"
+        ],
+        "end_datetime": "2024-06-23T03:29:46.751600Z",
+        "view:azimuth": 99.67262327,
+        "eo:cloud_cover": 61,
+        "proj:transform": [
+          30,
+          0,
+          300000,
+          0,
+          -30,
+          3400020,
+          0,
+          0,
+          1
+        ],
+        "start_datetime": "2024-06-23T03:29:46.751600Z",
+        "view:sun_azimuth": 107.82477315
+      },
+      "stac_extensions": [
+        "https://stac-extensions.github.io/eo/v1.1.0/schema.json",
+        "https://stac-extensions.github.io/projection/v1.1.0/schema.json",
+        "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+      ],
+      "stac_version": "1.0.0"
+    },
+    {
+      "id": "HLS.S30.T49RDP.2024175T031521.v2.0",
+      "bbox": [
+        109.955061,
+        29.73816,
+        111.101952,
+        30.73303
+      ],
+      "type": "Feature",
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/hls2-s30"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/hls2-s30"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/hls2-s30/items/HLS.S30.T49RDP.2024175T031521.v2.0"
+        },
+        {
+          "rel": "preview",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=hls2-s30&item=HLS.S30.T49RDP.2024175T031521.v2.0",
+          "title": "Map of item",
+          "type": "text/html"
+        }
+      ],
+      "assets": {
+        "B01": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/23/HLS.S30.T49RDP.2024175T031521.v2.0/HLS.S30.T49RDP.2024175T031521.v2.0.B01.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B01",
+              "common_name": "coastal",
+              "center_wavelength": 0.4439,
+              "full_width_half_max": 0.027
+            }
+          ]
+        },
+        "B02": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/23/HLS.S30.T49RDP.2024175T031521.v2.0/HLS.S30.T49RDP.2024175T031521.v2.0.B02.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B02",
+              "common_name": "blue",
+              "center_wavelength": 0.4966,
+              "full_width_half_max": 0.098
+            }
+          ]
+        },
+        "B03": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/23/HLS.S30.T49RDP.2024175T031521.v2.0/HLS.S30.T49RDP.2024175T031521.v2.0.B03.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B03",
+              "common_name": "green",
+              "center_wavelength": 0.56,
+              "full_width_half_max": 0.045
+            }
+          ]
+        },
+        "B04": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/23/HLS.S30.T49RDP.2024175T031521.v2.0/HLS.S30.T49RDP.2024175T031521.v2.0.B04.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B04",
+              "common_name": "red",
+              "center_wavelength": 0.6645,
+              "full_width_half_max": 0.038
+            }
+          ]
+        },
+        "B05": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/23/HLS.S30.T49RDP.2024175T031521.v2.0/HLS.S30.T49RDP.2024175T031521.v2.0.B05.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B05",
+              "center_wavelength": 0.7039,
+              "full_width_half_max": 0.019
+            }
+          ]
+        },
+        "B06": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/23/HLS.S30.T49RDP.2024175T031521.v2.0/HLS.S30.T49RDP.2024175T031521.v2.0.B06.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B06",
+              "center_wavelength": 0.7402,
+              "full_width_half_max": 0.018
+            }
+          ]
+        },
+        "B07": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/23/HLS.S30.T49RDP.2024175T031521.v2.0/HLS.S30.T49RDP.2024175T031521.v2.0.B07.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B07",
+              "center_wavelength": 0.7825,
+              "full_width_half_max": 0.028
+            }
+          ]
+        },
+        "B08": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/23/HLS.S30.T49RDP.2024175T031521.v2.0/HLS.S30.T49RDP.2024175T031521.v2.0.B08.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B08",
+              "common_name": "nir",
+              "center_wavelength": 0.8351,
+              "full_width_half_max": 0.145
+            }
+          ]
+        },
+        "B09": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/23/HLS.S30.T49RDP.2024175T031521.v2.0/HLS.S30.T49RDP.2024175T031521.v2.0.B09.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B09",
+              "center_wavelength": 0.945,
+              "full_width_half_max": 0.026
+            }
+          ]
+        },
+        "B10": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/23/HLS.S30.T49RDP.2024175T031521.v2.0/HLS.S30.T49RDP.2024175T031521.v2.0.B10.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B10",
+              "common_name": "cirrus",
+              "center_wavelength": 1.3735,
+              "full_width_half_max": 0.075
+            }
+          ]
+        },
+        "B11": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/23/HLS.S30.T49RDP.2024175T031521.v2.0/HLS.S30.T49RDP.2024175T031521.v2.0.B11.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B11",
+              "common_name": "swir16",
+              "center_wavelength": 1.6137,
+              "full_width_half_max": 0.143
+            }
+          ]
+        },
+        "B12": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/23/HLS.S30.T49RDP.2024175T031521.v2.0/HLS.S30.T49RDP.2024175T031521.v2.0.B12.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B12",
+              "common_name": "swir22",
+              "center_wavelength": 2.22024,
+              "full_width_half_max": 0.242
+            }
+          ]
+        },
+        "B8A": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/23/HLS.S30.T49RDP.2024175T031521.v2.0/HLS.S30.T49RDP.2024175T031521.v2.0.B8A.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B8A",
+              "center_wavelength": 0.8648,
+              "full_width_half_max": 0.033
+            }
+          ]
+        },
+        "SAA": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/23/HLS.S30.T49RDP.2024175T031521.v2.0/HLS.S30.T49RDP.2024175T031521.v2.0.SAA.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "SAA"
+            }
+          ]
+        },
+        "SZA": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/23/HLS.S30.T49RDP.2024175T031521.v2.0/HLS.S30.T49RDP.2024175T031521.v2.0.SZA.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "SZA"
+            }
+          ]
+        },
+        "VAA": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/23/HLS.S30.T49RDP.2024175T031521.v2.0/HLS.S30.T49RDP.2024175T031521.v2.0.VAA.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "VAA"
+            }
+          ]
+        },
+        "VZA": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/23/HLS.S30.T49RDP.2024175T031521.v2.0/HLS.S30.T49RDP.2024175T031521.v2.0.VZA.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "VZA"
+            }
+          ]
+        },
+        "Fmask": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/23/HLS.S30.T49RDP.2024175T031521.v2.0/HLS.S30.T49RDP.2024175T031521.v2.0.Fmask.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "Fmask"
+            }
+          ]
+        },
+        "thumbnail": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/23/HLS.S30.T49RDP.2024175T031521.v2.0/HLS.S30.T49RDP.2024175T031521.v2.0.jpg",
+          "type": "image/jpeg",
+          "roles": [
+            "thumbnail"
+          ]
+        },
+        "tilejson": {
+          "title": "TileJSON with default rendering",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=hls2-s30&item=HLS.S30.T49RDP.2024175T031521.v2.0&assets=B04&assets=B03&assets=B02&color_formula=gamma%20RGB%202.7,%20saturation%201.5,%20sigmoidal%20RGB%2015%200.55&format=png",
+          "type": "application/json",
+          "roles": [
+            "tiles"
+          ]
+        },
+        "rendered_preview": {
+          "title": "Rendered preview",
+          "rel": "preview",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=hls2-s30&item=HLS.S30.T49RDP.2024175T031521.v2.0&assets=B04&assets=B03&assets=B02&color_formula=gamma%20RGB%202.7,%20saturation%201.5,%20sigmoidal%20RGB%2015%200.55&format=png",
+          "roles": [
+            "overview"
+          ],
+          "type": "image/png"
+        }
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                109.955061,
+                30.728864
+              ],
+              [
+                111.101952,
+                30.73303
+              ],
+              [
+                111.100935,
+                29.742165
+              ],
+              [
+                109.965488,
+                29.73816
+              ],
+              [
+                109.955061,
+                30.728864
+              ]
+            ]
+          ]
+        ]
+      },
+      "collection": "hls2-s30",
+      "properties": {
+        "sci:doi": "10.5067/HLS/HLSS30.002",
+        "datetime": "2024-06-23T03:29:43.261000Z",
+        "platform": "sentinel-2a",
+        "proj:epsg": 32649,
+        "proj:shape": [
+          3660,
+          3660
+        ],
+        "instruments": [
+          "msi"
+        ],
+        "end_datetime": "2024-06-23T03:29:43.261000Z",
+        "view:azimuth": 243.08289112,
+        "eo:cloud_cover": 61,
+        "proj:transform": [
+          30,
+          0,
+          399960,
+          0,
+          -30,
+          3400020,
+          0,
+          0,
+          1
+        ],
+        "start_datetime": "2024-06-23T03:29:43.261000Z",
+        "view:sun_azimuth": 109.25953991
+      },
+      "stac_extensions": [
+        "https://stac-extensions.github.io/eo/v1.1.0/schema.json",
+        "https://stac-extensions.github.io/projection/v1.1.0/schema.json",
+        "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+      ],
+      "stac_version": "1.0.0"
+    },
+    {
+      "id": "HLS.S30.T49RCP.2024165T031531.v2.0",
+      "bbox": [
+        108.911397,
+        29.726049,
+        110.067231,
+        30.72965
+      ],
+      "type": "Feature",
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/hls2-s30"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/hls2-s30"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/hls2-s30/items/HLS.S30.T49RCP.2024165T031531.v2.0"
+        },
+        {
+          "rel": "preview",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=hls2-s30&item=HLS.S30.T49RCP.2024165T031531.v2.0",
+          "title": "Map of item",
+          "type": "text/html"
+        }
+      ],
+      "assets": {
+        "B01": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/13/HLS.S30.T49RCP.2024165T031531.v2.0/HLS.S30.T49RCP.2024165T031531.v2.0.B01.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B01",
+              "common_name": "coastal",
+              "center_wavelength": 0.4439,
+              "full_width_half_max": 0.027
+            }
+          ]
+        },
+        "B02": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/13/HLS.S30.T49RCP.2024165T031531.v2.0/HLS.S30.T49RCP.2024165T031531.v2.0.B02.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B02",
+              "common_name": "blue",
+              "center_wavelength": 0.4966,
+              "full_width_half_max": 0.098
+            }
+          ]
+        },
+        "B03": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/13/HLS.S30.T49RCP.2024165T031531.v2.0/HLS.S30.T49RCP.2024165T031531.v2.0.B03.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B03",
+              "common_name": "green",
+              "center_wavelength": 0.56,
+              "full_width_half_max": 0.045
+            }
+          ]
+        },
+        "B04": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/13/HLS.S30.T49RCP.2024165T031531.v2.0/HLS.S30.T49RCP.2024165T031531.v2.0.B04.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B04",
+              "common_name": "red",
+              "center_wavelength": 0.6645,
+              "full_width_half_max": 0.038
+            }
+          ]
+        },
+        "B05": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/13/HLS.S30.T49RCP.2024165T031531.v2.0/HLS.S30.T49RCP.2024165T031531.v2.0.B05.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B05",
+              "center_wavelength": 0.7039,
+              "full_width_half_max": 0.019
+            }
+          ]
+        },
+        "B06": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/13/HLS.S30.T49RCP.2024165T031531.v2.0/HLS.S30.T49RCP.2024165T031531.v2.0.B06.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B06",
+              "center_wavelength": 0.7402,
+              "full_width_half_max": 0.018
+            }
+          ]
+        },
+        "B07": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/13/HLS.S30.T49RCP.2024165T031531.v2.0/HLS.S30.T49RCP.2024165T031531.v2.0.B07.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B07",
+              "center_wavelength": 0.7825,
+              "full_width_half_max": 0.028
+            }
+          ]
+        },
+        "B08": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/13/HLS.S30.T49RCP.2024165T031531.v2.0/HLS.S30.T49RCP.2024165T031531.v2.0.B08.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B08",
+              "common_name": "nir",
+              "center_wavelength": 0.8351,
+              "full_width_half_max": 0.145
+            }
+          ]
+        },
+        "B09": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/13/HLS.S30.T49RCP.2024165T031531.v2.0/HLS.S30.T49RCP.2024165T031531.v2.0.B09.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B09",
+              "center_wavelength": 0.945,
+              "full_width_half_max": 0.026
+            }
+          ]
+        },
+        "B10": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/13/HLS.S30.T49RCP.2024165T031531.v2.0/HLS.S30.T49RCP.2024165T031531.v2.0.B10.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B10",
+              "common_name": "cirrus",
+              "center_wavelength": 1.3735,
+              "full_width_half_max": 0.075
+            }
+          ]
+        },
+        "B11": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/13/HLS.S30.T49RCP.2024165T031531.v2.0/HLS.S30.T49RCP.2024165T031531.v2.0.B11.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B11",
+              "common_name": "swir16",
+              "center_wavelength": 1.6137,
+              "full_width_half_max": 0.143
+            }
+          ]
+        },
+        "B12": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/13/HLS.S30.T49RCP.2024165T031531.v2.0/HLS.S30.T49RCP.2024165T031531.v2.0.B12.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B12",
+              "common_name": "swir22",
+              "center_wavelength": 2.22024,
+              "full_width_half_max": 0.242
+            }
+          ]
+        },
+        "B8A": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/13/HLS.S30.T49RCP.2024165T031531.v2.0/HLS.S30.T49RCP.2024165T031531.v2.0.B8A.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B8A",
+              "center_wavelength": 0.8648,
+              "full_width_half_max": 0.033
+            }
+          ]
+        },
+        "SAA": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/13/HLS.S30.T49RCP.2024165T031531.v2.0/HLS.S30.T49RCP.2024165T031531.v2.0.SAA.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "SAA"
+            }
+          ]
+        },
+        "SZA": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/13/HLS.S30.T49RCP.2024165T031531.v2.0/HLS.S30.T49RCP.2024165T031531.v2.0.SZA.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "SZA"
+            }
+          ]
+        },
+        "VAA": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/13/HLS.S30.T49RCP.2024165T031531.v2.0/HLS.S30.T49RCP.2024165T031531.v2.0.VAA.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "VAA"
+            }
+          ]
+        },
+        "VZA": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/13/HLS.S30.T49RCP.2024165T031531.v2.0/HLS.S30.T49RCP.2024165T031531.v2.0.VZA.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "VZA"
+            }
+          ]
+        },
+        "Fmask": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/13/HLS.S30.T49RCP.2024165T031531.v2.0/HLS.S30.T49RCP.2024165T031531.v2.0.Fmask.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "Fmask"
+            }
+          ]
+        },
+        "thumbnail": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/CP/2024/06/13/HLS.S30.T49RCP.2024165T031531.v2.0/HLS.S30.T49RCP.2024165T031531.v2.0.jpg",
+          "type": "image/jpeg",
+          "roles": [
+            "thumbnail"
+          ]
+        },
+        "tilejson": {
+          "title": "TileJSON with default rendering",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=hls2-s30&item=HLS.S30.T49RCP.2024165T031531.v2.0&assets=B04&assets=B03&assets=B02&color_formula=gamma%20RGB%202.7,%20saturation%201.5,%20sigmoidal%20RGB%2015%200.55&format=png",
+          "type": "application/json",
+          "roles": [
+            "tiles"
+          ]
+        },
+        "rendered_preview": {
+          "title": "Rendered preview",
+          "rel": "preview",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=hls2-s30&item=HLS.S30.T49RCP.2024165T031531.v2.0&assets=B04&assets=B03&assets=B02&color_formula=gamma%20RGB%202.7,%20saturation%201.5,%20sigmoidal%20RGB%2015%200.55&format=png",
+          "roles": [
+            "overview"
+          ],
+          "type": "image/png"
+        }
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                108.911397,
+                30.716264
+              ],
+              [
+                110.05783,
+                30.72965
+              ],
+              [
+                110.067231,
+                29.738917
+              ],
+              [
+                108.932223,
+                29.726049
+              ],
+              [
+                108.911397,
+                30.716264
+              ]
+            ]
+          ]
+        ]
+      },
+      "collection": "hls2-s30",
+      "properties": {
+        "sci:doi": "10.5067/HLS/HLSS30.002",
+        "datetime": "2024-06-13T03:29:48.498190Z",
+        "platform": "sentinel-2a",
+        "proj:epsg": 32649,
+        "proj:shape": [
+          3660,
+          3660
+        ],
+        "instruments": [
+          "msi"
+        ],
+        "end_datetime": "2024-06-13T03:29:48.498190Z",
+        "view:azimuth": 99.72691437,
+        "eo:cloud_cover": 51,
+        "proj:transform": [
+          30,
+          0,
+          300000,
+          0,
+          -30,
+          3400020,
+          0,
+          0,
+          1
+        ],
+        "start_datetime": "2024-06-13T03:29:48.498190Z",
+        "view:sun_azimuth": 109.11253246
+      },
+      "stac_extensions": [
+        "https://stac-extensions.github.io/eo/v1.1.0/schema.json",
+        "https://stac-extensions.github.io/projection/v1.1.0/schema.json",
+        "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+      ],
+      "stac_version": "1.0.0"
+    },
+    {
+      "id": "HLS.S30.T49RDP.2024165T031531.v2.0",
+      "bbox": [
+        109.955061,
+        29.73816,
+        111.101952,
+        30.73303
+      ],
+      "type": "Feature",
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/hls2-s30"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/hls2-s30"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/hls2-s30/items/HLS.S30.T49RDP.2024165T031531.v2.0"
+        },
+        {
+          "rel": "preview",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=hls2-s30&item=HLS.S30.T49RDP.2024165T031531.v2.0",
+          "title": "Map of item",
+          "type": "text/html"
+        }
+      ],
+      "assets": {
+        "B01": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/13/HLS.S30.T49RDP.2024165T031531.v2.0/HLS.S30.T49RDP.2024165T031531.v2.0.B01.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B01",
+              "common_name": "coastal",
+              "center_wavelength": 0.4439,
+              "full_width_half_max": 0.027
+            }
+          ]
+        },
+        "B02": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/13/HLS.S30.T49RDP.2024165T031531.v2.0/HLS.S30.T49RDP.2024165T031531.v2.0.B02.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B02",
+              "common_name": "blue",
+              "center_wavelength": 0.4966,
+              "full_width_half_max": 0.098
+            }
+          ]
+        },
+        "B03": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/13/HLS.S30.T49RDP.2024165T031531.v2.0/HLS.S30.T49RDP.2024165T031531.v2.0.B03.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B03",
+              "common_name": "green",
+              "center_wavelength": 0.56,
+              "full_width_half_max": 0.045
+            }
+          ]
+        },
+        "B04": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/13/HLS.S30.T49RDP.2024165T031531.v2.0/HLS.S30.T49RDP.2024165T031531.v2.0.B04.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B04",
+              "common_name": "red",
+              "center_wavelength": 0.6645,
+              "full_width_half_max": 0.038
+            }
+          ]
+        },
+        "B05": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/13/HLS.S30.T49RDP.2024165T031531.v2.0/HLS.S30.T49RDP.2024165T031531.v2.0.B05.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B05",
+              "center_wavelength": 0.7039,
+              "full_width_half_max": 0.019
+            }
+          ]
+        },
+        "B06": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/13/HLS.S30.T49RDP.2024165T031531.v2.0/HLS.S30.T49RDP.2024165T031531.v2.0.B06.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B06",
+              "center_wavelength": 0.7402,
+              "full_width_half_max": 0.018
+            }
+          ]
+        },
+        "B07": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/13/HLS.S30.T49RDP.2024165T031531.v2.0/HLS.S30.T49RDP.2024165T031531.v2.0.B07.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B07",
+              "center_wavelength": 0.7825,
+              "full_width_half_max": 0.028
+            }
+          ]
+        },
+        "B08": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/13/HLS.S30.T49RDP.2024165T031531.v2.0/HLS.S30.T49RDP.2024165T031531.v2.0.B08.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B08",
+              "common_name": "nir",
+              "center_wavelength": 0.8351,
+              "full_width_half_max": 0.145
+            }
+          ]
+        },
+        "B09": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/13/HLS.S30.T49RDP.2024165T031531.v2.0/HLS.S30.T49RDP.2024165T031531.v2.0.B09.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B09",
+              "center_wavelength": 0.945,
+              "full_width_half_max": 0.026
+            }
+          ]
+        },
+        "B10": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/13/HLS.S30.T49RDP.2024165T031531.v2.0/HLS.S30.T49RDP.2024165T031531.v2.0.B10.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B10",
+              "common_name": "cirrus",
+              "center_wavelength": 1.3735,
+              "full_width_half_max": 0.075
+            }
+          ]
+        },
+        "B11": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/13/HLS.S30.T49RDP.2024165T031531.v2.0/HLS.S30.T49RDP.2024165T031531.v2.0.B11.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B11",
+              "common_name": "swir16",
+              "center_wavelength": 1.6137,
+              "full_width_half_max": 0.143
+            }
+          ]
+        },
+        "B12": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/13/HLS.S30.T49RDP.2024165T031531.v2.0/HLS.S30.T49RDP.2024165T031531.v2.0.B12.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B12",
+              "common_name": "swir22",
+              "center_wavelength": 2.22024,
+              "full_width_half_max": 0.242
+            }
+          ]
+        },
+        "B8A": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/13/HLS.S30.T49RDP.2024165T031531.v2.0/HLS.S30.T49RDP.2024165T031531.v2.0.B8A.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B8A",
+              "center_wavelength": 0.8648,
+              "full_width_half_max": 0.033
+            }
+          ]
+        },
+        "SAA": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/13/HLS.S30.T49RDP.2024165T031531.v2.0/HLS.S30.T49RDP.2024165T031531.v2.0.SAA.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "SAA"
+            }
+          ]
+        },
+        "SZA": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/13/HLS.S30.T49RDP.2024165T031531.v2.0/HLS.S30.T49RDP.2024165T031531.v2.0.SZA.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "SZA"
+            }
+          ]
+        },
+        "VAA": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/13/HLS.S30.T49RDP.2024165T031531.v2.0/HLS.S30.T49RDP.2024165T031531.v2.0.VAA.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "VAA"
+            }
+          ]
+        },
+        "VZA": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/13/HLS.S30.T49RDP.2024165T031531.v2.0/HLS.S30.T49RDP.2024165T031531.v2.0.VZA.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "VZA"
+            }
+          ]
+        },
+        "Fmask": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/13/HLS.S30.T49RDP.2024165T031531.v2.0/HLS.S30.T49RDP.2024165T031531.v2.0.Fmask.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "Fmask"
+            }
+          ]
+        },
+        "thumbnail": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/13/HLS.S30.T49RDP.2024165T031531.v2.0/HLS.S30.T49RDP.2024165T031531.v2.0.jpg",
+          "type": "image/jpeg",
+          "roles": [
+            "thumbnail"
+          ]
+        },
+        "tilejson": {
+          "title": "TileJSON with default rendering",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=hls2-s30&item=HLS.S30.T49RDP.2024165T031531.v2.0&assets=B04&assets=B03&assets=B02&color_formula=gamma%20RGB%202.7,%20saturation%201.5,%20sigmoidal%20RGB%2015%200.55&format=png",
+          "type": "application/json",
+          "roles": [
+            "tiles"
+          ]
+        },
+        "rendered_preview": {
+          "title": "Rendered preview",
+          "rel": "preview",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=hls2-s30&item=HLS.S30.T49RDP.2024165T031531.v2.0&assets=B04&assets=B03&assets=B02&color_formula=gamma%20RGB%202.7,%20saturation%201.5,%20sigmoidal%20RGB%2015%200.55&format=png",
+          "roles": [
+            "overview"
+          ],
+          "type": "image/png"
+        }
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                109.955061,
+                30.728864
+              ],
+              [
+                111.101952,
+                30.73303
+              ],
+              [
+                111.100935,
+                29.742165
+              ],
+              [
+                109.965488,
+                29.73816
+              ],
+              [
+                109.955061,
+                30.728864
+              ]
+            ]
+          ]
+        ]
+      },
+      "collection": "hls2-s30",
+      "properties": {
+        "sci:doi": "10.5067/HLS/HLSS30.002",
+        "datetime": "2024-06-13T03:29:45.000320Z",
+        "platform": "sentinel-2a",
+        "proj:epsg": 32649,
+        "proj:shape": [
+          3660,
+          3660
+        ],
+        "instruments": [
+          "msi"
+        ],
+        "end_datetime": "2024-06-13T03:29:45.000320Z",
+        "view:azimuth": 244.84141986,
+        "eo:cloud_cover": 35,
+        "proj:transform": [
+          30,
+          0,
+          399960,
+          0,
+          -30,
+          3400020,
+          0,
+          0,
+          1
+        ],
+        "start_datetime": "2024-06-13T03:29:45.000320Z",
+        "view:sun_azimuth": 110.63033415
+      },
+      "stac_extensions": [
+        "https://stac-extensions.github.io/eo/v1.1.0/schema.json",
+        "https://stac-extensions.github.io/projection/v1.1.0/schema.json",
+        "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+      ],
+      "stac_version": "1.0.0"
+    },
+    {
+      "id": "HLS.S30.T49RDP.2024155T031541.v2.0",
+      "bbox": [
+        109.955061,
+        29.73816,
+        111.101952,
+        30.73303
+      ],
+      "type": "Feature",
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/hls2-s30"
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/hls2-s30"
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/"
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://planetarycomputer.microsoft.com/api/stac/v1/collections/hls2-s30/items/HLS.S30.T49RDP.2024155T031541.v2.0"
+        },
+        {
+          "rel": "preview",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/map?collection=hls2-s30&item=HLS.S30.T49RDP.2024155T031541.v2.0",
+          "title": "Map of item",
+          "type": "text/html"
+        }
+      ],
+      "assets": {
+        "B01": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/03/HLS.S30.T49RDP.2024155T031541.v2.0/HLS.S30.T49RDP.2024155T031541.v2.0.B01.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B01",
+              "common_name": "coastal",
+              "center_wavelength": 0.4439,
+              "full_width_half_max": 0.027
+            }
+          ]
+        },
+        "B02": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/03/HLS.S30.T49RDP.2024155T031541.v2.0/HLS.S30.T49RDP.2024155T031541.v2.0.B02.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B02",
+              "common_name": "blue",
+              "center_wavelength": 0.4966,
+              "full_width_half_max": 0.098
+            }
+          ]
+        },
+        "B03": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/03/HLS.S30.T49RDP.2024155T031541.v2.0/HLS.S30.T49RDP.2024155T031541.v2.0.B03.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B03",
+              "common_name": "green",
+              "center_wavelength": 0.56,
+              "full_width_half_max": 0.045
+            }
+          ]
+        },
+        "B04": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/03/HLS.S30.T49RDP.2024155T031541.v2.0/HLS.S30.T49RDP.2024155T031541.v2.0.B04.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B04",
+              "common_name": "red",
+              "center_wavelength": 0.6645,
+              "full_width_half_max": 0.038
+            }
+          ]
+        },
+        "B05": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/03/HLS.S30.T49RDP.2024155T031541.v2.0/HLS.S30.T49RDP.2024155T031541.v2.0.B05.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B05",
+              "center_wavelength": 0.7039,
+              "full_width_half_max": 0.019
+            }
+          ]
+        },
+        "B06": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/03/HLS.S30.T49RDP.2024155T031541.v2.0/HLS.S30.T49RDP.2024155T031541.v2.0.B06.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B06",
+              "center_wavelength": 0.7402,
+              "full_width_half_max": 0.018
+            }
+          ]
+        },
+        "B07": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/03/HLS.S30.T49RDP.2024155T031541.v2.0/HLS.S30.T49RDP.2024155T031541.v2.0.B07.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B07",
+              "center_wavelength": 0.7825,
+              "full_width_half_max": 0.028
+            }
+          ]
+        },
+        "B08": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/03/HLS.S30.T49RDP.2024155T031541.v2.0/HLS.S30.T49RDP.2024155T031541.v2.0.B08.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B08",
+              "common_name": "nir",
+              "center_wavelength": 0.8351,
+              "full_width_half_max": 0.145
+            }
+          ]
+        },
+        "B09": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/03/HLS.S30.T49RDP.2024155T031541.v2.0/HLS.S30.T49RDP.2024155T031541.v2.0.B09.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B09",
+              "center_wavelength": 0.945,
+              "full_width_half_max": 0.026
+            }
+          ]
+        },
+        "B10": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/03/HLS.S30.T49RDP.2024155T031541.v2.0/HLS.S30.T49RDP.2024155T031541.v2.0.B10.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B10",
+              "common_name": "cirrus",
+              "center_wavelength": 1.3735,
+              "full_width_half_max": 0.075
+            }
+          ]
+        },
+        "B11": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/03/HLS.S30.T49RDP.2024155T031541.v2.0/HLS.S30.T49RDP.2024155T031541.v2.0.B11.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B11",
+              "common_name": "swir16",
+              "center_wavelength": 1.6137,
+              "full_width_half_max": 0.143
+            }
+          ]
+        },
+        "B12": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/03/HLS.S30.T49RDP.2024155T031541.v2.0/HLS.S30.T49RDP.2024155T031541.v2.0.B12.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B12",
+              "common_name": "swir22",
+              "center_wavelength": 2.22024,
+              "full_width_half_max": 0.242
+            }
+          ]
+        },
+        "B8A": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/03/HLS.S30.T49RDP.2024155T031541.v2.0/HLS.S30.T49RDP.2024155T031541.v2.0.B8A.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "B8A",
+              "center_wavelength": 0.8648,
+              "full_width_half_max": 0.033
+            }
+          ]
+        },
+        "SAA": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/03/HLS.S30.T49RDP.2024155T031541.v2.0/HLS.S30.T49RDP.2024155T031541.v2.0.SAA.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "SAA"
+            }
+          ]
+        },
+        "SZA": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/03/HLS.S30.T49RDP.2024155T031541.v2.0/HLS.S30.T49RDP.2024155T031541.v2.0.SZA.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "SZA"
+            }
+          ]
+        },
+        "VAA": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/03/HLS.S30.T49RDP.2024155T031541.v2.0/HLS.S30.T49RDP.2024155T031541.v2.0.VAA.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "VAA"
+            }
+          ]
+        },
+        "VZA": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/03/HLS.S30.T49RDP.2024155T031541.v2.0/HLS.S30.T49RDP.2024155T031541.v2.0.VZA.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "VZA"
+            }
+          ]
+        },
+        "Fmask": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/03/HLS.S30.T49RDP.2024155T031541.v2.0/HLS.S30.T49RDP.2024155T031541.v2.0.Fmask.tif",
+          "type": "image/tiff; application=geotiff; profile=cloud-optimized",
+          "roles": [
+            "data"
+          ],
+          "eo:bands": [
+            {
+              "name": "Fmask"
+            }
+          ]
+        },
+        "thumbnail": {
+          "href": "https://hls2euwest.blob.core.windows.net/hls2/S30/49/R/DP/2024/06/03/HLS.S30.T49RDP.2024155T031541.v2.0/HLS.S30.T49RDP.2024155T031541.v2.0.jpg",
+          "type": "image/jpeg",
+          "roles": [
+            "thumbnail"
+          ]
+        },
+        "tilejson": {
+          "title": "TileJSON with default rendering",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/tilejson.json?collection=hls2-s30&item=HLS.S30.T49RDP.2024155T031541.v2.0&assets=B04&assets=B03&assets=B02&color_formula=gamma%20RGB%202.7,%20saturation%201.5,%20sigmoidal%20RGB%2015%200.55&format=png",
+          "type": "application/json",
+          "roles": [
+            "tiles"
+          ]
+        },
+        "rendered_preview": {
+          "title": "Rendered preview",
+          "rel": "preview",
+          "href": "https://planetarycomputer.microsoft.com/api/data/v1/item/preview.png?collection=hls2-s30&item=HLS.S30.T49RDP.2024155T031541.v2.0&assets=B04&assets=B03&assets=B02&color_formula=gamma%20RGB%202.7,%20saturation%201.5,%20sigmoidal%20RGB%2015%200.55&format=png",
+          "roles": [
+            "overview"
+          ],
+          "type": "image/png"
+        }
+      },
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                109.955061,
+                30.728864
+              ],
+              [
+                111.101952,
+                30.73303
+              ],
+              [
+                111.100935,
+                29.742165
+              ],
+              [
+                109.965488,
+                29.73816
+              ],
+              [
+                109.955061,
+                30.728864
+              ]
+            ]
+          ]
+        ]
+      },
+      "collection": "hls2-s30",
+      "properties": {
+        "sci:doi": "10.5067/HLS/HLSS30.002",
+        "datetime": "2024-06-03T03:29:43.240600Z",
+        "platform": "sentinel-2a",
+        "proj:epsg": 32649,
+        "proj:shape": [
+          3660,
+          3660
+        ],
+        "instruments": [
+          "msi"
+        ],
+        "end_datetime": "2024-06-03T03:29:43.240600Z",
+        "view:azimuth": 243.59462022,
+        "eo:cloud_cover": 77,
+        "proj:transform": [
+          30,
+          0,
+          399960,
+          0,
+          -30,
+          3400020,
+          0,
+          0,
+          1
+        ],
+        "start_datetime": "2024-06-03T03:29:43.240600Z",
+        "view:sun_azimuth": 113.99757143
+      },
+      "stac_extensions": [
+        "https://stac-extensions.github.io/eo/v1.1.0/schema.json",
+        "https://stac-extensions.github.io/projection/v1.1.0/schema.json",
+        "https://stac-extensions.github.io/view/v1.0.0/schema.json",
+        "https://stac-extensions.github.io/scientific/v1.0.0/schema.json"
+      ],
+      "stac_version": "1.0.0"
+    }
+  ],
+  "numberReturned": 5
+}

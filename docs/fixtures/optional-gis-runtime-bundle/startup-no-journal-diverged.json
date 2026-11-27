@@ -1,0 +1,21 @@
+{
+  "fixture_kind": "no-journal-startup-scenario",
+  "journal_state": "absent",
+  "primary": {"state": "valid", "file": "replay-ledger-valid.json"},
+  "backup": {"state": "valid", "file": "replay-ledger-divergent-valid.json"},
+  "active_registry": {"state": "valid", "file": "active-after.json"},
+  "rollback_receipt_file": null,
+  "expected": {
+    "outcome": "blocked",
+    "recovery_record_file": "startup-recovery-record-blocked-divergence.json",
+    "error_code": "GIS_REPLAY_LEDGER_DIVERGED",
+    "authoritative_ledger_file": null,
+    "repaired_path": null,
+    "quarantine_paths": [
+      "state/quarantine/startup-diverged/replay-ledger.json",
+      "state/quarantine/startup-diverged/replay-ledger.json.bak"
+    ],
+    "new_lease_allowed": false,
+    "replay_floor_rebuilt": false
+  }
+}

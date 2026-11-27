@@ -1,0 +1,10 @@
+contracts/v3/*.json text eol=lf
+scripts/generate_v3_contracts.mjs text eol=lf
+tests/codegen/*.mjs text eol=lf
+tests/fixtures/v3_contracts/*.json text eol=lf
+tests/fixtures/asf/nisar/provisional-rslc/*.json text eol=lf
+docs/fixtures/asf-nisar-subset-p0/*.json text eol=lf
+ui/src/lib/generated/*.ts text eol=lf
+crates/insar-core/src/generated/*.rs text eol=lf
+crates/insar-agent/src/generated_catalog.rs text eol=lf
+*.sh text eol=lf

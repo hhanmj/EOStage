@@ -1,0 +1,9 @@
+{
+  "previous_active": {"base_set_version": "0.9.0", "extensions": []},
+  "candidate": {"base_set_version": "1.0.0", "extensions": ["elevation-grids"]},
+  "candidate_failure": "GIS_RUNTIME_SELFTEST_FAILED",
+  "active": {"base_set_version": "0.9.0", "extensions": []},
+  "staging_removed": true,
+  "previous_retained": true,
+  "expected": "failed base plus extension candidate cannot replace active registry"
+}

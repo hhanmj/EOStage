@@ -1,0 +1,8 @@
+{
+  "code": "V3_FIXTURE_ERROR",
+  "user_message": "固定测试错误",
+  "debug_context": {
+    "provider_id": "fixture.provider",
+    "request_id": "fixture-request-001"
+  }
+}

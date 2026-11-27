@@ -1,0 +1,11 @@
+{
+  "contract": "GISRuntimeReplayLedger",
+  "ledger_version": 1,
+  "platform": "windows",
+  "architecture": "x86_64",
+  "channel": "beta",
+  "generation": 3,
+  "streams": [],
+  "updated_at": "2026-07-22T00:00:00Z",
+  "ledger_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+}

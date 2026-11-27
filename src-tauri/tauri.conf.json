@@ -1,0 +1,112 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "EOStage",
+  "version": "2.2.0-beta.0",
+  "identifier": "org.eostage.desktop",
+  "build": {
+    "frontendDist": "../ui/dist-tauri",
+    "beforeBuildCommand": "npm --prefix ../ui run build:tauri"
+  },
+  "app": {
+    "withGlobalTauri": false,
+    "security": {
+      "assetProtocol": {
+        "enable": false,
+        "scope": []
+      },
+      "capabilities": ["production"],
+      "csp": {
+        "default-src": ["'self'"],
+        "script-src": ["'self'"],
+        "style-src": ["'self'", "'unsafe-inline'"],
+        "img-src": [
+          "'self'",
+          "data:",
+          "blob:",
+          "https://nisar.asf.earthdatacloud.nasa.gov",
+          "https://earthengine.googleapis.com",
+          "https://planetarycomputer.microsoft.com",
+          "https://datapool.asf.alaska.edu",
+          "https://cumulus.asf.earthdatacloud.nasa.gov",
+          "https://data.lpdaac.earthdatacloud.nasa.gov",
+          "https://sentinel-cogs.s3.us-west-2.amazonaws.com",
+          "https://bhoonidhi.nrsc.gov.in",
+          "https://tile.openstreetmap.org",
+          "https://a.basemaps.cartocdn.com",
+          "https://b.basemaps.cartocdn.com",
+          "https://c.basemaps.cartocdn.com",
+          "https://d.basemaps.cartocdn.com",
+          "https://server.arcgisonline.com",
+          "https://wayback-a.maptiles.arcgis.com",
+          "https://a.tile.opentopomap.org",
+          "https://b.tile.opentopomap.org",
+          "https://c.tile.opentopomap.org",
+          "https://mt0.google.com",
+          "https://mt1.google.com",
+          "https://mt2.google.com",
+          "https://mt3.google.com",
+          "https://webrd01.is.autonavi.com",
+          "https://webrd02.is.autonavi.com",
+          "https://webrd03.is.autonavi.com",
+          "https://webrd04.is.autonavi.com",
+          "https://webst01.is.autonavi.com",
+          "https://webst02.is.autonavi.com",
+          "https://webst03.is.autonavi.com",
+          "https://webst04.is.autonavi.com",
+          "https://t0.tianditu.gov.cn",
+          "https://t1.tianditu.gov.cn",
+          "https://t2.tianditu.gov.cn",
+          "https://t3.tianditu.gov.cn",
+          "https://t4.tianditu.gov.cn",
+          "https://t5.tianditu.gov.cn",
+          "https://t6.tianditu.gov.cn",
+          "https://t7.tianditu.gov.cn"
+        ],
+        "font-src": ["'self'", "data:"],
+        "connect-src": ["'self'", "ipc:", "http://ipc.localhost"],
+        "object-src": ["'none'"],
+        "frame-src": ["'none'"],
+        "child-src": ["'none'"],
+        "form-action": ["'none'"],
+        "base-uri": ["'self'"],
+        "frame-ancestors": ["'none'"]
+      },
+      "dangerousDisableAssetCspModification": false,
+      "freezePrototype": true,
+      "pattern": {
+        "use": "brownfield"
+      }
+    },
+    "windows": [
+      {
+        "label": "main",
+        "title": "EOStage",
+        "width": 1320,
+        "height": 880,
+        "minWidth": 920,
+        "minHeight": 620,
+        "resizable": true,
+        "maximizable": true,
+        "minimizable": true,
+        "closable": true,
+        "decorations": false,
+        "transparent": false,
+        "fullscreen": false,
+        "maximized": true,
+        "visible": true,
+        "focus": true
+      }
+    ]
+  },
+  "bundle": {
+    "active": false,
+    "icon": [
+      "icons/icon.png",
+      "icons/128x128@2x.png",
+      "icons/128x128.png",
+      "icons/32x32.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+  }
+}

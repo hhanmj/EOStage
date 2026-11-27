@@ -1,0 +1,92 @@
+{
+  "cases": [
+    {
+      "name": "alos_same_scene_distinct_items_and_levels",
+      "dataset": "ALOS PALSAR",
+      "features": [
+        {"type": "Feature", "properties": {"sceneName": "ALOS-DISPLAY-001", "groupID": "ALOS-DISPLAY-001", "processingLevel": "L1.1", "fileID": "ALOS-DISPLAY-001-L1.1", "fileName": "ALOS-DISPLAY-001-L1.1.zip", "url": "https://example.invalid/ALOS-DISPLAY-001-L1.1.zip"}},
+        {"type": "Feature", "properties": {"sceneName": "ALOS-DISPLAY-001", "groupID": "ALOS-DISPLAY-001", "processingLevel": "L1.5", "fileID": "ALOS-DISPLAY-001-L1.5", "fileName": "ALOS-DISPLAY-001-L1.5.zip", "url": "https://example.invalid/ALOS-DISPLAY-001-L1.5.zip"}}
+      ],
+      "expected": {"provider_product_ids": ["ALOS-DISPLAY-001-L1.1", "ALOS-DISPLAY-001-L1.5"], "product_count": 2, "asset_count": 2, "replayed_record_count": 0, "mapping_error_count": 0, "identity_conflict_count": 0}
+    },
+    {
+      "name": "alos_one_item_multiple_assets",
+      "dataset": "ALOS PALSAR",
+      "features": [
+        {"type": "Feature", "properties": {"sceneName": "ALOS-MULTI", "productID": "ALOS-ITEM-MULTI", "processingLevel": "L1.1", "fileID": "ALOS-MULTI-DATA", "fileName": "ALOS-MULTI-DATA.img", "assetRole": "primary", "url": "https://example.invalid/ALOS-MULTI-DATA.img"}},
+        {"type": "Feature", "properties": {"sceneName": "ALOS-MULTI", "productID": "ALOS-ITEM-MULTI", "processingLevel": "L1.1", "fileID": "ALOS-MULTI-METADATA", "fileName": "ALOS-MULTI-METADATA.xml", "assetRole": "metadata", "url": "https://example.invalid/ALOS-MULTI-METADATA.xml"}}
+      ],
+      "expected": {"provider_product_ids": ["ALOS-ITEM-MULTI"], "product_count": 1, "asset_count": 2, "replayed_record_count": 0, "mapping_error_count": 0, "identity_conflict_count": 0}
+    },
+    {
+      "name": "radarsat_display_alias_collision",
+      "dataset": "RADARSAT-1",
+      "features": [
+        {"type": "Feature", "properties": {"sceneName": "RSAT-DISPLAY-001", "productID": "RSAT-ITEM-A", "processingLevel": "L1", "fileID": "RSAT-FILE-A"}},
+        {"type": "Feature", "properties": {"sceneName": "RSAT-DISPLAY-001", "productID": "RSAT-ITEM-B", "processingLevel": "L1", "fileID": "RSAT-FILE-B"}}
+      ],
+      "expected": {"provider_product_ids": ["RSAT-ITEM-A", "RSAT-ITEM-B"], "product_count": 2, "asset_count": 2, "replayed_record_count": 0, "mapping_error_count": 0, "identity_conflict_count": 0}
+    },
+    {
+      "name": "sentinel_page_replay",
+      "dataset": "SENTINEL-1",
+      "features": [
+        {"type": "Feature", "properties": {"sceneName": "S1A-IW-DISPLAY", "fileID": "S1A-IW-ITEM-SLC", "processingLevel": "SLC", "fileName": "S1A-IW-ITEM-SLC.zip"}},
+        {"type": "Feature", "properties": {"sceneName": "S1A-IW-DISPLAY", "fileID": "S1A-IW-ITEM-SLC", "processingLevel": "SLC", "fileName": "S1A-IW-ITEM-SLC.zip"}}
+      ],
+      "expected": {"provider_product_ids": ["S1A-IW-ITEM-SLC"], "product_count": 1, "asset_count": 1, "replayed_record_count": 1, "mapping_error_count": 0, "identity_conflict_count": 0}
+    },
+    {
+      "name": "sentinel_same_scene_slc_and_grd",
+      "dataset": "SENTINEL-1",
+      "features": [
+        {"type": "Feature", "properties": {"sceneName": "S1-SCIENTIFIC-DISPLAY", "fileID": "S1-PROVIDER-SLC", "processingLevel": "SLC", "fileName": "S1-PROVIDER-SLC.zip"}},
+        {"type": "Feature", "properties": {"sceneName": "S1-SCIENTIFIC-DISPLAY", "fileID": "S1-PROVIDER-GRD", "processingLevel": "GRD_HD", "fileName": "S1-PROVIDER-GRD.zip"}}
+      ],
+      "expected": {"provider_product_ids": ["S1-PROVIDER-GRD", "S1-PROVIDER-SLC"], "product_count": 2, "asset_count": 2, "replayed_record_count": 0, "mapping_error_count": 0, "identity_conflict_count": 0}
+    },
+    {
+      "name": "burst_tiff_and_xml_assets",
+      "dataset": "SLC-BURST",
+      "features": [
+        {"type": "Feature", "properties": {"sceneName": "BURST-DISPLAY-001", "productID": "BURST-ITEM-001", "processingLevel": "BURST", "fileID": "BURST-001-TIFF", "fileName": "BURST-001.tiff", "assetRole": "primary"}},
+        {"type": "Feature", "properties": {"sceneName": "BURST-DISPLAY-001", "productID": "BURST-ITEM-001", "processingLevel": "BURST", "fileID": "BURST-001-XML", "fileName": "BURST-001.xml", "assetRole": "metadata"}}
+      ],
+      "expected": {"provider_product_ids": ["BURST-ITEM-001"], "product_count": 1, "asset_count": 2, "replayed_record_count": 0, "mapping_error_count": 0, "identity_conflict_count": 0}
+    },
+    {
+      "name": "same_role_multiple_metadata_assets",
+      "dataset": "ALOS PALSAR",
+      "features": [
+        {"type": "Feature", "properties": {"sceneName": "ALOS-AUX", "productID": "ALOS-ITEM-AUX", "processingLevel": "L1.1", "fileID": "ALOS-META-A", "fileName": "ALOS-META-A.xml", "assetRole": "metadata"}},
+        {"type": "Feature", "properties": {"sceneName": "ALOS-AUX", "productID": "ALOS-ITEM-AUX", "processingLevel": "L1.1", "fileID": "ALOS-META-B", "fileName": "ALOS-META-B.xml", "assetRole": "metadata"}}
+      ],
+      "expected": {"provider_product_ids": ["ALOS-ITEM-AUX"], "product_count": 1, "asset_count": 2, "replayed_record_count": 0, "mapping_error_count": 0, "identity_conflict_count": 0}
+    },
+    {
+      "name": "identity_conflict_is_not_published",
+      "dataset": "ALOS PALSAR",
+      "features": [
+        {"type": "Feature", "properties": {"sceneName": "ALOS-CONFLICT", "productID": "ALOS-ITEM-CONFLICT", "processingLevel": "L1.1", "fileID": "ALOS-CONFLICT-A"}},
+        {"type": "Feature", "properties": {"sceneName": "ALOS-CONFLICT", "productID": "ALOS-ITEM-CONFLICT", "processingLevel": "L1.5", "fileID": "ALOS-CONFLICT-B"}}
+      ],
+      "expected": {"provider_product_ids": [], "product_count": 0, "asset_count": 0, "replayed_record_count": 0, "mapping_error_count": 1, "identity_conflict_count": 1}
+    },
+    {
+      "name": "missing_profile_approved_item_identity_fails_closed",
+      "dataset": "ALOS PALSAR",
+      "features": [
+        {"type": "Feature", "properties": {"sceneName": "ALOS-DISPLAY-ONLY", "granuleName": "ALOS-DISPLAY-ONLY", "groupID": "ALOS-DISPLAY-ONLY", "processingLevel": "L1.1", "fileName": "ALOS-DISPLAY-ONLY.img"}}
+      ],
+      "expected": {"provider_product_ids": [], "product_count": 0, "asset_count": 0, "replayed_record_count": 0, "mapping_error_count": 1, "identity_conflict_count": 0}
+    },
+    {
+      "name": "unknown_collection_fails_closed",
+      "dataset": "FUTURE-SAR",
+      "features": [
+        {"type": "Feature", "properties": {"sceneName": "FUTURE-DISPLAY", "productID": "FUTURE-ITEM-001", "processingLevel": "NATIVE-X"}}
+      ],
+      "expected": {"provider_product_ids": [], "product_count": 0, "asset_count": 0, "replayed_record_count": 0, "mapping_error_count": 1, "identity_conflict_count": 0}
+    }
+  ]
+}

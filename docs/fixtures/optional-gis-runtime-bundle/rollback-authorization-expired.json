@@ -1,0 +1,11 @@
+{
+  "fixture_kind": "rollback-authorization-rejection-scenario",
+  "authorization_file": "rollback-authorization-valid.json",
+  "request_file": "rollback-request-valid.json",
+  "evaluation_time": "2026-07-29T00:30:00Z",
+  "target_active_file": "active-rollback-target.json",
+  "expected_error": "GIS_ROLLBACK_AUTHORIZATION_EXPIRED",
+  "active_after_file": "active-after.json",
+  "replay_floor_after_file": "replay-ledger-valid.json",
+  "receipt_created": false
+}

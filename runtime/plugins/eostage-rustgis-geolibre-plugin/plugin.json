@@ -1,0 +1,33 @@
+{
+  "id": "eostage-rustgis-geolibre-plugin",
+  "name": "EOStage RustGIS & GeoLibre / QGIS 外部工具链桥接插件",
+  "version": "1.0.0",
+  "author": "EOStage",
+  "license": "GPL-3.0-or-later",
+  "discipline": "gis-bridge",
+  "description": "检测并桥接本机已安装的 RustGIS (mcp --yes / CLI)、GeoLibre、QGIS (qgis_process / .qgs 工程交付) 与 ArcGIS Pro (Windows arcpy)，与 EOStage 内置 GDAL/PROJ 科学引擎互补协同。",
+  "tags": [
+    "RustGIS",
+    "GeoLibre",
+    "QGIS",
+    "ArcGIS Pro",
+    "MCP",
+    "GIS Bridge"
+  ],
+  "enabled": true,
+  "bundledSkills": [
+    {
+      "id": "plugin-skill-external-gis-bridge",
+      "name": "外部 GIS 协同处理与工程交付规程",
+      "description": "优先调用 EOStage 内置 GDAL/PROJ 保精度算子与公制矢量缓冲，按需通过 RustGIS/GeoLibre/QGIS/ArcGIS Pro 无头执行或一键生成 .qgs + eostage_catalog.geojson 交付工程。",
+      "path": "skills/plugin-skill-external-gis-bridge/SKILL.md"
+    }
+  ],
+  "bundledConnector": {
+    "id": "plugin-mcp-rustgis",
+    "name": "RustGIS MCP (stdio)",
+    "transport": "stdio",
+    "endpoint": "rustgis-cli mcp --yes",
+    "description": "通过 stdio MCP 协议连接本机或运行组件中的 RustGIS 空间处理服务"
+  }
+}

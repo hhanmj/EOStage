@@ -1,0 +1,144 @@
+{
+  "fixture_contract": "NisarSubsetP05EntryDecisionV1",
+  "decision": "NO_GO",
+  "research_feasibility": "GO",
+  "p1_entry_authorized": false,
+  "production_enablement": false,
+  "scope": {
+    "collection": "C2853145197-ASF",
+    "product_type": "RSLC",
+    "production_configuration": "PR",
+    "product_specification_versions": [
+      "1.5.0"
+    ],
+    "mechanism": "RemoteHdf5SpatialWindow",
+    "artifact_authority": "client_derived"
+  },
+  "validation_boundary": {
+    "implementation": "research_prototype",
+    "single_scene_validation": "passed",
+    "interferometric_validation": "not_started",
+    "production_verification": "not_verified"
+  },
+  "entry_conditions": [
+    {
+      "id": "windows_x64_reproducible",
+      "state": "satisfied",
+      "evidence_scope": "windows_local_lab_and_complete_product_dependency_probe",
+      "entry_blocking": false,
+      "required_before": "P1_entry",
+      "evidence_refs": [
+        "2026-07-29-nisar-remote-subset-p0-2.md",
+        "2026-07-29-nisar-remote-subset-p0-3.md",
+        "2026-07-29-nisar-remote-subset-p0-4.md"
+      ]
+    },
+    {
+      "id": "dependency_licence_and_api_ownership",
+      "state": "partially_satisfied",
+      "evidence_scope": "dependencies_reviewed_but_raw_write_unsafe_api_owner_not_approved",
+      "entry_blocking": true,
+      "required_before": "P1_entry",
+      "evidence_refs": [
+        "2026-07-28-nisar-hdf5-dependency-review.md"
+      ]
+    },
+    {
+      "id": "credential_and_endpoint_isolation",
+      "state": "partially_satisfied",
+      "evidence_scope": "existing_complete_product_resolver_and_loopback_only",
+      "entry_blocking": true,
+      "required_before": "P1_entry",
+      "evidence_refs": [
+        "2026-07-29-nisar-remote-subset-p0-3.md"
+      ]
+    },
+    {
+      "id": "stable_remote_validator",
+      "state": "partially_satisfied",
+      "evidence_scope": "strong_etag_loopback_only_no_asf_endpoint_claim",
+      "entry_blocking": true,
+      "required_before": "P1_entry",
+      "evidence_refs": [
+        "2026-07-29-nisar-remote-subset-p0-3.md",
+        "official-single-scene-result.json"
+      ]
+    },
+    {
+      "id": "material_transfer_reduction",
+      "state": "satisfied",
+      "evidence_scope": "one_official_scene_loopback",
+      "entry_blocking": false,
+      "required_before": "P1_entry",
+      "evidence_refs": [
+        "official-single-scene-result.json"
+      ]
+    },
+    {
+      "id": "product_output_and_science_semantics",
+      "state": "partially_satisfied",
+      "evidence_scope": "single_scene_spec_1_5_0_with_existing_validator_1_2_1_only",
+      "entry_blocking": true,
+      "required_before": "P1_entry",
+      "evidence_refs": [
+        "official-single-scene-result.json",
+        "2026-07-28-nisar-rslc-range-doppler-window-design.md"
+      ]
+    },
+    {
+      "id": "cancel_restart_no_false_complete",
+      "state": "satisfied",
+      "evidence_scope": "strict_local_range_primitive",
+      "entry_blocking": false,
+      "required_before": "P1_entry",
+      "evidence_refs": [
+        "2026-07-29-nisar-remote-subset-p0-3.md"
+      ]
+    },
+    {
+      "id": "complete_product_path_preserved",
+      "state": "satisfied",
+      "evidence_scope": "lab_has_no_production_dependents_or_routes",
+      "entry_blocking": false,
+      "required_before": "P1_entry",
+      "evidence_refs": [
+        "2026-07-29-nisar-remote-subset-p0-4.md"
+      ]
+    },
+    {
+      "id": "independent_review_approval",
+      "state": "unsatisfied",
+      "evidence_scope": "review_completed_but_entry_not_approved",
+      "entry_blocking": true,
+      "required_before": "P1_entry",
+      "evidence_refs": [
+        "2026-07-29-nisar-remote-subset-p0-5.md"
+      ]
+    }
+  ],
+  "root_entry_blockers": [
+    "raw_hdf5_write_unsafe_api_ownership_not_approved",
+    "range_adapter_credential_endpoint_isolation_not_verified",
+    "asf_endpoint_strong_validator_behavior_not_verified",
+    "product_specification_1_5_0_validator_policy_not_frozen"
+  ],
+  "future_acceptance_conditions": [
+    "versioned_bounded_client_derived_manifest",
+    "real_disjoint_component_and_mask_output",
+    "derived_hdf5_writer_and_complete_validation",
+    "controlled_live_asf_range_acceptance",
+    "dual_scene_interferometric_validation"
+  ],
+  "research_evidence": {
+    "donor_commit": "871e4322ba4ec39d0afb7aa8397f81d663acb392",
+    "fixture_sha256": "40d7d2c6ddc96730805666fdea76f465cd87dfff1afba7813df8b9b8e5eeaf14",
+    "actual_received_bytes": 198995157,
+    "full_product_bytes": 14252244992,
+    "transfer_full_ratio": 0.013962372742799396
+  },
+  "current_authorized_tree_review": {
+    "p0": 0,
+    "p1": 0
+  },
+  "complete_product_path_preserved": true
+}

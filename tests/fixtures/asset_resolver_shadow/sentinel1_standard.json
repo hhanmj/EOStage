@@ -1,0 +1,10 @@
+{
+  "asset_class": "sentinel1_standard",
+  "frozen": {
+    "reference": {"provider_id":"asf.catalog","collection_id":"SENTINEL-1","provider_product_id":"S1A_FIXTURE","provider_product_key":"PROVIDER::asf.catalog::COLLECTION::SENTINEL-1::ITEM::S1A_FIXTURE","canonical_product_key":null,"asset_key":"S1A_FIXTURE.zip","stable_asset_key":"PROVIDER::asf.catalog::COLLECTION::SENTINEL-1::ITEM::S1A_FIXTURE::ASSET::S1A_FIXTURE.zip"},
+    "descriptor": {"resolver_id":"earthdata_https","scheme":"earthdata_https","stable_href":"https://datapool.asf.alaska.edu/SLC/SA/S1A_FIXTURE.zip","requires_credentials":true,"credential_profile":"earthdata-default","resolver_parameters":{}},
+    "role":"primary","file_name":"S1A_FIXTURE.zip","expected_size_bytes":4096,"checksum_algorithm":"sha256","checksum_value":"fixture-sha256"
+  },
+  "legacy": {"provider_id":"asf.catalog","url":"https://datapool.asf.alaska.edu/SLC/SA/S1A_FIXTURE.zip","file_name":"S1A_FIXTURE.zip","auth_kind":"earthdata_basic","expected_size":4096,"checksum_algorithm":"sha256","checksum_value":"fixture-sha256","destination":"fixture-output/SLC/S1A_FIXTURE.zip","destination_layout":"sentinel1_slc","asset_role":"primary"},
+  "policy": {"output_root":"fixture-output","layout":"sentinel1_slc","dataset":"SENTINEL-1","processing_level":"SLC"}
+}

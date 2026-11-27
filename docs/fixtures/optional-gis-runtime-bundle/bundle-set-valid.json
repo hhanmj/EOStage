@@ -1,0 +1,82 @@
+{
+  "activation": {
+    "active_pointer": "active.json",
+    "mode": "atomic",
+    "requires_all_members": true
+  },
+  "architecture": "x86_64",
+  "base_compatibility": null,
+  "bundle_set_id": "gis-runtime-base",
+  "channel": "beta",
+  "compatibility": {
+    "gdal_component_id": "gis-gdal-runtime-win-x64",
+    "proj_component_id": "gis-proj-data-win-x64",
+    "required_roles": [
+      "worker",
+      "gdal",
+      "proj",
+      "notices"
+    ],
+    "worker_component_id": "gis-dem-worker-win-x64",
+    "worker_protocol": {
+      "major": 1,
+      "minor": 0
+    }
+  },
+  "contract": "BundleSetManifest",
+  "expires_at": "2027-07-22T00:00:00Z",
+  "issued_at": "2026-07-22T00:00:00Z",
+  "manifest_version": 1,
+  "members": [
+    {
+      "version": "1.4.2",
+      "archive_sha256": "edd46acd5da08710344ca1480b873626615d227624e1848ae46cc3135c40f4f0",
+      "component_manifest_sha256": "f26c8da938e6c0901eac6f6610f43dab97a44cb492ef8a70f6e096ad2971e96a",
+      "component_id": "gis-dem-worker-win-x64"
+    },
+    {
+      "version": "3.10.1",
+      "archive_sha256": "3bc8db5c63e83fedaf054f6b45a59baf73e976894dd710491079b79866d95c08",
+      "component_manifest_sha256": "7752457ec33b385c3c75b72c53f1c748a6784fc4aa1ba099d4bba0bacc95ea05",
+      "component_id": "gis-gdal-runtime-win-x64"
+    },
+    {
+      "version": "2026.07",
+      "archive_sha256": "719ed8a5fce6ea280260319f29f59cf67c0ba13e8136eb6da193acc8084d7126",
+      "component_manifest_sha256": "f92ff99f2c74f2f7e9c9a7e2eedcdd7fd8cbcfb1be6b7f1c04af8abb2a025a30",
+      "component_id": "gis-notices-win-x64"
+    },
+    {
+      "version": "9.5.1",
+      "archive_sha256": "95d6e23822cedc4a50ee49e34786800dd60b2c3626aad5ca68ade6b0ea43e2e8",
+      "component_manifest_sha256": "01fc73032bb189a605a7a76acd782be8382428d9e5f6b1d10365970c4eb12c61",
+      "component_id": "gis-proj-data-win-x64"
+    }
+  ],
+  "minimum_app_version": "2.2.0",
+  "platform": "windows",
+  "release_sequence": 100,
+  "required_members": [
+    "gis-dem-worker-win-x64",
+    "gis-gdal-runtime-win-x64",
+    "gis-notices-win-x64",
+    "gis-proj-data-win-x64"
+  ],
+  "rollback_group": "gis-runtime-base",
+  "set_kind": "base",
+  "set_version": "1.0.0",
+  "source_policy": {
+    "github_api": false,
+    "host_classes": [
+      "oss-cn",
+      "cos-cn",
+      "cdn-cn",
+      "github-release"
+    ]
+  },
+  "signature": {
+    "algorithm": "ed25519",
+    "key_id": "fixture-root-2026",
+    "value": "uuY7fVQTF737P7rWiXyGzyBl1vsPmHIGBXKZKyPlmiiKJ9Wj7IMTG0S+hbl/ifmpHjlOVEBxALVzFZpYMT+iDw=="
+  }
+}

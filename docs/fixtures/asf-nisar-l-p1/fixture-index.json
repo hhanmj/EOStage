@@ -1,0 +1,24 @@
+{
+  "fixture_contract": "AsfNisarRslcP1FixtureIndexV1",
+  "status": "synthetic_proposed",
+  "logical_dataset": "sar.nisar.l.rslc.provisional.v1",
+  "files": [
+    {"path": "collection-profile-valid.json", "expected": "accept"},
+    {"path": "granule-provisional-multi-asset-valid.json", "expected": "accept"},
+    {"path": "frequency-a-only-valid.json", "expected": "accept"},
+    {"path": "frequency-b-only-valid.json", "expected": "accept"},
+    {"path": "dual-frequency-valid.json", "expected": "accept"},
+    {"path": "asset-graph-boundaries.json", "expected": "boundary_matrix"},
+    {"path": "beta-rejected.json", "expected": "NISAR_QUALITY_STATUS_MISMATCH"},
+    {"path": "collection-mismatch.json", "expected": "ASF_COLLECTION_IDENTITY_MISMATCH"},
+    {"path": "wrong-product-type.json", "expected": "ASF_PRODUCT_SCOPE_MISMATCH"},
+    {"path": "wrong-production-configuration.json", "expected": "ASF_PRODUCT_SCOPE_MISMATCH"},
+    {"path": "missing-primary-hdf5.json", "expected": "ASF_PRIMARY_ASSET_MISSING"},
+    {"path": "ambiguous-primary-hdf5.json", "expected": "ASF_PRIMARY_ASSET_AMBIGUOUS"},
+    {"path": "browse-absent-valid.json", "expected": "accept_preview_unavailable"},
+    {"path": "s-band-metadata-not-asset.json", "expected": "accept_without_s_band_asset"},
+    {"path": "multipolygon-dedup.json", "expected": "accept_unique_merge"},
+    {"path": "pagination-complete.json", "expected": "accept_complete_batch"},
+    {"path": "result-limit-exceeded.json", "expected": "CATALOGUE_RESULT_LIMIT_EXCEEDED"}
+  ]
+}

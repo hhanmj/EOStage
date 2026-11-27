@@ -1,0 +1,6 @@
+{
+  "fixture_contract": "AsfAlos2MutationFixtureV1",
+  "base": "granule-wbd-valid.json",
+  "mutation": {"path": "/granule/processing_level", "value": "1.5"},
+  "expected_result": {"kind": "reject", "error": "ASF_PRODUCT_SCOPE_MISMATCH"}
+}

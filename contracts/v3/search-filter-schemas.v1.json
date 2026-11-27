@@ -1,0 +1,695 @@
+{
+  "schema_version": 1,
+  "catalog_id": "eostage.search-filter-schemas.v1",
+  "review_version": "2026-10-19",
+  "schemas": [
+    {
+      "schema_id": "search.optical.sentinel-2.l2a.v1",
+      "schema_revision": 1,
+      "resource_id": "science.sentinel-2.l2a.v1",
+      "dataset_label": "Sentinel-2",
+      "description": "当前准入 MSI Level-2A；平台范围包含 Sentinel-2A / 2B / 2C。",
+      "workbench": {
+        "panel": "optical",
+        "dataset_key": "sentinel2_l2a",
+        "order": 10,
+        "logical_dataset": "optical.sentinel-2.l2a",
+        "search_action_label": "检索 Sentinel-2 L2A",
+        "result_hint": "可在结果工作坞中选择下载。"
+      },
+      "filters": [
+        {
+          "control": "multi_enum",
+          "filter_id": "platform",
+          "label": "平台",
+          "group": "facet",
+          "query_key": "spacecraft",
+          "options": [
+            {
+              "value": "sentinel_2a",
+              "label": "Sentinel-2A",
+              "description": "当前目录可返回 Sentinel-2A L2A",
+              "registry_platform": "Sentinel-2A"
+            },
+            {
+              "value": "sentinel_2b",
+              "label": "Sentinel-2B",
+              "description": "当前目录可返回 Sentinel-2B L2A",
+              "registry_platform": "Sentinel-2B"
+            },
+            {
+              "value": "sentinel_2c",
+              "label": "Sentinel-2C",
+              "description": "当前目录可返回 Sentinel-2C L2A",
+              "registry_platform": "Sentinel-2C"
+            }
+          ],
+          "default": [],
+          "empty_selection": "omit",
+          "invalid_message": "请选择有效的 Sentinel-2A、2B 或 2C 平台。"
+        },
+        {
+          "control": "fixed",
+          "filter_id": "instrument",
+          "label": "载荷",
+          "group": "facet",
+          "options": [
+            {
+              "value": "msi",
+              "label": "MSI",
+              "description": "MultiSpectral Instrument"
+            }
+          ]
+        },
+        {
+          "control": "fixed",
+          "filter_id": "product_level",
+          "label": "产品级别",
+          "group": "facet",
+          "options": [
+            {
+              "value": "l2a",
+              "label": "L2A",
+              "description": "Level-2A surface reflectance product"
+            }
+          ]
+        },
+        {
+          "control": "fixed",
+          "filter_id": "product_type",
+          "label": "产品类型",
+          "group": "facet",
+          "query_key": "product_type",
+          "options": [
+            {
+              "value": "S2MSI2A",
+              "label": "S2MSI2A",
+              "description": "Sentinel-2 MSI Level-2A"
+            }
+          ]
+        },
+        {
+          "control": "date_range",
+          "filter_id": "acquisition_time",
+          "label": "日期条件",
+          "group": "time",
+          "query_key": "datetime",
+          "help": "日期留空表示全部时间"
+        },
+        {
+          "control": "number",
+          "filter_id": "cloud_cover",
+          "label": "最大云量",
+          "group": "quality",
+          "query_key": "cloud_cover_lte",
+          "operator": "lte",
+          "minimum": 0,
+          "maximum": 100,
+          "unit": "%",
+          "default": null,
+          "placeholder": "留空不限制",
+          "invalid_message": "最大云量必须是 0 到 100 之间的数字。"
+        }
+      ]
+    },
+    {
+      "schema_id": "search.optical.sentinel-2.l1c.v1",
+      "schema_revision": 1,
+      "resource_id": "science.sentinel-2.l1c.v1",
+      "dataset_label": "Sentinel-2 L1C",
+      "description": "当前准入 MSI Level-1C；平台范围包含 Sentinel-2A / 2B / 2C。",
+      "workbench": {
+        "panel": "optical",
+        "dataset_key": "sentinel2_l1c",
+        "order": 15,
+        "logical_dataset": "optical.sentinel-2.l1c",
+        "search_action_label": "检索 Sentinel-2 L1C",
+        "result_hint": "可在结果工作坞中选择下载。"
+      },
+      "filters": [
+        {
+          "control": "multi_enum",
+          "filter_id": "platform",
+          "label": "平台",
+          "group": "facet",
+          "query_key": "spacecraft",
+          "options": [
+            {
+              "value": "sentinel_2a",
+              "label": "Sentinel-2A",
+              "description": "当前目录可返回 Sentinel-2A L1C",
+              "registry_platform": "Sentinel-2A"
+            },
+            {
+              "value": "sentinel_2b",
+              "label": "Sentinel-2B",
+              "description": "当前目录可返回 Sentinel-2B L1C",
+              "registry_platform": "Sentinel-2B"
+            },
+            {
+              "value": "sentinel_2c",
+              "label": "Sentinel-2C",
+              "description": "当前目录可返回 Sentinel-2C L1C",
+              "registry_platform": "Sentinel-2C"
+            }
+          ],
+          "default": [],
+          "empty_selection": "omit",
+          "invalid_message": "请选择有效的 Sentinel-2A、2B 或 2C 平台。"
+        },
+        {
+          "control": "fixed",
+          "filter_id": "instrument",
+          "label": "载荷",
+          "group": "facet",
+          "options": [
+            {
+              "value": "msi",
+              "label": "MSI",
+              "description": "MultiSpectral Instrument"
+            }
+          ]
+        },
+        {
+          "control": "fixed",
+          "filter_id": "product_level",
+          "label": "产品级别",
+          "group": "facet",
+          "options": [
+            {
+              "value": "l1c",
+              "label": "L1C",
+              "description": "Level-1C top-of-atmosphere product"
+            }
+          ]
+        },
+        {
+          "control": "fixed",
+          "filter_id": "product_type",
+          "label": "产品类型",
+          "group": "facet",
+          "query_key": "product_type",
+          "options": [
+            {
+              "value": "S2MSI1C",
+              "label": "S2MSI1C",
+              "description": "Sentinel-2 MSI Level-1C"
+            }
+          ]
+        },
+        {
+          "control": "date_range",
+          "filter_id": "acquisition_time",
+          "label": "日期条件",
+          "group": "time",
+          "query_key": "datetime",
+          "help": "日期留空表示全部时间"
+        },
+        {
+          "control": "number",
+          "filter_id": "cloud_cover",
+          "label": "最大云量",
+          "group": "quality",
+          "query_key": "cloud_cover_lte",
+          "operator": "lte",
+          "minimum": 0,
+          "maximum": 100,
+          "unit": "%",
+          "default": null,
+          "placeholder": "留空不限制",
+          "invalid_message": "最大云量必须是 0 到 100 之间的数字。"
+        }
+      ]
+    },
+    {
+      "schema_id": "search.optical.landsat.c2-l2.v1",
+      "schema_revision": 1,
+      "resource_id": "science.landsat.c2-l2.v1",
+      "dataset_label": "Landsat Collection 2",
+      "description": "当前准入 Landsat 4 / 5 / 7 / 8 / 9 Level-2；平台和产品类型均支持多选。",
+      "workbench": {
+        "panel": "optical",
+        "dataset_key": "landsat_c2_l2",
+        "order": 20,
+        "logical_dataset": "optical.landsat.c2.l2",
+        "search_action_label": "检索 Landsat C2 L2",
+        "result_hint": "可在结果工作坞中检查浏览图与足迹。"
+      },
+      "filters": [
+        {
+          "control": "multi_enum",
+          "filter_id": "platform",
+          "label": "平台",
+          "group": "facet",
+          "query_key": "spacecraft",
+          "options": [
+            {
+              "value": "landsat_4",
+              "label": "Landsat 4",
+              "description": "Landsat 4 TM",
+              "registry_platform": "Landsat-4"
+            },
+            {
+              "value": "landsat_5",
+              "label": "Landsat 5",
+              "description": "Landsat 5 TM",
+              "registry_platform": "Landsat-5"
+            },
+            {
+              "value": "landsat_7",
+              "label": "Landsat 7",
+              "description": "Landsat 7 ETM+",
+              "registry_platform": "Landsat-7"
+            },
+            {
+              "value": "landsat_8",
+              "label": "Landsat 8",
+              "description": "Landsat 8 OLI/TIRS",
+              "registry_platform": "Landsat-8"
+            },
+            {
+              "value": "landsat_9",
+              "label": "Landsat 9",
+              "description": "Landsat 9 OLI-2/TIRS-2",
+              "registry_platform": "Landsat-9"
+            }
+          ],
+          "default": [
+            "landsat_4",
+            "landsat_5",
+            "landsat_7",
+            "landsat_8",
+            "landsat_9"
+          ],
+          "empty_selection": "restore_all",
+          "invalid_message": "请选择 Landsat 平台和处理级别的有效组合。"
+        },
+        {
+          "control": "fixed",
+          "filter_id": "instrument",
+          "label": "载荷族",
+          "group": "facet",
+          "options": [
+            {
+              "value": "tm_etm_oli_tirs",
+              "label": "TM / ETM+ / OLI / TIRS",
+              "description": "Landsat 4-9 TM / ETM+ / OLI / TIRS 载荷族"
+            }
+          ]
+        },
+        {
+          "control": "fixed",
+          "filter_id": "product_level",
+          "label": "产品级别",
+          "group": "facet",
+          "options": [
+            {
+              "value": "level_2",
+              "label": "Level-2",
+              "description": "USGS Landsat Collection 2 Level-2"
+            }
+          ]
+        },
+        {
+          "control": "multi_enum",
+          "filter_id": "product_type",
+          "label": "产品类型",
+          "group": "facet",
+          "query_key": "processing_levels",
+          "options": [
+            {
+              "value": "l2sp",
+              "label": "L2SP",
+              "description": "地表反射率与地表温度"
+            },
+            {
+              "value": "l2sr",
+              "label": "L2SR",
+              "description": "地表反射率"
+            }
+          ],
+          "default": [
+            "l2sp",
+            "l2sr"
+          ],
+          "empty_selection": "restore_all",
+          "invalid_message": "请选择 Landsat 8/9 和 L2SP/L2SR 的有效组合。"
+        },
+        {
+          "control": "date_range",
+          "filter_id": "acquisition_time",
+          "label": "日期条件",
+          "group": "time",
+          "query_key": "datetime",
+          "help": "日期留空表示全部时间"
+        },
+        {
+          "control": "number",
+          "filter_id": "cloud_cover",
+          "label": "最大云量",
+          "group": "quality",
+          "query_key": "cloud_cover_lte",
+          "operator": "lte",
+          "minimum": 0,
+          "maximum": 100,
+          "unit": "%",
+          "default": null,
+          "placeholder": "留空不限制",
+          "invalid_message": "最大云量必须是 0 到 100 之间的数字。"
+        }
+      ]
+    },
+    {
+      "schema_id": "search.optical.sentinel-3.v1",
+      "schema_revision": 1,
+      "resource_id": "science.sentinel-3.standard.v1",
+      "dataset_label": "Sentinel-3",
+      "description": "当前准入 Sentinel-3 OLCI / SLSTR / SRAL 标准产品；支持按平台与产品类型检索。",
+      "workbench": {
+        "panel": "optical",
+        "dataset_key": "sentinel3",
+        "order": 25,
+        "logical_dataset": "optical.sentinel-3.standard",
+        "search_action_label": "检索 Sentinel-3",
+        "result_hint": "可在结果工作坞中选择下载。"
+      },
+      "filters": [
+        {
+          "control": "multi_enum",
+          "filter_id": "platform",
+          "label": "平台",
+          "group": "facet",
+          "query_key": "spacecraft",
+          "options": [
+            {
+              "value": "sentinel_3a",
+              "label": "Sentinel-3A",
+              "description": "Sentinel-3A 卫星",
+              "registry_platform": "Sentinel-3A"
+            },
+            {
+              "value": "sentinel_3b",
+              "label": "Sentinel-3B",
+              "description": "Sentinel-3B 卫星",
+              "registry_platform": "Sentinel-3B"
+            }
+          ],
+          "default": [],
+          "empty_selection": "omit",
+          "invalid_message": "请选择有效的 Sentinel-3A 或 3B 平台。"
+        },
+        {
+          "control": "fixed",
+          "filter_id": "instrument",
+          "label": "载荷",
+          "group": "facet",
+          "options": [
+            {
+              "value": "olci_slstr_sral",
+              "label": "OLCI / SLSTR / SRAL",
+              "description": "Sentinel-3 OLCI、SLSTR 与 SRAL 载荷族"
+            }
+          ]
+        },
+        {
+          "control": "multi_enum",
+          "filter_id": "product_type",
+          "label": "产品类型",
+          "group": "facet",
+          "query_key": "product_type",
+          "options": [
+            {
+              "value": "OL_2_LFR___",
+              "label": "OL_2_LFR___",
+              "description": "OLCI 陆表全分辨率 L2"
+            },
+            {
+              "value": "SL_2_LST___",
+              "label": "SL_2_LST___",
+              "description": "SLSTR 陆表温度 L2"
+            },
+            {
+              "value": "SR_2_LAN___",
+              "label": "SR_2_LAN___",
+              "description": "SRAL 陆表高度计 L2"
+            },
+            {
+              "value": "OL_1_EFR___",
+              "label": "OL_1_EFR___",
+              "description": "OLCI 全分辨率大气顶辐射度 L1"
+            },
+            {
+              "value": "SL_1_RBT___",
+              "label": "SL_1_RBT___",
+              "description": "SLSTR 亮温与辐射度 L1"
+            },
+            {
+              "value": "SR_1_SRA___",
+              "label": "SR_1_SRA___",
+              "description": "SRAL 雷达回波 L1"
+            }
+          ],
+          "default": [
+            "OL_2_LFR___",
+            "SL_2_LST___",
+            "SR_2_LAN___"
+          ],
+          "empty_selection": "restore_all",
+          "invalid_message": "请选择有效的 Sentinel-3 产品类型。"
+        },
+        {
+          "control": "date_range",
+          "filter_id": "acquisition_time",
+          "label": "日期条件",
+          "group": "time",
+          "query_key": "datetime",
+          "help": "日期留空表示全部时间"
+        },
+        {
+          "control": "number",
+          "filter_id": "cloud_cover",
+          "label": "最大云量",
+          "group": "quality",
+          "query_key": "cloud_cover_lte",
+          "operator": "lte",
+          "minimum": 0,
+          "maximum": 100,
+          "unit": "%",
+          "default": null,
+          "placeholder": "留空不限制",
+          "invalid_message": "最大云量必须是 0 到 100 之间的数字。"
+        }
+      ]
+    },
+    {
+      "schema_id": "search.optical.hls.l30.v2",
+      "schema_revision": 1,
+      "resource_id": "science.hls.l30.v2",
+      "dataset_label": "HLS L30",
+      "description": "HLS v2.0 Landsat 8/9 协调地表反射率，30 m；目前仅支持检索",
+      "workbench": {
+        "panel": "optical",
+        "dataset_key": "hls_l30",
+        "order": 30,
+        "logical_dataset": "optical.hls.l30.v2",
+        "search_action_label": "检索 HLS L30",
+        "result_hint": "目前仅支持检索：可在结果工作坞中查看足迹与云量，暂不能下载。"
+      },
+      "filters": [
+        {
+          "control": "multi_enum",
+          "filter_id": "platform",
+          "label": "平台",
+          "group": "facet",
+          "query_key": "spacecraft",
+          "options": [
+            {
+              "value": "landsat_8",
+              "label": "Landsat 8",
+              "description": "HLS L30 中来自 Landsat 8 OLI 的场景",
+              "registry_platform": "Landsat-8"
+            },
+            {
+              "value": "landsat_9",
+              "label": "Landsat 9",
+              "description": "HLS L30 中来自 Landsat 9 OLI 的场景",
+              "registry_platform": "Landsat-9"
+            }
+          ],
+          "default": [],
+          "empty_selection": "omit",
+          "invalid_message": "请选择有效的 Landsat 8 或 Landsat 9 平台。"
+        },
+        {
+          "control": "fixed",
+          "filter_id": "instrument",
+          "label": "载荷",
+          "group": "facet",
+          "options": [
+            {
+              "value": "oli",
+              "label": "OLI",
+              "description": "Operational Land Imager（HLS 仅使用 OLI 反射率波段）"
+            }
+          ]
+        },
+        {
+          "control": "fixed",
+          "filter_id": "product_level",
+          "label": "产品级别",
+          "group": "facet",
+          "options": [
+            {
+              "value": "l2",
+              "label": "L2 协调地表反射率",
+              "description": "NASA HLS v2.0 协调地表反射率（BRDF 归一化、波段调整、30 m 统一网格）"
+            }
+          ]
+        },
+        {
+          "control": "fixed",
+          "filter_id": "product_type",
+          "label": "产品类型",
+          "group": "facet",
+          "options": [
+            {
+              "value": "hlsl30",
+              "label": "HLSL30（30 m）",
+              "description": "HLS L30 v2.0（doi:10.5067/HLS/HLSL30.002）"
+            }
+          ]
+        },
+        {
+          "control": "date_range",
+          "filter_id": "acquisition_time",
+          "label": "日期条件",
+          "group": "time",
+          "query_key": "datetime",
+          "help": "日期留空表示全部时间"
+        },
+        {
+          "control": "number",
+          "filter_id": "cloud_cover",
+          "label": "最大云量",
+          "group": "quality",
+          "query_key": "cloud_cover_lte",
+          "operator": "lte",
+          "minimum": 0,
+          "maximum": 100,
+          "unit": "%",
+          "default": null,
+          "placeholder": "留空不限制",
+          "invalid_message": "最大云量必须是 0 到 100 之间的数字。"
+        }
+      ]
+    },
+    {
+      "schema_id": "search.optical.hls.s30.v2",
+      "schema_revision": 1,
+      "resource_id": "science.hls.s30.v2",
+      "dataset_label": "HLS S30",
+      "description": "HLS v2.0 Sentinel-2 协调地表反射率，30 m；目前仅支持检索",
+      "workbench": {
+        "panel": "optical",
+        "dataset_key": "hls_s30",
+        "order": 40,
+        "logical_dataset": "optical.hls.s30.v2",
+        "search_action_label": "检索 HLS S30",
+        "result_hint": "目前仅支持检索：可在结果工作坞中查看足迹与云量，暂不能下载。"
+      },
+      "filters": [
+        {
+          "control": "multi_enum",
+          "filter_id": "platform",
+          "label": "平台",
+          "group": "facet",
+          "query_key": "spacecraft",
+          "options": [
+            {
+              "value": "sentinel_2a",
+              "label": "Sentinel-2A",
+              "description": "HLS S30 中来自 Sentinel-2A MSI 的场景",
+              "registry_platform": "Sentinel-2A"
+            },
+            {
+              "value": "sentinel_2b",
+              "label": "Sentinel-2B",
+              "description": "HLS S30 中来自 Sentinel-2B MSI 的场景",
+              "registry_platform": "Sentinel-2B"
+            },
+            {
+              "value": "sentinel_2c",
+              "label": "Sentinel-2C",
+              "description": "HLS S30 中来自 Sentinel-2C MSI 的场景",
+              "registry_platform": "Sentinel-2C"
+            }
+          ],
+          "default": [],
+          "empty_selection": "omit",
+          "invalid_message": "请选择有效的 Sentinel-2A、2B 或 2C 平台。"
+        },
+        {
+          "control": "fixed",
+          "filter_id": "instrument",
+          "label": "载荷",
+          "group": "facet",
+          "options": [
+            {
+              "value": "msi",
+              "label": "MSI",
+              "description": "MultiSpectral Instrument"
+            }
+          ]
+        },
+        {
+          "control": "fixed",
+          "filter_id": "product_level",
+          "label": "产品级别",
+          "group": "facet",
+          "options": [
+            {
+              "value": "l2",
+              "label": "L2 协调地表反射率",
+              "description": "NASA HLS v2.0 协调地表反射率（BRDF 归一化、波段调整、30 m 统一网格）"
+            }
+          ]
+        },
+        {
+          "control": "fixed",
+          "filter_id": "product_type",
+          "label": "产品类型",
+          "group": "facet",
+          "options": [
+            {
+              "value": "hlss30",
+              "label": "HLSS30（30 m）",
+              "description": "HLS S30 v2.0（doi:10.5067/HLS/HLSS30.002）"
+            }
+          ]
+        },
+        {
+          "control": "date_range",
+          "filter_id": "acquisition_time",
+          "label": "日期条件",
+          "group": "time",
+          "query_key": "datetime",
+          "help": "日期留空表示全部时间"
+        },
+        {
+          "control": "number",
+          "filter_id": "cloud_cover",
+          "label": "最大云量",
+          "group": "quality",
+          "query_key": "cloud_cover_lte",
+          "operator": "lte",
+          "minimum": 0,
+          "maximum": 100,
+          "unit": "%",
+          "default": null,
+          "placeholder": "留空不限制",
+          "invalid_message": "最大云量必须是 0 到 100 之间的数字。"
+        }
+      ]
+    }
+  ]
+}

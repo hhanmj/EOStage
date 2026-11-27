@@ -1,0 +1,38 @@
+{
+  "fixture_contract": "NisarSubsetP0FixtureIndexV1",
+  "status": "p0_5_no_go_p1_entry_blocked",
+  "files": [
+    {
+      "path": "mechanism-classification.json",
+      "expected": "closed_classification"
+    },
+    {
+      "path": "official-service-evidence.json",
+      "expected": "RSLC_NOT_SUPPORTED"
+    },
+    {
+      "path": "official-single-scene-result.json",
+      "expected": "single_scene_research_validation_passed"
+    },
+    {
+      "path": "p0-5-entry-decision.json",
+      "expected": "NO_GO"
+    },
+    {
+      "path": "p1-entry-blocked.json",
+      "expected": "historical_gate_superseded_by_p0_5_no_go"
+    },
+    {
+      "path": "subset-manifest-proposed.json",
+      "expected": "contract_proposal_only"
+    },
+    {
+      "path": "full-download-masquerade-rejected.json",
+      "expected": "NISAR_SUBSET_MECHANISM_UNVERIFIED"
+    },
+    {
+      "path": "subset-science-negative.json",
+      "expected": "NISAR_SUBSET_SCIENCE_INVALID"
+    }
+  ]
+}

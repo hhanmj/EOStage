@@ -1,0 +1,213 @@
+{
+  "provider_id": "asf.catalog",
+  "available": true,
+  "reason": null,
+  "source_version": "asf-search 12.2.2",
+  "datasets": [
+    {
+      "dataset": "SENTINEL-1",
+      "display_name": "Sentinel-1",
+      "platforms": ["Sentinel-1A", "Sentinel-1B", "Sentinel-1C", "Sentinel-1D"],
+      "instruments": ["C-SAR"],
+      "processing_levels": ["SLC", "GRD_HD", "GRD_HS", "GRD_MD", "GRD_MS", "RAW", "OCN"],
+      "product_families": ["SLC", "GRD", "RAW", "OCN"],
+      "beam_modes": ["SM", "IW", "EW", "WV", "S1", "S2", "S3", "S4", "S5", "S6"],
+      "polarizations": ["HH", "VV", "HH+HV", "VV+VH"],
+      "supports_flight_direction": true,
+      "supports_look_direction": false,
+      "supports_relative_orbit": true,
+      "supports_frame": true,
+      "supports_path": true,
+      "supports_burst": false,
+      "frame_filter": {"supported": true, "parameter": "frame", "label": "ESA Frame", "value_type": "integer", "pattern": "^[0-9]+$", "minimum": 0, "maximum": 7200, "exact_width": null, "platform_limits": []},
+      "track_filter": {"supported": true, "parameter": "relativeOrbit", "label": "Relative Orbit", "value_type": "integer", "pattern": "^[0-9]+$", "minimum": 1, "maximum": 175, "exact_width": null, "platform_limits": []},
+      "supported_actions": [
+        {"action": "download", "platforms": [], "product_families": [], "required_fields": []},
+        {"action": "orbit_match", "platforms": ["Sentinel-1A", "Sentinel-1B", "Sentinel-1C", "Sentinel-1D"], "product_families": ["SLC"], "required_fields": ["platform", "acquisition_start"]}
+      ]
+    },
+    {
+      "dataset": "SLC-BURST",
+      "display_name": "Sentinel-1 SLC Burst",
+      "platforms": ["Sentinel-1A", "Sentinel-1B", "Sentinel-1C", "Sentinel-1D"],
+      "instruments": ["C-SAR"],
+      "processing_levels": ["BURST"],
+      "product_families": ["BURST"],
+      "beam_modes": ["IW", "EW"],
+      "polarizations": ["HH", "HV", "VH", "VV"],
+      "supports_flight_direction": true,
+      "supports_look_direction": false,
+      "supports_relative_orbit": false,
+      "supports_frame": false,
+      "supports_path": false,
+      "supports_burst": true,
+      "frame_filter": null,
+      "track_filter": null,
+      "supported_actions": [
+        {"action": "download", "platforms": [], "product_families": ["BURST"], "required_fields": []}
+      ]
+    },
+    {
+      "dataset": "ALOS PALSAR",
+      "display_name": "ALOS PALSAR",
+      "platforms": ["ALOS"],
+      "instruments": ["PALSAR"],
+      "processing_levels": ["L1.0", "L1.1", "L1.5", "L2.2", "RTC_LOW_RES", "RTC_HI_RES", "KMZ"],
+      "product_families": ["RAW", "SLC", "GRD", "RTC", "OTHER"],
+      "beam_modes": ["FBS", "FBD", "PLR", "WB1", "WB2", "DSN"],
+      "polarizations": ["quadrature", "HH 5SCAN", "HH", "HH 4SCAN", "VV", "HH 3SCAN", "full", "HH+HV", "VV+VH"],
+      "supports_flight_direction": true,
+      "supports_look_direction": true,
+      "supports_relative_orbit": false,
+      "supports_frame": true,
+      "supports_path": true,
+      "supports_burst": false,
+      "frame_filter": {"supported": true, "parameter": "asfframe", "label": "JAXA Frame", "value_type": "padded_string", "pattern": "^[0-9]+$", "minimum": 0, "maximum": 7200, "exact_width": null, "platform_limits": []},
+      "track_filter": {"supported": true, "parameter": "relativeOrbit", "label": "Path / Track", "value_type": "integer", "pattern": "^[0-9]+$", "minimum": 1, "maximum": 671, "exact_width": null, "platform_limits": []},
+      "supported_actions": [
+        {"action": "download", "platforms": [], "product_families": [], "required_fields": []}
+      ]
+    },
+    {
+      "dataset": "SEASAT",
+      "display_name": "SEASAT",
+      "platforms": ["SEASAT 1"],
+      "instruments": [],
+      "processing_levels": [],
+      "product_families": ["OTHER"],
+      "beam_modes": ["STD"],
+      "polarizations": ["HH"],
+      "supports_flight_direction": true,
+      "supports_look_direction": true,
+      "supports_relative_orbit": false,
+      "supports_frame": true,
+      "supports_path": true,
+      "supports_burst": false,
+      "frame_filter": {"supported": true, "parameter": "asfframe", "label": "ASF Frame", "value_type": "padded_string", "pattern": "^[0-9]+$", "minimum": 208, "maximum": 3458, "exact_width": 4, "platform_limits": []},
+      "track_filter": {"supported": true, "parameter": "relativeOrbit", "label": "Path / Track", "value_type": "integer", "pattern": "^[0-9]+$", "minimum": 1, "maximum": 243, "exact_width": null, "platform_limits": []},
+      "supported_actions": [{"action": "download", "platforms": [], "product_families": [], "required_fields": []}]
+    }
+  ],
+  "sources": [
+    {
+      "selector": "SENTINEL-1",
+      "display_name": "Sentinel-1",
+      "search_kind": "legacy_asf_search",
+      "logical_dataset": null,
+      "provider_id": "asf.catalog",
+      "native_collection_id": null,
+      "collection_profile_id": null,
+      "available": true,
+      "disabled_reason": null,
+      "filters": {"legacy_dataset": "SENTINEL-1"},
+      "supported_actions": ["download", "orbit_match"]
+    },
+    {
+      "selector": "SLC-BURST",
+      "display_name": "Sentinel-1 SLC Burst",
+      "search_kind": "legacy_asf_search",
+      "logical_dataset": null,
+      "provider_id": "asf.catalog",
+      "native_collection_id": null,
+      "collection_profile_id": null,
+      "available": true,
+      "disabled_reason": null,
+      "filters": {"legacy_dataset": "SLC-BURST"},
+      "supported_actions": ["download"]
+    },
+    {
+      "selector": "ALOS PALSAR",
+      "display_name": "ALOS PALSAR",
+      "search_kind": "legacy_asf_search",
+      "logical_dataset": null,
+      "provider_id": "asf.catalog",
+      "native_collection_id": null,
+      "collection_profile_id": null,
+      "available": true,
+      "disabled_reason": null,
+      "filters": {"legacy_dataset": "ALOS PALSAR"},
+      "supported_actions": ["download"]
+    },
+    {
+      "selector": "SEASAT",
+      "display_name": "SEASAT",
+      "search_kind": "legacy_asf_search",
+      "logical_dataset": null,
+      "provider_id": "asf.catalog",
+      "native_collection_id": null,
+      "collection_profile_id": null,
+      "available": true,
+      "disabled_reason": null,
+      "filters": {"legacy_dataset": "SEASAT"},
+      "supported_actions": ["download"]
+    },
+    {
+      "selector": "ALOS-2",
+      "display_name": "ALOS-2 PALSAR-2 ScanSAR L1.1",
+      "search_kind": "typed_catalog_profile",
+      "logical_dataset": "sar.alos-2.palsar-2.scansar.l1.1.v1",
+      "provider_id": "asf.nasa.earthdata",
+      "native_collection_id": "C3315903479-ASF",
+      "collection_profile_id": "asf.alos-2.palsar-2.scansar.l1.1.v1",
+      "available": true,
+      "disabled_reason": null,
+      "filters": {
+        "supported_keys": ["datetime", "beam_mode", "polarizations", "flight_direction", "look_direction", "path", "frame"],
+        "fixed": {"platform": "ALOS-2", "instrument": "PALSAR-2", "processing_level": "1.1"},
+        "options": {
+          "beam_mode": ["WBS", "WBD"],
+          "polarizations": ["HH", "HV"],
+          "flight_direction": ["ASCENDING", "DESCENDING"],
+          "look_direction": ["LEFT", "RIGHT"]
+        }
+      },
+      "supported_actions": ["search", "complete_product_download"]
+    },
+    {
+      "selector": "NISAR",
+      "display_name": "NISAR L-band RSLC (Provisional)",
+      "search_kind": "typed_catalog_profile",
+      "logical_dataset": "sar.nisar.l.rslc.provisional.v1",
+      "provider_id": "asf.nasa.earthdata",
+      "native_collection_id": "C2853145197-ASF",
+      "collection_profile_id": "asf.nisar.l.rslc.provisional.v1",
+      "available": true,
+      "disabled_reason": null,
+      "filters": {
+        "supported_keys": ["datetime", "production_configuration", "frame_coverage", "frequency_a_polarization", "frequency_b_polarization", "range_bandwidth", "joint_observation", "flight_direction", "look_direction", "track", "relative_orbit", "frame"],
+        "fixed": {"platform": "NISAR", "band": "L", "product_type": "RSLC", "science_level": "L1", "quality_status": "Provisional", "production_configuration": "PR", "crid": "P05023", "product_specification_version": "1.5.0", "product_specification_profile_registry_version": 1},
+        "options": {
+          "frame_coverage": ["FULL", "PARTIAL"],
+          "frequency_a_polarization": ["HH", "HH+HV", "VV+VH", "HH+HV+VH+VV"],
+          "frequency_b_polarization": ["HH", "HH+HV", "VV", "VV+VH"],
+          "range_bandwidth": ["5", "20+5", "40+5", "77"],
+          "flight_direction": ["ASCENDING", "DESCENDING"],
+          "look_direction": ["LEFT", "RIGHT"]
+        }
+      },
+      "supported_actions": ["search", "complete_product_download"]
+    },
+    {
+      "selector": "OPERA-S1",
+      "display_name": "NASA OPERA Sentinel-1 Displacement & Coregistered Products",
+      "search_kind": "typed_catalog_profile",
+      "logical_dataset": "sar.opera.s1.disp.v1",
+      "provider_id": "asf.nasa.earthdata",
+      "native_collection_id": "C2834279090-ASF",
+      "collection_profile_id": "asf.opera.s1.v1",
+      "available": true,
+      "disabled_reason": null,
+      "filters": {
+        "supported_keys": ["datetime", "flight_direction", "polarizations", "beam_mode", "product_type"],
+        "fixed": {"platform": "SENTINEL-1", "instrument": "C-SAR"},
+        "options": {
+          "flight_direction": ["ASCENDING", "DESCENDING"],
+          "polarizations": ["VV", "VH"],
+          "beam_mode": ["IW"],
+          "product_type": ["DISP-S1", "CSLC-S1"]
+        }
+      },
+      "supported_actions": ["search"]
+    }
+  ]
+}

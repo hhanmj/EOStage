@@ -1,0 +1,5 @@
+{
+  "fixture": "manifest-valid.json",
+  "mutation": "archive_sha256 = 0000000000000000000000000000000000000000000000000000000000000000",
+  "expected_error": "GIS_CHECKSUM_MISMATCH"
+}

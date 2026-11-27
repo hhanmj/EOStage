@@ -1,0 +1,5 @@
+{
+  "fixture": "manifest-valid.json",
+  "mutation": "signature.value = fixture-wrong-signature-v1",
+  "expected_error": "GIS_SIGNATURE_INVALID"
+}

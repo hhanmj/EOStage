@@ -1,0 +1,1 @@
+{"stac_version":"1.1.0","type":"Feature","id":"00000000-0000-4000-8000-000000000001","collection":"sentinel-2-l2a","properties":{},"geometry":null,"bbox":null,"assets":{"overview_a":{"href":"https://stac.example.invalid/assets/a.jpg","roles":["thumbnail"]},"overview_b":{"href":"https://stac.example.invalid/assets/b.jpg","roles":["overview"]}},"links":[]}

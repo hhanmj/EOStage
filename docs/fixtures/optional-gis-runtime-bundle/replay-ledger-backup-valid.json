@@ -1,0 +1,10 @@
+{
+  "fixture_kind": "replay-ledger-backup-scenario",
+  "source": "state/replay-ledger.json.bak",
+  "backup_ledger_file": "replay-ledger-candidate.json",
+  "primary_state": "corrupt",
+  "active_registry_file": "active-after.json",
+  "expected_generation": 4,
+  "expected_extension_release_sequence": 100,
+  "expected": "restore-last-committed-backup-without-lowering-replay-floor"
+}

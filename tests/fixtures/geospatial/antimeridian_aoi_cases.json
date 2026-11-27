@@ -1,0 +1,24 @@
+{
+  "cases": [
+    {
+      "id": "hubei",
+      "geometry": {"type":"Polygon","coordinates":[[[108,29],[116,29],[116,34],[108,34],[108,29]]]},
+      "crosses_antimeridian": false,
+      "display": [108, 29, 116, 34],
+      "windows": [[108, 29, 116, 34]]
+    },
+    {
+      "id": "new-zealand",
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [[[166,-47],[179,-47],[179,-34],[166,-34],[166,-47]]],
+          [[[-179,-45],[-175,-45],[-175,-35],[-179,-35],[-179,-45]]]
+        ]
+      },
+      "crosses_antimeridian": true,
+      "display": [166, -47, 185, -34],
+      "windows": [[166, -47, 180, -34],[-180, -47, -175, -34]]
+    }
+  ]
+}

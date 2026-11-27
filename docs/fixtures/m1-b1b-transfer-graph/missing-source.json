@@ -1,0 +1,28 @@
+{
+  "fixture_metadata": {
+    "fixture_version": 1,
+    "fixture_kind": "invalid",
+    "fixture_name": "missing-selected-source",
+    "payload_contract": "FrozenTaskSnapshotV3",
+    "offline": true
+  },
+  "base": "single",
+  "mutations": [
+    {
+      "op": "set",
+      "path": "/initial_selected_item_ids/0",
+      "value": "missing-source"
+    }
+  ],
+  "expected": {
+    "accepted": false,
+    "error": {
+      "variant": "missing_reference",
+      "reference": "initial_selected_source",
+      "at": {
+        "kind": "initial_selected_item_id",
+        "index": 0
+      }
+    }
+  }
+}

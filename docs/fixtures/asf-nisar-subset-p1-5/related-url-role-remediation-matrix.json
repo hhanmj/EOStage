@@ -1,0 +1,211 @@
+{
+  "synthetic_offline_matrix": true,
+  "observed_r2_related_url_type": "unknown",
+  "observed_r2_related_url_subtype": "unknown",
+  "observed_r2_basename": "not_retained",
+  "safety": {
+    "public_requests": 0,
+    "credentials_reached": false,
+    "locators_dereferenced": false,
+    "remote_r2_identity_inferred": false
+  },
+  "cases": [
+    {
+      "id": "matching_get_data_primary_hdf5",
+      "relation_type": "GET DATA",
+      "path": "__PRIMARY__",
+      "format": "HDF5",
+      "expectation": "valid"
+    },
+    {
+      "id": "matching_get_data_via_direct_access_primary_hdf5",
+      "relation_type": "GET DATA VIA DIRECT ACCESS",
+      "path": "__PRIMARY__",
+      "format": "HDF5",
+      "expectation": "valid"
+    },
+    {
+      "id": "unmatched_get_data_fails",
+      "relation_type": "GET DATA",
+      "path": "unmatched-data.h5",
+      "format": "HDF5",
+      "expectation": "fail:related_url_archive_identity"
+    },
+    {
+      "id": "unmatched_direct_access_fails",
+      "relation_type": "GET DATA VIA DIRECT ACCESS",
+      "path": "unmatched-direct.h5",
+      "format": "HDF5",
+      "expectation": "fail:related_url_archive_identity"
+    },
+    {
+      "id": "matching_visualization_archive",
+      "relation_type": "GET RELATED VISUALIZATION",
+      "path": "__EXISTING_PNG__",
+      "format": "PNG",
+      "expectation": "valid"
+    },
+    {
+      "id": "url_only_png_thumbnail",
+      "relation_type": "GET RELATED VISUALIZATION",
+      "path": "offline_thumbnail.png",
+      "format": "PNG",
+      "expectation": "valid"
+    },
+    {
+      "id": "url_only_png_browse",
+      "relation_type": "GET RELATED VISUALIZATION",
+      "path": "offline_browse.jpg",
+      "format": "JPEG",
+      "expectation": "valid"
+    },
+    {
+      "id": "visualization_hdf5_fails",
+      "relation_type": "GET RELATED VISUALIZATION",
+      "path": "offline_visualization.h5",
+      "format": "HDF5",
+      "expectation": "fail:related_url_role_conflict"
+    },
+    {
+      "id": "visualization_other_mime_fails",
+      "relation_type": "GET RELATED VISUALIZATION",
+      "path": "offline_visualization.png",
+      "format": "PNG",
+      "mime_type": "application/octet-stream",
+      "expectation": "fail:related_url_role_conflict"
+    },
+    {
+      "id": "matching_metadata_archive",
+      "relation_type": "EXTENDED METADATA",
+      "path": "__EXISTING_XML__",
+      "format": "XML",
+      "expectation": "valid"
+    },
+    {
+      "id": "unmatched_extended_metadata_without_declared_format_ignored",
+      "relation_type": "EXTENDED METADATA",
+      "path": "offline-metadata-endpoint",
+      "expectation": "valid:ignored"
+    },
+    {
+      "id": "unmatched_informational_metadata_ignored",
+      "relation_type": "VIEW RELATED INFORMATION",
+      "subtype": "METADATA",
+      "path": "offline-metadata.xml",
+      "format": "XML",
+      "expectation": "valid:ignored"
+    },
+    {
+      "id": "unmatched_service_api_ignored",
+      "relation_type": "USE SERVICE API",
+      "path": "service-entry",
+      "expectation": "valid:ignored"
+    },
+    {
+      "id": "unknown_type_fails",
+      "relation_type": "DOWNLOAD SOMETHING",
+      "path": "unknown.bin",
+      "format": "OTHER",
+      "expectation": "fail:related_url_type_unrecognized"
+    },
+    {
+      "id": "malformed_type_fails",
+      "relation_type": "GET DATA\u0000",
+      "path": "malformed.h5",
+      "format": "HDF5",
+      "expectation": "fail:related_url_type_unrecognized"
+    },
+    {
+      "id": "malformed_subtype_fails",
+      "relation_type": "VIEW RELATED INFORMATION",
+      "subtype": "UNAPPROVED SUBTYPE",
+      "path": "malformed.xml",
+      "format": "XML",
+      "expectation": "fail:related_url_role_conflict"
+    },
+    {
+      "id": "percent_encoded_safe_basename_matches",
+      "relation_type": "GET DATA",
+      "path": "__PRIMARY_PERCENT_ENCODED__",
+      "format": "HDF5",
+      "expectation": "valid"
+    },
+    {
+      "id": "encoded_slash_fails",
+      "relation_type": "GET DATA",
+      "path": "encoded%2Fprimary.h5",
+      "format": "HDF5",
+      "expectation": "fail:related_url_basename"
+    },
+    {
+      "id": "encoded_backslash_fails",
+      "relation_type": "GET DATA",
+      "path": "encoded%5Cprimary.h5",
+      "format": "HDF5",
+      "expectation": "fail:related_url_basename"
+    },
+    {
+      "id": "directory_data_route_fails",
+      "relation_type": "GET DATA",
+      "path": "directory/",
+      "format": "HDF5",
+      "expectation": "fail:related_url_basename"
+    },
+    {
+      "id": "query_url_fails",
+      "relation_type": "GET DATA",
+      "path": "query-data.h5?name=primary.h5",
+      "format": "HDF5",
+      "expectation": "fail:related_url_locator"
+    },
+    {
+      "id": "fragment_url_fails",
+      "relation_type": "GET DATA",
+      "path": "fragment-data.h5#primary",
+      "format": "HDF5",
+      "expectation": "fail:related_url_locator"
+    },
+    {
+      "id": "private_url_filtered",
+      "relation_type": "GET DATA VIA DIRECT ACCESS",
+      "host": "nisar-jpl-private.invalid",
+      "path": "private.h5",
+      "format": "HDF5",
+      "expectation": "valid:filtered"
+    },
+    {
+      "id": "s3credentials_url_filtered",
+      "relation_type": "VIEW RELATED INFORMATION",
+      "path": "s3credentials",
+      "expectation": "valid:filtered"
+    },
+    {
+      "id": "unmatched_hdf5_information_cannot_be_primary",
+      "relation_type": "VIEW RELATED INFORMATION",
+      "subtype": "QA STATISTICS",
+      "path": "unmatched-information.h5",
+      "format": "HDF5",
+      "expectation": "fail:related_url_role_conflict"
+    },
+    {
+      "id": "second_primary_data_route_fails",
+      "relation_type": "GET DATA",
+      "path": "__SECOND_PRIMARY__",
+      "format": "HDF5",
+      "expectation": "fail:ASF_PRIMARY_ASSET_AMBIGUOUS"
+    },
+    {
+      "id": "substring_data_lookalike_fails",
+      "relation_type": "GET DATA VIA DIRECT ACCESS EXTRA",
+      "path": "lookalike.h5",
+      "format": "HDF5",
+      "expectation": "fail:related_url_type_unrecognized"
+    },
+    {
+      "id": "granule_landing_information_ignored",
+      "relation_type": "PRODUCT LANDING PAGE",
+      "path": "landing-page",
+      "expectation": "valid:ignored"
+    }
+  ]
+}

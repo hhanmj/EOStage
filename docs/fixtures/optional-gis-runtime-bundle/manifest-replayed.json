@@ -1,0 +1,5 @@
+{
+  "fixture": "bundle-set-valid.json",
+  "mutation": "release_sequence = 99 while accepted sequence = 100",
+  "expected_error": "GIS_MANIFEST_REPLAYED"
+}

@@ -1,0 +1,12 @@
+{
+  "algorithm": "ed25519",
+  "key_id": "fixture-root-2026",
+  "public_key_base64": "A6EHv/POEL4dcN0Y50vAmWfk1jCbpQ1fHdyGZBJVMbg=",
+  "authorized_contracts": [
+    "BundleSetManifest",
+    "ComponentManifest",
+    "GISRuntimeRollbackAuthorization"
+  ],
+  "purpose": "offline fixture verification only",
+  "private_key_included": false
+}

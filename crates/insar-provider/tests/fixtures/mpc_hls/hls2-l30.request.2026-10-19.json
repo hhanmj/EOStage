@@ -1,0 +1,45 @@
+{
+  "collections": [
+    "hls2-l30"
+  ],
+  "intersects": {
+    "type": "Polygon",
+    "coordinates": [
+      [
+        [
+          110,
+          30
+        ],
+        [
+          110.5,
+          30
+        ],
+        [
+          110.5,
+          30.5
+        ],
+        [
+          110,
+          30.5
+        ],
+        [
+          110,
+          30
+        ]
+      ]
+    ]
+  },
+  "datetime": "2024-06-01T00:00:00Z/2024-06-30T23:59:59Z",
+  "limit": 5,
+  "query": {
+    "eo:cloud_cover": {
+      "lte": 80
+    },
+    "platform": {
+      "in": [
+        "landsat-8",
+        "landsat-9"
+      ]
+    }
+  }
+}

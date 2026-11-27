@@ -1,0 +1,6 @@
+{
+  "fixture_contract": "AsfAlos2MutationFixtureV1",
+  "base": "granule-wbd-valid.json",
+  "mutation": {"path": "/granule/beam_mode", "value": "FBD"},
+  "expected_result": {"kind": "reject", "error": "ASF_PRODUCT_SCOPE_MISMATCH"}
+}

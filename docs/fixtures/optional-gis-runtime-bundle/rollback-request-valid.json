@@ -1,0 +1,9 @@
+{
+  "contract": "GISRuntimeRollbackRequest",
+  "request_version": 1,
+  "request_id": "fixture-rollback-request-1",
+  "observed_active_sha256": "18a5c62ad5f5c4eb50c97dbdb5ec64c7d6ebd523f8ea7ccbf466a9ac3bac8279",
+  "authorization_id": "fixture-rollback-base-90-once",
+  "target_selection_digest": "3788ed70d614046c953c8d332e31535376fb15729165cc049a63ab606ec4e897",
+  "requested_at": "2026-07-22T01:00:00Z"
+}

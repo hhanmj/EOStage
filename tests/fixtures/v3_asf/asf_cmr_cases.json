@@ -1,0 +1,65 @@
+{
+  "cases": [
+    {
+      "name": "s1b_reliable_attributes_geometry_and_size",
+      "entry": {
+        "producer_granule_id": "S1B_EW_SLC__1SDH_20240113T100000_20240113T100027_034000_064DEF_5678-SLC",
+        "granule_size": "1024.5",
+        "orbit_calculated_spatial_domains": [{"orbit_number": "34000"}],
+        "additional_attributes": [
+          {"name": "PATH_NUMBER", "values": ["42"]},
+          {"name": "FRAME_NUMBER", "values": ["900"]},
+          {"name": "ASCENDING_DESCENDING", "values": ["DESCENDING"]}
+        ],
+        "polygons": [["30 110 30 111 31 111 31 110 30 110"]],
+        "links": [
+          {
+            "href": "https://datapool.asf.alaska.edu/SLC/SB/example.zip",
+            "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+            "title": "Direct Download"
+          }
+        ]
+      },
+      "expected": {
+        "scene_id": "S1B_EW_SLC__1SDH_20240113T100000_20240113T100027_034000_064DEF_5678",
+        "url": "https://datapool.asf.alaska.edu/SLC/SB/example.zip",
+        "platform": "S1B",
+        "product_type": "SLC",
+        "beam_mode": "EW",
+        "polarization": "DH",
+        "acquisition_datetime": "2024-01-13T10:00:00+00:00",
+        "absolute_orbit": 34000,
+        "path": 42,
+        "frame": 900,
+        "orbit_direction": "DESCENDING",
+        "file_size_remote": 1073741824,
+        "footprint_bbox": {"west": 110.0, "east": 111.0, "south": 30.0, "north": 31.0, "crs": "EPSG:4326"},
+        "footprint_geojson": {"type": "Polygon", "coordinates": [[[110.0, 30.0], [111.0, 30.0], [111.0, 31.0], [110.0, 31.0], [110.0, 30.0]]]}
+      }
+    },
+    {
+      "name": "s1c_does_not_infer_path_frame_or_direction",
+      "entry": {
+        "producer_granule_id": "S1C_IW_SLC__1SDV_20250101T100000_20250101T100027_000100_000ABC_1234-SLC",
+        "orbit_calculated_spatial_domains": [{"orbit_number": "100"}],
+        "links": []
+      },
+      "expected": {
+        "scene_id": "S1C_IW_SLC__1SDV_20250101T100000_20250101T100027_000100_000ABC_1234",
+        "url": null,
+        "platform": "S1C",
+        "product_type": "SLC",
+        "beam_mode": "IW",
+        "polarization": "DV",
+        "acquisition_datetime": "2025-01-01T10:00:00+00:00",
+        "absolute_orbit": 100,
+        "path": null,
+        "frame": null,
+        "orbit_direction": null,
+        "file_size_remote": null,
+        "footprint_bbox": null,
+        "footprint_geojson": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "fixture_metadata": {
+    "fixture_version": 1,
+    "fixture_kind": "invalid",
+    "fixture_name": "companion-required-false",
+    "payload_contract": "FrozenTaskSnapshotV3",
+    "offline": true
+  },
+  "base": "single",
+  "mutations": [
+    {
+      "op": "set",
+      "path": "/transfer_items/1/required",
+      "value": false
+    }
+  ],
+  "expected": {
+    "accepted": false,
+    "error": {
+      "variant": "invalid_transfer_graph",
+      "issue": {
+        "kind": "required_companion_must_be_required",
+        "transfer": {
+          "kind": "transfer_item",
+          "index": 1
+        }
+      }
+    }
+  }
+}

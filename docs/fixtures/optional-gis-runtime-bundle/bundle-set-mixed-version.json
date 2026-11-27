@@ -1,0 +1,5 @@
+{
+  "fixture": "bundle-set-valid.json",
+  "mutation": "members[gis-proj-data-win-x64].version = 0.9.0 while referenced ComponentManifest.version = 9.5.1",
+  "expected_error": "GIS_BUNDLE_SET_MEMBER_VERSION_MISMATCH"
+}

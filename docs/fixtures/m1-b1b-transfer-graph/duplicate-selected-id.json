@@ -1,0 +1,32 @@
+{
+  "fixture_metadata": {
+    "fixture_version": 1,
+    "fixture_kind": "invalid",
+    "fixture_name": "duplicate-selected-id",
+    "payload_contract": "FrozenTaskSnapshotV3",
+    "offline": true
+  },
+  "base": "single",
+  "mutations": [
+    {
+      "op": "append_copy",
+      "from": "/initial_selected_item_ids/0",
+      "path": "/initial_selected_item_ids"
+    }
+  ],
+  "expected": {
+    "accepted": false,
+    "error": {
+      "variant": "duplicate_identity",
+      "identity": "selected_item_id",
+      "first": {
+        "kind": "initial_selected_item_id",
+        "index": 0
+      },
+      "duplicate": {
+        "kind": "initial_selected_item_id",
+        "index": 1
+      }
+    }
+  }
+}

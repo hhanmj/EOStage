@@ -1,0 +1,13 @@
+{
+  "fixture_kind": "authorized-rollback-active-lease-scenario",
+  "rollback_scenario_file": "rollback-success.json",
+  "lease_before_file": "lease-base-extension.json",
+  "lease_after_file": "lease-base-extension.json",
+  "lease_selection_digest": "bf1f3febfe294095ce177a1bafc4af01b276d0ef7004cf93893a8f16dc270c65",
+  "active_after_file": "active-rollback-target.json",
+  "active_after_selection_digest": "3788ed70d614046c953c8d332e31535376fb15729165cc049a63ab606ec4e897",
+  "delete_leased_base_or_extension_error": "GIS_INSTALL_BUSY",
+  "running_task_action": "continue-or-cancel-under-original-lease",
+  "new_task_action": "lease-authorized-rollback-target",
+  "expected": "rollback-does-not-mutate-running-runtime-lease"
+}

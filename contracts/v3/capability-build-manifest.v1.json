@@ -1,0 +1,32 @@
+{
+  "schema_id": "capability-build-manifest.v1",
+  "schema_version": 1,
+  "manifest_id": "build.capabilities.release-2.2.0-rc1.v1",
+  "build_profile_id": "desktop-rust-v1",
+  "entries": [
+    { "implementation_binding_id": "asf.alos-2.palsar-2.scansar.l1.1.v1", "required_features": [] },
+    { "implementation_binding_id": "asf.alos-palsar.v2", "required_features": [] },
+    { "implementation_binding_id": "asf.ers.v1", "required_features": [] },
+    { "implementation_binding_id": "asf.jers-1.v1", "required_features": [] },
+    { "implementation_binding_id": "asf.nisar.l.rslc.provisional.v1", "required_features": [] },
+    { "implementation_binding_id": "isro.nrsc.bhoonidhi.nisar.s.ssar.rslc.v1", "required_features": [] },
+    { "implementation_binding_id": "asf.radarsat-1.v1", "required_features": [] },
+    { "implementation_binding_id": "asf.seasat.v1", "required_features": [] },
+    { "implementation_binding_id": "asf.sentinel-1.burst.v1", "required_features": [] },
+    { "implementation_binding_id": "asf.sentinel-1.standard.v1", "required_features": [] },
+    { "implementation_binding_id": "cdse.sentinel-2.l2a.archive-resolver-policy.v1", "required_features": [] },
+    { "implementation_binding_id": "cdse.sentinel-2.l2a.collection.v1", "required_features": [] },
+    { "implementation_binding_id": "dem-provider.user-local.v1", "required_features": [] },
+    { "implementation_binding_id": "dlr.eoc.enmap.l2a.v1", "required_features": [] },
+    { "implementation_binding_id": "element84.earth-search.landsat-c2-l2.v1", "required_features": [] },
+    { "implementation_binding_id": "element84.earth-search.sentinel-2-l2a.v1", "required_features": [] },
+    { "implementation_binding_id": "laads.viirs.black-marble.v1", "required_features": [] },
+    { "implementation_binding_id": "lpdaac.ecostress.l2t.v1", "required_features": [] },
+    { "implementation_binding_id": "lpdaac.emit.l2a.v1", "required_features": [] },
+    { "implementation_binding_id": "orbit-download.asf-sentinel-1.v1", "required_features": [] },
+    { "implementation_binding_id": "planetary-computer.landsat-c2-l2.v1", "required_features": [] },
+    { "implementation_binding_id": "planetary-computer.sentinel-2-l2a.v1", "required_features": [] },
+    { "implementation_binding_id": "production-worker.complete.v1", "required_features": [] },
+    { "implementation_binding_id": "production-worker.nisar-remote-subset.v1", "required_features": ["nisar-subset-production"] }
+  ]
+}

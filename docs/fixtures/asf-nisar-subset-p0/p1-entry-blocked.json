@@ -1,0 +1,33 @@
+{
+  "fixture_contract": "NisarSubsetP1EntryGateV1",
+  "status": "historical_planning_blocked_superseded_by_p0_5_no_go",
+  "evidence_snapshot": "2026-07-28_planning_gate",
+  "superseded_by": [
+    "2026-07-29-nisar-remote-subset-p0-2.md",
+    "2026-07-29-nisar-remote-subset-p0-3.md",
+    "2026-07-29-nisar-remote-subset-p0-4.md",
+    "official-single-scene-result.json",
+    "p0-5-entry-decision.json"
+  ],
+  "current_decision_owner": "p0-5-entry-decision.json",
+  "static_mechanism_identified": true,
+  "conditions": [
+    {"id": "windows_reproducible", "satisfied": false},
+    {"id": "technical_reference_authorized", "satisfied": true},
+    {"id": "adopted_dependency_licenses_accepted", "satisfied": false},
+    {"id": "credential_isolation_proven", "satisfied": false},
+    {"id": "partial_remote_access_proven", "satisfied": false},
+    {"id": "transfer_reduction_measured", "satisfied": false},
+    {"id": "scientific_semantics_closed", "satisfied": false},
+    {"id": "cancel_recovery_safe", "satisfied": false}
+  ],
+  "blocking_evidence": [
+    "embedded_earthdata_credential_incident",
+    "live_range_and_transfer_bytes_not_measured",
+    "aoi_mapping_not_scientifically_closed",
+    "derived_metadata_equivalence_not_proven",
+    "no_validator_bound_byte_resume"
+  ],
+  "entry_rule": "historical_all_conditions_true; do_not_use_as_current_decision",
+  "expected_result": {"kind": "P1_BLOCKED", "error": "NISAR_SUBSET_MECHANISM_UNVERIFIED"}
+}

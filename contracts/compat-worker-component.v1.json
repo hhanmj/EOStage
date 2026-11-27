@@ -1,0 +1,21 @@
+{
+  "component_id": "eostage.compat-worker",
+  "protocol": "eostage.compat-worker.v1",
+  "relative_path": "runtime/compat-worker/eostage-compat-worker.exe",
+  "executable_name": "eostage-compat-worker.exe",
+  "version": "1.0.0",
+  "sha256": "__BUILD_ARTIFACT_SHA256__",
+  "supported_operations": [
+    "worker_capabilities",
+    "aoi_import",
+    "dem_inspect",
+    "dem_convert",
+    "dem_prepare_sarscape"
+  ],
+  "offline_only": true,
+  "store_access": false,
+  "credential_access": false,
+  "download_queue_access": false,
+  "lifecycle_owner": "tauri",
+  "task_id_owner": "application_service"
+}

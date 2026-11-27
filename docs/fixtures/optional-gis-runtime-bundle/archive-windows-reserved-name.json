@@ -1,0 +1,4 @@
+{
+  "archive_entry": "CON.txt",
+  "expected_error": "GIS_ARCHIVE_RESERVED_NAME"
+}

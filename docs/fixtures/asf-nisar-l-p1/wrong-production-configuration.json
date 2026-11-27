@@ -1,0 +1,6 @@
+{
+  "fixture_contract": "AsfNisarMutationFixtureV1",
+  "base": "granule-provisional-multi-asset-valid.json",
+  "mutation": {"path": "/granule/production_configuration", "value": "UR"},
+  "expected_result": {"kind": "reject", "error": "ASF_PRODUCT_SCOPE_MISMATCH"}
+}

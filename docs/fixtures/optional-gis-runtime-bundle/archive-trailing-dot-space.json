@@ -1,0 +1,4 @@
+{
+  "archive_entries": ["data/result. ", "data/result."],
+  "expected_error": "GIS_ARCHIVE_TRAILING_DOT_SPACE"
+}

@@ -1,0 +1,1 @@
+{"stac_version":"1.1.0","type":"Feature","id":"00000000-0000-4000-8000-000000000003","collection":"sentinel-2-l2a","properties":{"eo:bands":[{"name":"B04"}]},"geometry":null,"bbox":null,"assets":{"B04":{"href":"https://stac.example.invalid/assets/B04.jp2","roles":["data"]}},"links":[]}

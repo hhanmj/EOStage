@@ -1,0 +1,132 @@
+{
+  "filters": [
+    {"input": " iw;EW,iw ", "expected": "EW,IW"},
+    {"input": "dv, DH;dv", "expected": "DH,DV"},
+    {"input": "", "expected": ""}
+  ],
+  "dates": [
+    {"input": "2024/01/02", "expected": "2024-01-02"},
+    {"input": " 2024-01-03 ", "expected": "2024-01-03"},
+    {"input": "", "expected": ""}
+  ],
+  "ranges": [
+    {
+      "input": "13-11;20,30:31,bad",
+      "expected": [[11, 13], [20, 20], [30, 31]]
+    },
+    {"input": "", "expected": []},
+    {"input": "7", "expected": [[7, 7]]}
+  ],
+  "bboxes": [
+    {
+      "input": {
+        "west": 100.123456789,
+        "east": 101.00000004,
+        "south": 20.00000005,
+        "north": 21.987654321,
+        "crs": ""
+      },
+      "expected": {
+        "west": 100.1234568,
+        "east": 101.0,
+        "south": 20.0000001,
+        "north": 21.9876543,
+        "crs": "EPSG:4326"
+      }
+    }
+  ],
+  "geojson": [
+    {
+      "input": {
+        "type": "Feature",
+        "properties": {"名称": "测试"},
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [[[100.123456789, 20.987654321], [101.0, 20.0], [100.123456789, 20.987654321]]]
+        }
+      },
+      "expected_hash": "ccb01a0084a407502d1bd2e5b33d44cdad2fc657cad64cad8640f468e64702ee"
+    },
+    {
+      "input": {
+        "type": "FeatureCollection",
+        "features": [
+          {"type": "Feature", "properties": {"z": 1}, "geometry": {"type": "Point", "coordinates": [120.123456789, 30.00000004]}},
+          {"type": "Feature", "geometry": {"type": "Point", "coordinates": [121.0, 31.0]}}
+        ]
+      },
+      "expected_hash": "f7124034cd22ed796bcc7a3525238adbbc92f0ce3734f5cfe7196006858dde00"
+    }
+  ],
+  "queries": {
+    "broad": {
+      "value": {
+        "version": 1,
+        "dataset": "SENTINEL-1",
+        "bbox": {"west": 100.1234568, "east": 101.0, "south": 20.0, "north": 21.0, "crs": "EPSG:4326"},
+        "aoi": "ccb01a0084a407502d1bd2e5b33d44cdad2fc657cad64cad8640f468e64702ee",
+        "start": "2024-01-01",
+        "end": "2024-01-31",
+        "product_type": "SLC",
+        "beam_mode": "IW",
+        "polarization": "",
+        "orbit_direction": "",
+        "relative_orbit": "",
+        "frame": ""
+      },
+      "key": "a5b9cd329f35efe7159ea5814815acfbd9e7d61ad46dbe2e50212a14487ef0fa"
+    },
+    "narrow": {
+      "value": {
+        "version": 1,
+        "dataset": "SENTINEL-1",
+        "bbox": {"west": 100.1234568, "east": 101.0, "south": 20.0, "north": 21.0, "crs": "EPSG:4326"},
+        "aoi": "ccb01a0084a407502d1bd2e5b33d44cdad2fc657cad64cad8640f468e64702ee",
+        "start": "2024-01-10",
+        "end": "2024-01-20",
+        "product_type": "SLC",
+        "beam_mode": "IW",
+        "polarization": "DV",
+        "orbit_direction": "",
+        "relative_orbit": "12-15",
+        "frame": ""
+      },
+      "key": "6e119a13f1610fed601c1012b3fd3abba67e324b5caf14d8542af3e8b64af86c"
+    },
+    "unbounded_dates": {
+      "value": {
+        "version": 1,
+        "dataset": "SENTINEL-1",
+        "bbox": {"west": 100.1234568, "east": 101.0, "south": 20.0, "north": 21.0, "crs": "EPSG:4326"},
+        "aoi": "ccb01a0084a407502d1bd2e5b33d44cdad2fc657cad64cad8640f468e64702ee",
+        "start": "",
+        "end": "",
+        "product_type": "SLC",
+        "beam_mode": "IW",
+        "polarization": "",
+        "orbit_direction": "",
+        "relative_orbit": "",
+        "frame": ""
+      },
+      "key": "a8ed5f9b21a9f51729bf6c1d3ab61440678799ea173bb70c916a0a497bb9cc7c"
+    }
+  },
+  "coverage": [
+    {"cached": "broad", "requested": "narrow", "expected": true},
+    {"cached": "narrow", "requested": "broad", "expected": false},
+    {"cached": "broad", "requested": "unbounded_dates", "expected": false}
+  ],
+  "range_coverage": [
+    {"cached": "10-20", "requested": "12-15", "expected": true},
+    {"cached": "12-15", "requested": "10-20", "expected": false},
+    {"cached": "", "requested": "12-15", "expected": true},
+    {"cached": "12-15", "requested": "", "expected": false}
+  ],
+  "limit_reuse": [
+    {"available": 30, "complete": false, "requested": 30, "expected": true},
+    {"available": 30, "complete": false, "requested": 100, "expected": false},
+    {"available": 100, "complete": false, "requested": 30, "expected": true},
+    {"available": 30, "complete": false, "requested": null, "expected": false},
+    {"available": 30, "complete": true, "requested": null, "expected": true}
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "fixture_contract": "AsfNisarAssetGraphBoundaryMatrixV1",
+  "status": "accepted_for_offline_generation",
+  "limits": {
+    "raw_resource_entries": 128,
+    "deduplicated_assets": 32,
+    "native_roles_per_asset": 8,
+    "native_role_utf8_bytes": 128,
+    "file_name_utf8_bytes": 512,
+    "media_type_utf8_bytes": 128,
+    "stable_locator_utf8_bytes": 4096,
+    "metadata_assets_json_bytes": 40960
+  },
+  "cases": [
+    {"id": "raw-128-dedup-valid", "operation": "set_aggregate_resource_count", "value": 128, "expected": "accept"},
+    {"id": "raw-129-rejected", "operation": "set_raw_resource_count", "value": 129, "expected": "ASF_ASSET_GRAPH_LIMIT_EXCEEDED"},
+    {"id": "https-s3-duplicate-flood", "operation": "duplicate_primary_routes", "value": 64, "expected": "accept_one_primary"},
+    {"id": "native-roles-8-valid", "operation": "set_native_role_count", "value": 8, "expected": "accept"},
+    {"id": "native-roles-9-rejected", "operation": "set_native_role_count", "value": 9, "expected": "ASF_ASSET_GRAPH_LIMIT_EXCEEDED"},
+    {"id": "native-role-128-valid", "operation": "set_native_role_bytes", "value": 128, "expected": "accept"},
+    {"id": "native-role-129-rejected", "operation": "set_native_role_bytes", "value": 129, "expected": "ASF_ASSET_GRAPH_LIMIT_EXCEEDED"},
+    {"id": "filename-512-valid", "operation": "set_filename_bytes", "value": 512, "expected": "accept"},
+    {"id": "filename-513-rejected", "operation": "set_filename_bytes", "value": 513, "expected": "ASF_ASSET_GRAPH_LIMIT_EXCEEDED"},
+    {"id": "media-type-128-valid", "operation": "set_media_type_bytes", "value": 128, "expected": "accept"},
+    {"id": "media-type-129-rejected", "operation": "set_media_type_bytes", "value": 129, "expected": "ASF_ASSET_GRAPH_LIMIT_EXCEEDED"},
+    {"id": "locator-4096-valid", "operation": "set_locator_bytes", "value": 4096, "expected": "accept"},
+    {"id": "locator-4097-rejected", "operation": "set_locator_bytes", "value": 4097, "expected": "ASF_ASSET_GRAPH_LIMIT_EXCEEDED"},
+    {"id": "metadata-json-near-limit", "operation": "pad_metadata_graph", "minimum": 38912, "maximum": 40960, "expected": "accept"},
+    {"id": "metadata-json-over-limit", "operation": "pad_metadata_graph", "minimum": 40961, "expected": "ASF_ASSET_GRAPH_LIMIT_EXCEEDED"},
+    {"id": "assets-32-valid", "operation": "set_deduplicated_asset_count", "value": 32, "expected": "accept"},
+    {"id": "assets-33-rejected", "operation": "set_deduplicated_asset_count", "value": 33, "expected": "ASF_ASSET_GRAPH_LIMIT_EXCEEDED"},
+    {"id": "multiple-science-hdf5", "operation": "append_distinct_primary", "expected": "ASF_PRIMARY_ASSET_AMBIGUOUS"},
+    {"id": "primary-qa-conflict", "operation": "mark_qa_hdf5_primary", "expected": "ASF_ASSET_CLASSIFICATION_INVALID"},
+    {"id": "unknown-hdf5-not-primary", "operation": "append_unknown_hdf5", "expected": "ASF_ASSET_CLASSIFICATION_INVALID"},
+    {"id": "stable-sort", "operation": "reverse_records", "expected": "identical_graph"},
+    {"id": "post-dedup-overflow", "operation": "duplicate_routes_then_add_assets", "value": 33, "expected": "ASF_ASSET_GRAPH_LIMIT_EXCEEDED"}
+  ]
+}

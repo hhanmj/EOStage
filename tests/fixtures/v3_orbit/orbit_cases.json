@@ -1,0 +1,611 @@
+{
+  "parse_cases": [
+    {
+      "name": "valid_platforms_products_and_order",
+      "request": {
+        "file_names": [
+          "S1A_OPER_AUX_POEORB_OPOD_20240102T120000_V20240101T225942_20240103T005942.EOF",
+          "S1B_OPER_AUX_MOEORB_OP_É_20240103T120000_V20240102T000000_20240104T000000.EOF",
+          "S1C_OPER_AUX_RESORB_OPOD_20240229T120000_V20240229T000000_20240301T000000.EOF",
+          "S1D_OPER_AUX_POEORB_OPOD_20241231T235959_V20241231T000000_20250101T000000.eof"
+        ]
+      },
+      "expected": {
+        "orbit_files": [
+          {
+            "file_name": "S1A_OPER_AUX_POEORB_OPOD_20240102T120000_V20240101T225942_20240103T005942.EOF",
+            "platform": "S1A",
+            "orbit_type": "POEORB",
+            "creation_unix_seconds": 1704196800,
+            "validity_start_unix_seconds": 1704149982,
+            "validity_stop_unix_seconds": 1704243582
+          },
+          {
+            "file_name": "S1B_OPER_AUX_MOEORB_OP_É_20240103T120000_V20240102T000000_20240104T000000.EOF",
+            "platform": "S1B",
+            "orbit_type": "MOEORB",
+            "creation_unix_seconds": 1704283200,
+            "validity_start_unix_seconds": 1704153600,
+            "validity_stop_unix_seconds": 1704326400
+          },
+          {
+            "file_name": "S1C_OPER_AUX_RESORB_OPOD_20240229T120000_V20240229T000000_20240301T000000.EOF",
+            "platform": "S1C",
+            "orbit_type": "RESORB",
+            "creation_unix_seconds": 1709208000,
+            "validity_start_unix_seconds": 1709164800,
+            "validity_stop_unix_seconds": 1709251200
+          },
+          {
+            "file_name": "S1D_OPER_AUX_POEORB_OPOD_20241231T235959_V20241231T000000_20250101T000000.eof",
+            "platform": "S1D",
+            "orbit_type": "POEORB",
+            "creation_unix_seconds": 1735689599,
+            "validity_start_unix_seconds": 1735603200,
+            "validity_stop_unix_seconds": 1735689600
+          }
+        ],
+        "errors": []
+      }
+    },
+    {
+      "name": "invalid_items_are_collected_in_input_order",
+      "request": {
+        "file_names": [
+          "S1E_OPER_AUX_POEORB_OPOD_20240102T120000_V20240101T000000_20240103T000000.EOF",
+          "S1A_OPER_AUX_PREORB_OPOD_20240102T120000_V20240101T000000_20240103T000000.EOF",
+          "S1A_OPER_AUX_POEORB_OP-OD_20240102T120000_V20240101T000000_20240103T000000.EOF",
+          "S1A_OPER_AUX_POEORB_OPOD_20230229T120000_V20230228T000000_20230301T000000.EOF",
+          "S1A_OPER_AUX_POEORB_OPOD_20240102T120000_V20240103T000000_20240103T000000.EOF",
+          "S1A_OPER_AUX_POEORB_OPOD_20240102T120000_V20240104T000000_20240103T000000.EOF"
+        ]
+      },
+      "expected": {
+        "orbit_files": [],
+        "errors": [
+          {
+            "file_name": "S1E_OPER_AUX_POEORB_OPOD_20240102T120000_V20240101T000000_20240103T000000.EOF",
+            "error": {
+              "code": "ORB001",
+              "user_message": "轨道文件名无效",
+              "debug_context": {"reason": "invalid_filename"}
+            }
+          },
+          {
+            "file_name": "S1A_OPER_AUX_PREORB_OPOD_20240102T120000_V20240101T000000_20240103T000000.EOF",
+            "error": {
+              "code": "ORB001",
+              "user_message": "轨道文件名无效",
+              "debug_context": {"reason": "invalid_filename"}
+            }
+          },
+          {
+            "file_name": "S1A_OPER_AUX_POEORB_OP-OD_20240102T120000_V20240101T000000_20240103T000000.EOF",
+            "error": {
+              "code": "ORB001",
+              "user_message": "轨道文件名无效",
+              "debug_context": {"reason": "invalid_filename"}
+            }
+          },
+          {
+            "file_name": "S1A_OPER_AUX_POEORB_OPOD_20230229T120000_V20230228T000000_20230301T000000.EOF",
+            "error": {
+              "code": "ORB001",
+              "user_message": "轨道文件名无效",
+              "debug_context": {"reason": "invalid_timestamp"}
+            }
+          },
+          {
+            "file_name": "S1A_OPER_AUX_POEORB_OPOD_20240102T120000_V20240103T000000_20240103T000000.EOF",
+            "error": {
+              "code": "ORB001",
+              "user_message": "轨道文件名无效",
+              "debug_context": {"reason": "invalid_validity_window"}
+            }
+          },
+          {
+            "file_name": "S1A_OPER_AUX_POEORB_OPOD_20240102T120000_V20240104T000000_20240103T000000.EOF",
+            "error": {
+              "code": "ORB001",
+              "user_message": "轨道文件名无效",
+              "debug_context": {"reason": "invalid_validity_window"}
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "valid_and_invalid_outputs_keep_independent_relative_order",
+      "request": {
+        "file_names": [
+          "not-an-orbit.EOF",
+          "S1A_OPER_AUX_RESORB_OPOD_20240101T120000_V20240101T000000_20240102T000000.EOF",
+          "S1B_OPER_AUX_POEORB_OPOD_20241301T120000_V20240101T000000_20240102T000000.EOF",
+          "S1B_OPER_AUX_MOEORB_OPOD_20240102T120000_V20240101T000000_20240103T000000.EOF"
+        ]
+      },
+      "expected": {
+        "orbit_files": [
+          {
+            "file_name": "S1A_OPER_AUX_RESORB_OPOD_20240101T120000_V20240101T000000_20240102T000000.EOF",
+            "platform": "S1A",
+            "orbit_type": "RESORB",
+            "creation_unix_seconds": 1704110400,
+            "validity_start_unix_seconds": 1704067200,
+            "validity_stop_unix_seconds": 1704153600
+          },
+          {
+            "file_name": "S1B_OPER_AUX_MOEORB_OPOD_20240102T120000_V20240101T000000_20240103T000000.EOF",
+            "platform": "S1B",
+            "orbit_type": "MOEORB",
+            "creation_unix_seconds": 1704196800,
+            "validity_start_unix_seconds": 1704067200,
+            "validity_stop_unix_seconds": 1704240000
+          }
+        ],
+        "errors": [
+          {
+            "file_name": "not-an-orbit.EOF",
+            "error": {
+              "code": "ORB001",
+              "user_message": "轨道文件名无效",
+              "debug_context": {"reason": "invalid_filename"}
+            }
+          },
+          {
+            "file_name": "S1B_OPER_AUX_POEORB_OPOD_20241301T120000_V20240101T000000_20240102T000000.EOF",
+            "error": {
+              "code": "ORB001",
+              "user_message": "轨道文件名无效",
+              "debug_context": {"reason": "invalid_timestamp"}
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "match_cases": [
+    {
+      "name": "unmatched_categories_preserve_scene_and_issue_order",
+      "request": {
+        "scenes": [
+          {"scene_id": "missing-time", "platform": "S1A", "acquisition_unix_seconds": null},
+          {"scene_id": "wrong-platform", "platform": "S1C", "acquisition_unix_seconds": 150},
+          {"scene_id": "outside-window", "platform": "S1A", "acquisition_unix_seconds": 250}
+        ],
+        "orbit_files": [
+          {
+            "file_name": "a-poe.EOF",
+            "platform": "S1A",
+            "orbit_type": "POEORB",
+            "creation_unix_seconds": 90,
+            "validity_start_unix_seconds": 100,
+            "validity_stop_unix_seconds": 200
+          },
+          {
+            "file_name": "b-res.EOF",
+            "platform": "S1B",
+            "orbit_type": "RESORB",
+            "creation_unix_seconds": 80,
+            "validity_start_unix_seconds": 100,
+            "validity_stop_unix_seconds": 200
+          },
+          {
+            "file_name": "d-unknown.EOF",
+            "platform": "S1D",
+            "orbit_type": "UNKNOWN",
+            "creation_unix_seconds": 70,
+            "validity_start_unix_seconds": 300,
+            "validity_stop_unix_seconds": 400
+          }
+        ]
+      },
+      "expected": {
+        "total": 3,
+        "matched": 0,
+        "unmatched": 3,
+        "results": [
+          {
+            "scene_id": "missing-time",
+            "matched_orbit": null,
+            "candidate_orbits": [],
+            "issues": [
+              {
+                "code": "ORBIT_MISSING",
+                "severity": "warning",
+                "message": "scene has no acquisition_datetime",
+                "scene_id": "missing-time",
+                "orbit_file": null,
+                "details": {}
+              }
+            ],
+            "is_matched": false
+          },
+          {
+            "scene_id": "wrong-platform",
+            "matched_orbit": null,
+            "candidate_orbits": [],
+            "issues": [
+              {
+                "code": "ORBIT_PLATFORM_MISMATCH",
+                "severity": "warning",
+                "message": "no orbit matches the scene platform",
+                "scene_id": "wrong-platform",
+                "orbit_file": null,
+                "details": {}
+              }
+            ],
+            "is_matched": false
+          },
+          {
+            "scene_id": "outside-window",
+            "matched_orbit": null,
+            "candidate_orbits": [],
+            "issues": [
+              {
+                "code": "ORBIT_TIME_NOT_COVERED",
+                "severity": "warning",
+                "message": "no orbit validity period covers the scene time",
+                "scene_id": "outside-window",
+                "orbit_file": null,
+                "details": {}
+              }
+            ],
+            "is_matched": false
+          }
+        ],
+        "issues": [
+          {
+            "code": "ORBIT_MISSING",
+            "severity": "warning",
+            "message": "scene has no acquisition_datetime",
+            "scene_id": "missing-time",
+            "orbit_file": null,
+            "details": {}
+          },
+          {
+            "code": "ORBIT_PLATFORM_MISMATCH",
+            "severity": "warning",
+            "message": "no orbit matches the scene platform",
+            "scene_id": "wrong-platform",
+            "orbit_file": null,
+            "details": {}
+          },
+          {
+            "code": "ORBIT_TIME_NOT_COVERED",
+            "severity": "warning",
+            "message": "no orbit validity period covers the scene time",
+            "scene_id": "outside-window",
+            "orbit_file": null,
+            "details": {}
+          }
+        ],
+        "summary": {
+          "orbit_files": 3,
+          "scenes": 3,
+          "matched": 0,
+          "unmatched": 3,
+          "orbit_types": ["POEORB", "RESORB", "UNKNOWN"]
+        }
+      }
+    },
+    {
+      "name": "empty_orbit_collection_reports_missing",
+      "request": {
+        "scenes": [
+          {"scene_id": "no-files", "platform": "S1A", "acquisition_unix_seconds": 150}
+        ],
+        "orbit_files": []
+      },
+      "expected": {
+        "total": 1,
+        "matched": 0,
+        "unmatched": 1,
+        "results": [
+          {
+            "scene_id": "no-files",
+            "matched_orbit": null,
+            "candidate_orbits": [],
+            "issues": [
+              {
+                "code": "ORBIT_MISSING",
+                "severity": "warning",
+                "message": "no orbit files",
+                "scene_id": "no-files",
+                "orbit_file": null,
+                "details": {}
+              }
+            ],
+            "is_matched": false
+          }
+        ],
+        "issues": [
+          {
+            "code": "ORBIT_MISSING",
+            "severity": "warning",
+            "message": "no orbit files",
+            "scene_id": "no-files",
+            "orbit_file": null,
+            "details": {}
+          }
+        ],
+        "summary": {
+          "orbit_files": 0,
+          "scenes": 1,
+          "matched": 0,
+          "unmatched": 1,
+          "orbit_types": []
+        }
+      }
+    },
+    {
+      "name": "priority_newest_and_stable_tie_preserve_candidates",
+      "request": {
+        "scenes": [
+          {"scene_id": "priority-scene", "platform": "S1A", "acquisition_unix_seconds": 150}
+        ],
+        "orbit_files": [
+          {
+            "file_name": "res.EOF",
+            "platform": "S1A",
+            "orbit_type": "RESORB",
+            "creation_unix_seconds": 500,
+            "validity_start_unix_seconds": 100,
+            "validity_stop_unix_seconds": 200
+          },
+          {
+            "file_name": "poe-old.EOF",
+            "platform": "S1A",
+            "orbit_type": "POEORB",
+            "creation_unix_seconds": 400,
+            "validity_start_unix_seconds": 100,
+            "validity_stop_unix_seconds": 200
+          },
+          {
+            "file_name": "moe.EOF",
+            "platform": "S1A",
+            "orbit_type": "MOEORB",
+            "creation_unix_seconds": 600,
+            "validity_start_unix_seconds": 100,
+            "validity_stop_unix_seconds": 200
+          },
+          {
+            "file_name": "poe-new-first.EOF",
+            "platform": "S1A",
+            "orbit_type": "POEORB",
+            "creation_unix_seconds": 700,
+            "validity_start_unix_seconds": 100,
+            "validity_stop_unix_seconds": 200
+          },
+          {
+            "file_name": "poe-new-tie.EOF",
+            "platform": "S1A",
+            "orbit_type": "POEORB",
+            "creation_unix_seconds": 700,
+            "validity_start_unix_seconds": 100,
+            "validity_stop_unix_seconds": 200
+          }
+        ]
+      },
+      "expected": {
+        "total": 1,
+        "matched": 1,
+        "unmatched": 0,
+        "results": [
+          {
+            "scene_id": "priority-scene",
+            "matched_orbit": {
+              "file_name": "poe-new-first.EOF",
+              "platform": "S1A",
+              "orbit_type": "POEORB",
+              "creation_unix_seconds": 700,
+              "validity_start_unix_seconds": 100,
+              "validity_stop_unix_seconds": 200
+            },
+            "candidate_orbits": [
+              {
+                "file_name": "res.EOF",
+                "platform": "S1A",
+                "orbit_type": "RESORB",
+                "creation_unix_seconds": 500,
+                "validity_start_unix_seconds": 100,
+                "validity_stop_unix_seconds": 200
+              },
+              {
+                "file_name": "poe-old.EOF",
+                "platform": "S1A",
+                "orbit_type": "POEORB",
+                "creation_unix_seconds": 400,
+                "validity_start_unix_seconds": 100,
+                "validity_stop_unix_seconds": 200
+              },
+              {
+                "file_name": "moe.EOF",
+                "platform": "S1A",
+                "orbit_type": "MOEORB",
+                "creation_unix_seconds": 600,
+                "validity_start_unix_seconds": 100,
+                "validity_stop_unix_seconds": 200
+              },
+              {
+                "file_name": "poe-new-first.EOF",
+                "platform": "S1A",
+                "orbit_type": "POEORB",
+                "creation_unix_seconds": 700,
+                "validity_start_unix_seconds": 100,
+                "validity_stop_unix_seconds": 200
+              },
+              {
+                "file_name": "poe-new-tie.EOF",
+                "platform": "S1A",
+                "orbit_type": "POEORB",
+                "creation_unix_seconds": 700,
+                "validity_start_unix_seconds": 100,
+                "validity_stop_unix_seconds": 200
+              }
+            ],
+            "issues": [
+              {
+                "code": "ORBIT_MULTIPLE_CANDIDATES",
+                "severity": "info",
+                "message": "5 candidate orbits cover the scene",
+                "scene_id": "priority-scene",
+                "orbit_file": null,
+                "details": {"count": 5}
+              },
+              {
+                "code": "ORBIT_SELECTED_POEORB",
+                "severity": "info",
+                "message": "selected POEORB orbit",
+                "scene_id": "priority-scene",
+                "orbit_file": "poe-new-first.EOF",
+                "details": {}
+              }
+            ],
+            "is_matched": true
+          }
+        ],
+        "issues": [
+          {
+            "code": "ORBIT_MULTIPLE_CANDIDATES",
+            "severity": "info",
+            "message": "5 candidate orbits cover the scene",
+            "scene_id": "priority-scene",
+            "orbit_file": null,
+            "details": {"count": 5}
+          },
+          {
+            "code": "ORBIT_SELECTED_POEORB",
+            "severity": "info",
+            "message": "selected POEORB orbit",
+            "scene_id": "priority-scene",
+            "orbit_file": "poe-new-first.EOF",
+            "details": {}
+          }
+        ],
+        "summary": {
+          "orbit_files": 5,
+          "scenes": 1,
+          "matched": 1,
+          "unmatched": 0,
+          "orbit_types": ["MOEORB", "POEORB", "RESORB"]
+        }
+      }
+    },
+    {
+      "name": "validity_endpoints_are_inclusive",
+      "request": {
+        "scenes": [
+          {"scene_id": "at-start", "platform": "S1B", "acquisition_unix_seconds": 100},
+          {"scene_id": "at-stop", "platform": "S1B", "acquisition_unix_seconds": 200}
+        ],
+        "orbit_files": [
+          {
+            "file_name": "inclusive-moe.EOF",
+            "platform": "S1B",
+            "orbit_type": "MOEORB",
+            "creation_unix_seconds": 50,
+            "validity_start_unix_seconds": 100,
+            "validity_stop_unix_seconds": 200
+          }
+        ]
+      },
+      "expected": {
+        "total": 2,
+        "matched": 2,
+        "unmatched": 0,
+        "results": [
+          {
+            "scene_id": "at-start",
+            "matched_orbit": {
+              "file_name": "inclusive-moe.EOF",
+              "platform": "S1B",
+              "orbit_type": "MOEORB",
+              "creation_unix_seconds": 50,
+              "validity_start_unix_seconds": 100,
+              "validity_stop_unix_seconds": 200
+            },
+            "candidate_orbits": [
+              {
+                "file_name": "inclusive-moe.EOF",
+                "platform": "S1B",
+                "orbit_type": "MOEORB",
+                "creation_unix_seconds": 50,
+                "validity_start_unix_seconds": 100,
+                "validity_stop_unix_seconds": 200
+              }
+            ],
+            "issues": [
+              {
+                "code": "ORBIT_SELECTED_MOEORB",
+                "severity": "info",
+                "message": "selected MOEORB orbit",
+                "scene_id": "at-start",
+                "orbit_file": "inclusive-moe.EOF",
+                "details": {}
+              }
+            ],
+            "is_matched": true
+          },
+          {
+            "scene_id": "at-stop",
+            "matched_orbit": {
+              "file_name": "inclusive-moe.EOF",
+              "platform": "S1B",
+              "orbit_type": "MOEORB",
+              "creation_unix_seconds": 50,
+              "validity_start_unix_seconds": 100,
+              "validity_stop_unix_seconds": 200
+            },
+            "candidate_orbits": [
+              {
+                "file_name": "inclusive-moe.EOF",
+                "platform": "S1B",
+                "orbit_type": "MOEORB",
+                "creation_unix_seconds": 50,
+                "validity_start_unix_seconds": 100,
+                "validity_stop_unix_seconds": 200
+              }
+            ],
+            "issues": [
+              {
+                "code": "ORBIT_SELECTED_MOEORB",
+                "severity": "info",
+                "message": "selected MOEORB orbit",
+                "scene_id": "at-stop",
+                "orbit_file": "inclusive-moe.EOF",
+                "details": {}
+              }
+            ],
+            "is_matched": true
+          }
+        ],
+        "issues": [
+          {
+            "code": "ORBIT_SELECTED_MOEORB",
+            "severity": "info",
+            "message": "selected MOEORB orbit",
+            "scene_id": "at-start",
+            "orbit_file": "inclusive-moe.EOF",
+            "details": {}
+          },
+          {
+            "code": "ORBIT_SELECTED_MOEORB",
+            "severity": "info",
+            "message": "selected MOEORB orbit",
+            "scene_id": "at-stop",
+            "orbit_file": "inclusive-moe.EOF",
+            "details": {}
+          }
+        ],
+        "summary": {
+          "orbit_files": 1,
+          "scenes": 2,
+          "matched": 2,
+          "unmatched": 0,
+          "orbit_types": ["MOEORB"]
+        }
+      }
+    }
+  ]
+}

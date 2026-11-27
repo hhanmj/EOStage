@@ -1,0 +1,246 @@
+{
+  "schema_version": 1,
+  "authority_id": "eostage.taiwan-selector-identities.v1",
+  "version": "2026-11-21",
+  "status": "product_owned_verified_binding_table",
+  "provider": "datav",
+  "country_code": "CN",
+  "verification": {
+    "verified_at": "2026-11-21",
+    "evidence_path": "contracts/taiwan-admin/domestic-boundary-policy.json",
+    "evidence_sha256": "2b23638d627bafe03b27a7bb6187f3cf34d1e61baf281be44e80ceab8c934584",
+    "source": "DataV areas_v3 (710000) / Tianditu Administrative Boundary API",
+    "license": "On-demand online query only; no administrative polygon data is redistributed in this repository."
+  },
+  "units": [
+    {
+      "display_name": "台湾省",
+      "selector_level": "province",
+      "provider": "datav",
+      "provider_object_id": "710000",
+      "expected_provider_names": [
+        "台湾省",
+        "臺灣省",
+        "台灣",
+        "臺灣",
+        "台湾"
+      ]
+    },
+    {
+      "display_name": "台北市",
+      "selector_level": "city_county",
+      "provider": "tianditu",
+      "provider_object_id": "710100",
+      "expected_provider_names": [
+        "臺北市",
+        "台北市"
+      ]
+    },
+    {
+      "display_name": "新北市",
+      "selector_level": "city_county",
+      "provider": "tianditu",
+      "provider_object_id": "710200",
+      "expected_provider_names": [
+        "新北市"
+      ]
+    },
+    {
+      "display_name": "桃园市",
+      "selector_level": "city_county",
+      "provider": "tianditu",
+      "provider_object_id": "710300",
+      "expected_provider_names": [
+        "桃園市",
+        "桃园市"
+      ]
+    },
+    {
+      "display_name": "台中市",
+      "selector_level": "city_county",
+      "provider": "tianditu",
+      "provider_object_id": "710400",
+      "expected_provider_names": [
+        "臺中市",
+        "台中市"
+      ]
+    },
+    {
+      "display_name": "台南市",
+      "selector_level": "city_county",
+      "provider": "tianditu",
+      "provider_object_id": "710500",
+      "expected_provider_names": [
+        "臺南市",
+        "台南市"
+      ]
+    },
+    {
+      "display_name": "高雄市",
+      "selector_level": "city_county",
+      "provider": "tianditu",
+      "provider_object_id": "710600",
+      "expected_provider_names": [
+        "高雄市"
+      ]
+    },
+    {
+      "display_name": "基隆市",
+      "selector_level": "city_county",
+      "provider": "tianditu",
+      "provider_object_id": "710700",
+      "expected_provider_names": [
+        "基隆市"
+      ]
+    },
+    {
+      "display_name": "新竹市",
+      "selector_level": "city_county",
+      "provider": "tianditu",
+      "provider_object_id": "710900",
+      "expected_provider_names": [
+        "新竹市"
+      ]
+    },
+    {
+      "display_name": "嘉义市",
+      "selector_level": "city_county",
+      "provider": "tianditu",
+      "provider_object_id": "711000",
+      "expected_provider_names": [
+        "嘉義市",
+        "嘉义市"
+      ]
+    },
+    {
+      "display_name": "新竹县",
+      "selector_level": "city_county",
+      "provider": "tianditu",
+      "provider_object_id": "711100",
+      "expected_provider_names": [
+        "新竹縣",
+        "新竹县"
+      ]
+    },
+    {
+      "display_name": "苗栗县",
+      "selector_level": "city_county",
+      "provider": "tianditu",
+      "provider_object_id": "711200",
+      "expected_provider_names": [
+        "苗栗縣",
+        "苗栗县"
+      ]
+    },
+    {
+      "display_name": "彰化县",
+      "selector_level": "city_county",
+      "provider": "tianditu",
+      "provider_object_id": "711300",
+      "expected_provider_names": [
+        "彰化縣",
+        "彰化县"
+      ]
+    },
+    {
+      "display_name": "南投县",
+      "selector_level": "city_county",
+      "provider": "tianditu",
+      "provider_object_id": "710800",
+      "expected_provider_names": [
+        "南投縣",
+        "南投县"
+      ]
+    },
+    {
+      "display_name": "云林县",
+      "selector_level": "city_county",
+      "provider": "tianditu",
+      "provider_object_id": "711400",
+      "expected_provider_names": [
+        "雲林縣",
+        "云林县"
+      ]
+    },
+    {
+      "display_name": "嘉义县",
+      "selector_level": "city_county",
+      "provider": "tianditu",
+      "provider_object_id": "711500",
+      "expected_provider_names": [
+        "嘉義縣",
+        "嘉义县"
+      ]
+    },
+    {
+      "display_name": "屏东县",
+      "selector_level": "city_county",
+      "provider": "tianditu",
+      "provider_object_id": "711600",
+      "expected_provider_names": [
+        "屏東縣",
+        "屏东县"
+      ]
+    },
+    {
+      "display_name": "宜兰县",
+      "selector_level": "city_county",
+      "provider": "tianditu",
+      "provider_object_id": "711700",
+      "expected_provider_names": [
+        "宜蘭縣",
+        "宜兰县"
+      ]
+    },
+    {
+      "display_name": "花莲县",
+      "selector_level": "city_county",
+      "provider": "tianditu",
+      "provider_object_id": "711800",
+      "expected_provider_names": [
+        "花蓮縣",
+        "花莲县"
+      ]
+    },
+    {
+      "display_name": "台东县",
+      "selector_level": "city_county",
+      "provider": "tianditu",
+      "provider_object_id": "711900",
+      "expected_provider_names": [
+        "臺東縣",
+        "台东县"
+      ]
+    },
+    {
+      "display_name": "澎湖县",
+      "selector_level": "city_county",
+      "provider": "tianditu",
+      "provider_object_id": "712000",
+      "expected_provider_names": [
+        "澎湖縣",
+        "澎湖县"
+      ]
+    },
+    {
+      "display_name": "金门县",
+      "selector_level": "city_county",
+      "provider": "tianditu",
+      "provider_object_id": "712100",
+      "expected_provider_names": [
+        "金門縣",
+        "金门县"
+      ]
+    },
+    {
+      "display_name": "连江县",
+      "selector_level": "city_county",
+      "provider": "tianditu",
+      "provider_object_id": "712200",
+      "expected_provider_names": [
+        "連江縣",
+        "连江县"
+      ]
+    }
+  ]
+}

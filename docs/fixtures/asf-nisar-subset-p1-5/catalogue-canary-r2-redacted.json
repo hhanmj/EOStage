@@ -1,0 +1,53 @@
+{
+  "schema": "nisar-p1-5-catalogue-canary-r2-redacted-v1",
+  "date": "2026-08-03",
+  "base_commit": "a0c50e3a712bdb83a2709abfe052aa91a078af70",
+  "gate_commit": "95b79f6072add9dde8d3d4fd6eecf8b09bcf6f48",
+  "pre_canary_head": "95b79f6072add9dde8d3d4fd6eecf8b09bcf6f48",
+  "collection_id": "C2853145197-ASF",
+  "granule_id": "NISAR_L1_PR_RSLC_026_093_D_083_2005_DHDH_A_20260726T155803_20260726T155837_P05023_N_F_J_001",
+  "query_parameter_digest": "865bbea79b6913d86f265a2e6d4e6de1c90de383c60b5ad23681acf2a90cd016",
+  "query_digest_matches_expected": true,
+  "catalogue_request_count": 1,
+  "catalogue_http_status": 200,
+  "catalogue_response_body_bytes_observed": null,
+  "cmr_hits": 1,
+  "returned_item_count": 1,
+  "identity_checks": {
+    "query_collection_exact": true,
+    "query_producer_granule_exact": true,
+    "mapped_product_identity": "not_verified_due_to_mapping_failure",
+    "product_type": "not_verified_due_to_mapping_failure",
+    "production_configuration": "not_verified_due_to_mapping_failure",
+    "crid": "not_verified_due_to_mapping_failure",
+    "product_specification_version": "not_verified_due_to_mapping_failure",
+    "quality_status": "not_verified_due_to_mapping_failure"
+  },
+  "primary_filename_check": "not_verified_due_to_mapping_failure",
+  "source_size_check": "not_verified_due_to_mapping_failure",
+  "source_checksum_check": "not_verified_due_to_mapping_failure",
+  "footprint_valid": null,
+  "fixed_aoi_intersection": null,
+  "safe_format_diagnostics": {
+    "typed_error_code": "ASF_ASSET_CLASSIFICATION_INVALID",
+    "safe_reason": "related_url_archive_identity",
+    "archive_count": 18,
+    "recognized_format_count": 57,
+    "unrecognized_format_count": 0,
+    "unrecognized_format_sha256": [],
+    "unrecognized_format_byte_count": [],
+    "unknown_on_expected_primary": false,
+    "unknown_on_hdf5_extension": false
+  },
+  "credential_provider_reached": false,
+  "locator_dereferenced": false,
+  "range_request_count": 0,
+  "writer_reached": false,
+  "store_terminal_state": false,
+  "cleanup": {
+    "canary_environment_cleared": true,
+    "output_root_created": false,
+    "frozen_r1_canary_unchanged": true
+  },
+  "outcome": "NO_GO"
+}

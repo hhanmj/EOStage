@@ -1,0 +1,60 @@
+{
+  "type": "Feature",
+  "geometry": {
+    "type": "Polygon",
+    "coordinates": [[[-4.9797, 53.6139], [-5.7045, 52.8098], [-4.201, 52.3731], [-3.4518, 53.1695], [-4.9797, 53.6139]]]
+  },
+  "properties": {
+    "centerLat": 52.99268998054677,
+    "centerLon": -4.583319101535387,
+    "stopTime": "1978-10-10T01:29:10Z",
+    "fileID": "SS_01502_STD_F2536",
+    "flightDirection": "DESCENDING",
+    "pathNumber": 37,
+    "processingLevel": null,
+    "url": "https://cumulus.asf.earthdatacloud.nasa.gov/SEASAT/SS_01502_STD_F2536/SS_01502_STD_F2536.h5",
+    "startTime": "1978-10-10T01:28:55Z",
+    "sceneName": "SS_01502_STD_F2536",
+    "browse": [
+      "https://cumulus.asf.earthdatacloud.nasa.gov/BROWSE/SEASAT/SS_01502_STD_F2536/SS_01502_STD_F2536.jpg",
+      "https://cumulus.asf.earthdatacloud.nasa.gov/BROWSE/SEASAT/SS_01502_STD_F2536/SS_01502_STD_F2536_THUMBNAIL.jpg"
+    ],
+    "platform": "SEASAT 1",
+    "bytes": {
+      "SS_01502_STD_F2536.tif": { "bytes": 287076789, "format": "GeoTIFF" },
+      "SS_01502_STD_F2536.h5": { "bytes": 425004910, "format": "HDF5" },
+      "SS_01502_STD_F2536.xml": { "bytes": 17606, "format": "XML" },
+      "SS_01502_STD_F2536.iso.xml": { "bytes": 194716, "format": "XML" },
+      "SS_01502_STD_F2536.roi.in": { "bytes": 4899, "format": "Text File" },
+      "SS_01502_STD_F2536.qc_report": { "bytes": 2336, "format": "Text File" },
+      "SS_01502_STD_F2536.kml": { "bytes": 6345, "format": "KML" }
+    },
+    "md5sum": {
+      "SS_01502_STD_F2536.tif": "5961c5e0d23ad1ce4413d59b9f9ce09c",
+      "SS_01502_STD_F2536.h5": "fd99f89b380163d20c50b4a26fa0db12",
+      "SS_01502_STD_F2536.xml": "7be60f6e0cc163c1f6080a8e04555d2d",
+      "SS_01502_STD_F2536.iso.xml": "8113f85c7d213c99ab9cb8e0da60c090",
+      "SS_01502_STD_F2536.roi.in": "dffca35e6fea7fd7c48800893efe3d15",
+      "SS_01502_STD_F2536.qc_report": "d901c2e72f5a89a327ae1c8020d623b7",
+      "SS_01502_STD_F2536.kml": "c3489aa8f88ed9f77b7bf68e4718a683"
+    },
+    "frameNumber": 2536,
+    "granuleType": null,
+    "orbit": 1502,
+    "polarization": "HH",
+    "processingDate": "2013-09-03T21:18:45Z",
+    "sensor": "SAR",
+    "fileName": "SS_01502_STD_F2536.h5",
+    "beamModeType": "STD",
+    "additionalUrls": [
+      "https://cumulus.asf.earthdatacloud.nasa.gov/BROWSE/SEASAT/SS_01502_STD_F2536/SS_01502_STD_F2536.jpg",
+      "https://cumulus.asf.earthdatacloud.nasa.gov/BROWSE/SEASAT/SS_01502_STD_F2536/SS_01502_STD_F2536_THUMBNAIL.jpg",
+      "https://cumulus.asf.earthdatacloud.nasa.gov/SEASAT/SS_01502_STD_F2536/SS_01502_STD_F2536.iso.xml",
+      "https://cumulus.asf.earthdatacloud.nasa.gov/SEASAT/SS_01502_STD_F2536/SS_01502_STD_F2536.kml",
+      "https://cumulus.asf.earthdatacloud.nasa.gov/SEASAT/SS_01502_STD_F2536/SS_01502_STD_F2536.qc_report",
+      "https://cumulus.asf.earthdatacloud.nasa.gov/SEASAT/SS_01502_STD_F2536/SS_01502_STD_F2536.roi.in",
+      "https://cumulus.asf.earthdatacloud.nasa.gov/SEASAT/SS_01502_STD_F2536/SS_01502_STD_F2536.tif",
+      "https://cumulus.asf.earthdatacloud.nasa.gov/SEASAT/SS_01502_STD_F2536/SS_01502_STD_F2536.xml"
+    ]
+  }
+}

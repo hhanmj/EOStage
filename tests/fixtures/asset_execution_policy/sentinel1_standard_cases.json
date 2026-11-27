@@ -1,0 +1,81 @@
+{
+  "base_item": {
+    "item_id": "PROVIDER::asf.catalog::COLLECTION::SENTINEL-1::ITEM::fixture-product",
+    "provider_id": "asf.catalog",
+    "display_name": "fixture.zip",
+    "acquisition_datetime": null,
+    "footprint_geojson": null,
+    "metadata": {
+      "dataset": "SENTINEL-1",
+      "product_family": "SLC",
+      "processing_level": "SLC",
+      "identity_rule_id": "asf.sentinel-1.standard.v1",
+      "provider_product_id": "fixture-product",
+      "provider_product_key": "PROVIDER::asf.catalog::COLLECTION::SENTINEL-1::ITEM::fixture-product",
+      "canonical_product_key": "CANONICAL::SENTINEL-1::fixture-product"
+    },
+    "payload": {},
+    "asset_access": {
+      "reference": {
+        "provider_id": "asf.catalog",
+        "collection_id": "SENTINEL-1",
+        "provider_product_id": "fixture-product",
+        "provider_product_key": "PROVIDER::asf.catalog::COLLECTION::SENTINEL-1::ITEM::fixture-product",
+        "canonical_product_key": "CANONICAL::SENTINEL-1::fixture-product",
+        "asset_key": "fixture-asset",
+        "stable_asset_key": "PROVIDER::asf.catalog::COLLECTION::SENTINEL-1::ITEM::fixture-product::ASSET::fixture-asset"
+      },
+      "descriptor": {
+        "resolver_id": "earthdata_https",
+        "scheme": "earthdata_https",
+        "stable_href": "https://datapool.asf.alaska.edu/SLC/fixture.zip",
+        "requires_credentials": true,
+        "credential_profile": "earthdata-default",
+        "resolver_parameters": {}
+      },
+      "role": "primary",
+      "file_name": "fixture.zip",
+      "expected_size_bytes": 1024,
+      "checksum_algorithm": "sha256",
+      "checksum_value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    },
+    "execution_policy": {
+      "authority": "resolver_authoritative",
+      "policy_id": "asf.sentinel-1.standard.resolver-cutover.v1",
+      "collection_profile_id": "asf.sentinel-1.standard.v1"
+    }
+  },
+  "cases": [
+    {"name": "valid_slc", "mutations": {}, "expected": "eligible"},
+    {"name": "valid_grd_hd", "mutations": {"metadata.product_family": "GRD", "metadata.processing_level": "GRD_HD"}, "expected": "eligible"},
+    {"name": "valid_grd_hs", "mutations": {"metadata.product_family": "GRD", "metadata.processing_level": "GRD_HS"}, "expected": "eligible"},
+    {"name": "valid_grd_md", "mutations": {"metadata.product_family": "GRD", "metadata.processing_level": "GRD_MD"}, "expected": "eligible"},
+    {"name": "valid_grd_ms", "mutations": {"metadata.product_family": "GRD", "metadata.processing_level": "GRD_MS"}, "expected": "eligible"},
+    {"name": "valid_grd_fd", "mutations": {"metadata.product_family": "GRD", "metadata.processing_level": "GRD_FD"}, "expected": "eligible"},
+    {"name": "wrong_provider", "mutations": {"provider_id": "other.catalog"}, "expected": "ineligible:provider"},
+    {"name": "tampered_policy", "mutations": {"execution_policy.policy_id": "legacy.v1"}, "expected": "invalid"},
+    {"name": "wrong_profile", "mutations": {"execution_policy.collection_profile_id": "asf.ers.v1"}, "expected": "invalid"},
+    {"name": "burst_delivery_profile", "mutations": {"execution_policy.collection_profile_id": "asf.sentinel-1.burst.v1"}, "expected": "invalid"},
+    {"name": "wrong_identity_rule", "mutations": {"metadata.identity_rule_id": "asf.sentinel-1.burst.v1"}, "expected": "ineligible:identity_rule"},
+    {"name": "burst_dataset", "mutations": {"metadata.dataset": "SLC-BURST"}, "expected": "ineligible:dataset"},
+    {"name": "ers_dataset", "mutations": {"metadata.dataset": "ERS"}, "expected": "ineligible:dataset"},
+    {"name": "raw", "mutations": {"metadata.product_family": "RAW", "metadata.processing_level": "RAW"}, "expected": "ineligible:processing_level"},
+    {"name": "ocn", "mutations": {"metadata.product_family": "OCN", "metadata.processing_level": "OCN"}, "expected": "ineligible:processing_level"},
+    {"name": "broad_grd", "mutations": {"metadata.product_family": "GRD", "metadata.processing_level": "GRD"}, "expected": "ineligible:processing_level"},
+    {"name": "grd_fs", "mutations": {"metadata.product_family": "GRD", "metadata.processing_level": "GRD_FS"}, "expected": "ineligible:processing_level"},
+    {"name": "missing_level", "mutations": {"metadata.processing_level": null}, "expected": "ineligible:processing_level"},
+    {"name": "unknown_level", "mutations": {"metadata.processing_level": "LEVEL_X"}, "expected": "ineligible:processing_level"},
+    {"name": "family_level_mismatch", "mutations": {"metadata.product_family": "SLC", "metadata.processing_level": "GRD_HD"}, "expected": "ineligible:product_family"},
+    {"name": "wrong_role", "mutations": {"asset_access.role": "metadata"}, "expected": "ineligible:asset_role"},
+    {"name": "wrong_resolver", "mutations": {"asset_access.descriptor.resolver_id": "public_https"}, "expected": "ineligible:resolver_id"},
+    {"name": "wrong_credential_profile", "mutations": {"asset_access.descriptor.credential_profile": "other-profile"}, "expected": "ineligible:credential_profile"},
+    {"name": "missing_asset_access", "mutations": {"asset_access": null}, "expected": "invalid"},
+    {"name": "unsafe_filename", "mutations": {"asset_access.file_name": "../fixture.zip"}, "expected": "invalid"},
+    {"name": "missing_filename", "mutations": {"asset_access.file_name": null}, "expected": "invalid"},
+    {"name": "wrong_stable_key", "mutations": {"asset_access.reference.stable_asset_key": "wrong-key"}, "expected": "invalid"},
+    {"name": "wrong_product_key", "mutations": {"asset_access.reference.provider_product_key": "wrong-product-key"}, "expected": "invalid"},
+    {"name": "wrong_canonical_key", "mutations": {"asset_access.reference.canonical_product_key": "wrong-canonical-key"}, "expected": "invalid"},
+    {"name": "invalid_descriptor", "mutations": {"asset_access.descriptor.stable_href": "https://datapool.asf.alaska.edu/SLC/fixture.zip?token=secret"}, "expected": "invalid"},
+    {"name": "invalid_checksum_pair", "mutations": {"asset_access.checksum_value": null}, "expected": "invalid"}
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "feed": {
+    "updated": "2026-10-31T00:00:00.000Z",
+    "id": "https://cmr.earthdata.nasa.gov:443/search/granules.json",
+    "title": "ECHO granule metadata",
+    "entry": [
+      {
+        "producer_granule_id": "ERS1_0291_0025_960425",
+        "id": "G1234567890-ASF",
+        "title": "ERS1_0291_0025_960425",
+        "time_start": "1996-04-25T16:44:31.000Z",
+        "time_end": "1996-04-25T16:44:47.000Z",
+        "granule_size": 684.5,
+        "polygons": [
+          [
+            "64.78 -147.82 64.88 -147.52 65.05 -147.10 64.94 -147.40 64.78 -147.82"
+          ]
+        ],
+        "links": [
+          {
+            "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+            "href": "https://datapool.asf.alaska.edu/ERS/ERS1_0291_0025_960425.zip",
+            "title": "Direct Download"
+          }
+        ],
+        "additional_attributes": [
+          {
+            "name": "ASF_PLATFORM",
+            "values": [
+              "ERS-1"
+            ]
+          },
+          {
+            "name": "POLARIZATION",
+            "values": [
+              "VV"
+            ]
+          },
+          {
+            "name": "ASCENDING_DESCENDING",
+            "values": [
+              "ASCENDING"
+            ]
+          },
+          {
+            "name": "BEAM_MODE",
+            "values": [
+              "STD"
+            ]
+          },
+          {
+            "name": "BEAM_MODE_TYPE",
+            "values": [
+              "STD"
+            ]
+          },
+          {
+            "name": "PROCESSING_LEVEL",
+            "values": [
+              "L1"
+            ]
+          },
+          {
+            "name": "PATH_NUMBER",
+            "values": [
+              "291"
+            ]
+          },
+          {
+            "name": "FRAME_NUMBER",
+            "values": [
+              "25"
+            ]
+          }
+        ]
+      },
+      {
+        "producer_granule_id": "ERS2_0291_0025_980425",
+        "id": "G1234567891-ASF",
+        "title": "ERS2_0291_0025_980425",
+        "time_start": "1998-04-25T16:44:31.000Z",
+        "time_end": "1998-04-25T16:44:47.000Z",
+        "granule_size": 690.0,
+        "polygons": [
+          [
+            "64.78 -147.82 64.88 -147.52 65.05 -147.10 64.94 -147.40 64.78 -147.82"
+          ]
+        ],
+        "links": [
+          {
+            "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+            "href": "https://datapool.asf.alaska.edu/ERS/ERS2_0291_0025_980425.zip",
+            "title": "Direct Download"
+          }
+        ],
+        "additional_attributes": [
+          {
+            "name": "ASF_PLATFORM",
+            "values": [
+              "ERS-2"
+            ]
+          },
+          {
+            "name": "POLARIZATION",
+            "values": [
+              "VV"
+            ]
+          },
+          {
+            "name": "ASCENDING_DESCENDING",
+            "values": [
+              "DESCENDING"
+            ]
+          },
+          {
+            "name": "BEAM_MODE",
+            "values": [
+              "STD"
+            ]
+          },
+          {
+            "name": "BEAM_MODE_TYPE",
+            "values": [
+              "STD"
+            ]
+          },
+          {
+            "name": "PROCESSING_LEVEL",
+            "values": [
+              "L0"
+            ]
+          },
+          {
+            "name": "PATH_NUMBER",
+            "values": [
+              "291"
+            ]
+          },
+          {
+            "name": "FRAME_NUMBER",
+            "values": [
+              "25"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

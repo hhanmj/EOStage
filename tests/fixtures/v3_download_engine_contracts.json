@@ -1,0 +1,36 @@
+{
+  "progress": {
+    "task_id": "task-s1-001",
+    "item_id": "S1A_IW_SLC_001",
+    "status": "active",
+    "bytes_completed": 3145728,
+    "total_bytes": 7340032,
+    "bytes_per_second": 1048576.5,
+    "attempt": 1,
+    "updated_at": "2024-01-15T01:02:03Z"
+  },
+  "completed": {
+    "task_id": "task-s1-001",
+    "item_id": "S1A_IW_SLC_001",
+    "outcome": "completed",
+    "destination": "E:\\InSAR\\downloads\\SLC\\S1A_IW_SLC_001.zip",
+    "bytes_written": 7340032,
+    "attempt_count": 1,
+    "failure": null,
+    "finished_at": "2024-01-15T01:02:07Z"
+  },
+  "failed": {
+    "task_id": "task-orbit-001",
+    "item_id": "S1A_OPER_AUX_POEORB_001",
+    "outcome": "failed",
+    "destination": "E:\\InSAR\\orbits\\Sentinel_Orbit\\AUX_POEORB\\S1A_OPER_AUX_POEORB_001.EOF",
+    "bytes_written": 0,
+    "attempt_count": 3,
+    "failure": {
+      "code": "DL005",
+      "reason_zh": "下载失败：远端服务暂时不可用，已完成 3 次重试。",
+      "retryable": true
+    },
+    "finished_at": "2024-01-15T01:03:00Z"
+  }
+}

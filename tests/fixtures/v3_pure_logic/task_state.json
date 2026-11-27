@@ -1,0 +1,106 @@
+{
+  "initial": {
+    "task_id": "task-1",
+    "candidate_ids": ["a", "b", "c"],
+    "selected_ids": ["a", "b", "c"],
+    "active_ids": ["a"],
+    "paused_ids": [],
+    "queued_ids": ["b", "c"],
+    "completed_ids": [],
+    "failed_ids": [],
+    "skipped_ids": [],
+    "cancelled_ids": [],
+    "task_paused": false,
+    "concurrency": 1
+  },
+  "valid_steps": [
+    {
+      "command": {"type": "pause_items", "item_ids": ["a"]},
+      "expected": {"active_ids": [], "paused_ids": ["a"], "queued_ids": ["b", "c"]}
+    },
+    {
+      "command": {"type": "resume_items", "item_ids": ["a"]},
+      "expected": {"active_ids": [], "paused_ids": [], "queued_ids": ["a", "b", "c"]}
+    },
+    {
+      "command": {"type": "resume_items", "item_ids": ["a"]},
+      "expected": {"active_ids": [], "paused_ids": [], "queued_ids": ["a", "b", "c"]}
+    },
+    {
+      "command": {"type": "mark_completed", "item_id": "a"},
+      "expected": {"active_ids": [], "queued_ids": ["b", "c"], "completed_ids": ["a"]}
+    },
+    {
+      "command": {"type": "mark_failed", "item_id": "b"},
+      "expected": {"queued_ids": ["c"], "completed_ids": ["a"], "failed_ids": ["b"]}
+    },
+    {
+      "command": {"type": "mark_skipped", "item_id": "c"},
+      "expected": {"queued_ids": [], "completed_ids": ["a"], "failed_ids": ["b"], "skipped_ids": ["c"]}
+    },
+    {
+      "command": {"type": "pause_task"},
+      "expected": {"task_paused": true}
+    },
+    {
+      "command": {"type": "pause_task"},
+      "expected": {"task_paused": true}
+    },
+    {
+      "command": {"type": "resume_task"},
+      "expected": {"task_paused": false}
+    }
+  ],
+  "cancel_scenario": {
+    "command": {"type": "cancel_items", "item_ids": ["b", "c"]},
+    "expected": {"active_ids": ["a"], "queued_ids": [], "cancelled_ids": ["b", "c"]}
+  },
+  "error_commands": [
+    {"command": {"type": "pause_items", "item_ids": ["missing"]}, "code": "V3_UNKNOWN_TASK_ITEM"},
+    {"command": {"type": "mark_completed", "item_id": "missing"}, "code": "V3_UNKNOWN_TASK_ITEM"}
+  ],
+  "invalid_states": [
+    {
+      "task_id": "overlap",
+      "candidate_ids": ["a"],
+      "selected_ids": ["a"],
+      "active_ids": ["a"],
+      "paused_ids": ["a"],
+      "queued_ids": [],
+      "completed_ids": [],
+      "failed_ids": [],
+      "skipped_ids": [],
+      "cancelled_ids": [],
+      "task_paused": false,
+      "concurrency": 1
+    },
+    {
+      "task_id": "unknown-id",
+      "candidate_ids": ["a"],
+      "selected_ids": ["a"],
+      "active_ids": [],
+      "paused_ids": [],
+      "queued_ids": ["missing"],
+      "completed_ids": [],
+      "failed_ids": [],
+      "skipped_ids": [],
+      "cancelled_ids": [],
+      "task_paused": false,
+      "concurrency": 1
+    },
+    {
+      "task_id": "too-many-active",
+      "candidate_ids": ["a", "b"],
+      "selected_ids": ["a", "b"],
+      "active_ids": ["a", "b"],
+      "paused_ids": [],
+      "queued_ids": [],
+      "completed_ids": [],
+      "failed_ids": [],
+      "skipped_ids": [],
+      "cancelled_ids": [],
+      "task_paused": false,
+      "concurrency": 1
+    }
+  ]
+}

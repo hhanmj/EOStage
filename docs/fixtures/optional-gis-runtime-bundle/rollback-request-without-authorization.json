@@ -1,0 +1,12 @@
+{
+  "fixture_kind": "rollback-rejection-scenario",
+  "requested_path": "explicit_rollback",
+  "request_file": "rollback-request-valid.json",
+  "authorization_file": null,
+  "target_bundle_set_file": "bundle-set-base-previous-valid.json",
+  "authoritative_ledger_file": "replay-ledger-valid.json",
+  "expected_error": "GIS_ROLLBACK_AUTHORIZATION_REQUIRED",
+  "active_after_file": "active-after.json",
+  "replay_floor_after_file": "replay-ledger-valid.json",
+  "receipt_created": false
+}

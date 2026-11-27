@@ -1,0 +1,20 @@
+{
+  "contract": "GISRuntimeRecoveryRecord",
+  "recovery_version": 1,
+  "recovery_id": "fixture-rollback-required-ack-1",
+  "kind": "rollback_recovery_acknowledgement",
+  "outcome": "rollback_required_archived",
+  "primary_status": "valid",
+  "backup_status": "valid",
+  "active_status": "valid",
+  "actions": [
+    "archive_rollback_required_journal"
+  ],
+  "authoritative_ledger_sha256": "d97d8b310777352012bfee646eaff508f755240c42bda6b7195edee7345ea00c",
+  "generation": 3,
+  "quarantine_paths": [
+    "state/quarantine/fixture-rollback-tx-1/journal.json"
+  ],
+  "error_code": null,
+  "created_at": "2026-07-22T02:00:00Z"
+}

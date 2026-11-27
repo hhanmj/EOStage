@@ -1,0 +1,5 @@
+{
+  "fixture": "manifest-valid.json",
+  "mutation": "self_test.command = 'gdalinfo --version'",
+  "expected_error": "GIS_MANIFEST_INVALID"
+}

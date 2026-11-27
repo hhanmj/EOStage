@@ -1,0 +1,149 @@
+{
+  "fixture_metadata": {
+    "fixture_version": 1,
+    "fixture_kind": "valid",
+    "payload_contract": "FrozenTaskSnapshotV3",
+    "offline": true
+  },
+  "expected": {
+    "accepted": true
+  },
+  "payload": {
+    "persistence_version": 3,
+    "schema_version": 1,
+    "task_id": "b1b-single",
+    "batch_id": "fixture-batch",
+    "provider_id": "fixture-asf",
+    "created_at": "2025-01-01T00:00:00Z",
+    "aoi_name": "fixture",
+    "aoi_geojson": {},
+    "query": {},
+    "source_items": [
+      {
+        "item_id": "source-a",
+        "provider_id": "fixture-asf",
+        "display_name": "source-a",
+        "acquisition_datetime": null,
+        "footprint_geojson": null,
+        "metadata": {},
+        "payload": {},
+        "asset_access": {
+          "reference": {
+            "provider_id": "fixture-asf",
+            "collection_id": "SENTINEL-1",
+            "provider_product_id": "source-a",
+            "provider_product_key": "fixture:source-a",
+            "canonical_product_key": null,
+            "asset_key": "slc",
+            "stable_asset_key": "fixture:source-a:slc"
+          },
+          "descriptor": {
+            "resolver_id": "fixture.resolver",
+            "scheme": "public_https",
+            "stable_href": null,
+            "requires_credentials": false,
+            "credential_profile": null,
+            "resolver_parameters": {}
+          },
+          "role": "primary",
+          "file_name": "source-a.zip",
+          "expected_size_bytes": null,
+          "checksum_algorithm": null,
+          "checksum_value": null
+        }
+      }
+    ],
+    "initial_selected_item_ids": [
+      "source-a"
+    ],
+    "output_root": "fixture-output",
+    "layout": "sentinel1_slc",
+    "runtime_item_identity": "transfer_item.v1",
+    "transfer_items": [
+      {
+        "transfer_item_id": "primary-a",
+        "source_item_ids": [
+          "source-a"
+        ],
+        "origin": "selected_product",
+        "asset_access": {
+          "reference": {
+            "provider_id": "fixture-asf",
+            "collection_id": "SENTINEL-1",
+            "provider_product_id": "source-a",
+            "provider_product_key": "fixture:source-a",
+            "canonical_product_key": null,
+            "asset_key": "slc",
+            "stable_asset_key": "fixture:source-a:slc"
+          },
+          "descriptor": {
+            "resolver_id": "fixture.resolver",
+            "scheme": "public_https",
+            "stable_href": null,
+            "requires_credentials": false,
+            "credential_profile": null,
+            "resolver_parameters": {}
+          },
+          "role": "primary",
+          "file_name": "source-a.zip",
+          "expected_size_bytes": null,
+          "checksum_algorithm": null,
+          "checksum_value": null
+        },
+        "required": true
+      },
+      {
+        "transfer_item_id": "poeorb-a",
+        "source_item_ids": [
+          "source-a"
+        ],
+        "origin": "required_companion",
+        "asset_access": {
+          "reference": {
+            "provider_id": "fixture-esa",
+            "collection_id": "AUX_POEORB",
+            "provider_product_id": "poeorb-a",
+            "provider_product_key": "fixture:poeorb-a",
+            "canonical_product_key": null,
+            "asset_key": "orbit",
+            "stable_asset_key": "fixture:poeorb-a:orbit"
+          },
+          "descriptor": {
+            "resolver_id": "fixture.orbit.resolver",
+            "scheme": "public_https",
+            "stable_href": null,
+            "requires_credentials": false,
+            "credential_profile": null,
+            "resolver_parameters": {}
+          },
+          "role": "auxiliary",
+          "file_name": "fixture-poeorb.EOF",
+          "expected_size_bytes": null,
+          "checksum_algorithm": null,
+          "checksum_value": null
+        },
+        "required": true
+      }
+    ],
+    "orbit_associations": [
+      {
+        "association_version": 1,
+        "source_item_id": "source-a",
+        "orbit_transfer_item_id": "poeorb-a",
+        "requested_orbit_type": "POEORB",
+        "source_platform": "S1A",
+        "source_acquisition_start": 100,
+        "source_acquisition_stop": 200,
+        "matched_orbit_metadata": {
+          "file_name": "fixture-poeorb.EOF",
+          "platform": "S1A",
+          "orbit_type": "POEORB",
+          "creation_unix_seconds": 50,
+          "validity_start_unix_seconds": 0,
+          "validity_stop_unix_seconds": 300
+        },
+        "selection_policy_id": "fixture-poeorb-v1"
+      }
+    ]
+  }
+}

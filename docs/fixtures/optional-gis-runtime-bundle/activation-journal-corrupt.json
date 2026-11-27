@@ -1,0 +1,9 @@
+{
+  "contract": "GISRuntimeActivationJournal",
+  "journal_version": 1,
+  "transaction_id": "fixture-tx-corrupt",
+  "phase": "pointer_pending",
+  "previous_active_sha256": "not-a-sha256",
+  "candidate_active_sha256": "not-a-sha256",
+  "staging_paths": ["../outside-runtime"]
+}

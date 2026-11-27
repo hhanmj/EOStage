@@ -1,0 +1,1 @@
+{"stable_href":"https://catalogue.example.invalid/odata/v1/Products(fixture-uuid)/$value","forbidden":["query_parameters","fragments","userinfo","redirect_filename_authority","legacy_fallback","cross_provider_fallback","runtime_url_persistence"]}

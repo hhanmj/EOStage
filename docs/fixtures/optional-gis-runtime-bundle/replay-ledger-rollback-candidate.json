@@ -1,0 +1,28 @@
+{
+  "contract": "GISRuntimeReplayLedger",
+  "ledger_version": 1,
+  "platform": "windows",
+  "architecture": "x86_64",
+  "channel": "beta",
+  "generation": 4,
+  "streams": [
+    {
+      "bundle_set_id": "gis-runtime-base",
+      "set_kind": "base",
+      "last_release_sequence": 100,
+      "last_manifest_sha256": "e0fb53d6b47bc3d2da500cd83f3e92f6208055de16a20e2c458abe0cc7d9c694",
+      "last_set_version": "1.0.0",
+      "accepted_at": "2026-07-22T00:00:00Z"
+    },
+    {
+      "bundle_set_id": "gis-runtime-elevation",
+      "set_kind": "extension",
+      "last_release_sequence": 100,
+      "last_manifest_sha256": "9de61242583e33aa6606d7405c02ff164117a839d45658e15aefc1ea7deb9410",
+      "last_set_version": "1.0.0",
+      "accepted_at": "2026-07-22T00:00:00Z"
+    }
+  ],
+  "updated_at": "2026-07-22T01:00:04Z",
+  "ledger_sha256": "bfc6070f0babde9c163ac2116a478e28b4de4ae84d775832b7426ff5cea576ff"
+}

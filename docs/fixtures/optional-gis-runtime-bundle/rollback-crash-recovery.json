@@ -1,0 +1,134 @@
+{
+  "fixture_kind": "authorized-rollback-crash-matrix",
+  "authorization_file": "rollback-authorization-valid.json",
+  "previous_ledger_file": "replay-ledger-valid.json",
+  "candidate_ledger_file": "replay-ledger-rollback-candidate.json",
+  "previous_active_file": "active-after.json",
+  "candidate_active_file": "active-rollback-target.json",
+  "cases": [
+    {
+      "crash_point": "authorization_copied_before_receipt",
+      "journal_phase": null,
+      "primary": "previous",
+      "backup": "previous",
+      "active": "previous",
+      "receipt": "absent",
+      "recovery": "quarantine-unconsumed-copy-and-permit-explicit-retry"
+    },
+    {
+      "crash_point": "receipt_reserved_before_journal",
+      "journal_phase": null,
+      "primary": "previous",
+      "backup": "previous",
+      "active": "previous",
+      "receipt": "reserved",
+      "recovery": "retain-previous-and-finalize-receipt-aborted"
+    },
+    {
+      "crash_point": "journal_authorized",
+      "journal_phase": "authorized",
+      "primary": "previous",
+      "backup": "previous",
+      "active": "previous",
+      "receipt": "reserved",
+      "recovery": "retain-previous-and-finalize-receipt-aborted"
+    },
+    {
+      "crash_point": "target_verified",
+      "journal_phase": "verified",
+      "primary": "previous",
+      "backup": "previous",
+      "active": "previous",
+      "receipt": "reserved",
+      "recovery": "retain-previous-and-finalize-receipt-aborted"
+    },
+    {
+      "crash_point": "primary_swapped_before_ledger_phase_update",
+      "journal_phase": "verified",
+      "primary": "candidate",
+      "backup": "previous",
+      "active": "previous",
+      "receipt": "reserved",
+      "recovery": "restore-previous-ledger-and-mark-rollback-required"
+    },
+    {
+      "crash_point": "ledger_swapped_before_pointer",
+      "journal_phase": "ledger_swapped",
+      "primary": "candidate",
+      "backup": "previous",
+      "active": "previous",
+      "receipt": "reserved",
+      "recovery": "restore-previous-ledger-and-mark-rollback-required"
+    },
+    {
+      "crash_point": "pointer_pending_previous_observed",
+      "journal_phase": "pointer_pending",
+      "primary": "candidate",
+      "backup": "previous",
+      "active": "previous",
+      "receipt": "reserved",
+      "recovery": "restore-previous-ledger-and-mark-rollback-required"
+    },
+    {
+      "crash_point": "pointer_pending_candidate_observed",
+      "journal_phase": "pointer_pending",
+      "primary": "candidate",
+      "backup": "previous",
+      "active": "candidate",
+      "receipt": "reserved",
+      "recovery": "finish-candidate-backup-and-commit-receipt"
+    },
+    {
+      "crash_point": "pointer_swapped",
+      "journal_phase": "pointer_swapped",
+      "primary": "candidate",
+      "backup": "previous",
+      "active": "candidate",
+      "receipt": "reserved",
+      "recovery": "finish-candidate-backup-and-commit-receipt"
+    },
+    {
+      "crash_point": "receipt_committed",
+      "journal_phase": "receipt_committed",
+      "primary": "candidate",
+      "backup": "candidate",
+      "active": "candidate",
+      "receipt": "committed",
+      "recovery": "verify-and-remove-journal"
+    },
+    {
+      "crash_point": "journal_committed",
+      "journal_phase": "committed",
+      "primary": "candidate",
+      "backup": "candidate",
+      "active": "candidate",
+      "receipt": "committed",
+      "recovery": "verify-and-remove-journal"
+    },
+    {
+      "crash_point": "rollback_restored_before_acknowledgement",
+      "journal_phase": "rollback_required",
+      "journal_file": "rollback-journal-rollback-required.json",
+      "primary": "previous",
+      "backup": "previous",
+      "active": "previous",
+      "receipt": "aborted",
+      "recovery": "require-explicit-acknowledgement-and-archive-journal",
+      "recovery_record_file": "rollback-recovery-record-journal-archived.json"
+    },
+    {
+      "crash_point": "unrecognized-state",
+      "journal_phase": "pointer_swapped",
+      "primary": "invalid",
+      "backup": "invalid",
+      "active": "candidate",
+      "receipt": "reserved",
+      "recovery": "quarantine-and-fail-closed",
+      "expected_error": "GIS_ROLLBACK_JOURNAL_CORRUPT"
+    }
+  ],
+  "accepted_floor_after_every_success": 100,
+  "authorization_reusable_after_copy_only": true,
+  "authorization_reusable_after_receipt_creation": false,
+  "existing_leases_unchanged": true
+}

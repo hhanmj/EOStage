@@ -1,0 +1,32 @@
+{
+  "id": "eostage-mapgis-compat-plugin",
+  "name": "EOStage MapGIS 6.x 点线面矢量与属性无损互转插件",
+  "version": "1.2.0",
+  "author": "EOStage",
+  "license": "GPL-3.0-or-later",
+  "discipline": "cartography",
+  "description": "原生解析国产地质灾害与测绘历史存量 MapGIS 6.x 二进制（WMAP`D22/D21/D23）及明码（WPNT/WPLN/WPOL）点文件 (.wt)、线文件 (.wl)、区文件 (.wp)，还原弧段拓扑环、属性表字段与高斯-克吕格投影参数，一键转换为标准 ESRI Shapefile (.shp/.shx/.dbf/.prj) 或 GeoJSON。",
+  "tags": [
+    "MapGIS 6.x",
+    ".wt/.wl/.wp",
+    "Shapefile 转换",
+    "地质灾害存量数据",
+    "弧段拓扑还原"
+  ],
+  "enabled": true,
+  "bundledSkills": [
+    {
+      "id": "plugin-skill-mapgis-compat",
+      "name": "MapGIS 6.x (.wt/.wl/.wp) 矢量探测与 Shapefile/GeoJSON 转换",
+      "description": "解析 MapGIS 6.x 二进制及明码点线面文件头、坐标系、属性表并无损导出为 .shp 或 .geojson",
+      "path": "skills/plugin-skill-mapgis-compat/SKILL.md"
+    }
+  ],
+  "bundledConnector": {
+    "id": "plugin-mcp-eostage-mapgis",
+    "name": "EOStage Native MapGIS 6.x Vector Converter",
+    "transport": "stdio",
+    "endpoint": "tauri://application_mapgis_convert",
+    "description": "由 EOStage Rust 原生引擎驱动的 MapGIS 6.x 二进制/明码拓扑还原与 Shapefile/GeoJSON 转换连接器"
+  }
+}

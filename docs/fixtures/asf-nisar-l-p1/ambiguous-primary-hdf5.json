@@ -1,0 +1,27 @@
+{
+  "fixture_contract": "AsfNisarMutationFixtureV1",
+  "base": "granule-provisional-multi-asset-valid.json",
+  "mutation": {
+    "operation": "append_asset",
+    "asset": {
+      "asset_id": "science-rslc-hdf5-second",
+      "native_roles": ["ARCHIVE:HDF5", "GET DATA"],
+      "native_evidence": {
+        "archive_name": "NISAR_L1_PR_RSLC_SYNTHETIC_P05023_0001_SECOND.h5",
+        "product_match": true,
+        "url_types": ["GET DATA"],
+        "url_subtypes": [],
+        "formats": ["HDF5"]
+      },
+      "normalized_role": "primary",
+      "file_name": "NISAR_L1_PR_RSLC_SYNTHETIC_P05023_0001_SECOND.h5",
+      "media_type": "application/x-hdf5",
+      "size_bytes": 12000000000,
+      "checksum": {"algorithm": "SHA-256", "value": "a2c78f09a49e5f1f304b19f930dfed10f197d235e383075e8377ddaa7c33d182"},
+      "routes": [
+        {"scheme": "https", "locator": "https://example.invalid/nisar/NISAR_L1_PR_RSLC_SYNTHETIC_P05023_0001_SECOND.h5"}
+      ]
+    }
+  },
+  "expected_result": {"kind": "reject", "error": "ASF_PRIMARY_ASSET_AMBIGUOUS"}
+}

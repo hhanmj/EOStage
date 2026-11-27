@@ -1,0 +1,31 @@
+{
+  "fixture_metadata": {
+    "fixture_version": 1,
+    "fixture_kind": "invalid",
+    "fixture_name": "duplicate-association",
+    "payload_contract": "FrozenTaskSnapshotV3",
+    "offline": true
+  },
+  "base": "single",
+  "mutations": [
+    {
+      "op": "append_copy",
+      "from": "/orbit_associations/0",
+      "path": "/orbit_associations"
+    }
+  ],
+  "expected": {
+    "accepted": false,
+    "error": {
+      "variant": "invalid_companion_coverage",
+      "subject": {
+        "kind": "source_item",
+        "source": {
+          "kind": "source_item",
+          "index": 0
+        }
+      },
+      "association_count": 2
+    }
+  }
+}

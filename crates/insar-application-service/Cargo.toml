@@ -1,0 +1,60 @@
+[package]
+name = "insar-application-service"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Transport-neutral read-only application service for EOStage."
+
+[features]
+bhoonidhi-auth-revoke-acceptance = ["insar-download/bhoonidhi-auth-revoke-acceptance"]
+default = ["nisar-subset-production"]
+nisar-subset-production = [
+    "insar-provider/nisar-subset-production",
+    "insar-download/nisar-subset-production",
+]
+nisar-subset-live-acceptance = [
+    "nisar-subset-production",
+    "insar-provider/nisar-subset-live-acceptance",
+    "insar-download/nisar-subset-live-acceptance",
+]
+usgs-m2m-live-acceptance = [
+    "insar-provider/usgs-m2m-live-acceptance",
+    "insar-service/usgs-m2m-live-acceptance",
+]
+s1-live-acceptance = ["insar-provider/s1-live-acceptance"]
+
+[dependencies]
+base64 = "0.22"
+bzip2 = "0.6"
+flate2 = "1"
+tar = "=0.4.46"
+zip = { version = "=9.8.2", default-features = false, features = ["deflate"] }
+zeroize = "1"
+reqwest = { version = "0.12", default-features = false, features = ["blocking", "rustls-tls-native-roots", "rustls-tls-webpki-roots"] }
+chrono = "0.4"
+insar-agent = { path = "../insar-agent" }
+insar-core = { path = "../insar-core" }
+insar-download = { path = "../insar-download" }
+insar-gis = { path = "../insar-gis" }
+insar-provider = { path = "../insar-provider" }
+insar-service = { path = "../insar-service" }
+insar-store = { path = "../insar-store" }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+thiserror = "1"
+uuid = { version = "1", features = ["v4"] }
+url = "2"
+
+[dev-dependencies]
+hdf5 = { package = "hdf5-metno", version = "=0.12.6", features = ["static", "zlib"] }
+hdf5-sys = { package = "hdf5-metno-sys", version = "=0.12.1" }
+insar-download = { path = "../insar-download", features = ["offline-nisar-subset-test-support", "nisar-subset-live-acceptance", "test-plenty-disk-space"] }
+reqwest = { version = "0.12", default-features = false, features = ["blocking", "rustls-tls-native-roots", "rustls-tls-webpki-roots"] }
+rusqlite = "0.40"
+serde_json = "1"
+zeroize = "1"
+
+[target.'cfg(windows)'.dev-dependencies]
+windows-sys = { version = "0.61", features = ["Win32_Foundation", "Win32_Security", "Win32_Storage_FileSystem", "Win32_System_IO", "Win32_System_Pipes"] }

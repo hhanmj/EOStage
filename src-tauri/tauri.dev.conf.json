@@ -1,0 +1,74 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "build": {
+    "devUrl": "http://127.0.0.1:5173/tauri.html",
+    "beforeDevCommand": "npm --prefix ../ui run dev:tauri"
+  },
+  "app": {
+    "security": {
+      "capabilities": ["development"],
+      "devCsp": {
+        "default-src": ["'self'"],
+        "script-src": ["'self'"],
+        "style-src": ["'self'", "'unsafe-inline'"],
+        "img-src": [
+          "'self'",
+          "data:",
+          "blob:",
+          "https://nisar.asf.earthdatacloud.nasa.gov",
+          "https://earthengine.googleapis.com",
+          "https://planetarycomputer.microsoft.com",
+          "https://datapool.asf.alaska.edu",
+          "https://cumulus.asf.earthdatacloud.nasa.gov",
+          "https://data.lpdaac.earthdatacloud.nasa.gov",
+          "https://sentinel-cogs.s3.us-west-2.amazonaws.com",
+          "https://bhoonidhi.nrsc.gov.in",
+          "https://tile.openstreetmap.org",
+          "https://a.basemaps.cartocdn.com",
+          "https://b.basemaps.cartocdn.com",
+          "https://c.basemaps.cartocdn.com",
+          "https://d.basemaps.cartocdn.com",
+          "https://server.arcgisonline.com",
+          "https://wayback-a.maptiles.arcgis.com",
+          "https://a.tile.opentopomap.org",
+          "https://b.tile.opentopomap.org",
+          "https://c.tile.opentopomap.org",
+          "https://mt0.google.com",
+          "https://mt1.google.com",
+          "https://mt2.google.com",
+          "https://mt3.google.com",
+          "https://webrd01.is.autonavi.com",
+          "https://webrd02.is.autonavi.com",
+          "https://webrd03.is.autonavi.com",
+          "https://webrd04.is.autonavi.com",
+          "https://webst01.is.autonavi.com",
+          "https://webst02.is.autonavi.com",
+          "https://webst03.is.autonavi.com",
+          "https://webst04.is.autonavi.com",
+          "https://t0.tianditu.gov.cn",
+          "https://t1.tianditu.gov.cn",
+          "https://t2.tianditu.gov.cn",
+          "https://t3.tianditu.gov.cn",
+          "https://t4.tianditu.gov.cn",
+          "https://t5.tianditu.gov.cn",
+          "https://t6.tianditu.gov.cn",
+          "https://t7.tianditu.gov.cn"
+        ],
+        "font-src": ["'self'", "data:"],
+        "connect-src": [
+          "'self'",
+          "ipc:",
+          "http://ipc.localhost",
+          "http://127.0.0.1:5173",
+          "ws://127.0.0.1:5173"
+        ],
+        "object-src": ["'none'"],
+        "frame-src": ["'none'"],
+        "child-src": ["'none'"],
+        "form-action": ["'none'"],
+        "base-uri": ["'self'"],
+        "frame-ancestors": ["'none'"]
+      }
+    }
+  }
+}

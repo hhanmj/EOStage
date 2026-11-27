@@ -1,0 +1,114 @@
+{
+  "fixture_contract": "AsfCmrUmmGranuleFixtureV1",
+  "status": "pinned_upstream_excerpt_proposed",
+  "source_commit": "21f6b5d4bef7cc26dc87e44320f2f18545a3cedc",
+  "meta": {
+    "concept-type": "granule",
+    "concept-id": "G3463311647-ASF",
+    "revision-id": 1,
+    "native-id": "ALOS2478123150-230331-WBDR1.1__D",
+    "collection-concept-id": "C3315903479-ASF",
+    "provider-id": "ASF",
+    "format": "application/vnd.nasa.cmr.umm+json"
+  },
+  "umm": {
+    "TemporalExtent": {
+      "RangeDateTime": {
+        "BeginningDateTime": "2023-03-31T19:20:46Z",
+        "EndingDateTime": "2023-03-31T19:21:38Z"
+      }
+    },
+    "OrbitCalculatedSpatialDomains": [
+      {"OrbitNumber": 47812}
+    ],
+    "GranuleUR": "ALOS2478123150-230331-WBDR1.1__D",
+    "AdditionalAttributes": [
+      {"Name": "ASCENDING_DESCENDING", "Values": ["DESCENDING"]},
+      {"Name": "BEAM_MODE", "Values": ["WBD"]},
+      {"Name": "FRAME_NUMBER", "Values": ["3150"]},
+      {"Name": "LOOK_DIRECTION", "Values": ["RIGHT"]},
+      {"Name": "OFF_NADIR_ANGLE", "Values": ["34.9"]},
+      {"Name": "OPERATIONAL_MODE", "Values": ["WD1"]},
+      {"Name": "PATH_NUMBER", "Values": ["161"]},
+      {"Name": "POLARIZATION", "Values": ["HH", "HV"]},
+      {"Name": "PROCESSING_LEVEL", "Values": ["1.1"]}
+    ],
+    "SpatialExtent": {
+      "HorizontalSpatialDomain": {
+        "Geometry": {
+          "GPolygons": [
+            {
+              "Boundary": {
+                "Points": [
+                  {"Latitude": 21.894, "Longitude": -113.442},
+                  {"Latitude": 21.314, "Longitude": -110.089},
+                  {"Latitude": 24.502, "Longitude": -109.418},
+                  {"Latitude": 25.074, "Longitude": -112.855},
+                  {"Latitude": 21.894, "Longitude": -113.442}
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    "CollectionReference": {
+      "ShortName": "ALOS2_L1_PSR2",
+      "Version": "1"
+    },
+    "RelatedUrls": [
+      {
+        "URL": "https://example.invalid/alos2/ALOS2478123150-230331-WBDR1.1__D.zip",
+        "Type": "GET DATA",
+        "Description": "Download ALOS2478123150-230331-WBDR1.1__D.zip"
+      },
+      {
+        "URL": "s3://example-invalid/alos2/ALOS2478123150-230331-WBDR1.1__D.zip",
+        "Type": "GET DATA VIA DIRECT ACCESS",
+        "Description": "Direct S3 access to ALOS2478123150-230331-WBDR1.1__D.zip"
+      },
+      {
+        "URL": "https://example.invalid/s3credentials",
+        "Type": "VIEW RELATED INFORMATION",
+        "Description": "Non-asset credentials endpoint"
+      }
+    ],
+    "DataGranule": {
+      "DayNightFlag": "Unspecified",
+      "ArchiveAndDistributionInformation": [
+        {
+          "Name": "ALOS2478123150-230331-WBDR1.1__D.zip",
+          "SizeInBytes": 60018405388,
+          "Format": "ZIP",
+          "Checksum": {
+            "Value": "0f558597e19d964f24ca3a4bff11696c",
+            "Algorithm": "MD5"
+          }
+        }
+      ],
+      "Identifiers": [
+        {
+          "IdentifierType": "ProducerGranuleId",
+          "Identifier": "ALOS2478123150-230331"
+        }
+      ]
+    },
+    "Platforms": [
+      {
+        "ShortName": "ALOS-2",
+        "Instruments": [
+          {
+            "ShortName": "PALSAR-2",
+            "Characteristics": [
+              {"Name": "LookDirection", "Value": "RIGHT"}
+            ]
+          }
+        ]
+      }
+    ],
+    "MetadataSpecification": {
+      "Name": "UMM-G",
+      "Version": "1.6.6"
+    }
+  }
+}

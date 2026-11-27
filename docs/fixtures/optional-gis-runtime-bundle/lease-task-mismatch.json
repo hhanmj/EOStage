@@ -1,0 +1,5 @@
+{
+  "fixture": "lease-base-extension.json",
+  "mutation": "task_revision no longer matches Store read-only snapshot",
+  "expected_error": "GIS_RUNTIME_LEASE_CORRUPT"
+}

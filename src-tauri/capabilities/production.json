@@ -1,0 +1,21 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "production",
+  "description": "Single-host production shell permissions for the local main window.",
+  "local": true,
+  "windows": ["main"],
+  "platforms": ["windows", "macOS"],
+  "permissions": [
+    "core:window:allow-close",
+    "core:window:allow-inner-size",
+    "core:window:allow-internal-toggle-maximize",
+    "core:window:allow-is-maximized",
+    "core:window:allow-maximize",
+    "core:window:allow-minimize",
+    "core:window:allow-start-dragging",
+    "core:window:allow-start-resize-dragging",
+    "core:window:allow-toggle-maximize",
+    "core:window:allow-unmaximize",
+    "dialog:allow-open"
+  ]
+}

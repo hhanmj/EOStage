@@ -1,0 +1,17 @@
+{
+  "fixture_contract": "AsfNisarMultiPolygonFixtureV1",
+  "status": "synthetic_proposed",
+  "aoi": {
+    "type": "MultiPolygon",
+    "coordinates": [
+      [[[117.0, 30.0], [119.0, 30.0], [119.0, 32.0], [117.0, 32.0], [117.0, 30.0]]],
+      [[[118.0, 31.0], [120.0, 31.0], [120.0, 33.0], [118.0, 33.0], [118.0, 31.0]]]
+    ]
+  },
+  "polygon_results": [
+    {"polygon_index": 0, "granule_concept_ids": ["G9900000001-ASF", "G9900000002-ASF"]},
+    {"polygon_index": 1, "granule_concept_ids": ["G9900000001-ASF", "G9900000003-ASF"]}
+  ],
+  "expected_unique_granule_concept_ids": ["G9900000001-ASF", "G9900000002-ASF", "G9900000003-ASF"],
+  "expected_result": {"kind": "accept_unique_merge", "unique_provider_product_count": 3}
+}

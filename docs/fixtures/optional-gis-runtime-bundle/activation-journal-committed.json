@@ -1,0 +1,32 @@
+{
+  "contract": "GISRuntimeActivationJournal",
+  "journal_version": 1,
+  "transaction_id": "fixture-tx-recovery-1",
+  "phase": "committed",
+  "previous_replay_ledger_sha256": "c6242cbbe85cb8715b71abeb941fcf1b42babe120fad82465510c55dcba8bcc3",
+  "candidate_replay_ledger_sha256": "24b173f70bd729952667a6710ce883f1a778ed28aa0b5e602371e19791f62af8",
+  "previous_replay_generation": 3,
+  "candidate_replay_generation": 4,
+  "changed_streams": [
+    {
+      "stream_key": "gis-runtime-elevation/extension/beta/windows/x86_64",
+      "previous_release_sequence": null,
+      "candidate_release_sequence": 100
+    }
+  ],
+  "previous_active_sha256": "9550089727d4d2946c132ff05a24b8c4113756680ed508ebc89494809d99a463",
+  "candidate_active_sha256": "18a5c62ad5f5c4eb50c97dbdb5ec64c7d6ebd523f8ea7ccbf466a9ac3bac8279",
+  "base_manifest_sha256": "e0fb53d6b47bc3d2da500cd83f3e92f6208055de16a20e2c458abe0cc7d9c694",
+  "extension_manifest_sha256": [
+    "9de61242583e33aa6606d7405c02ff164117a839d45658e15aefc1ea7deb9410"
+  ],
+  "selection_digest": "bf1f3febfe294095ce177a1bafc4af01b276d0ef7004cf93893a8f16dc270c65",
+  "previous_ledger_snapshot_path": "state/activation/fixture-tx-recovery-1/replay-ledger.previous.json",
+  "candidate_ledger_path": "state/activation/fixture-tx-recovery-1/replay-ledger.candidate.json",
+  "staging_paths": [
+    "base/1.0.0",
+    "extensions/elevation-grids/1.0.0"
+  ],
+  "created_at": "2026-07-22T00:00:00Z",
+  "updated_at": "2026-07-22T00:00:01Z"
+}

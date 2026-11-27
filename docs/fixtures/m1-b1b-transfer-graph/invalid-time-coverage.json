@@ -1,0 +1,28 @@
+{
+  "fixture_metadata": {
+    "fixture_version": 1,
+    "fixture_kind": "invalid",
+    "fixture_name": "invalid-time-coverage",
+    "payload_contract": "FrozenTaskSnapshotV3",
+    "offline": true
+  },
+  "base": "single",
+  "mutations": [
+    {
+      "op": "set",
+      "path": "/orbit_associations/0/source_acquisition_stop",
+      "value": 301
+    }
+  ],
+  "expected": {
+    "accepted": false,
+    "error": {
+      "variant": "invalid_orbit_match",
+      "association": {
+        "kind": "orbit_association",
+        "index": 0
+      },
+      "issue": "validity_not_covered"
+    }
+  }
+}

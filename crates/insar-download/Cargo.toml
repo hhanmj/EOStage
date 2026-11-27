@@ -1,0 +1,65 @@
+[package]
+name = "insar-download"
+version = "0.1.0"
+edition.workspace = true
+rust-version = "1.95.0"
+license.workspace = true
+repository.workspace = true
+description = "Resumable persisted download engine for EOStage."
+
+[features]
+bhoonidhi-auth-revoke-acceptance = []
+default = ["nisar-subset-production"]
+offline-nisar-subset-test-support = []
+# Test builds only, enabled through dev-dependencies: the scheduler's default
+# free-space probe reports plenty of space, so a nearly full development drive
+# never pauses unrelated tests. Production builds measure the real volume.
+test-plenty-disk-space = []
+nisar-subset-production = ["insar-provider/nisar-subset-production"]
+nisar-subset-live-acceptance = [
+    "nisar-subset-production",
+    "insar-provider/nisar-subset-live-acceptance",
+]
+
+[dependencies]
+insar-core = { path = "../insar-core" }
+insar-provider = { path = "../insar-provider" }
+insar-store = { path = "../insar-store" }
+hdf5 = { package = "hdf5-metno", version = "=0.12.6", features = ["static", "zlib"] }
+hdf5-sys = { package = "hdf5-metno-sys", version = "=0.12.1", features = ["hl"] }
+ndarray = "0.17"
+keyring = "4.1.6"
+md-5 = "0.10"
+quick-xml = "0.41"
+reqwest = { version = "0.12", default-features = false, features = ["blocking", "cookies", "rustls-tls-native-roots", "rustls-tls-webpki-roots", "system-proxy"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha1 = "0.10"
+sha2 = "0.10"
+thiserror = "2"
+uuid = "1"
+zeroize = "1"
+
+[dev-dependencies]
+# B15 conflict-cleanup tests set explicit mtimes to prove changed-file skips.
+filetime = "0.2"
+rusqlite = { version = "0.40.1", features = ["bundled"] }
+# Loopback TLS server with a self-signed certificate for the certificate
+# classification tests (L5 recheck 2026-10-19); the rustls already in the graph
+# through reqwest.
+rustls = { version = "0.23", default-features = false, features = ["ring", "std", "tls12"] }
+# This crate's integration tests and examples get the test-only default probe.
+insar-download = { path = ".", features = ["test-plenty-disk-space"] }
+# Test-only USGS session seam for the resolver-authoritative entry-point test;
+# features unify, so this never reaches a release build of the provider.
+insar-provider = { path = "../insar-provider", features = ["usgs-m2m-test-session"] }
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.61", features = ["Win32_Foundation", "Win32_Security_Credentials", "Win32_Security_Cryptography", "Win32_Storage_FileSystem", "Win32_System_IO", "Win32_System_Ioctl"] }
+
+[target.'cfg(unix)'.dependencies]
+libc = "0.2"
+
+[target.'cfg(target_os = "macos")'.dependencies]
+base64 = "0.22"
+ring = "0.17"

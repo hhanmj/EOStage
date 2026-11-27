@@ -1,0 +1,24 @@
+{
+  "reference": {
+    "provider_id": "asf.catalog",
+    "collection_id": "SENTINEL-1",
+    "provider_product_id": "S1A-FIXTURE-001",
+    "provider_product_key": "PROVIDER::asf.catalog::COLLECTION::SENTINEL-1::ITEM::S1A-FIXTURE-001",
+    "canonical_product_key": null,
+    "asset_key": "primary.zip",
+    "stable_asset_key": "PROVIDER::asf.catalog::COLLECTION::SENTINEL-1::ITEM::S1A-FIXTURE-001::ASSET::primary.zip"
+  },
+  "descriptor": {
+    "resolver_id": "earthdata_https",
+    "scheme": "earthdata_https",
+    "stable_href": "https://datapool.asf.alaska.edu/SLC/SA/primary.zip",
+    "requires_credentials": true,
+    "credential_profile": "earthdata-default",
+    "resolver_parameters": {}
+  },
+  "role": "primary",
+  "file_name": "primary.zip",
+  "expected_size_bytes": 42,
+  "checksum_algorithm": "sha256",
+  "checksum_value": "fixture-checksum"
+}

@@ -1,0 +1,149 @@
+{
+  "feed": {
+    "updated": "2026-10-31T00:00:00.000Z",
+    "id": "https://cmr.earthdata.nasa.gov:443/search/granules.json",
+    "title": "ECHO granule metadata",
+    "entry": [
+      {
+        "producer_granule_id": "RSAT_1_0291_0025_970612",
+        "id": "G3234567890-ASF",
+        "title": "RSAT_1_0291_0025_970612",
+        "time_start": "1997-06-12T16:44:31.000Z",
+        "time_end": "1997-06-12T16:44:47.000Z",
+        "granule_size": 801.5,
+        "polygons": [
+          [
+            "64.78 -147.82 64.88 -147.52 65.05 -147.10 64.94 -147.40 64.78 -147.82"
+          ]
+        ],
+        "links": [
+          {
+            "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+            "href": "https://datapool.asf.alaska.edu/RADARSAT/RSAT_1_0291_0025_970612.zip",
+            "title": "Direct Download"
+          }
+        ],
+        "additional_attributes": [
+          {
+            "name": "ASF_PLATFORM",
+            "values": [
+              "RADARSAT-1"
+            ]
+          },
+          {
+            "name": "POLARIZATION",
+            "values": [
+              "HH"
+            ]
+          },
+          {
+            "name": "ASCENDING_DESCENDING",
+            "values": [
+              "DESCENDING"
+            ]
+          },
+          {
+            "name": "BEAM_MODE",
+            "values": [
+              "ST1"
+            ]
+          },
+          {
+            "name": "BEAM_MODE_TYPE",
+            "values": [
+              "ST1"
+            ]
+          },
+          {
+            "name": "PROCESSING_LEVEL",
+            "values": [
+              "L1"
+            ]
+          },
+          {
+            "name": "PATH_NUMBER",
+            "values": [
+              "291"
+            ]
+          },
+          {
+            "name": "FRAME_NUMBER",
+            "values": [
+              "25"
+            ]
+          }
+        ]
+      },
+      {
+        "producer_granule_id": "RSAT_1_0292_0025_970619",
+        "id": "G3234567891-ASF",
+        "title": "RSAT_1_0292_0025_970619",
+        "time_start": "1997-06-19T16:44:31.000Z",
+        "time_end": "1997-06-19T16:44:47.000Z",
+        "granule_size": 795.0,
+        "polygons": [
+          [
+            "64.78 -147.82 64.88 -147.52 65.05 -147.10 64.94 -147.40 64.78 -147.82"
+          ]
+        ],
+        "links": [
+          {
+            "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+            "href": "https://datapool.asf.alaska.edu/RADARSAT/RSAT_1_0292_0025_970619.zip",
+            "title": "Direct Download"
+          }
+        ],
+        "additional_attributes": [
+          {
+            "name": "ASF_PLATFORM",
+            "values": [
+              "RADARSAT-1"
+            ]
+          },
+          {
+            "name": "POLARIZATION",
+            "values": [
+              "HH"
+            ]
+          },
+          {
+            "name": "ASCENDING_DESCENDING",
+            "values": [
+              "ASCENDING"
+            ]
+          },
+          {
+            "name": "BEAM_MODE",
+            "values": [
+              "FN1"
+            ]
+          },
+          {
+            "name": "BEAM_MODE_TYPE",
+            "values": [
+              "FN1"
+            ]
+          },
+          {
+            "name": "PROCESSING_LEVEL",
+            "values": [
+              "L0"
+            ]
+          },
+          {
+            "name": "PATH_NUMBER",
+            "values": [
+              "292"
+            ]
+          },
+          {
+            "name": "FRAME_NUMBER",
+            "values": [
+              "25"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

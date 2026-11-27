@@ -1,0 +1,36 @@
+{
+  "fixture_metadata": {
+    "fixture_version": 1,
+    "fixture_kind": "invalid",
+    "fixture_name": "unused-companion-transfer",
+    "payload_contract": "FrozenTaskSnapshotV3",
+    "offline": true
+  },
+  "base": "single",
+  "mutations": [
+    {
+      "op": "append_copy",
+      "from": "/transfer_items/1",
+      "path": "/transfer_items"
+    },
+    {
+      "op": "set",
+      "path": "/transfer_items/2/transfer_item_id",
+      "value": "unused-poeorb"
+    }
+  ],
+  "expected": {
+    "accepted": false,
+    "error": {
+      "variant": "invalid_companion_coverage",
+      "subject": {
+        "kind": "required_companion_transfer",
+        "transfer": {
+          "kind": "transfer_item",
+          "index": 2
+        }
+      },
+      "association_count": 0
+    }
+  }
+}

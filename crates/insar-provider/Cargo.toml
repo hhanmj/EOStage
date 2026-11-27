@@ -1,0 +1,38 @@
+[package]
+name = "insar-provider"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Remote provider implementations for EOStage."
+
+[features]
+default = []
+nisar-subset-production = []
+nisar-subset-live-acceptance = []
+usgs-m2m-live-acceptance = []
+s1-live-acceptance = []
+# Test-only: exposes `UsgsM2mSession::authenticated_for_tests`, which forges
+# an already-authenticated session state without a network login. Enabled
+# solely through dev-dependencies of downstream crates (features unify, so
+# release builds of the provider never see it). No production code may
+# depend on it.
+usgs-m2m-test-session = []
+
+[dependencies]
+chrono = "0.4"
+geo = "0.29"
+geojson = { version = "0.24", features = ["geo-types"] }
+insar-core = { path = "../insar-core" }
+reqwest = { version = "0.12", default-features = false, features = ["blocking", "json", "multipart", "rustls-tls-native-roots", "rustls-tls-webpki-roots", "system-proxy"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["float_roundtrip"] }
+sha2 = "0.10"
+thiserror = "1"
+tokio = { version = "1", features = ["net", "rt", "time"] }
+url = "2"
+uuid = "1"
+zeroize = "1"
+
+[dev-dependencies]
+serde_json = { version = "1", features = ["float_roundtrip"] }

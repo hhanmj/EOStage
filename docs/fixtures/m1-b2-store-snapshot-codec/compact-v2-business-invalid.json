@@ -1,0 +1,29 @@
+{
+  "fixture_metadata": {
+    "fixture_version": 1,
+    "fixture_kind": "codec",
+    "fixture_name": "compact-v2-business-invalid",
+    "offline": true
+  },
+  "base": "compact_v2",
+  "mutations": [
+    {
+      "op": "set",
+      "path": "/initial_selected_item_ids",
+      "value": [
+        "missing-selected-product"
+      ]
+    }
+  ],
+  "expected": {
+    "decode_any": {
+      "error_code": "V3_STORE_INVALID_SNAPSHOT"
+    },
+    "v2_reader": {
+      "error_code": "V3_STORE_INVALID_SNAPSHOT"
+    },
+    "business_readers": {
+      "error_code": "V3_STORE_INVALID_SNAPSHOT"
+    }
+  }
+}

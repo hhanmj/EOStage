@@ -1,0 +1,5 @@
+{
+  "fixture": "bundle-set-valid.json",
+  "mutation": "duplicate member gis-gdal-runtime-win-x64",
+  "expected_error": "GIS_BUNDLE_SET_MEMBER_DUPLICATE"
+}

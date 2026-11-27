@@ -1,0 +1,32 @@
+{
+  "fixture_metadata": {
+    "fixture_version": 1,
+    "fixture_kind": "invalid",
+    "fixture_name": "association-set-mismatch",
+    "payload_contract": "FrozenTaskSnapshotV3",
+    "offline": true
+  },
+  "base": "shared",
+  "mutations": [
+    {
+      "op": "set",
+      "path": "/transfer_items/2/source_item_ids",
+      "value": [
+        "source-a"
+      ]
+    }
+  ],
+  "expected": {
+    "accepted": false,
+    "error": {
+      "variant": "invalid_transfer_graph",
+      "issue": {
+        "kind": "attachment_association_set_mismatch",
+        "transfer": {
+          "kind": "transfer_item",
+          "index": 2
+        }
+      }
+    }
+  }
+}

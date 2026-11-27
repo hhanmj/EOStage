@@ -1,0 +1,38 @@
+{
+  "provider_id": "fixture.provider",
+  "product_id": "FIXTURE-SCENE-001",
+  "display_name": "Fixture Scene 001",
+  "source_kind": "sentinel1",
+  "product_kind": "sar_slc",
+  "acquisition_datetime": "2024-01-01T00:00:00Z",
+  "footprint_geojson": null,
+  "footprint_bbox": {
+    "west": 110.0,
+    "east": 111.0,
+    "south": 30.0,
+    "north": 31.0,
+    "crs": "EPSG:4326"
+  },
+  "assets": [
+    {
+      "asset_key": null,
+      "stable_asset_key": null,
+      "access_descriptor": null,
+      "role": "primary",
+      "native_roles": [],
+      "url": null,
+      "file_name": "FIXTURE-SCENE-001.zip",
+      "media_type": "application/zip",
+      "size_bytes": 1024
+    }
+  ],
+  "properties": {
+    "platform": "S1A",
+    "relative_orbit": 42,
+    "frame": 100
+  },
+  "payload": {
+    "scene_id": "FIXTURE-SCENE-001",
+    "orbit_direction": "ascending"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "fixture_contract": "NisarSubsetNegativeFixtureV1",
+  "status": "synthetic_proposed",
+  "observed": {
+    "declared_method": "remote_subset",
+    "source_size_bytes": 12000000000,
+    "remote_transfer_bytes": 12000000000,
+    "complete_source_downloaded_before_crop": true
+  },
+  "actual_classification": "LocalSubsetAfterDownload",
+  "expected_result": {"kind": "reject_subset_claim", "error": "NISAR_SUBSET_MECHANISM_UNVERIFIED"}
+}

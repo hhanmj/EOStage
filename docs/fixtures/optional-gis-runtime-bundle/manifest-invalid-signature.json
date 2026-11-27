@@ -1,0 +1,5 @@
+{
+  "fixture": "manifest-valid.json",
+  "mutation": "signature.value = BOGOLTLOQWLuEZlz/DWHq4bulpevGc/18rMN3pTzaxfAqk76jLJrG9geI+o/UwxmzvknBBiLUoiryIWlKj7IDQAA",
+  "expected_error": "GIS_SIGNATURE_INVALID"
+}

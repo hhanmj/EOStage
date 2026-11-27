@@ -1,0 +1,6 @@
+{
+  "status": 200,
+  "request_range": "bytes=13-21",
+  "content_length": 22,
+  "expected_action": "do not append; restart from byte zero"
+}

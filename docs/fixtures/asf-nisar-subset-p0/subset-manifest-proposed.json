@@ -1,0 +1,49 @@
+{
+  "fixture_contract": "NisarSubsetManifestProposalV1",
+  "status": "synthetic_contract_proposal_only",
+  "manifest_version": 1,
+  "delivery_mechanism": "RemoteHdf5SpatialWindow",
+  "source": {
+    "provider_product_key": "PROVIDER::asf.nasa.earthdata::COLLECTION::C2853145197-ASF::ITEM::G9900000001-ASF",
+    "stable_asset_key": "PROVIDER::asf.nasa.earthdata::COLLECTION::C2853145197-ASF::ITEM::G9900000001-ASF::ASSET::science-rslc-hdf5",
+    "granule_id": "G9900000001-ASF",
+    "file_name": "NISAR_L1_PR_RSLC_SYNTHETIC_P05023_0001.h5",
+    "size_bytes": 12000000000,
+    "checksum": {"algorithm": "SHA-256", "value": "f2c78f09a49e5f1f304b19f930dfed10f197d235e383075e8377ddaa7c33d181"},
+    "validator": {"kind": "strong_etag", "value": "\"synthetic-etag-v1\""}
+  },
+  "request": {
+    "aoi": {"type": "Polygon", "coordinates": [[[118.0, 30.5], [118.5, 30.5], [118.5, 31.0], [118.0, 31.0], [118.0, 30.5]]]},
+    "crs": "EPSG:4326",
+    "frequency": "A",
+    "polarization": "HH",
+    "swath": "synthetic-swath-1"
+  },
+  "selection": {
+    "dataset_paths": ["/science/LSAR/RSLC/swaths/frequencyA/HH"],
+    "height_envelope_hae_m": [0.0, 3000.0],
+    "height_layers_hae_m": [0.0, 1500.0, 3000.0],
+    "chunk_halo": 0,
+    "components": [{
+      "geometry_part_index": 0,
+      "logical_window": {"row_start": 1024, "row_end_exclusive": 1536, "column_start": 2048, "column_end_exclusive": 2816},
+      "chunk_window": {"row_start": 1024, "row_end_exclusive": 1536, "column_start": 2048, "column_end_exclusive": 3072},
+      "cell_mask": {"semantics": "sparse_cell_intersects_aoi_any_bracketing_hae", "origin_cell": [12, 24], "shape_cells": [2, 3], "row_major": [true, true, false, true, true, true]}
+    }],
+    "mapping_algorithm": "sparse_grid_polygon_cells_v1",
+    "mapping_evidence_sha256": "3b83ef96387f14655fc854ddc3c6bd57f617b6524e71d4c47e62b220e234e7be"
+  },
+  "transfer": {
+    "requested_ranges": [{"start": 4096, "end_inclusive": 8191}],
+    "received_bytes": 4096,
+    "full_product_bytes": 12000000000,
+    "subset_ratio": 0.0000003413333333
+  },
+  "output": {
+    "file_name": "NISAR_L1_PR_RSLC_SYNTHETIC_P05023_0001_subset_a_hh.h5",
+    "actual_extent": [118.0, 30.5, 118.5, 31.0],
+    "checksum": {"algorithm": "SHA-256", "value": "ab1b7c6ac059ee2208e40f0c7fdd1f1a930f0f5e0e5a9d0c7f8a15e676a8d572"},
+    "completion_state": "proposed_not_verified"
+  },
+  "expected_result": {"kind": "contract_proposal_only"}
+}

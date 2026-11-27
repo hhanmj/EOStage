@@ -1,0 +1,57 @@
+{
+  "valid": [
+    {
+      "selected_root": "D:/downloads",
+      "file_name": "S1A_TEST.zip",
+      "family": "sentinel1",
+      "layout": "flat",
+      "expected": "D:/downloads/S1A_TEST.zip"
+    },
+    {
+      "selected_root": "D:/downloads",
+      "file_name": "S1A_TEST.zip",
+      "family": "sentinel1",
+      "layout": "product_subdirectory",
+      "expected": "D:/downloads/SLC/S1A_TEST.zip"
+    },
+    {
+      "selected_root": "E:/InSAR/测试 输出",
+      "file_name": "S1B_UNICODE_ROOT.zip",
+      "family": "sentinel1",
+      "layout": "flat",
+      "expected": "E:/InSAR/测试 输出/S1B_UNICODE_ROOT.zip"
+    },
+    {
+      "selected_root": "D:/orbits",
+      "file_name": "S1A_OPER_AUX_POEORB.EOF",
+      "family": "orbit",
+      "layout": "flat",
+      "expected": "D:/orbits/S1A_OPER_AUX_POEORB.EOF"
+    },
+    {
+      "selected_root": "D:/orbits",
+      "file_name": "S1B_OPER_AUX_POEORB.EOF",
+      "family": "orbit",
+      "layout": "product_subdirectory",
+      "expected": "D:/orbits/Sentinel_Orbit/AUX_POEORB/S1B_OPER_AUX_POEORB.EOF"
+    }
+  ],
+  "invalid_file_names": [
+    "",
+    ".",
+    "..",
+    "../scene.zip",
+    "..\\scene.zip",
+    "/absolute/scene.zip",
+    "C:\\absolute\\scene.zip",
+    "\\\\server\\share\\scene.zip",
+    "nested/scene.zip",
+    "nested\\scene.zip",
+    "bad:name.zip",
+    "bad?.zip",
+    "trailing.",
+    "trailing ",
+    "CON.zip",
+    "bad\u0000scene.zip"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "@odata.count": 3,
+  "value": [
+    {"Id":"00000000-0000-4000-8000-000000000003","Name":"S2_FIXTURE_THREE.SAFE","Collection":{"Name":"SENTINEL-2"},"ContentLength":1024,"ContentDate":{"Start":"2026-01-01T12:00:00Z","End":"2026-01-01T12:05:00Z"},"Online":true,"GeoFootprint":"POLYGON((112 30,113 30,113 31,112 31,112 30))","Attributes":[{"Name":"productType","Value":"S2MSI2A"},{"Name":"cloudCover","Value":0.5}]}
+  ]
+}

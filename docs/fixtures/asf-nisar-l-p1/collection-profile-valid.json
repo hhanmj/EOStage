@@ -1,0 +1,27 @@
+{
+  "fixture_contract": "AsfCollectionProfileFixtureV1",
+  "status": "accepted_production_enabled",
+  "profile": {
+    "provider_id": "asf.nasa.earthdata",
+    "logical_dataset": "sar.nisar.l.rslc.provisional.v1",
+    "dataset_selector": "NISAR",
+    "native_collection_id": "C2853145197-ASF",
+    "collection_short_name": "NISAR_L1_RSLC_PROVISIONAL_V1",
+    "collection_version": "1",
+    "collection_profile_id": "asf.nisar.l.rslc.provisional.v1",
+    "route_id": "asf.nisar.l.rslc.provisional.route.v1",
+    "identity_rule_id": "asf.nisar.cmr-granule.v1",
+    "filename_rule_id": "asf.nisar.rslc-hdf5.v1",
+    "resolver_policy_id": "asf.nisar.earthdata-complete-hdf5.v1",
+    "delivery_model": "archive_first",
+    "processing_level": "RSLC",
+    "science_level": "L1",
+    "band": "L",
+    "quality_status": "Provisional",
+    "production_configuration": "PR",
+    "primary_delivery": "complete_hdf5",
+    "frequency_scope": "frequency_a_or_b_required",
+    "production_enabled": true
+  },
+  "expected_result": {"kind": "accept"}
+}

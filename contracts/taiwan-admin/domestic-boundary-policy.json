@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "policy_id": "eostage.taiwan-admin.domestic-routing.v1",
+  "effective_date": "2026-11-21",
+  "summary": "Administrative boundary queries for China (including Hong Kong, Macao, and Taiwan) are routed to domestic public boundary services (DataV / user-configured Tianditu) on demand without bundling redistributed administrative polygons.",
+  "providers": [
+    "datav",
+    "tianditu"
+  ]
+}

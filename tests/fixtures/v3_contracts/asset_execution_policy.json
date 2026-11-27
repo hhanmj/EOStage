@@ -1,0 +1,12 @@
+{
+  "legacy": {
+    "authority": "legacy",
+    "policy_id": "legacy.v1",
+    "collection_profile_id": null
+  },
+  "resolver": {
+    "authority": "resolver_authoritative",
+    "policy_id": "asf.sentinel-1.standard.resolver-cutover.v1",
+    "collection_profile_id": "asf.sentinel-1.standard.v1"
+  }
+}

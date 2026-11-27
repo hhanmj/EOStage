@@ -1,0 +1,21 @@
+{
+  "dataset": { "dataset_key": "optical.landsat.c2.l2", "display_title": "Landsat Collection 2 Level-2", "catalog_version": "USGS M2M landsat_ot_c2_l2", "license": "USGS", "review_status": "offline_verified" },
+  "routes": [
+    { "route_id": "usgs.m2m.landsat.c2.l2.scene.v1", "dataset_key": "optical.landsat.c2.l2", "provider_id": "usgs.eros.m2m", "native_collection_id": "landsat_ot_c2_l2", "collection_profile_id": "usgs.eros.m2m.landsat.c2.l2.scene.v1", "identity_rule_id": "usgs.eros.m2m.landsat.c2.l2.identity.v1", "filename_rule_id": "usgs.eros.m2m.landsat.c2.l2.full-bundle-filename.v1", "resolver_policy_id": "usgs.m2m.bundle.resolver.v1", "endpoint_kind": "m2m", "credential_profile": "usgs.eros.m2m.session.v1", "network_policy": "system", "catalogue_aoi_crs": "EPSG:4326", "availability_state": "offline_verified", "delivery_model": "archive_first" },
+    { "route_id": "planetary-computer.landsat-c2-l2.assets.v1", "dataset_key": "optical.landsat.c2.l2", "provider_id": "planetary-computer", "native_collection_id": "landsat-c2-l2", "collection_profile_id": "planetary-computer.landsat.c2.l2.assets.v1", "identity_rule_id": null, "filename_rule_id": "planetary-computer.landsat-c2-l2.asset-filename.v1", "resolver_policy_id": "planetary-computer.landsat-c2-l2.asset-set.v1", "endpoint_kind": "planetary_computer", "credential_profile": null, "network_policy": "direct", "catalogue_aoi_crs": "EPSG:4326", "availability_state": "offline_verified", "delivery_model": "archive_first" }
+  ],
+  "search_capabilities": [
+    { "route_id": "usgs.m2m.landsat.c2.l2.scene.v1", "filters": [ { "name": "datetime", "value_type": "date_range" }, { "name": "cloud_cover_lte", "value_type": "number" }, { "name": "spacecraft", "value_type": "enum", "options": ["landsat_8", "landsat_9"] }, { "name": "processing_levels", "value_type": "enum", "options": ["l2sp", "l2sr"] } ], "page_size_max": 500, "result_limit": 10000 }
+  ],
+  "preview_capabilities": [
+    { "route_id": "usgs.m2m.landsat.c2.l2.scene.v1", "footprint": "offline_verified", "metadata_preview": "offline_verified", "previews": [ { "preview_kind": "single_asset_image", "render_profile_id": "usgs.landsat.c2.l2.exact-scene-browse.v1", "media_type": "image/jpeg", "credential_requirement": "provider_credentials", "cache_policy": "session" } ] }
+  ],
+  "download_capabilities": [
+    { "route_id": "usgs.m2m.landsat.c2.l2.scene.v1", "full_archive": "offline_verified", "asset_set": "disabled", "server_side_subset": "disabled", "range_support": false, "authentication": "offline_verified", "resume": true, "validation": true, "default_enabled": false },
+    { "route_id": "planetary-computer.landsat-c2-l2.assets.v1", "full_archive": "disabled", "asset_set": "offline_verified", "server_side_subset": "disabled", "range_support": false, "authentication": "disabled", "resume": true, "validation": true, "default_enabled": false }
+  ],
+  "asset_rules": [
+    { "route_id": "usgs.m2m.landsat.c2.l2.scene.v1", "primary_asset_key_rule": "full bundle tar", "required_asset_keys": ["full-bundle"], "metadata_asset_keys": ["mtl"], "preview_asset_keys": ["browse"], "checksum_policy": "sha512", "filename_pattern": null, "identity_rule_id": "usgs.eros.m2m.landsat.c2.l2.identity.v1", "filename_rule_id": "usgs.eros.m2m.landsat.c2.l2.full-bundle-filename.v1", "resolver_policy_id": "usgs.m2m.bundle.resolver.v1" },
+    { "route_id": "planetary-computer.landsat-c2-l2.assets.v1", "primary_asset_key_rule": "asset set with 15 primary bands", "required_asset_keys": [], "metadata_asset_keys": ["ang", "mtl.txt", "mtl.xml"], "preview_asset_keys": [], "checksum_policy": "none", "filename_pattern": null, "identity_rule_id": null, "filename_rule_id": "planetary-computer.landsat-c2-l2.asset-filename.v1", "resolver_policy_id": "planetary-computer.landsat-c2-l2.asset-set.v1" }
+  ]
+}

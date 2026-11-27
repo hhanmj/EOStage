@@ -1,0 +1,119 @@
+{
+  "fixture_set": "m1-frozen-transfer-orbit-association",
+  "fixture_index_version": 2,
+  "status": "proposed_design_vectors_only",
+  "canonical_schema": "unchanged",
+  "schema_contract_candidate": "3.13.0",
+  "protocol_minor_candidate": 17,
+  "envelope": {
+    "required_top_level": [
+      "fixture_metadata",
+      "expected",
+      "payload"
+    ],
+    "payload_rule": "payload exactly equals fixture_metadata.payload_contract; no harness fields are nested in payload"
+  },
+  "fixtures": [
+    {
+      "file": "legacy-v2-task.json",
+      "class": "compatibility",
+      "expected": "legacy V2 read without rewrite or fabricated access"
+    },
+    {
+      "file": "v2-to-v3-normalized-view.json",
+      "class": "compatibility",
+      "expected": "legacy V2 persisted payload remains unchanged; in-memory view only"
+    },
+    {
+      "file": "single-source-single-poeorb-valid.json",
+      "class": "valid",
+      "expected": "one source, primary transfer, and exact POEORB companion"
+    },
+    {
+      "file": "multiple-sources-shared-poeorb-valid.json",
+      "class": "valid",
+      "expected": "two sources share one exact POEORB transfer"
+    },
+    {
+      "file": "missing-orbit.json",
+      "class": "selection_rejection",
+      "expected": "ORB001: missing"
+    },
+    {
+      "file": "ambiguous-orbit.json",
+      "class": "selection_rejection",
+      "expected": "ORB001: ambiguous"
+    },
+    {
+      "file": "platform-mismatch.json",
+      "class": "selection_rejection",
+      "expected": "ORB001: platform"
+    },
+    {
+      "file": "validity-gap.json",
+      "class": "selection_rejection",
+      "expected": "ORB001: validity"
+    },
+    {
+      "file": "duplicate-source-association.json",
+      "class": "structural_rejection",
+      "expected": "V3_STORE_INVALID_SNAPSHOT"
+    },
+    {
+      "file": "orphan-transfer-item.json",
+      "class": "structural_rejection",
+      "expected": "V3_STORE_INVALID_SNAPSHOT"
+    },
+    {
+      "file": "temporary-url-rejected.json",
+      "class": "structural_rejection",
+      "expected": "V3_STORE_INVALID_SNAPSHOT; controlled fake URL"
+    },
+    {
+      "file": "protocol-16-association-rejected.json",
+      "class": "protocol_rejection",
+      "expected": "V3_SIDECAR_CAPABILITY_UNAVAILABLE"
+    },
+    {
+      "file": "duplicate-transfer-item-id.json",
+      "class": "structural_rejection",
+      "expected": "V3_STORE_INVALID_SNAPSHOT"
+    },
+    {
+      "file": "duplicate-source-item-id.json",
+      "class": "structural_rejection",
+      "expected": "V3_STORE_INVALID_SNAPSHOT"
+    },
+    {
+      "file": "selected-transfer-reference-mismatch.json",
+      "class": "structural_rejection",
+      "expected": "V3_STORE_INVALID_SNAPSHOT"
+    },
+    {
+      "file": "orbit-filename-mismatch.json",
+      "class": "structural_rejection",
+      "expected": "V3_STORE_INVALID_SNAPSHOT"
+    },
+    {
+      "file": "attachment-association-set-mismatch.json",
+      "class": "structural_rejection",
+      "expected": "V3_STORE_INVALID_SNAPSHOT"
+    },
+    {
+      "file": "association-source-not-selected.json",
+      "class": "structural_rejection",
+      "expected": "V3_STORE_INVALID_SNAPSHOT"
+    },
+    {
+      "file": "source-interval-invalid.json",
+      "class": "structural_rejection",
+      "expected": "V3_STORE_INVALID_SNAPSHOT"
+    },
+    {
+      "file": "companion-not-required.json",
+      "class": "structural_rejection",
+      "expected": "V3_STORE_INVALID_SNAPSHOT"
+    }
+  ],
+  "companion_document": "README.md"
+}

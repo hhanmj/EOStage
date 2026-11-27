@@ -1,0 +1,127 @@
+# Spatial SQL
+
+Use this reference when writing or reviewing spatial SQL for PostGIS, DuckDB Spatial, or similar engines. Keep the workflow tool-neutral: discover the schema, bound the query, validate in SQL, then use a rendered map only after the data checks pass.
+
+## Required workflow
+
+1. **Discover schema before writing SQL.** Inspect available databases/schemas/tables, geometry columns, data types, geometry type, SRID/CRS, row counts, and candidate tables. When multiple tables could answer the question, sample each candidate and prefer the source with richer, cleaner attributes.
+2. **Resolve the target area.** For named places, query the actual boundary source first: Overture `division_area`, an admin-boundary table, a user-supplied polygon, or another authoritative boundary. Return candidate rows and choose by subtype/class/admin level, not memory. Preserve bbox constants at full precision.
+3. **Draft a bounded query.** Select only needed columns, add attribute/date filters early, add `LIMIT` for exploration, and alias map output geometry as lowercase `geometry` when the consuming map stack expects that convention.
+4. **Use bbox overlap plus an exact predicate.** Bbox is a scan gate, not the geography. Use overlap logic so features crossing the target boundary are included, then apply `ST_Intersects`, `ST_Within`, `ST_Covers`, or the exact predicate the analysis requires.
+5. **Validate before presenting.** Run cost/dry-run checks where available, row-count checks, geometry validity checks, area/length sanity checks, and query-plan checks for expensive queries.
+6. **Review the map only after SQL validation.** Render a map or snapshot when visual output is part of the task, inspect it, then claim visual findings. Do not describe map-visible patterns from table rows alone.
+
+## Bbox pattern
+
+Prefer overlap, not containment:
+
+```sql
+-- Correct: feature bbox overlaps the area bbox.
+AND feature_xmax >= area_xmin
+AND feature_xmin <= area_xmax
+AND feature_ymax >= area_ymin
+AND feature_ymin <= area_ymax
+
+-- Then apply exact geography.
+AND ST_Intersects(feature_geometry, area_geometry)
+```
+
+Avoid containment gates for area queries:
+
+```sql
+-- Wrong for features that can cross the area edge.
+AND feature_xmin >= area_xmin
+AND feature_xmax <= area_xmax
+```
+
+Containment is only appropriate when the question explicitly asks for features fully inside the bbox, and even then prefer an exact predicate such as `ST_Within` against the real boundary.
+
+## Validation gates
+
+Run the checks that fit the engine and task:
+
+* **Cost / dry run:** the engine's explain or cost tools. If over budget, tighten bbox, filters, date ranges, columns, or aggregation resolution before executing.
+* **Row count:** Run `COUNT(*)` on the filtered result. Zero rows require debugging before presenting: check bbox direction, CRS, target-area match, exact predicate, attribute filters, and column names.
+* **Geometry validity:** Use `ST_IsValid`, `ST_IsValidReason`, or engine equivalents after imports, transforms, overlays, dissolves, or simplification.
+* **Area / length magnitude:** For polygon outputs, compute total area. For line outputs, compute total length. Report units honestly: geography functions return meters in many engines; planar geometry returns CRS units.
+* **Query plan:** Use `EXPLAIN` / `EXPLAIN ANALYZE` for recurring or slow queries. Confirm spatial indexes, bbox pruning, partition pruning, or file pruning are active.
+* **Preview rows:** Inspect a small bounded sample for IDs, names, geometry presence, nulls, and surprising categories before exporting or mapping.
+
+## Engine notes
+
+### PostGIS
+
+Discover spatial tables and SRIDs before querying:
+
+```sql
+SELECT f_table_schema, f_table_name, f_geometry_column, type, srid
+FROM geometry_columns
+ORDER BY f_table_schema, f_table_name;
+```
+
+Use `&&` as the index-backed bbox gate, then the exact predicate:
+
+```sql
+WITH area AS (
+  SELECT geom
+  FROM admin_boundaries
+  WHERE name ILIKE '%Berlin%'
+  LIMIT 1
+)
+SELECT s.id, s.geom AS geometry
+FROM segments s
+CROSS JOIN area a
+WHERE s.geom && a.geom
+  AND ST_Intersects(s.geom, a.geom);
+```
+
+For meter distances on lon/lat data in PostGIS, default to `geography`. `ST_DWithin` and `ST_Distance` on `geography` compute on the spheroid by default, so they are correct at any location and extent. Use a projected CRS instead only when the data's extent is known and lies within that CRS's area of use, for example EPSG:3301 for data confined to Estonia. Do not pick a UTM zone or national grid for an unknown or multi-zone extent. This default covers distance tests only: `ST_Buffer` on `geography` is not geodesic. It buffers in a planar projection PostGIS chooses for the input's extent, and may misbehave when the input is much larger than a UTM zone or crosses the dateline ([PostGIS `ST_Buffer`](https://postgis.net/docs/ST_Buffer.html), checked 2026-09-25). Create GIST indexes on the exact expression the predicate uses, not merely on the stored geometry column (see below), and verify with `EXPLAIN ANALYZE`.
+
+An index serves only the expression it was built on. A GIST index on `geom` is **not** used by `ST_DWithin(p.geom::geography, s.geom::geography, 500)`: the cast is a different expression. Without a matching index the planner may scan many rows; inspect the actual plan. Choose one consistent option:
+
+```sql
+-- Option 1: index the geography expression the predicate uses (example: both columns are lon/lat EPSG:4326)
+CREATE INDEX parcels_geog_gix ON parcels USING GIST ((geom::geography));
+SELECT DISTINCT p.id
+FROM stops s
+JOIN parcels p ON ST_DWithin(p.geom::geography, s.geom::geography, 500);
+
+-- Option 2: a metric projected CRS, indexed on the same expression. Only when the data's extent is
+-- known and lies within the CRS's area of use (e.g. EPSG:3301 for Estonia-only data).
+-- Requires a known source CRS and a supported transform.
+CREATE INDEX parcels_3301_gix ON parcels USING GIST (ST_Transform(geom, 3301));
+SELECT DISTINCT p.id
+FROM stops s
+JOIN parcels p ON ST_DWithin(ST_Transform(p.geom, 3301), ST_Transform(s.geom, 3301), 500);
+```
+
+`geom::geography` requires a supported longitude/latitude CRS. PostGIS 2.2+ supports geodetic CRSs beyond EPSG:4326; projected coordinates must first be transformed to a supported geodetic CRS, for example `ST_Transform(geom, 4326)::geography`. Index that exact expression when using it in the predicate. A suitable local projected CRS with metre units is another option, not the only option for non-4326 inputs. Establish the real source CRS; do not relabel projected or unknown coordinates as 4326.
+
+A functional `ST_Transform` index depends on CRS definitions and PROJ behavior. After changes affecting the transformation, rebuild the index and recompute any stored transformed coordinates as needed; a stored column does not maintain itself when those definitions change.
+
+Confirm whether the plan uses the intended index and its `Index Cond`. A `Join Filter` alone does not demonstrate index use. A sequential scan can be reasonable for small tables; assess the full plan rather than promising a particular join strategy. SQL that was not run remains unexecuted.
+
+Source: [PostGIS geography documentation](https://postgis.net/docs/using_postgis_dbmanagement.html#PostGIS_Geography), checked 2026-09-23.
+
+### DuckDB Spatial
+
+For Overture and other GeoParquet datasets with a `bbox` struct, use bbox overlap for predicate pushdown:
+
+```sql
+WHERE bbox.xmax >= 24.5
+  AND bbox.xmin <= 25.0
+  AND bbox.ymax >= 59.3
+  AND bbox.ymin <= 59.5
+```
+
+When a real boundary is available, combine the bbox gate with `ST_Intersects`. Keep CRS labels consistent (`EPSG:4326` vs `OGC:CRS84`) before joining geometries.
+
+## Map / snapshot review
+
+A map is a validation surface, not a substitute for SQL checks.
+
+* Render a map, screenshot, notebook map, or browser view before making visual claims.
+* Check that the output is in the expected area, uses the expected geometry type, and is not blank, shifted, inverted, over-zoomed, or missing obvious coverage.
+* Look for duplicates, boundary clipping errors, bbox-only rectangular overshoot, wrong CRS, and swapped latitude/longitude.
+* Lock the initial view to the scale where the insight is readable.
+* If the rendered view contradicts row counts or area/length checks, debug the SQL first.

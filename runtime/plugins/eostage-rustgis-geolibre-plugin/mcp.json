@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "rustgis-mcp": {
+      "id": "plugin-mcp-rustgis",
+      "name": "RustGIS MCP (stdio)",
+      "transport": "stdio",
+      "command": "rustgis-cli",
+      "args": ["mcp", "--yes"],
+      "description": "通过 stdio MCP 协议调用本机或受管运行组件中的 RustGIS 空间分析服务"
+    }
+  }
+}

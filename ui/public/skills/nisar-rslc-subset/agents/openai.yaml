@@ -1,0 +1,4 @@
+interface:
+  display_name: "NISAR 远端按范围裁剪"
+  short_description: "基于 AOI 与频段极化对远端 NISAR HDF5 执行块级按需裁剪"
+  default_prompt: "使用 /nisar-rslc-subset 规划当前 AOI 范围内的 NISAR RSLC 远端按需裁剪下载。"

@@ -1,0 +1,11 @@
+{
+  "fixture_contract": "AsfNisarMutationFixtureV1",
+  "base": "granule-provisional-multi-asset-valid.json",
+  "mutations": [
+    {"path": "/granule/frequency_a_polarization", "value": "HH"},
+    {"path": "/granule/frequency_b_polarization", "value": null},
+    {"path": "/granule/range_bandwidth", "value": "5"},
+    {"path": "/granule/joint_observation", "value": false}
+  ],
+  "expected_result": {"kind": "accept", "frequency_scope": "a_only"}
+}

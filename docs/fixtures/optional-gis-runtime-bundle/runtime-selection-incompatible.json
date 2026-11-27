@@ -1,0 +1,32 @@
+{
+  "base": {
+    "extension_id": null,
+    "bundle_set_id": "gis-runtime-base",
+    "set_kind": "base",
+    "set_version": "1.0.0",
+    "manifest_sha256": "e0fb53d6b47bc3d2da500cd83f3e92f6208055de16a20e2c458abe0cc7d9c694",
+    "release_sequence": 100,
+    "member_ids": [
+      "gis-dem-worker-win-x64",
+      "gis-gdal-runtime-win-x64",
+      "gis-notices-win-x64",
+      "gis-proj-data-win-x64"
+    ]
+  },
+  "capability": "gis.convert-dem-vertical-datum.v1",
+  "contract": "RuntimeSelectionSnapshot",
+  "extensions": [
+    {
+      "extension_id": "elevation-grids",
+      "bundle_set_id": "gis-runtime-elevation",
+      "set_kind": "extension",
+      "set_version": "1.0.0",
+      "manifest_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+      "release_sequence": 100,
+      "member_ids": [
+        "gis-elevation-grids-win-x64"
+      ]
+    }
+  ],
+  "expected_error": "GIS_BUNDLE_SET_INCOMPATIBLE_COMPONENTS"
+}

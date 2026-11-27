@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eostage.local/contracts/v3/agent-tool-catalog.schema.json",
+  "title": "EOStage Agent tool catalog v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "catalog_id", "tools"],
+  "properties": {
+    "schema_version": {"const": 1},
+    "catalog_id": {"const": "eostage.agent-tools.v1"},
+    "tools": {"type": "array", "minItems": 7, "items": {"$ref": "#/$defs/tool"}}
+  },
+  "$defs": {
+    "tool": {
+      "type": "object", "additionalProperties": false,
+      "required": ["tool_id", "version", "description", "target_command", "input_ref", "output_ref", "effect", "confirmation", "job", "manual_entry", "deterministic", "evidence", "mcp_annotations", "idempotency", "redaction", "error_recovery", "page_limit"],
+      "properties": {
+        "tool_id": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+        "version": {"type": "integer", "minimum": 1},
+        "description": {"type": "string", "minLength": 1},
+        "target_command": {"type": "string", "pattern": "^[a-z][a-z0-9_]*$"},
+        "input_ref": {"type": "string", "minLength": 1},
+        "output_ref": {"type": "string", "minLength": 1},
+        "effect": {"enum": ["read", "read_external", "prepare", "commit", "external_write"]},
+        "confirmation": {"enum": ["none", "disclose", "plan_confirm"]},
+        "job": {"enum": ["area", "discover", "inspect", "obtain", "verify", "organize"]},
+        "manual_entry": {"$ref": "#/$defs/manualEntry"},
+        "deterministic": {"type": "boolean"},
+        "evidence": {"type": "array", "minItems": 1, "items": {"enum": ["readiness", "capability", "aoi", "search_batch_id", "task_id", "event_id", "file_sha256", "credential_readiness"]}},
+        "mcp_annotations": {"$ref": "#/$defs/mcpAnnotations"},
+        "idempotency": {"enum": ["none", "task_id", "event_id", "batch_id"]},
+        "redaction": {"type": "array", "items": {"enum": ["credential_category", "relative_path", "strip_url_query", "geometry_reference"]}},
+        "error_recovery": {"type": "object", "additionalProperties": {"enum": ["retry", "fix_input", "confirm", "login", "unsupported", "read_task", "stop"]}},
+        "page_limit": {"type": ["integer", "null"], "minimum": 1}
+      }
+    },
+    "manualEntry": {"type": "object", "additionalProperties": false, "required": ["enabled", "label_key"], "properties": {"enabled": {"type": "boolean"}, "label_key": {"type": ["string", "null"]}}},
+    "mcpAnnotations": {"type": "object", "additionalProperties": false, "required": ["readOnly", "destructive", "idempotent", "openWorld"], "properties": {"readOnly": {"type": "boolean"}, "destructive": {"type": "boolean"}, "idempotent": {"type": "boolean"}, "openWorld": {"type": "boolean"}}}
+  }
+}

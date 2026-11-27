@@ -1,0 +1,13 @@
+{
+  "readiness": {
+    "contract": "application_service_readonly_v1",
+    "status": "liveness_only",
+    "store_schema_version": null
+  },
+  "restore": {
+    "workbench_batch": null,
+    "workbench": null,
+    "tasks": [],
+    "runtimes": []
+  }
+}

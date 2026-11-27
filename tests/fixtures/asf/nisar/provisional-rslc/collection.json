@@ -1,0 +1,199 @@
+{
+  "fixture_contract": "AsfCmrUmmCollectionFixtureV1",
+  "status": "captured_public_metadata_redacted",
+  "response_schema": {
+    "name": "UMM-C",
+    "version": "1.18.5"
+  },
+  "cmr_response": {
+    "hits": 1,
+    "items": [
+      {
+        "meta": {
+          "concept-type": "collection",
+          "concept-id": "C2853145197-ASF",
+          "revision-id": 3,
+          "provider-id": "ASF",
+          "format": "application/vnd.nasa.cmr.umm+json",
+          "revision-date": "2026-07-21T19:09:22.852Z"
+        },
+        "umm": {
+          "ShortName": "NISAR_L1_RSLC_PROVISIONAL_V1",
+          "Version": "1",
+          "EntryTitle": "NISAR Provisional Range Doppler Single Look Complex Product (Version 1) ",
+          "DataMaturity": "Provisional",
+          "CollectionDataType": "OTHER",
+          "ProcessingLevel": {
+            "Id": "1"
+          },
+          "Platforms": [
+            {
+              "Instruments": [
+                {
+                  "Characteristics": [
+                    {
+                      "Name": "LookDirection",
+                      "Description": "Direction the sensor is pointed, SAR imagery is taken with the sensor pointing either left or right of the satellite.",
+                      "Value": "LEFT",
+                      "Unit": "Not Applicable",
+                      "DataType": "STRING"
+                    }
+                  ],
+                  "ShortName": "L-SAR",
+                  "LongName": "L-band Synthetic Aperture Radar"
+                },
+                {
+                  "Characteristics": [
+                    {
+                      "Name": "LookDirection",
+                      "Description": "Direction the sensor is pointed, SAR imagery is taken with the sensor pointing either left or right of the satellite.",
+                      "Value": "LEFT",
+                      "Unit": "Not Applicable",
+                      "DataType": "STRING"
+                    }
+                  ],
+                  "ShortName": "S-SAR",
+                  "LongName": "S-band Synthetic Aperture Radar"
+                }
+              ],
+              "Type": "Earth Observation Satellites",
+              "ShortName": "NISAR",
+              "LongName": "NASA-ISRO SAR Mission"
+            }
+          ],
+          "AdditionalAttributes": [
+            {
+              "Name": "ASCENDING_DESCENDING",
+              "Description": "Describes whether the satellite travel direction was ascending towards the north pole, or descending towards the south pole.",
+              "DataType": "STRING"
+            },
+            {
+              "Name": "TRACK_NUMBER",
+              "Description": "The track describes a path the satellite will follow over the earth similar to longitude; each path has an assigned number. Combined with a frame number it identifies a specific piece of ground. May also be referred to as relative orbit or path number.",
+              "DataType": "INT",
+              "ParameterRangeBegin": "1",
+              "ParameterRangeEnd": "173"
+            },
+            {
+              "Name": "FRAME_NUMBER",
+              "Description": "The designated frame or scene as defined by the mission or project. A frame typically describes a fixed geometry over the Earth at a fixed location.",
+              "DataType": "INT",
+              "ParameterRangeBegin": "1",
+              "ParameterRangeEnd": "176"
+            },
+            {
+              "Name": "FREQUENCY_A_POLARIZATION",
+              "Description": "Polarization of Frequency A. Radar transmissions are polarized, with components normally termed vertical (V) and horizontal (H). Vertical means that the electric vector is in the plane of incidence; horizontal means the electric vector is perpendicular to the plane of incidence.",
+              "DataType": "STRING"
+            },
+            {
+              "Name": "FREQUENCY_B_POLARIZATION",
+              "Description": "Polarization of Frequency B. Radar transmissions are polarized, with components normally termed vertical (V) and horizontal (H). Vertical means that the electric vector is in the plane of incidence; horizontal means the electric vector is perpendicular to the plane of incidence.",
+              "DataType": "STRING"
+            },
+            {
+              "Name": "PRODUCT_VERSION",
+              "Description": "Version of the product.",
+              "DataType": "STRING"
+            },
+            {
+              "Name": "PROCESSING_CENTER",
+              "Description": "Processing center of the granule.",
+              "DataType": "STRING"
+            },
+            {
+              "Name": "FREQUENCIES",
+              "Description": "The frequencies found in the data product (A, B, or both). NISAR is a dual-frequency mission.",
+              "DataType": "STRING"
+            },
+            {
+              "Name": "FULL_FRAME",
+              "Description": "Indicates if the frame coverage is either full or partial.",
+              "DataType": "STRING"
+            },
+            {
+              "Name": "FREQUENCY_A_RANGE_BANDWIDTH",
+              "Description": "The range bandwidth of frequency A.",
+              "DataType": "INT",
+              "ParameterUnitsOfMeasure": "MHz"
+            },
+            {
+              "Name": "FREQUENCY_B_RANGE_BANDWIDTH",
+              "Description": "The range bandwidth of frequency B.",
+              "DataType": "INT",
+              "ParameterUnitsOfMeasure": "MHz"
+            },
+            {
+              "Name": "RANGE_BANDWIDTH_CONCAT",
+              "Description": "Concatenated list with plus signs of the frequency A and B range bandwidth.",
+              "DataType": "STRING"
+            },
+            {
+              "Name": "JOINT_OBSERVATION",
+              "Description": "Indicates whether the granule was observed jointly with the L-Band and S-Band  instrument.  For interferometric products this value is True if either the reference or secondary granule is a joint observation.",
+              "DataType": "STRING"
+            },
+            {
+              "Name": "PROCESSING_LEVEL",
+              "Description": "Indicates how much processing has been done to the data. Examples include L0 (Level0), L1 (Level 1), L2 (Level 2).",
+              "DataType": "STRING"
+            },
+            {
+              "Name": "PRODUCT_TYPE",
+              "Description": "Indicates the type of product.",
+              "DataType": "STRING"
+            },
+            {
+              "Name": "PRODUCT_TYPE_DESC",
+              "Description": "Description of the product type.",
+              "DataType": "STRING"
+            },
+            {
+              "Name": "PRODUCTION_PIPELINE",
+              "Description": "Indicates whether the product was created as part of nominal data processing, urgent response processing, or customized on-demand processing.",
+              "DataType": "STRING"
+            },
+            {
+              "Name": "FREQUENCY_A_POLARIZATION_CONCAT",
+              "Description": "Concatenated list with plus signs of the frequency A polarization.",
+              "DataType": "STRING"
+            },
+            {
+              "Name": "FREQUENCY_B_POLARIZATION_CONCAT",
+              "DataType": "STRING",
+              "Description": "Concatenated list with plus signs of the frequency B polarization."
+            },
+            {
+              "Name": "ORBIT_TYPE",
+              "Description": "The accuracy or fidelity of the orbit ephemeris data used to produce the product, where FOE=Forecast Orbit Ephemeris, NOE=Near real-time Orbit Ephemeris, MOE=Medium precision Orbit Ephemeris, and POE=Precise Orbit Ephemeris.",
+              "DataType": "STRING"
+            },
+            {
+              "Name": "STACK_ID",
+              "Description": "An ASF generated identifier to allow grouping of data over a specific location.",
+              "DataType": "STRING"
+            },
+            {
+              "Name": "INPUT_RCID",
+              "Description": "The radar configuration mode of the input Level 0B granule(s).",
+              "DataType": "STRING"
+            }
+          ],
+          "MetadataSpecification": {
+            "URL": "https://cdn.earthdata.nasa.gov/umm/collection/v1.18.5",
+            "Name": "UMM-C",
+            "Version": "1.18.5"
+          }
+        }
+      }
+    ]
+  },
+  "expected_result": {
+    "application_provider_id": "asf.nasa.earthdata",
+    "native_provider_id": "ASF",
+    "collection_concept_id": "C2853145197-ASF",
+    "collection_short_name": "NISAR_L1_RSLC_PROVISIONAL_V1",
+    "collection_version": "1",
+    "data_maturity": "Provisional"
+  }
+}

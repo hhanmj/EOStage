@@ -1,0 +1,721 @@
+{
+  "schema_version": 1,
+  "authority_id": "eostage.geoboundaries-route-policy.v1",
+  "owner_decision": "geoBoundaries gbOpen (CC BY 4.0) is used for on-demand global administrative AOI selection outside China. Administrative selections for China (CHN, TWN, HKG, MAC) and overlapping border regions route to the domestic China administrative selector (DataV / user-configured Tianditu) to maintain consistent boundary compliance.",
+  "china_scope_iso3": [
+    "CHN",
+    "TWN",
+    "HKG",
+    "MAC"
+  ],
+  "disputed_iso3": [],
+  "disputed_iso3_semantics": "Whole-country ISO3 exclusion list. Currently empty; specific overlapping border zones are routed via the approximate technical guard polygons below.",
+  "disputed_guard_regions": [
+    {
+      "id": "guard-east-01",
+      "label": "guard-east-01",
+      "sector": "sector-east",
+      "basis": "Routing guard zone (eastern sector): units intersecting this approximation defer to the domestic administrative selector.",
+      "ring": [
+        [
+          93.6,
+          27.02
+        ],
+        [
+          93.2,
+          27.03
+        ],
+        [
+          92.64,
+          27.06
+        ],
+        [
+          92.25,
+          27.1
+        ],
+        [
+          92.25,
+          27.35
+        ],
+        [
+          91.95,
+          27.55
+        ],
+        [
+          91.8,
+          27.57
+        ],
+        [
+          91.78,
+          27.85
+        ],
+        [
+          92.2,
+          28.3
+        ],
+        [
+          93.2,
+          28.95
+        ],
+        [
+          94.6,
+          29.55
+        ],
+        [
+          95.6,
+          29.45
+        ],
+        [
+          96.4,
+          29.4
+        ],
+        [
+          96.95,
+          28.6
+        ],
+        [
+          96.95,
+          28.1
+        ],
+        [
+          96.55,
+          27.8
+        ],
+        [
+          96.05,
+          27.82
+        ],
+        [
+          95.9593,
+          27.8962
+        ],
+        [
+          95.9959,
+          27.9559
+        ],
+        [
+          95.9893,
+          27.9788
+        ],
+        [
+          95.8465,
+          27.9909
+        ],
+        [
+          95.8,
+          28.03
+        ],
+        [
+          95.3,
+          27.97
+        ],
+        [
+          94.7,
+          27.72
+        ],
+        [
+          94.4529,
+          27.5964
+        ],
+        [
+          94.447,
+          27.6132
+        ],
+        [
+          94.4314,
+          27.6204
+        ],
+        [
+          94.3583,
+          27.597
+        ],
+        [
+          94.3205,
+          27.6093
+        ],
+        [
+          94.3067,
+          27.6205
+        ],
+        [
+          94.2872,
+          27.6187
+        ],
+        [
+          94.2855,
+          27.6386
+        ],
+        [
+          94.2686,
+          27.6547
+        ],
+        [
+          94.251,
+          27.6578
+        ],
+        [
+          94.2281,
+          27.6504
+        ],
+        [
+          94.2105,
+          27.629
+        ],
+        [
+          94.1943,
+          27.622
+        ],
+        [
+          94.1895,
+          27.6036
+        ],
+        [
+          94.2087,
+          27.5624
+        ],
+        [
+          94.2371,
+          27.5451
+        ],
+        [
+          94.2379,
+          27.533
+        ],
+        [
+          94.1449,
+          27.4912
+        ],
+        [
+          94.1374,
+          27.4691
+        ],
+        [
+          94.0751,
+          27.421
+        ],
+        [
+          94.0459,
+          27.3787
+        ],
+        [
+          93.9772,
+          27.3428
+        ],
+        [
+          93.885,
+          27.2531
+        ],
+        [
+          93.8508,
+          27.2115
+        ],
+        [
+          93.8281,
+          27.1902
+        ],
+        [
+          93.8125,
+          27.184
+        ],
+        [
+          93.7811,
+          27.1513
+        ],
+        [
+          93.7748,
+          27.1378
+        ],
+        [
+          93.7789,
+          27.1202
+        ],
+        [
+          93.6,
+          27.02
+        ]
+      ]
+    },
+    {
+      "id": "guard-east-02",
+      "label": "guard-east-02",
+      "sector": "sector-east",
+      "basis": "Routing guard zone (eastern sector foothills): units intersecting this approximation defer to the domestic administrative selector.",
+      "ring": [
+        [
+          95.4839,
+          27.1536
+        ],
+        [
+          95.74,
+          27.2
+        ],
+        [
+          95.78,
+          27.08
+        ],
+        [
+          95.56,
+          26.9
+        ],
+        [
+          95.258,
+          26.8664
+        ],
+        [
+          95.2654,
+          26.8802
+        ],
+        [
+          95.2652,
+          26.9176
+        ],
+        [
+          95.2539,
+          26.9357
+        ],
+        [
+          95.2295,
+          26.9469
+        ],
+        [
+          95.2308,
+          26.9708
+        ],
+        [
+          95.2162,
+          27.0082
+        ],
+        [
+          95.2282,
+          27.0136
+        ],
+        [
+          95.2401,
+          27.0049
+        ],
+        [
+          95.2537,
+          27.0053
+        ],
+        [
+          95.2901,
+          27.0273
+        ],
+        [
+          95.2976,
+          27.0433
+        ],
+        [
+          95.3247,
+          27.0638
+        ],
+        [
+          95.3557,
+          27.0806
+        ],
+        [
+          95.3804,
+          27.0736
+        ],
+        [
+          95.4278,
+          27.1059
+        ],
+        [
+          95.4651,
+          27.1116
+        ],
+        [
+          95.478,
+          27.1261
+        ],
+        [
+          95.4839,
+          27.1536
+        ]
+      ]
+    },
+    {
+      "id": "guard-west-01",
+      "label": "guard-west-01",
+      "sector": "sector-west",
+      "basis": "Routing guard zone (western sector): units intersecting this approximation defer to the domestic administrative selector.",
+      "ring": [
+        [
+          78.1,
+          35.05
+        ],
+        [
+          78.3,
+          34.7
+        ],
+        [
+          78.75,
+          34.3
+        ],
+        [
+          80.3,
+          34.3
+        ],
+        [
+          80.3,
+          35.65
+        ],
+        [
+          78.05,
+          35.65
+        ],
+        [
+          78.1,
+          35.05
+        ]
+      ]
+    },
+    {
+      "id": "guard-west-02",
+      "label": "guard-west-02",
+      "sector": "sector-west",
+      "basis": "Routing guard zone (western sector valley): units intersecting this approximation defer to the domestic administrative selector.",
+      "ring": [
+        [
+          76.4,
+          35.97
+        ],
+        [
+          76.25,
+          36.15
+        ],
+        [
+          76.0665,
+          36.3335
+        ],
+        [
+          76.0839,
+          36.3934
+        ],
+        [
+          76.0806,
+          36.4089
+        ],
+        [
+          76.0543,
+          36.4475
+        ],
+        [
+          76.4,
+          36.75
+        ],
+        [
+          77.1,
+          36.4
+        ],
+        [
+          77.05,
+          35.83
+        ],
+        [
+          76.9,
+          35.85
+        ],
+        [
+          76.6861,
+          35.9185
+        ],
+        [
+          76.6752,
+          35.9359
+        ],
+        [
+          76.6388,
+          35.9499
+        ],
+        [
+          76.597,
+          35.9385
+        ],
+        [
+          76.4,
+          35.97
+        ]
+      ]
+    },
+    {
+      "id": "guard-middle-01",
+      "label": "guard-middle-01",
+      "sector": "sector-middle",
+      "basis": "Routing guard zone (middle sector): units intersecting this approximation defer to the domestic administrative selector.",
+      "ring": [
+        [
+          79.93,
+          30.78
+        ],
+        [
+          80.02,
+          30.78
+        ],
+        [
+          80.02,
+          30.86
+        ],
+        [
+          79.93,
+          30.86
+        ],
+        [
+          79.93,
+          30.78
+        ]
+      ]
+    },
+    {
+      "id": "guard-middle-02",
+      "label": "guard-middle-02",
+      "sector": "sector-middle",
+      "basis": "Routing guard zone (middle sector pass): units intersecting this approximation defer to the domestic administrative selector.",
+      "ring": [
+        [
+          78.7,
+          31.8
+        ],
+        [
+          78.75,
+          31.8
+        ],
+        [
+          78.75,
+          31.85
+        ],
+        [
+          78.7,
+          31.85
+        ],
+        [
+          78.7,
+          31.8
+        ]
+      ]
+    },
+    {
+      "id": "guard-middle-03",
+      "label": "guard-middle-03",
+      "sector": "sector-middle",
+      "basis": "Routing guard zone (middle sector): units intersecting this approximation defer to the domestic administrative selector.",
+      "ring": [
+        [
+          78.53,
+          32.03
+        ],
+        [
+          78.63,
+          32.03
+        ],
+        [
+          78.63,
+          32.12
+        ],
+        [
+          78.53,
+          32.12
+        ],
+        [
+          78.53,
+          32.03
+        ]
+      ]
+    },
+    {
+      "id": "guard-middle-04",
+      "label": "guard-middle-04",
+      "sector": "sector-middle",
+      "basis": "Routing guard zone (middle sector): units intersecting this approximation defer to the domestic administrative selector.",
+      "ring": [
+        [
+          78.92,
+          31.02
+        ],
+        [
+          79.1,
+          31.02
+        ],
+        [
+          79.1,
+          31.18
+        ],
+        [
+          78.92,
+          31.18
+        ],
+        [
+          78.92,
+          31.02
+        ]
+      ]
+    },
+    {
+      "id": "guard-southwest-01",
+      "label": "guard-southwest-01",
+      "sector": "sector-southwest",
+      "basis": "Routing guard zone (western Bhutan sector): units intersecting this approximation defer to the domestic administrative selector.",
+      "ring": [
+        [
+          88.95,
+          27.27
+        ],
+        [
+          89.05,
+          27.27
+        ],
+        [
+          89.05,
+          27.37
+        ],
+        [
+          88.95,
+          27.37
+        ],
+        [
+          88.95,
+          27.27
+        ]
+      ]
+    },
+    {
+      "id": "guard-maritime-01",
+      "label": "guard-maritime-01",
+      "sector": "sector-maritime-east",
+      "basis": "Routing guard zone (East China Sea islands): units intersecting this approximation defer to the domestic administrative selector.",
+      "ring": [
+        [
+          123.3,
+          25.6
+        ],
+        [
+          124.7,
+          25.6
+        ],
+        [
+          124.7,
+          26.0
+        ],
+        [
+          123.3,
+          26.0
+        ],
+        [
+          123.3,
+          25.6
+        ]
+      ]
+    },
+    {
+      "id": "guard-maritime-02",
+      "label": "guard-maritime-02",
+      "sector": "sector-maritime-south",
+      "basis": "Routing guard zone (South China Sea islands): units intersecting this approximation defer to the domestic administrative selector.",
+      "ring": [
+        [
+          111.1,
+          15.7
+        ],
+        [
+          112.9,
+          15.7
+        ],
+        [
+          112.9,
+          17.2
+        ],
+        [
+          111.1,
+          17.2
+        ],
+        [
+          111.1,
+          15.7
+        ]
+      ]
+    },
+    {
+      "id": "guard-maritime-03",
+      "label": "guard-maritime-03",
+      "sector": "sector-maritime-south",
+      "basis": "Routing guard zone (South China Sea islands): units intersecting this approximation defer to the domestic administrative selector.",
+      "ring": [
+        [
+          113.6,
+          15.0
+        ],
+        [
+          117.9,
+          15.0
+        ],
+        [
+          117.9,
+          16.3
+        ],
+        [
+          113.6,
+          16.3
+        ],
+        [
+          113.6,
+          15.0
+        ]
+      ]
+    },
+    {
+      "id": "guard-maritime-04",
+      "label": "guard-maritime-04",
+      "sector": "sector-maritime-south",
+      "basis": "Routing guard zone (South China Sea islands): units intersecting this approximation defer to the domestic administrative selector.",
+      "ring": [
+        [
+          111.4,
+          6.8
+        ],
+        [
+          116.2,
+          6.8
+        ],
+        [
+          116.2,
+          11.6
+        ],
+        [
+          111.4,
+          11.6
+        ],
+        [
+          111.4,
+          6.8
+        ]
+      ]
+    }
+  ],
+  "withheld_by_identity": [
+    {
+      "iso3": "JPN",
+      "level": "ADM1",
+      "shape_id": "47310658B31569081891025",
+      "shape_name": "Okinawa Prefecture",
+      "guard_region": "guard-maritime-01",
+      "basis": "Identity-level routing guard aligned with the corresponding guard region; deferred to the domestic selector.",
+      "status": "owner_confirmed"
+    },
+    {
+      "iso3": "JPN",
+      "level": "ADM2",
+      "shape_id": "22064153B46764438077406",
+      "shape_name": "Ishigaki",
+      "guard_region": "guard-maritime-01",
+      "basis": "Identity-level routing guard aligned with the corresponding guard region; deferred to the domestic selector.",
+      "status": "owner_confirmed"
+    }
+  ],
+  "withheld_by_identity_semantics": "Identity-level routing rules matched by ISO3, administrative level, and shapeID or case-insensitive shapeName for units requiring consistent source routing across geoBoundaries releases.",
+  "guard_semantics": "geoBoundaries units whose verified geometry intersects a routing guard polygon are omitted from geoBoundaries lists and deferred to the domestic administrative selector. Guard polygons are technical routing approximations only, not boundary geometry, and are never displayed on the map.",
+  "expected_withheld_impact": [],
+  "owner_review_required": [
+    "Re-verify guard polygon clearances against updated geoBoundaries gbOpen releases when upgrading upstream dataset versions."
+  ]
+}

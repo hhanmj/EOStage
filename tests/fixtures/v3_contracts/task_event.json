@@ -1,0 +1,12 @@
+{
+  "event_id": "event-fixture-001",
+  "task_id": "task-fixture-001",
+  "item_id": null,
+  "sequence": 0,
+  "occurred_at": "2024-01-01T00:00:00Z",
+  "event_type": "state_changed",
+  "payload": {
+    "state": "queued"
+  },
+  "error": null
+}

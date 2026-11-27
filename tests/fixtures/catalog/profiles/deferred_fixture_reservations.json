@@ -1,0 +1,14 @@
+{
+  "fixture_only": true,
+  "production_enabled": false,
+  "reservations": [
+    "optical.sentinel-3.olci",
+    "optical.sentinel-3.slstr",
+    "optical.landsat.c2.l2",
+    "optical.hls-s30",
+    "optical.hls-l30",
+    "optical.modis",
+    "optical.viirs",
+    "optical.aster"
+  ]
+}

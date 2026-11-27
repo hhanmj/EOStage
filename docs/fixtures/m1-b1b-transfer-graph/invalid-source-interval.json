@@ -1,0 +1,33 @@
+{
+  "fixture_metadata": {
+    "fixture_version": 1,
+    "fixture_kind": "invalid",
+    "fixture_name": "invalid-source-interval",
+    "payload_contract": "FrozenTaskSnapshotV3",
+    "offline": true
+  },
+  "base": "single",
+  "mutations": [
+    {
+      "op": "set",
+      "path": "/orbit_associations/0/source_acquisition_start",
+      "value": 201
+    },
+    {
+      "op": "set",
+      "path": "/orbit_associations/0/source_acquisition_stop",
+      "value": 200
+    }
+  ],
+  "expected": {
+    "accepted": false,
+    "error": {
+      "variant": "invalid_orbit_match",
+      "association": {
+        "kind": "orbit_association",
+        "index": 0
+      },
+      "issue": "invalid_source_interval"
+    }
+  }
+}

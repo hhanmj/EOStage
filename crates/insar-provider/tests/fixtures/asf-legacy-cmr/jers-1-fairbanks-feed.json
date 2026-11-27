@@ -1,0 +1,79 @@
+{
+  "feed": {
+    "updated": "2026-10-31T00:00:00.000Z",
+    "id": "https://cmr.earthdata.nasa.gov:443/search/granules.json",
+    "title": "ECHO granule metadata",
+    "entry": [
+      {
+        "producer_granule_id": "JERS1_0291_0025_950612",
+        "id": "G2234567890-ASF",
+        "title": "JERS1_0291_0025_950612",
+        "time_start": "1995-06-12T16:44:31.000Z",
+        "time_end": "1995-06-12T16:44:47.000Z",
+        "granule_size": 512.0,
+        "polygons": [
+          [
+            "64.78 -147.82 64.88 -147.52 65.05 -147.10 64.94 -147.40 64.78 -147.82"
+          ]
+        ],
+        "links": [
+          {
+            "rel": "http://esipfed.org/ns/fedsearch/1.1/data#",
+            "href": "https://datapool.asf.alaska.edu/JERS/JERS1_0291_0025_950612.zip",
+            "title": "Direct Download"
+          }
+        ],
+        "additional_attributes": [
+          {
+            "name": "ASF_PLATFORM",
+            "values": [
+              "JERS-1"
+            ]
+          },
+          {
+            "name": "POLARIZATION",
+            "values": [
+              "HH"
+            ]
+          },
+          {
+            "name": "ASCENDING_DESCENDING",
+            "values": [
+              "ASCENDING"
+            ]
+          },
+          {
+            "name": "BEAM_MODE",
+            "values": [
+              "STD"
+            ]
+          },
+          {
+            "name": "BEAM_MODE_TYPE",
+            "values": [
+              "STD"
+            ]
+          },
+          {
+            "name": "PROCESSING_LEVEL",
+            "values": [
+              "L1"
+            ]
+          },
+          {
+            "name": "PATH_NUMBER",
+            "values": [
+              "291"
+            ]
+          },
+          {
+            "name": "FRAME_NUMBER",
+            "values": [
+              "25"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "asset_class": "burst_tiff",
+  "frozen": {
+    "reference": {"provider_id":"asf.catalog","collection_id":"SLC-BURST","provider_product_id":"BURST_FIXTURE","provider_product_key":"ASF::SLC-BURST::BURST_FIXTURE","canonical_product_key":null,"asset_key":"BURST_FIXTURE.tiff","stable_asset_key":"ASF::SLC-BURST::BURST_FIXTURE::ASSET::BURST_FIXTURE.tiff"},
+    "descriptor": {"resolver_id":"earthdata_https","scheme":"earthdata_https","stable_href":"https://sentinel1-burst.asf.alaska.edu/parent/IW2/VV/BURST_FIXTURE.tiff","requires_credentials":true,"credential_profile":"earthdata-burst-session","resolver_parameters":{}},
+    "role":"primary","file_name":"BURST_FIXTURE.tiff","expected_size_bytes":2048,"checksum_algorithm":"md5","checksum_value":"fixture-md5"
+  },
+  "legacy": {"provider_id":"asf.catalog","url":"https://sentinel1-burst.asf.alaska.edu/parent/IW2/VV/BURST_FIXTURE.tiff","file_name":"BURST_FIXTURE.tiff","auth_kind":"earthdata_session_cookie","expected_size":2048,"checksum_algorithm":"md5","checksum_value":"fixture-md5","destination":"fixture-output/SLC-BURST/BURST/BURST_FIXTURE.tiff","destination_layout":"sar_dataset_processing","asset_role":"primary"},
+  "policy": {"output_root":"fixture-output","layout":"sar_dataset_processing","dataset":"SLC-BURST","processing_level":"BURST"}
+}

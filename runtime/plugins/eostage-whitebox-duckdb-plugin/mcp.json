@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "eostage-whitebox-duckdb-mcp": {
+      "id": "plugin-mcp-eostage-whitebox-duckdb",
+      "name": "EOStage WhiteboxTools & DuckDB Spatial Runner",
+      "transport": "stdio",
+      "command": "tauri://application_open_geodata_query",
+      "description": "调用本地 runtime/whitebox-cli 与 runtime/duckdb-cli 执行水文地貌算子与 Spatial SQL 的受控运行时连接器"
+    }
+  }
+}

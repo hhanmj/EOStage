@@ -1,0 +1,14 @@
+{
+  "fixture_contract": "NisarSubsetNegativeFixtureV1",
+  "status": "synthetic_proposed",
+  "observed": {
+    "complex_samples_preserved": true,
+    "geolocation_grid_preserved": false,
+    "orbit_reference_preserved": false,
+    "doppler_metadata_preserved": false,
+    "radiometric_lut_preserved": false,
+    "identification_updated": false,
+    "qa_provenance_preserved": false
+  },
+  "expected_result": {"kind": "reject", "error": "NISAR_SUBSET_SCIENCE_INVALID"}
+}

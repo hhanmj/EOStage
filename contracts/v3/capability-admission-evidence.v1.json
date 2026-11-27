@@ -1,0 +1,227 @@
+{
+  "schema_id": "capability-admission-evidence.v1",
+  "schema_version": 1,
+  "authority_id": "admission-evidence.release-2.2.0-rc1.v1",
+  "records": [
+    {
+      "record_kind": "nisar_remote_subset",
+      "evidence_id": "evidence.nisar.remote-subset.m2d-c2.second-scene.v1",
+      "capability_id": "capability.nisar-rslc.remote-subset.v1",
+      "admission_policy_id": "admission.nisar.remote-subset.p0.3a.v1",
+      "acceptance_status": "accepted",
+      "evidence_schema": "nisar-remote-subset-m2d-c2-live-acceptance-redacted-v1",
+      "evidence_gate": "P0.3a-M2D-C2",
+      "implementation_binding_id": "production-worker.nisar-remote-subset.v1",
+      "source_granule_id": "NISAR_L1_PR_RSLC_025_017_A_147_7700_SHNA_A_20260709T100325_20260709T100342_P05023_N_P_J_001",
+      "provider_product_id": "G4244267663-ASF",
+      "source_size_bytes": 5280628736,
+      "source_md5": "3fb9b2412c4f78fa7185eb33c4585791",
+      "aoi_sha256": "ad2107fbc106108c132f6a5efb1b12881ca92f33f732b3a16db2ab38826c320b",
+      "frequency": "A",
+      "polarization": "HH",
+      "reviewed_hashes": [
+        { "kind": "source_md5", "value": "3fb9b2412c4f78fa7185eb33c4585791" },
+        { "kind": "aoi_sha256", "value": "ad2107fbc106108c132f6a5efb1b12881ca92f33f732b3a16db2ab38826c320b" }
+      ],
+      "reviewed_references": [
+        "crates/insar-application-service/tests/nisar_subset_live_acceptance.rs::c2_validate_source",
+        "crates/insar-application-service/tests/nisar_subset_live_acceptance.rs::c2_validate_final_evidence",
+        "crates/insar-download/src/nisar_isce3_oracle.rs::enforce_isce3_geometry_gate",
+        "crates/insar-download/src/nisar_live_evidence.rs::NisarLiveAcceptanceEvidenceV2"
+      ],
+      "applicability": {
+        "geometry_algorithm_id": "NisarIsce3Geo2rdrOracleInputV1/NisarIsce3Geo2rdrOracleOutputV1",
+        "geometry_algorithm_version": "isce3-0.25.12",
+        "science_validation_contract_id": "NisarSubsetArtifactManifestV1.science_validation.v1",
+        "writer_contract_id": "NisarSubsetArtifactManifestV1",
+        "mapping_algorithm_id": "sparse_grid_polygon_cells_v1",
+        "mapping_algorithm_version": 1,
+        "product_specification_profile_id": "nisar.p05023.product-specification.1.5.0",
+        "admission_contract_id": "nisar.remote-subset.admission.v2",
+        "transport_integrity_contract_id": "NisarSubsetTransferManifestV1",
+        "semantic_plan_fingerprint": "not_applicable_scene_generic"
+      },
+      "scientific_scope": {
+        "scene": "single_scene",
+        "aoi": "second_scene_aoi_v1",
+        "frequency": "A",
+        "polarization": "HH",
+        "claims": [
+          "independent_isce3_geometry_containment",
+          "real_remote_science_range",
+          "scientific_complex_equality",
+          "amplitude_equality",
+          "wrapped_phase_equality",
+          "mask_equality",
+          "hdf5_structural_metadata_validity",
+          "atomic_promotion",
+          "store_reopen"
+        ],
+        "limitations": [
+          "does_not_prove_every_nisar_crid",
+          "does_not_prove_every_frequency_or_polarization",
+          "raw_large_hdf5_evidence_is_retained_in_audit_artifacts_not_shipped"
+        ]
+      },
+      "reviewed_at": "2026-08-09",
+      "superseded": false,
+      "revoked": false
+    },
+    {
+      "record_kind": "alos2_complete_archive",
+      "evidence_id": "evidence.alos2.scansar-l1.1.complete-archive.p04a-e1.v1",
+      "capability_id": "capability.alos2-scansar-l1.1.full-archive.v1",
+      "admission_policy_id": "admission.alos2-scansar-l1.1.full-archive.p0.4a.v1",
+      "acceptance_status": "accepted",
+      "evidence_schema": "alos2-complete-archive-p04a-e1-live-acceptance-redacted-v1",
+      "evidence_gate": "P0.4A-E1",
+      "implementation_binding_id": "production-worker.complete.v1",
+      "provider_product_id": "G3463311647-ASF",
+      "file_name": "ALOS2478123150-230331-WBDR1.1__D.zip",
+      "expected_size_bytes": 60018405388,
+      "final_size_bytes": 60018405388,
+      "source_md5": "0f558597e19d964f24ca3a4bff11696c",
+      "reviewed_hashes": [
+        { "kind": "artifact_md5", "value": "0f558597e19d964f24ca3a4bff11696c" },
+        { "kind": "evidence_json_sha256", "value": "4b390c6de0142357357b09f2d7c045fa3ab1a5d86a94fef774b0a791ad0b0457" },
+        { "kind": "freeze_json_sha256", "value": "c6bd3897987cab0413578d5a86566c80eaa8d7e5f871379dd1ef5035dc1124cb" }
+      ],
+      "reviewed_references": [
+        "crates/insar-application-service/tests/asf_alos2_production_live_acceptance.rs::controlled_production_alos2_acceptance",
+        "crates/insar-application-service/tests/asf_alos2_offline_acceptance.rs",
+        "crates/insar-download/tests/asf_alos2_complete_zip.rs"
+      ],
+      "lifecycle_facts": {
+        "store_runtime_status": "completed",
+        "store_completed_after_validation": true,
+        "store_reopen_completed": true,
+        "atomic_promotion": true,
+        "part_absent_after_promotion": true,
+        "credential_route_class": "earthdata.auto.netrc-keyring-env",
+        "credential_redaction_contract": "P0.4A-credential-redaction-v1",
+        "credential_material_written": false,
+        "credential_values_logged": false
+      },
+      "applicability": {
+        "resolver_policy_id": "asf.alos-2.earthdata-complete-zip.v1",
+        "asset_schema_id": "assets.alos2-scansar-l1.1.archive.v1",
+        "delivery_profile_id": "delivery.alos2-scansar-l1.1.archive.v1",
+        "validation_profile_id": "validation.alos2-scansar-l1.1.archive.v1",
+        "implementation_binding_id": "production-worker.complete.v1",
+        "credential_redaction_contract_id": "P0.4A-credential-redaction-v1",
+        "transport_integrity_contract_id": "expected-size-md5-provider-identity-atomic-promotion.v1",
+        "store_lifecycle_contract_id": "store-completed-after-validation-reopen.v1"
+      },
+      "scientific_scope": {
+        "product": "PALSAR-2 ScanSAR L1.1 Complete Product",
+        "subset": false,
+        "claims": [
+          "provider_product_identity",
+          "authoritative_size",
+          "authoritative_md5",
+          "atomic_promotion",
+          "store_completion_after_validation",
+          "store_reopen_completed"
+        ],
+        "limitations": [
+          "does_not_prove_alos2_subset",
+          "does_not_prove_archive_structure_validation",
+          "does_not_prove_every_alos2_product_variant"
+        ]
+      },
+      "reviewed_at": "2026-08-11",
+      "superseded": false,
+      "revoked": false
+    },
+    {
+      "record_kind": "sentinel2_l2a_complete_archive",
+      "evidence_id": "evidence.sentinel-2.l2a.complete-archive.p0.4a-s2.badong.v1",
+      "capability_id": "capability.sentinel-2.l2a.full-archive.v1",
+      "admission_policy_id": "admission.sentinel-2.l2a.full-archive.p0.4a-s2.v1",
+      "acceptance_status": "accepted",
+      "evidence_schema": "sentinel-2-l2a-complete-archive-p04a-s2-live-acceptance-redacted-v1",
+      "evidence_gate": "P0.4A-S2",
+      "implementation_binding_id": "cdse.sentinel-2.l2a.archive-resolver-policy.v1",
+      "source_commit": "519621cf583735c8e67f575c4c3b902065d6dca3",
+      "provider_product_id": "63e9bedb-deff-4acf-a8b6-57a4e927d928",
+      "product_name": "S2C_MSIL2A_20260703T031541_N0512_R118_T49RDQ_20260703T065712.SAFE",
+      "file_name": "S2C_MSIL2A_20260703T031541_N0512_R118_T49RDQ_20260703T065712.SAFE.zip",
+      "product_type": "S2MSI2A",
+      "processing_level": "L2A",
+      "acquisition_datetime": "2026-07-03T03:15:41.025Z",
+      "expected_size_bytes": 747367658,
+      "final_size_bytes": 747367658,
+      "checksum_algorithm": "MD5",
+      "expected_checksum": "a6df28ea2e27125178120ce029b5ae0a",
+      "observed_checksum": "a6df28ea2e27125178120ce029b5ae0a",
+      "reviewed_hashes": [
+        { "kind": "artifact_md5", "value": "a6df28ea2e27125178120ce029b5ae0a" },
+        { "kind": "evidence_json_sha256", "value": "ceef84105c2cbcb666d84eef63cff180fb88733d4ef43a7f81b1106863766275" },
+        { "kind": "freeze_json_sha256", "value": "e6391a57f0155e55932ba5bb799aa9bf4294be998879751cd78e953943718b0b" },
+        { "kind": "stable_locator_sha256", "value": "603c887adb48034fcc8c9778c0571e4aff2a0e6c6145ce9683026475adff2d8d" }
+      ],
+      "reviewed_references": [
+        "crates/insar-application-service/tests/cdse_production_live_acceptance.rs::controlled_system_mode_cdse_production_acceptance",
+        "crates/insar-application-service/src/resource_capabilities.rs::CapabilityAdmissionEvidenceRecord",
+        "crates/insar-download/src/asset_resolver/cdse.rs",
+        "crates/insar-download/src/production_worker.rs",
+        "crates/insar-download/src/scheduler.rs",
+        "crates/insar-store/src/repository.rs",
+        "contracts/v3/resource-registry.v1.json",
+        "contracts/v3/capability-admission-evidence.v1.json"
+      ],
+      "lifecycle_facts": {
+        "store_runtime_status": "completed",
+        "store_completed_after_validation": true,
+        "store_reopen_completed": true,
+        "atomic_promotion": true,
+        "part_absent_after_promotion": true,
+        "source_size_enforced": true,
+        "checksum_verified": true,
+        "credential_route_class": "cdse.system-mode.session",
+        "credential_redaction_contract": "P0.4A-credential-redaction-v1",
+        "credential_material_written": false,
+        "credential_values_logged": false,
+        "transfer_started": true,
+        "transfer_count": 1,
+        "quicklook_fetched": false,
+        "archive_structure_validation": "not_supported_by_current_validator"
+      },
+      "applicability": {
+        "resolver_policy_id": "cdse.sentinel-2.l2a.archive-resolver-policy.v1",
+        "asset_schema_id": "assets.sentinel-2.l2a.v1",
+        "delivery_profile_id": "delivery.sentinel-2.l2a.v1",
+        "validation_profile_id": "validation.sentinel-2.l2a.v1",
+        "implementation_binding_id": "cdse.sentinel-2.l2a.archive-resolver-policy.v1",
+        "collection_binding_id": "cdse.sentinel-2.l2a.collection.v1",
+        "credential_redaction_contract_id": "P0.4A-credential-redaction-v1",
+        "transport_integrity_contract_id": "expected-size-md5-provider-identity-atomic-promotion.v1",
+        "store_lifecycle_contract_id": "store-completed-after-validation-reopen.v1"
+      },
+      "scientific_scope": {
+        "product": "Sentinel-2 Level-2A Complete Product",
+        "subset": false,
+        "claims": [
+          "provider_product_identity",
+          "level_2a_product_type",
+          "authoritative_size",
+          "authoritative_md5",
+          "production_worker_transfer",
+          "atomic_promotion",
+          "store_completion_after_validation",
+          "store_reopen_completed"
+        ],
+        "limitations": [
+          "does_not_prove_atmospheric_correction_scientific_accuracy",
+          "does_not_prove_band_radiometry_or_cloud_mask",
+          "does_not_prove_every_sentinel2_tile",
+          "does_not_prove_sentinel2_l1c",
+          "archive_structure_validation_not_supported_by_current_validator"
+        ]
+      },
+      "reviewed_at": "2026-08-12",
+      "superseded": false,
+      "revoked": false
+    }
+  ]
+}

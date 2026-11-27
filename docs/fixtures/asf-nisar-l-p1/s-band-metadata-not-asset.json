@@ -1,0 +1,13 @@
+{
+  "fixture_contract": "AsfNisarMutationFixtureV1",
+  "base": "granule-provisional-multi-asset-valid.json",
+  "assertions": {
+    "joint_observation": true,
+    "side_band_polarization": ["HH"],
+    "meaning": "L-band Frequency B and joint-observation metadata only",
+    "s_band_asset_count": 0,
+    "bhoonidhi_locator_count": 0,
+    "cross_provider_resolver_count": 0
+  },
+  "expected_result": {"kind": "accept_without_s_band_asset"}
+}

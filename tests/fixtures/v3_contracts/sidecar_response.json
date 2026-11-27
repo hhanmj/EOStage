@@ -1,0 +1,11 @@
+{
+  "protocol_major": 1,
+  "protocol_minor": 1,
+  "request_id": "请求-001",
+  "ok": true,
+  "result": {
+    "status": "healthy"
+  },
+  "error": null,
+  "terminal": true
+}

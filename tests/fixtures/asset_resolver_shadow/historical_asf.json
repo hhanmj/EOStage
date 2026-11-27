@@ -1,0 +1,10 @@
+{
+  "asset_class": "historical_asf",
+  "frozen": {
+    "reference": {"provider_id":"asf.catalog","collection_id":"ERS","provider_product_id":"ERS_FIXTURE","provider_product_key":"PROVIDER::asf.catalog::COLLECTION::ERS::ITEM::ERS_FIXTURE","canonical_product_key":null,"asset_key":"ERS_FIXTURE.DAT","stable_asset_key":"PROVIDER::asf.catalog::COLLECTION::ERS::ITEM::ERS_FIXTURE::ASSET::ERS_FIXTURE.DAT"},
+    "descriptor": {"resolver_id":"earthdata_https","scheme":"earthdata_https","stable_href":"https://datapool.asf.alaska.edu/ERS/ERS_FIXTURE.DAT","requires_credentials":true,"credential_profile":"earthdata-default","resolver_parameters":{}},
+    "role":"primary","file_name":"ERS_FIXTURE.DAT","expected_size_bytes":1024,"checksum_algorithm":null,"checksum_value":null
+  },
+  "legacy": {"provider_id":"asf.catalog","url":"https://datapool.asf.alaska.edu/ERS/ERS_FIXTURE.DAT","file_name":"ERS_FIXTURE.DAT","auth_kind":"earthdata_basic","expected_size":1024,"checksum_algorithm":null,"checksum_value":null,"destination":"fixture-output/ERS/L1/ERS_FIXTURE.DAT","destination_layout":"sar_dataset_processing","asset_role":"primary"},
+  "policy": {"output_root":"fixture-output","layout":"sar_dataset_processing","dataset":"ERS","processing_level":"L1"}
+}

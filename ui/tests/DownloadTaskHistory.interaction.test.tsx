@@ -1,0 +1,32 @@
+import assert from "node:assert/strict";
+import test from "node:test";
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { JSDOM } from "jsdom";
+import { DownloadTaskHistory } from "../src/components/DownloadTaskHistory.tsx";
+
+test("terminal history row passes its exact revision through independent card actions", async () => {
+  const dom = new JSDOM("<div id='root'></div>");
+  Object.assign(globalThis, { window: dom.window, document: dom.window.document });
+  let opened: [string, number | undefined] | null = null;
+  let openedOutput: [string, number] | null = null;
+  let restored: [string | undefined, number | undefined] | null = null;
+  const root = createRoot(dom.window.document.getElementById("root")!);
+  root.render(<DownloadTaskHistory rows={[{ id: "h", task_id: "task-A", revision: 9, name: "Sentinel-1 下载任务", status: "failed", detail: "不应出现在历史卡片上的日志" }]} busyByTask={{}} errorByTask={{ "task-A": "读取失败" }} titleFor={(row) => `${row.name} · 08/19 11:50`} statusLabelFor={() => "已结束"} onOpen={(id, rev) => { opened = [id, rev]; }} onOpenOutput={(id, rev) => { openedOutput = [id, rev]; }} onRestore={(row) => { restored = [row.task_id, row.revision]; }} />);
+  await new Promise((resolve) => setTimeout(resolve, 25));
+  const buttons = [...dom.window.document.querySelectorAll("button")] as HTMLButtonElement[];
+  const actionRow = dom.window.document.querySelector("[data-task-history-actions='task-A']");
+  assert.ok(actionRow, "history detail, output and restore actions share one wrapping row");
+  assert.match(actionRow?.className ?? "", /flex-wrap|grid/);
+  assert.equal(actionRow?.querySelectorAll("button").length, 3);
+  assert.doesNotMatch(dom.window.document.body.textContent ?? "", /不应出现在历史卡片上的日志/);
+  assert.match(dom.window.document.querySelector("[data-history-status]")?.className ?? "", /whitespace-nowrap/);
+  buttons.find((button) => button.textContent?.includes("详情"))!.click();
+  assert.deepEqual(opened, ["task-A", 9]);
+  buttons.find((button) => button.textContent?.includes("打开目录"))!.click();
+  assert.deepEqual(openedOutput, ["task-A", 9]);
+  buttons.find((button) => button.textContent?.includes("恢复"))!.click();
+  assert.deepEqual(restored, ["task-A", 9]);
+  assert.equal(dom.window.document.querySelector("[role=alert]")?.textContent, "读取失败");
+  root.unmount();
+});

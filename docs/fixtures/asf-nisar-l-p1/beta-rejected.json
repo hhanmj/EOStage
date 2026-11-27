@@ -1,0 +1,10 @@
+{
+  "fixture_contract": "AsfNisarMutationFixtureV1",
+  "base": "granule-provisional-multi-asset-valid.json",
+  "mutations": [
+    {"path": "/collection/concept_id", "value": "C2850225585-ASF"},
+    {"path": "/collection/short_name", "value": "NISAR_L1_RSLC_BETA_V1"},
+    {"path": "/granule/quality_status", "value": "Beta"}
+  ],
+  "expected_result": {"kind": "reject", "error": "NISAR_QUALITY_STATUS_MISMATCH"}
+}

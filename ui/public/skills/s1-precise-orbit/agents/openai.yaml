@@ -1,0 +1,4 @@
+interface:
+  display_name: "Sentinel-1 精密轨道补齐"
+  short_description: "匹配并下载 Sentinel-1 SLC 所需的 POEORB / RESORB 精密轨道"
+  default_prompt: "使用 /s1-precise-orbit 为当前检索到的 Sentinel-1 SLC 影像规划并补齐精密轨道文件。"

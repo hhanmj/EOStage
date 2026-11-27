@@ -1,0 +1,32 @@
+{
+  "id": "eostage-open-geodata-plugin",
+  "name": "EOStage 零配置开放地理数据与国内火星坐标互转插件",
+  "version": "1.2.0",
+  "author": "EOStage",
+  "license": "GPL-3.0-or-later",
+  "discipline": "cartography",
+  "description": "免 API Key 一键获取民政部全国行政区划代码与标准地名、阿里云 DataV 省市区县 GeoJSON 边界、Open-Meteo ERA5 历史气象、Overpass OSM 路网水系、WorldPop 人口网格、多镜像全球开放 DEM 瓦片，以及 WGS84/GCJ02/BD09/CGCS2000 亚毫米级坐标互转。",
+  "tags": [
+    "开放地理数据",
+    "GCJ02/BD09 坐标转换",
+    "民政部区划",
+    "ERA5 气象",
+    "Overpass OSM"
+  ],
+  "enabled": true,
+  "bundledSkills": [
+    {
+      "id": "plugin-skill-open-geodata-lbs",
+      "name": "零配置开放地理数据获取与国内坐标系严格互转",
+      "description": "民政部区划/地名、DataV 边界、ERA5 历史气象、OSM 矢量、多镜像开放 DEM 及 WGS84/GCJ02/BD09/CGCS2000 互转",
+      "path": "skills/plugin-skill-open-geodata-lbs/SKILL.md"
+    }
+  ],
+  "bundledConnector": {
+    "id": "plugin-mcp-eostage-open-geodata",
+    "name": "EOStage Open GeoData & LBS Coordinate Hub",
+    "transport": "stdio",
+    "endpoint": "tauri://application_open_geodata_query",
+    "description": "零密钥公共地理底座查询与国内加密坐标系高精度不动点反演连接器"
+  }
+}

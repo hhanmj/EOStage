@@ -1,0 +1,1 @@
+{"snapshot_contract":"FrozenTaskSnapshot/CompactTaskSnapshotV2","provider_id":"copernicus.dataspace.odata","logical_dataset":"optical.sentinel-2.l2a","layout":"direct","selected_item_ids":["PROVIDER::copernicus.dataspace.odata::COLLECTION::SENTINEL-2::ITEM::00000000-0000-4000-8000-000000000001"],"assets":[{"asset_key":"archive","role":"primary","native_roles":["archive"]}]}

@@ -1,0 +1,56 @@
+{
+  "fixture_metadata": {
+    "fixture_version": 1,
+    "fixture_kind": "invalid",
+    "fixture_name": "multiple-poeorb-associations",
+    "payload_contract": "FrozenTaskSnapshotV3",
+    "offline": true
+  },
+  "base": "single",
+  "mutations": [
+    {
+      "op": "append_copy",
+      "from": "/transfer_items/1",
+      "path": "/transfer_items"
+    },
+    {
+      "op": "set",
+      "path": "/transfer_items/2/transfer_item_id",
+      "value": "poeorb-b"
+    },
+    {
+      "op": "set",
+      "path": "/transfer_items/2/asset_access/file_name",
+      "value": "fixture-poeorb-b.EOF"
+    },
+    {
+      "op": "append_copy",
+      "from": "/orbit_associations/0",
+      "path": "/orbit_associations"
+    },
+    {
+      "op": "set",
+      "path": "/orbit_associations/1/orbit_transfer_item_id",
+      "value": "poeorb-b"
+    },
+    {
+      "op": "set",
+      "path": "/orbit_associations/1/matched_orbit_metadata/file_name",
+      "value": "fixture-poeorb-b.EOF"
+    }
+  ],
+  "expected": {
+    "accepted": false,
+    "error": {
+      "variant": "invalid_companion_coverage",
+      "subject": {
+        "kind": "source_item",
+        "source": {
+          "kind": "source_item",
+          "index": 0
+        }
+      },
+      "association_count": 2
+    }
+  }
+}

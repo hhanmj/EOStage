@@ -1,0 +1,128 @@
+{
+  "synthetic_offline_matrix": true,
+  "observed_remote_format_value": "unknown",
+  "purpose": "Offline classification cases for separating exact NISAR primary identity from auxiliary archive formats.",
+  "not_raw_attempt_2_or_canary_response": true,
+  "primary_filename_rule": "<producer_granule_id>.h5",
+  "format_families": [
+    "Hdf5",
+    "Png",
+    "Jpeg",
+    "Xml",
+    "Yaml",
+    "Csv",
+    "Pdf",
+    "Json",
+    "Text",
+    "Zip",
+    "Other"
+  ],
+  "cases": [
+    {
+      "id": "known-primary-hdf5",
+      "archive_format": "HDF5",
+      "hdf5_evidence": "archive_format",
+      "expected_role": "primary",
+      "expected_executable": true
+    },
+    {
+      "id": "primary-unknown-format-hdf5-mime",
+      "archive_format": "unknown",
+      "mime_type": "application/x-hdf5",
+      "hdf5_evidence": "archive_mime_type",
+      "expected_role": "primary",
+      "expected_executable": true
+    },
+    {
+      "id": "primary-unknown-format-no-hdf5-evidence",
+      "archive_format": "unknown",
+      "mime_type": "application/octet-stream",
+      "expected_role": "reject",
+      "expected_executable": false
+    },
+    {
+      "id": "primary-format-type-only-not-hdf5-evidence",
+      "archive_format": "unknown",
+      "format_type": "HDF5",
+      "expected_role": "reject",
+      "expected_executable": false
+    },
+    {
+      "id": "unknown-json-auxiliary",
+      "archive_format": "unknown",
+      "file_name": "auxiliary.json",
+      "expected_role": "auxiliary",
+      "expected_media_type": "application/octet-stream",
+      "expected_executable": false
+    },
+    {
+      "id": "unknown-text-auxiliary",
+      "archive_format": "unknown",
+      "file_name": "auxiliary.txt",
+      "expected_role": "auxiliary",
+      "expected_media_type": "application/octet-stream",
+      "expected_executable": false
+    },
+    {
+      "id": "unknown-zip-auxiliary",
+      "archive_format": "unknown",
+      "file_name": "auxiliary.zip",
+      "expected_role": "auxiliary",
+      "expected_media_type": "application/octet-stream",
+      "expected_executable": false
+    },
+    {
+      "id": "unknown-binary-auxiliary",
+      "archive_format": "unknown",
+      "file_name": "auxiliary.bin",
+      "expected_role": "auxiliary",
+      "expected_media_type": "application/octet-stream",
+      "expected_executable": false
+    },
+    {
+      "id": "unknown-h5-auxiliary",
+      "archive_format": "unknown",
+      "file_name": "unexpected.h5",
+      "expected_role": "reject",
+      "expected_executable": false
+    },
+    {
+      "id": "qa-hdf5",
+      "archive_format": "HDF5",
+      "file_name": "product_QA_STATS.h5",
+      "expected_role": "auxiliary",
+      "expected_executable": false
+    },
+    {
+      "id": "second-non-qa-hdf5",
+      "archive_format": "HDF5",
+      "file_name": "second-science.h5",
+      "expected_role": "reject",
+      "expected_executable": false
+    },
+    {
+      "id": "archive-related-url-format-conflict",
+      "archive_format": "HDF5",
+      "related_url_format": "PNG",
+      "expected_role": "reject",
+      "expected_executable": false
+    },
+    {
+      "id": "archive-mime-conflict",
+      "archive_format": "HDF5",
+      "mime_type": "image/png",
+      "expected_role": "reject",
+      "expected_executable": false
+    }
+  ],
+  "safety": {
+    "unknown_values_emitted": false,
+    "unknown_value_evidence": [
+      "sha256",
+      "byte_count"
+    ],
+    "locator_execution": false,
+    "public_requests": 0,
+    "credentials_accessed": false
+  }
+}

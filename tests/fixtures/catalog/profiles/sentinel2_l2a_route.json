@@ -1,0 +1,13 @@
+{
+  "route_id": "cdse.sentinel-2.l2a.route.v1",
+  "logical_dataset": "optical.sentinel-2.l2a",
+  "provider_id": "copernicus.dataspace.odata",
+  "native_collection_id": "SENTINEL-2",
+  "catalogue_aoi_crs": "EPSG:4326",
+  "collection_profile_id": "cdse.sentinel-2.l2a.collection.v1",
+  "identity_rule_id": "cdse.sentinel-2.l2a.identity.v1",
+  "filename_rule_id": "cdse.sentinel-2.l2a.archive-filename.v1",
+  "resolver_policy_id": "cdse.sentinel-2.l2a.archive-resolver-policy.v1",
+  "production_enabled": false,
+  "fixture_only": true
+}

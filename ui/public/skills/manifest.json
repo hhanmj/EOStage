@@ -1,0 +1,1872 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-20T18:20:00Z",
+  "totalSkills": 29,
+  "skills": [
+    {
+      "id": "remote-sensing-analysis",
+      "nameZh": "遥感影像分析",
+      "nameEn": "Remote Sensing Analysis",
+      "discipline": "insar-sar",
+      "disciplineLabel": "遥感与雷达测量",
+      "badge": "官方",
+      "author": "Muhammed Enes Duran",
+      "license": "MIT",
+      "version": "63a28f129510",
+      "slashCommand": "/remote-sensing-analysis",
+      "shortDescriptionZh": "分析卫星、航空与无人机影像：STAC 检索、数据可比性、Sentinel-2 2022 基线偏移校正、云掩膜、光谱指数与 SAR 预处理。",
+      "overviewZh": "先保证数据可比，再谈分析：经 STAC 取数并记录条目 ID（支持 Earth Search 的 Sentinel-2 COG 与 Copernicus DEM，Landsat 与 Sentinel-1 走 Planetary Computer 签名访问），核对处理级别，Sentinel-2 L2A 跨 2022 年 1 月处理基线 04.00 的反射率偏移（BOA_ADD_OFFSET = -1000）要先校正，云与阴影先掩膜，光谱指数用对波段。分类要用空间独立的验证集（随包附空间交叉验证规程），报各类 F1 与混淆矩阵。",
+      "sharedComponents": [
+        "native-gis-runtime"
+      ],
+      "sharedComponentNote": "共享 GDAL/PROJ 地理运行时 (73.5 MB)",
+      "workbenchTool": "search",
+      "exampleTasks": [
+        "用 Sentinel-2 算研究区 2025 年夏季的 NDVI 中值合成并检查云掩膜有效像元比例",
+        "我要做土地覆盖分类，训练样本都集中在几个区域，空间独立验证方案怎么设计？",
+        "这两景 Sentinel-2 一景是 2021 年、一景是 2023 年（跨 Baseline 04.00），能直接相减吗？"
+      ],
+      "fileCount": 5,
+      "totalBytes": 16155,
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "sizeBytes": 1076,
+          "kind": "license"
+        },
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 10352,
+          "kind": "skill_md"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sizeBytes": 220,
+          "kind": "agent"
+        },
+        {
+          "path": "references/authoritative-sources.md",
+          "sizeBytes": 1382,
+          "kind": "reference"
+        },
+        {
+          "path": "references/spatial-cv-protocol.md",
+          "sizeBytes": 3125,
+          "kind": "reference"
+        }
+      ]
+    },
+    {
+      "id": "change-detection",
+      "nameZh": "遥感变化检测",
+      "nameEn": "Change Detection",
+      "discipline": "insar-sar",
+      "disciplineLabel": "遥感与雷达测量",
+      "badge": "官方",
+      "author": "Muhammed Enes Duran",
+      "license": "MIT",
+      "version": "71c4ba477806",
+      "slashCommand": "/change-detection",
+      "shortDescriptionZh": "从多期遥感影像中分辨真实地表变化，控制配准、辐射、物候与分类四大误差源，并按 Olofsson 规程校正面积误差。",
+      "overviewZh": "区分真实地表变化与四大伪变化来源——几何配准误差、辐射漂移、物候差异与分类误差叠加。涵盖双时相差值/比值、变化向量分析（CVA）、多元变化检测（MAD/IR-MAD）、分类后比较，以及长时序断点检测（BFAST、LandTrendr、CCDC），并严格按混淆矩阵输出经面积加权校准的变化面积及 95% 置信区间。",
+      "sharedComponents": [
+        "native-gis-runtime"
+      ],
+      "sharedComponentNote": "共享 GDAL/PROJ 地理运行时 (73.5 MB)",
+      "workbenchTool": "search",
+      "exampleTasks": [
+        "设计一套灾害前后双时相 SAR 与光学影像协同的受灾范围变化检测与精度验证流程",
+        "为什么不能直接用两期分类图相减的像元计数作为城市扩张或毁林面积？如何用 Olofsson 方法校正？",
+        "在存在明显季节物候差异的两景影像间做变化检测，应如何消除物候假阳性？"
+      ],
+      "fileCount": 4,
+      "totalBytes": 9601,
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "sizeBytes": 1076,
+          "kind": "license"
+        },
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 7467,
+          "kind": "skill_md"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sizeBytes": 204,
+          "kind": "agent"
+        },
+        {
+          "path": "references/authoritative-sources.md",
+          "sizeBytes": 854,
+          "kind": "reference"
+        }
+      ]
+    },
+    {
+      "id": "terrain-hydrology",
+      "nameZh": "地形与水文分析",
+      "nameEn": "Terrain & Hydrology",
+      "discipline": "gis-spatial",
+      "disciplineLabel": "GIS 与空间转换",
+      "badge": "官方",
+      "author": "Muhammed Enes Duran",
+      "license": "MIT",
+      "version": "24d92db3eeff",
+      "slashCommand": "/terrain-hydrology",
+      "shortDescriptionZh": "基于 DEM 的地形、汇流与视域分析：DTM/DSM 区分、坡度坡向曲率、填洼与破障、D8/MFD 汇流累积、流域划分与 TWI。",
+      "overviewZh": "产出具有明确物理意义的地形与水文派生量，从源头杜绝两大常见错误：单位失配（经纬度坐标下直接按米算高程梯度导致坡度曲率全错）与未水文修正的原始 DEM（伪洼地截断河网）。涵盖等面积/高斯投影重采样、优先破障（Breaching）与填洼、D8 与多流向（MFD）汇流、倾泻点捕捉、集水区提取及地形湿度指数（TWI）。",
+      "sharedComponents": [
+        "native-gis-runtime"
+      ],
+      "sharedComponentNote": "共享 GDAL/PROJ 地理运行时 (73.5 MB)",
+      "workbenchTool": "clip",
+      "exampleTasks": [
+        "利用当前下载的 30m DEM 提取滑坡隐患区的坡度、坡向、曲率与地形湿度指数 (TWI) 需要注意哪些投影细节？",
+        "在做流域边界与河网提取时，为什么在涵洞与桥梁处应优先使用 Breaching（破障）而非单纯 Fill（填洼）？",
+        "如何利用雷达入射角、方位角与高精度 DEM 计算 SAR 几何畸变（叠掩 Layover 与阴影 Shadow）掩膜？"
+      ],
+      "fileCount": 4,
+      "totalBytes": 10247,
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "sizeBytes": 1076,
+          "kind": "license"
+        },
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 8174,
+          "kind": "skill_md"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sizeBytes": 213,
+          "kind": "agent"
+        },
+        {
+          "path": "references/authoritative-sources.md",
+          "sizeBytes": 784,
+          "kind": "reference"
+        }
+      ]
+    },
+    {
+      "id": "point-cloud-lidar",
+      "nameZh": "激光点云与高程基准",
+      "nameEn": "Point Cloud & LiDAR",
+      "discipline": "gis-spatial",
+      "disciplineLabel": "GIS 与空间转换",
+      "badge": "官方",
+      "author": "Muhammed Enes Duran",
+      "license": "MIT",
+      "version": "0c23da57994f",
+      "slashCommand": "/point-cloud-lidar",
+      "shortDescriptionZh": "激光点云与三维高程处理：PDAL 管线、LAS/LAZ/COPC、去噪与地面点分类、DTM/DSM/CHM 生成及垂直基准与大地水准面转换。",
+      "overviewZh": "处理机载/星载激光雷达（LiDAR）与摄影测量点云（LAS/LAZ/COPC），覆盖 PDAL 流式管线、离群点滤除、SMRF/PMF 地面点分类、数字地形模型（DTM）与冠层高度模型（CHM）构建，以及点云与星载 InSAR/DEM 协同分析中最关键的水平历元、垂直基准（正高 vs 椭球高）与大地水准面格网严格对齐。",
+      "sharedComponents": [
+        "native-gis-runtime",
+        "vertical-grid-egm96",
+        "vertical-grid-egm2008"
+      ],
+      "sharedComponentNote": "共享 GDAL/PROJ (73.5 MB) · EGM96/EGM2008 格网",
+      "workbenchTool": "datum",
+      "exampleTasks": [
+        "将机载 LiDAR 生成的正高 DTM 与星载 InSAR 椭球高形变场进行联合对比前，如何统一垂直基准与历元？",
+        "如何设计 PDAL 管线从原始 LAZ 点云中滤除植被与建筑，插值生成 1m 分辨率的裸地 DTM？",
+        "在森林覆盖区，如何评估 C 波段 / L 波段 SAR 干涉相位中心高度与 LiDAR 冠层高度模型 (CHM) 的关系？"
+      ],
+      "fileCount": 3,
+      "totalBytes": 12086,
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "sizeBytes": 1076,
+          "kind": "license"
+        },
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 10229,
+          "kind": "skill_md"
+        },
+        {
+          "path": "references/authoritative-sources.md",
+          "sizeBytes": 781,
+          "kind": "reference"
+        }
+      ]
+    },
+    {
+      "id": "cartography-geoviz",
+      "nameZh": "专题地图设计",
+      "nameEn": "Cartography & Geoviz",
+      "discipline": "gis-spatial",
+      "disciplineLabel": "GIS 与空间转换",
+      "badge": "官方",
+      "author": "Muhammed Enes Duran",
+      "license": "MIT",
+      "version": "168091a9be5d",
+      "slashCommand": "/cartography-geoviz",
+      "shortDescriptionZh": "设计与审查科研及工程专题地图：归一化、分级断点、感知均匀配色与发散色标、无数据处理、显示投影、图例与比例尺。",
+      "overviewZh": "将地图分级、色标选择、数据归一化与显示投影作为严肃的科学分析决策而非单纯美化。针对形变速率场（零值对称发散色标）、灾害风险分级（跨多期统一断点）、色盲安全（Viridis/Cividis/Vik/Roma）及底图视觉层级给出可复核的制图规范。",
+      "sharedComponents": [
+        "native-gis-runtime"
+      ],
+      "sharedComponentNote": "共享 GDAL/PROJ 地理运行时 (73.5 MB)",
+      "workbenchTool": "mosaic",
+      "exampleTasks": [
+        "为 InSAR 年均地表形变速率图（范围 -45 mm/yr 至 +15 mm/yr）设计零值居中的科学发散色标与图例规范",
+        "在制作多期形变对比专题图时，如何固定分级断点与比例尺以确保跨时期视觉可比？",
+        "审查当前专题地图的投影选择、NoData 相干性掩膜透明度和指北针/比例尺要素是否符合期刊出版要求"
+      ],
+      "fileCount": 3,
+      "totalBytes": 9161,
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "sizeBytes": 1076,
+          "kind": "license"
+        },
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 7292,
+          "kind": "skill_md"
+        },
+        {
+          "path": "references/authoritative-sources.md",
+          "sizeBytes": 793,
+          "kind": "reference"
+        }
+      ]
+    },
+    {
+      "id": "ecmwf-open-data",
+      "nameZh": "ECMWF 开放气象预报",
+      "nameEn": "ECMWF Open Data Forecast",
+      "discipline": "earth-env",
+      "disciplineLabel": "地球与环境科学",
+      "badge": "官方",
+      "author": "ECMWF",
+      "license": "Apache-2.0",
+      "version": "cc676e502b1b",
+      "slashCommand": "/ecmwf-open-data",
+      "shortDescriptionZh": "获取 ECMWF IFS (HRES/ENS) 与 AIFS 免费实时数值预报，按 HTTP 字节区间只下载所需气象要素场并提取站点时间序列。",
+      "overviewZh": "直接访问欧洲中期天气预报中心（ECMWF）Open Data 实时仓库（IFS HRES 0.25°、集合预报 ENS 及人工智能预报模型 AIFS），利用 .index 索引文件按字节区间（Byte-Range）精准拉取所需气压层/地面变量（如总柱水汽 TCWV、平均海平面气压 MSLP、2m 温湿度、降水量），无需下载数 GB 的完整 GRIB2 文件。随包内附 3 个原生 Python 检索与站点提取脚本。",
+      "sharedComponents": [
+        "eostage-core"
+      ],
+      "sharedComponentNote": "内附 3 个 ECMWF 检索脚本 (odcatalog.py / odpoint.py / ecmwf_status.py)",
+      "workbenchTool": null,
+      "exampleTasks": [
+        "查询 ECMWF 最新起报的 IFS HRES 预报，提取研究区未来 72 小时的总柱水汽 (tcwv) 与地面气压变化",
+        "如何利用 ECMWF .index 文件的 byte-range 机制只下载 500 hPa 位势高度场而不下载整个 GRIB2 文件？",
+        "获取当前 AOI 中心坐标点的未来 5 天逐 6 小时降水与风速站点预报序列"
+      ],
+      "fileCount": 9,
+      "totalBytes": 83662,
+      "files": [
+        {
+          "path": "LICENSE",
+          "sizeBytes": 10554,
+          "kind": "license"
+        },
+        {
+          "path": "NOTICE",
+          "sizeBytes": 402,
+          "kind": "doc"
+        },
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 9574,
+          "kind": "skill_md"
+        },
+        {
+          "path": "references/attribution.md",
+          "sizeBytes": 2043,
+          "kind": "reference"
+        },
+        {
+          "path": "references/catalog.md",
+          "sizeBytes": 3783,
+          "kind": "reference"
+        },
+        {
+          "path": "references/fields.md",
+          "sizeBytes": 4534,
+          "kind": "reference"
+        },
+        {
+          "path": "scripts/ecmwf_status.py",
+          "sizeBytes": 7048,
+          "kind": "script"
+        },
+        {
+          "path": "scripts/odcatalog.py",
+          "sizeBytes": 25361,
+          "kind": "script"
+        },
+        {
+          "path": "scripts/odpoint.py",
+          "sizeBytes": 20363,
+          "kind": "script"
+        }
+      ]
+    },
+    {
+      "id": "radar-satellite-analysis",
+      "nameZh": "SAR 与雷达卫星分析",
+      "nameEn": "SAR & Radar Satellite Analysis",
+      "discipline": "insar-sar",
+      "disciplineLabel": "遥感与雷达测量",
+      "badge": "官方",
+      "author": "EOStage",
+      "license": "GPL-3.0-or-later",
+      "version": "2.2.0",
+      "slashCommand": "/radar-satellite-analysis",
+      "shortDescriptionZh": "面向 Sentinel-1（SLC/GRD/SLC-BURST）、NISAR L/S 波段与 ALOS-2 的 SAR/InSAR 数据准备、精密轨道匹配、DEM 高程基准转换与后向散射/相干性分析。",
+      "overviewZh": "覆盖 EOStage 核心 SAR 与 InSAR 数据准备流程：包括 Sentinel-1 SLC-BURST 与升降轨分轨选景、POEORB/RESORB 精密轨道匹配、NISAR L/S 波段 AOI 空间子集裁剪、Copernicus/SRTM DEM 转 WGS84 椭球高、GACOS 大气延迟批处理，以及 dB 转线性功率统计与斑点滤波规程。",
+      "sharedComponents": [
+        "native-gis-runtime"
+      ],
+      "sharedComponentNote": "共享 GDAL/PROJ 地理运行时 (73.5 MB)",
+      "workbenchTool": null,
+      "exampleTasks": [
+        "结合当前研究区检索 Sentinel-1 升降轨 SLC-BURST 影像并匹配 AUX_POEORB 精密轨道",
+        "如何针对数十 GB 的 NISAR L 波段 RSLC 数据仅按研究区 AOI 做远端 HDF5 子集裁剪？",
+        "对 Sentinel-1 GRD VV/VH 分贝栅格做时空平均前，为什么必须先转换为线性功率？"
+      ],
+      "fileCount": 1,
+      "totalBytes": 2074,
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 2074,
+          "kind": "skill_md"
+        }
+      ]
+    },
+    {
+      "id": "geo-deep-learning",
+      "nameZh": "遥感深度学习",
+      "nameEn": "Geospatial Deep Learning",
+      "discipline": "earth-env",
+      "disciplineLabel": "地球与环境科学",
+      "badge": "官方",
+      "author": "Muhammed Enes Duran",
+      "license": "MIT",
+      "version": "dff52314b6e9",
+      "slashCommand": "/geo-deep-learning",
+      "shortDescriptionZh": "规划与审查遥感影像深度学习：U-Net/SegFormer 分割、滑坡与建筑提取、基础模型微调、按地理块切分防空间泄漏及无缝拼接推理。",
+      "overviewZh": "面向地球观测影像的语义分割、目标检测与遥感基础模型（Prithvi / Clay / SatMAE）微调规程。重点防控遥感深度学习中最致命的两大缺陷：空间数据泄漏（相邻切片随机分入训练集与测试集导致精度虚高，必须按地理网格块独立切分）与地理参考丢失（汉宁窗重叠滑动窗口推理并完整保留 CRS 与仿射变换矩阵）。",
+      "sharedComponents": [
+        "native-gis-runtime"
+      ],
+      "sharedComponentNote": "共享 GDAL/PROJ 地理运行时 (73.5 MB)",
+      "workbenchTool": null,
+      "exampleTasks": [
+        "设计一套融合 InSAR 相干性、相位梯度与光学影像的同震滑坡语义分割数据集地理分块切分方案",
+        "在对大幅面 GeoTIFF 执行深度学习大图滑动窗口推理时，如何用加权融合消除切片接缝并保留原始投影与仿射参数？",
+        "为什么将同一景影像随机切块的 80% 作为训练集、20% 作为测试集会导致 F1 分数严重虚高？"
+      ],
+      "fileCount": 4,
+      "totalBytes": 13178,
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "sizeBytes": 1076,
+          "kind": "license"
+        },
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 8185,
+          "kind": "skill_md"
+        },
+        {
+          "path": "references/authoritative-sources.md",
+          "sizeBytes": 792,
+          "kind": "reference"
+        },
+        {
+          "path": "references/spatial-cv-protocol.md",
+          "sizeBytes": 3125,
+          "kind": "reference"
+        }
+      ]
+    },
+    {
+      "id": "geostatistics-interpolation",
+      "nameZh": "地统计插值",
+      "nameEn": "Geostatistics & Kriging",
+      "discipline": "earth-env",
+      "disciplineLabel": "地球与环境科学",
+      "badge": "官方",
+      "author": "Muhammed Enes Duran",
+      "license": "MIT",
+      "version": "f7d037a1036b",
+      "slashCommand": "/geostatistics-interpolation",
+      "shortDescriptionZh": "将离散观测点插值为带不确定性的连续表面：实验变差函数拟合、各向异性检查、普通/泛克里金、IDW 及空间分块交叉验证。",
+      "overviewZh": "将 GNSS 水准点、地下水位井或土壤采样点等离散观测转化为连续空间估计场，并同步产出克里金估计方差（不确定性图）。严格执行探索性空间数据分析、投影坐标转换、实验变差函数（块金值 Nugget、基台值 Sill、变程 Range）拟合及留一法/空间分块交叉验证（Spatial Block CV），同样适用于 InSAR 大气相位屏或 GNSS-InSAR 速度场融合。",
+      "sharedComponents": [
+        "native-gis-runtime"
+      ],
+      "sharedComponentNote": "共享 GDAL/PROJ 地理运行时 (73.5 MB)",
+      "workbenchTool": null,
+      "exampleTasks": [
+        "利用研究区内 25 个 GNSS 连续站的垂直形变速率，通过普通克里金插值构建 InSAR 长波轨道与大气趋势参考面",
+        "在拟合实验变差函数时，如何判断空间自相关变程 (Range) 是否足以支撑目标网格分辨率的克里金插值？",
+        "为什么空间聚集分布的采样点不能用随机留出法验证插值精度？如何设计空间分块交叉验证 (Block CV)？"
+      ],
+      "fileCount": 5,
+      "totalBytes": 12398,
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "sizeBytes": 1076,
+          "kind": "license"
+        },
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 7166,
+          "kind": "skill_md"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sizeBytes": 231,
+          "kind": "agent"
+        },
+        {
+          "path": "references/authoritative-sources.md",
+          "sizeBytes": 800,
+          "kind": "reference"
+        },
+        {
+          "path": "references/spatial-cv-protocol.md",
+          "sizeBytes": 3125,
+          "kind": "reference"
+        }
+      ]
+    },
+    {
+      "id": "spatial-statistics",
+      "nameZh": "空间统计分析",
+      "nameEn": "Spatial Statistics",
+      "discipline": "earth-env",
+      "disciplineLabel": "地球与环境科学",
+      "badge": "官方",
+      "author": "Muhammed Enes Duran",
+      "license": "MIT",
+      "version": "12ddc0008ab0",
+      "slashCommand": "/spatial-statistics",
+      "shortDescriptionZh": "检验地理现象的空间聚集性与驱动机制：空间权重矩阵、全局 Moran's I、LISA (FDR 校正)、Getis-Ord Gi* 冷热点与 GWR/MGWR。",
+      "overviewZh": "针对违反独立同分布假设的空间点/面数据，提供从空间权重矩阵设计（Queen/Rook 邻接、K 近邻、距离阈值）到全局自相关（Moran's I）、局部聚类与热点识别（LISA 配合 FDR 多重检验校正、Getis-Ord Gi*）、可变面元问题（MAUP）诊断，以及空间滞后/空间误差回归与多尺度地理加权回归（MGWR）的完整推断链路。",
+      "sharedComponents": [
+        "native-gis-runtime"
+      ],
+      "sharedComponentNote": "共享 GDAL/PROJ 地理运行时 (73.5 MB)",
+      "workbenchTool": null,
+      "exampleTasks": [
+        "对提取出的地面沉降速率图斑执行 Getis-Ord Gi* 热点分析与 LISA 局部自相关检验（含 FDR 多重检验校正）",
+        "用多尺度地理加权回归 (MGWR) 分析地下水开采强度、软土层厚度与地面沉降速率的空间非平稳关系",
+        "为什么在未检验残差 Moran's I 的情况下，不能直接使用普通最小二乘 (OLS) 回归的 p 值解释空间驱动因素？"
+      ],
+      "fileCount": 4,
+      "totalBytes": 8171,
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "sizeBytes": 1076,
+          "kind": "license"
+        },
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 6131,
+          "kind": "skill_md"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sizeBytes": 214,
+          "kind": "agent"
+        },
+        {
+          "path": "references/authoritative-sources.md",
+          "sizeBytes": 750,
+          "kind": "reference"
+        }
+      ]
+    },
+    {
+      "id": "spatial-sql",
+      "nameZh": "空间 SQL 与空间索引",
+      "nameEn": "Spatial SQL (PostGIS / DuckDB)",
+      "discipline": "gis-spatial",
+      "disciplineLabel": "GIS 与空间转换",
+      "badge": "官方",
+      "author": "Jaak Laineste",
+      "license": "MIT",
+      "version": "19d70b5c25ee",
+      "slashCommand": "/spatial-sql",
+      "shortDescriptionZh": "编写与优化 PostGIS 及 DuckDB Spatial 空间查询：bbox 门控与精确谓词、空间连接、GiST 索引、SRID/轴序与测地线距离。",
+      "overviewZh": "针对大规模矢量要素（千万级 InSAR PS/DS 散射体点云、行政区划、道路管网与地灾隐患点库）提供高性能、几何严密的 PostGIS 与 DuckDB Spatial SQL 规程。严格区分 geometry（平面投影）与 geography（球面/椭球面测地线），强制执行 GiST 空间索引下推、ST_Subdivide 大多边形切分及轴序（Lon/Lat vs Lat/Lon）校验。",
+      "sharedComponents": [
+        "native-gis-runtime"
+      ],
+      "sharedComponentNote": "共享 GDAL/PROJ 地理运行时 (73.5 MB)",
+      "workbenchTool": null,
+      "exampleTasks": [
+        "用 DuckDB Spatial 或 PostGIS 将 200 万个 InSAR PS 形变点与城市建筑物轮廓做高效空间连接并统计每栋建筑的最大沉降速率",
+        "为什么 ST_Distance 在 EPSG:4326 geometry 上直接返回度而不是米？如何改写为走 GiST 索引的 geography 近邻查询？",
+        "当用包含上万顶点的省级行政边界裁剪矢量数据时，如何用 ST_Subdivide 将查询速度提升数十倍？"
+      ],
+      "fileCount": 4,
+      "totalBytes": 34112,
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "sizeBytes": 1070,
+          "kind": "license"
+        },
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 2936,
+          "kind": "skill_md"
+        },
+        {
+          "path": "references/formats-and-crs.md",
+          "sizeBytes": 21777,
+          "kind": "reference"
+        },
+        {
+          "path": "references/spatial-sql.md",
+          "sizeBytes": 8329,
+          "kind": "reference"
+        }
+      ]
+    },
+    {
+      "id": "network-accessibility-analysis",
+      "nameZh": "网络可达性分析",
+      "nameEn": "Network Accessibility Analysis",
+      "discipline": "gis-spatial",
+      "disciplineLabel": "GIS 与空间转换",
+      "badge": "官方",
+      "author": "Muhammed Enes Duran",
+      "license": "MIT",
+      "version": "0654d554866e",
+      "slashCommand": "/network-accessibility-analysis",
+      "shortDescriptionZh": "路网与基础设施可达性分析：OSMnx 拓扑建网、等时圈、OD 成本矩阵、最近应急设施、两步移动搜寻法 (2SFCA) 与受灾断路评估。",
+      "overviewZh": "基于真实道路拓扑网络（而非欧氏直线距离）计算应急救援、基础设施与公共服务可达性。支持 OSMnx 路网构建、单向行车与速度阻抗赋权、等时圈（Isochrone）生成、受滑坡/洪水或地面塌陷阻断路段后的路网连通性降级评估及两步移动搜寻法（2SFCA）。",
+      "sharedComponents": [
+        "native-gis-runtime"
+      ],
+      "sharedComponentNote": "共享 GDAL/PROJ 地理运行时 (73.5 MB)",
+      "workbenchTool": null,
+      "exampleTasks": [
+        "结合 InSAR 识别出的高速公路与桥梁形变风险段，评估一旦该路段封闭对周边乡镇 30 分钟应急救援等时圈的影响",
+        "为什么山谷与河流阻隔区的应急可达性绝不能用圆形缓冲区（欧氏距离）代替路网最短路径？",
+        "使用 OSMnx 提取当前研究区路网并计算各居民点到最近避难场所的行车时间"
+      ],
+      "fileCount": 3,
+      "totalBytes": 10543,
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "sizeBytes": 1076,
+          "kind": "license"
+        },
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 8712,
+          "kind": "skill_md"
+        },
+        {
+          "path": "references/authoritative-sources.md",
+          "sizeBytes": 755,
+          "kind": "reference"
+        }
+      ]
+    },
+    {
+      "id": "dem-datum-conversion",
+      "nameZh": "DEM 高程基准转换",
+      "nameEn": "DEM Vertical Datum Suite",
+      "discipline": "insar-sar",
+      "disciplineLabel": "遥感与雷达测量",
+      "badge": "内置",
+      "author": "EOStage",
+      "license": "MIT",
+      "version": "af5e4530fe60",
+      "slashCommand": "/dem-datum-conversion",
+      "shortDescriptionZh": "将 EGM96 / EGM2008 正高 DEM 批量转换为 InSAR 干涉处理所需的 WGS84 椭球高，保持原网格与反子午线连续性。",
+      "overviewZh": "干涉合成孔径雷达（InSAR）模拟与去除地形相位必须使用相对于 WGS84 参考椭球的椭球高（h = H + N），而 Copernicus GLO-30（EGM2008）与 SRTM / NASADEM（EGM96）均发布正高。本技能调用本机 GDAL/PROJ 引擎与 NGA 官方大地水准面格网执行逐像元严密基准转换，杜绝跨区域大地水准面起伏引入的系统性高程相位残差。",
+      "sharedComponents": [
+        "native-gis-runtime",
+        "vertical-grid-egm96",
+        "vertical-grid-egm2008"
+      ],
+      "sharedComponentNote": "共享 GDAL/PROJ (73.5 MB) · EGM96 (2.6 MB) · EGM2008 (76.8 MB)",
+      "workbenchTool": "datum",
+      "exampleTasks": [
+        "将当前工作区下载的 Copernicus GLO-30 DEM 从 EGM2008 正高转换为 WGS84 椭球高",
+        "检查本地 SRTM DEM 的垂直基准并导出 SARscape / ISCE2 兼容的椭球高 GeoTIFF",
+        "对比当前研究区 EGM96 与 EGM2008 大地水准面高程异常差值"
+      ],
+      "fileCount": 4,
+      "totalBytes": 3044,
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "sizeBytes": 615,
+          "kind": "license"
+        },
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 1598,
+          "kind": "skill_md"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sizeBytes": 273,
+          "kind": "agent"
+        },
+        {
+          "path": "references/vertical-datum-protocol.md",
+          "sizeBytes": 558,
+          "kind": "reference"
+        }
+      ]
+    },
+    {
+      "id": "s1-precise-orbit",
+      "nameZh": "Sentinel-1 精密轨道匹配",
+      "nameEn": "Sentinel-1 POEORB Matcher",
+      "discipline": "insar-sar",
+      "disciplineLabel": "遥感与雷达测量",
+      "badge": "内置",
+      "author": "EOStage",
+      "license": "MIT",
+      "version": "7c6cc2c56756",
+      "slashCommand": "/s1-precise-orbit",
+      "shortDescriptionZh": "扫描本地 Sentinel-1 SAFE 目录或检索结果，按成像 UTC 时间窗自动匹配并补齐 AUX_POEORB 精密轨道与 RESORB。",
+      "overviewZh": "Sentinel-1 TOPS 影像的方位向谱分集（ESD）配准与基线解算高度依赖覆盖完整成像弧段的精密定轨文件（AUX_POEORB，三维精度 < 5 cm）。本技能自动提取 S1A/S1B/S1C 影像起止 UTC 时间窗，核验定轨文件覆盖裕度，并从 CDSE / ASF 批量检索与补齐缺失轨道。",
+      "sharedComponents": [
+        "eostage-core"
+      ],
+      "sharedComponentNote": "内置核心引擎 · 零额外下载",
+      "workbenchTool": "orbit",
+      "exampleTasks": [
+        "扫描本地 Sentinel-1 SLC 目录，找出缺失精密轨道 (POEORB) 的景并自动匹配下载",
+        "检查 2026 年最近获取的这景 Sentinel-1A 影像是否已发布 AUX_POEORB 精密轨道",
+        "为当前检索列表中的所有 Sentinel-1 SLC 批量规划配套精密轨道"
+      ],
+      "fileCount": 4,
+      "totalBytes": 2308,
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "sizeBytes": 615,
+          "kind": "license"
+        },
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 1170,
+          "kind": "skill_md"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sizeBytes": 277,
+          "kind": "agent"
+        },
+        {
+          "path": "references/s1-orbit-matching.md",
+          "sizeBytes": 246,
+          "kind": "reference"
+        }
+      ]
+    },
+    {
+      "id": "nisar-rslc-subset",
+      "nameZh": "NISAR RSLC 远端按范围裁剪",
+      "nameEn": "NISAR HDF5 HTTP Range Subset",
+      "discipline": "insar-sar",
+      "disciplineLabel": "遥感与雷达测量",
+      "badge": "内置",
+      "author": "EOStage",
+      "license": "MIT",
+      "version": "f37b453b9871",
+      "slashCommand": "/nisar-rslc-subset",
+      "shortDescriptionZh": "无需下载数十 GB 完整 RSLC 归档，按 AOI 多边形与频段/极化经 HTTP Range 远端提取并重组标准科学 HDF5。",
+      "overviewZh": "单景 NISAR L/S 波段 RSLC HDF5 完整归档常达 20–60 GB。本技能先读取远端 HDF5 元数据前缀与三级地理定位立方体，将工作区 AOI 多边形反投至斜距-零多普勒网格，冻结科学计划后仅拉取命中的块字节区间，并在本机流式重组通过逐位 SHA-256 复核的派生 HDF5 与血缘清单。",
+      "sharedComponents": [
+        "eostage-core"
+      ],
+      "sharedComponentNote": "内置静态 HDF5 科学引擎 · 零额外下载",
+      "workbenchTool": "search",
+      "exampleTasks": [
+        "检索当前 AOI 内的 NISAR L1 RSLC 数据，并规划 A 频段 HH+HV 极化的按范围裁剪下载",
+        "估算当前研究区多边形对这景 NISAR RSLC 执行远端 Range 裁剪相比整景下载能节省多少流量",
+        "解释 NISAR RSLC HDF5 HTTP Range 裁剪产物与原始整景归档在元数据与科学血缘上的区别"
+      ],
+      "fileCount": 4,
+      "totalBytes": 2425,
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "sizeBytes": 615,
+          "kind": "license"
+        },
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 1187,
+          "kind": "skill_md"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sizeBytes": 267,
+          "kind": "agent"
+        },
+        {
+          "path": "references/hdf5-range-subset-v2.md",
+          "sizeBytes": 356,
+          "kind": "reference"
+        }
+      ]
+    },
+    {
+      "id": "s1-tops-burst",
+      "nameZh": "Sentinel-1 TOPS Burst 级检索",
+      "nameEn": "Sentinel-1 TOPS Burst Finder",
+      "discipline": "insar-sar",
+      "disciplineLabel": "遥感与雷达测量",
+      "badge": "内置",
+      "author": "EOStage",
+      "license": "MIT",
+      "version": "d604f0e37709",
+      "slashCommand": "/s1-tops-burst",
+      "shortDescriptionZh": "按 Path、子测绘带 (IW1/IW2/IW3) 与 Burst ID 精确检索和提取单 Burst SLC，确保多时相干涉栈严格对齐。",
+      "overviewZh": "针对局部滑坡、矿区沉降或断层蠕滑研究，整景 Sentinel-1 IW SLC（250×170 km，约 4.5 GB）存在大量冗余。本技能支持直接按相对轨道（Path）、子测绘带（IW1/IW2/IW3）与统一 Burst ID 检索和下载单 Burst 数据，自动校验时间序列各期 Burst 覆盖一致性。",
+      "sharedComponents": [
+        "eostage-core"
+      ],
+      "sharedComponentNote": "内置核心引擎 · 零额外下载",
+      "workbenchTool": "search",
+      "exampleTasks": [
+        "在当前 AOI 范围内检索升轨 Path 113 的 Sentinel-1 Burst 序列并检查时间覆盖完整度",
+        "为了支持 ESD 方位向配准，当前研究区至少需要勾选哪几个相邻 Burst？",
+        "对比当前 AOI 使用单 Burst 下载与整景 SAFE 下载的数据体积差异"
+      ],
+      "fileCount": 4,
+      "totalBytes": 2054,
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "sizeBytes": 615,
+          "kind": "license"
+        },
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 896,
+          "kind": "skill_md"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sizeBytes": 267,
+          "kind": "agent"
+        },
+        {
+          "path": "references/tops-burst-overlap.md",
+          "sizeBytes": 276,
+          "kind": "reference"
+        }
+      ]
+    },
+    {
+      "id": "gacos-ztd-atmo",
+      "nameZh": "GACOS 对流层大气改正",
+      "nameEn": "GACOS Tropospheric Correction",
+      "discipline": "insar-sar",
+      "disciplineLabel": "遥感与雷达测量",
+      "badge": "内置",
+      "author": "EOStage",
+      "license": "MIT",
+      "version": "0677906c0c6e",
+      "slashCommand": "/gacos-ztd-atmo",
+      "shortDescriptionZh": "根据 SAR 影像序列精确 UTC 成像时刻与空间包络生成 GACOS 大气延迟请求草案，并校验导入已交付改正产品。",
+      "overviewZh": "对流层水汽垂直分层与湍流常在干涉图中产生数厘米的伪形变信号。本技能从已检索或本地 SAR 影像集中提取精确到分钟的 UTC 过境时刻与带缓冲外包框，自动生成满足 GACOS 规范的请求参数，并支持将返回的 ZTD 大气延迟产品导入工作区核验时空覆盖。",
+      "sharedComponents": [
+        "eostage-core"
+      ],
+      "sharedComponentNote": "内置核心引擎 · 零额外下载",
+      "workbenchTool": "search",
+      "exampleTasks": [
+        "根据当前选中的 Sentinel-1 影像序列生成 GACOS 对流层延迟请求时间表与经纬度范围",
+        "将本地下载好的 GACOS .tar.gz 结果包导入当前工作区并核对是否有缺失日期",
+        "如何将 GACOS 天顶总延迟 (ZTD) 投影到雷达视线向 (LOS) 并从干涉相位中扣除？"
+      ],
+      "fileCount": 4,
+      "totalBytes": 2206,
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "sizeBytes": 615,
+          "kind": "license"
+        },
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 1149,
+          "kind": "skill_md"
+        },
+        {
+          "path": "agents/openai.yaml",
+          "sizeBytes": 269,
+          "kind": "agent"
+        },
+        {
+          "path": "references/gacos-tropospheric-correction.md",
+          "sizeBytes": 173,
+          "kind": "reference"
+        }
+      ]
+    },
+    {
+      "id": "skill-creator",
+      "nameZh": "地球科学技能创建器",
+      "nameEn": "Geoscience Skill Creator",
+      "discipline": "skill-engineering",
+      "disciplineLabel": "技能工程",
+      "badge": "官方",
+      "author": "Anthropic (anthropics/skills)",
+      "license": "Apache-2.0",
+      "version": "6fc4365aed68",
+      "slashCommand": "/skill-creator",
+      "shortDescriptionZh": "从零起草、规范化、评测与改进地球科学 SKILL.md 技能包：含目录结构规范、触发描述优化与带基准对照的定量评测脚本。",
+      "overviewZh": "用于构建、校验和评测符合开放 Agent Skills 规范（SKILL.md + references/ + scripts/ + agents/openai.yaml）的专业领域技能包。随包提供技能目录校验脚本（quick_validate.py）、打包工具（package_skill.py）及评测报告生成器，帮助团队将内部 InSAR、遥感或地学处理SOP沉淀为可复用的标准技能。",
+      "sharedComponents": [
+        "eostage-core"
+      ],
+      "sharedComponentNote": "内附 18 个技能校验、打包与评测模版文件",
+      "workbenchTool": null,
+      "exampleTasks": [
+        "使用 /skill-creator 帮我起草一个针对『SBAS-InSAR 相干性阈值与基线网连通性审查』的标准 SKILL.md 技能包",
+        "检查一个本地地球科学技能目录的 SKILL.md YAML 头、references 拆分与触发描述是否符合规范",
+        "如何为一个新编写的地学处理技能设计带黄金标准对照的评测用例 (evals)？"
+      ],
+      "fileCount": 18,
+      "totalBytes": 225207,
+      "files": [
+        {
+          "path": "LICENSE.txt",
+          "sizeBytes": 11345,
+          "kind": "license"
+        },
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 33239,
+          "kind": "skill_md"
+        },
+        {
+          "path": "agents/analyzer.md",
+          "sizeBytes": 10376,
+          "kind": "agent"
+        },
+        {
+          "path": "agents/comparator.md",
+          "sizeBytes": 7287,
+          "kind": "agent"
+        },
+        {
+          "path": "agents/grader.md",
+          "sizeBytes": 9049,
+          "kind": "agent"
+        },
+        {
+          "path": "assets/eval_review.html",
+          "sizeBytes": 7058,
+          "kind": "doc"
+        },
+        {
+          "path": "eval-viewer/generate_review.py",
+          "sizeBytes": 16401,
+          "kind": "doc"
+        },
+        {
+          "path": "eval-viewer/viewer.html",
+          "sizeBytes": 44998,
+          "kind": "doc"
+        },
+        {
+          "path": "references/schemas.md",
+          "sizeBytes": 12061,
+          "kind": "reference"
+        },
+        {
+          "path": "scripts/__init__.py",
+          "sizeBytes": 0,
+          "kind": "script"
+        },
+        {
+          "path": "scripts/aggregate_benchmark.py",
+          "sizeBytes": 14386,
+          "kind": "script"
+        },
+        {
+          "path": "scripts/generate_report.py",
+          "sizeBytes": 12847,
+          "kind": "script"
+        },
+        {
+          "path": "scripts/improve_description.py",
+          "sizeBytes": 11152,
+          "kind": "script"
+        },
+        {
+          "path": "scripts/package_skill.py",
+          "sizeBytes": 4234,
+          "kind": "script"
+        },
+        {
+          "path": "scripts/quick_validate.py",
+          "sizeBytes": 3972,
+          "kind": "script"
+        },
+        {
+          "path": "scripts/run_eval.py",
+          "sizeBytes": 11500,
+          "kind": "script"
+        },
+        {
+          "path": "scripts/run_loop.py",
+          "sizeBytes": 13641,
+          "kind": "script"
+        },
+        {
+          "path": "scripts/utils.py",
+          "sizeBytes": 1661,
+          "kind": "script"
+        }
+      ]
+    },
+    {
+      "id": "gee-textbook-cookbook",
+      "nameZh": "GEE 遥感与地学云端计算教材攻略",
+      "nameEn": "GEE Textbook Cookbook",
+      "discipline": "gis-spatial",
+      "disciplineLabel": "GIS 与空间转换",
+      "badge": "内置",
+      "author": "EOStage",
+      "license": "Apache-2.0",
+      "version": "1.1.0",
+      "slashCommand": "/gee-textbook-cookbook",
+      "shortDescriptionZh": "系统讲解 GEE 云端架构、Cloud Score+ 与 SCL 选型、谐波与趋势对比、Olofsson 无偏面积估计及服务端 DAG 性能调优。",
+      "overviewZh": "面向 Google Earth Engine Python 开发与遥感科学方法学的五章系统手册：光学去云与基线对齐、谐波回归与趋势/断点模型选型、空间独立交叉验证与 Olofsson (2014) 无偏面积、水文地形与 EOStage 分块导出，以及服务端性能避坑（禁盲目 clip/reproject、tileScale、ee.Join 选型与排错）；与 99 项即用配方库 eo-analysis-recipes 互补。",
+      "sharedComponents": [
+        "native-gis-runtime"
+      ],
+      "sharedComponentNote": "配合 eostage-gee-plugin 云端计算工具或本机 GDAL/PROJ 运行时",
+      "workbenchTool": "gee_cloud_analyze",
+      "exampleTasks": [
+        "用 Sentinel-2 HARMONIZED 算研究区 2025 年无云植被物候谐波拟合系数",
+        "按照 Olofsson (2014) 分层误差矩阵计算各土地覆盖类型的无偏真实面积与 95% 置信区间"
+      ],
+      "fileCount": 6,
+      "totalBytes": 18108,
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 3414,
+          "kind": "skill_md"
+        },
+        {
+          "path": "references/classification-accuracy-assessment.md",
+          "sizeBytes": 2244,
+          "kind": "reference"
+        },
+        {
+          "path": "references/hydrology-terrain-export.md",
+          "sizeBytes": 1635,
+          "kind": "reference"
+        },
+        {
+          "path": "references/optical-cloudmask-compositing.md",
+          "sizeBytes": 3393,
+          "kind": "reference"
+        },
+        {
+          "path": "references/performance-joins-debugging.md",
+          "sizeBytes": 4092,
+          "kind": "reference"
+        },
+        {
+          "path": "references/time-series-harmonic-trend.md",
+          "sizeBytes": 3330,
+          "kind": "reference"
+        }
+      ]
+    },
+    {
+      "id": "sar-insar-textbook",
+      "nameZh": "SAR 物理机理与 InSAR 时序形变教材攻略",
+      "nameEn": "SAR & InSAR Textbook Cookbook",
+      "discipline": "insar-sar",
+      "disciplineLabel": "遥感与雷达测量",
+      "badge": "内置",
+      "author": "EOStage",
+      "license": "Apache-2.0",
+      "version": "1.0.0",
+      "slashCommand": "/sar-insar-textbook",
+      "shortDescriptionZh": "合成孔径雷达成像几何与 InSAR 全链路教材规程：叠掩/阴影判别、LOS 分解、D-InSAR 模糊高与解缠、SBAS/PS 时序反演及 POEORB/GACOS 改正。",
+      "overviewZh": "系统覆盖雷达斜距成像畸变、双轨 E-W/Vertical 分解、干涉相位五分量物理模型、SNAPHU/MCF 二维解缠规范、MintPy SBAS 三角闭合相位检验及 AUX_POEORB/GACOS/ERA5 误差分离。",
+      "sharedComponents": [
+        "native-gis-runtime"
+      ],
+      "sharedComponentNote": "建议配合 ISCE2 / MintPy Conda 环境与精密轨道/GACOS 配套下载",
+      "workbenchTool": "search",
+      "exampleTasks": [
+        "对比研究区升轨和降轨 Sentinel-1 SLC 成像几何，判断是否会发生叠掩失相干",
+        "配置 MintPy SBAS 反演前如何通过三角闭合相位判断土壤湿度导致的漂移误差？"
+      ],
+      "fileCount": 5,
+      "totalBytes": 10235,
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 2732,
+          "kind": "skill_md"
+        },
+        {
+          "path": "references/atmospheric-orbit-error-mitigation.md",
+          "sizeBytes": 1869,
+          "kind": "reference"
+        },
+        {
+          "path": "references/dinsar-phase-unwrapping.md",
+          "sizeBytes": 1719,
+          "kind": "reference"
+        },
+        {
+          "path": "references/sar-geometry-radiometry.md",
+          "sizeBytes": 2133,
+          "kind": "reference"
+        },
+        {
+          "path": "references/sbas-ps-timeseries.md",
+          "sizeBytes": 1782,
+          "kind": "reference"
+        }
+      ]
+    },
+    {
+      "id": "ocean-tides-bathymetry",
+      "nameZh": "海洋潮汐与全球海底地形规程 (EOT20 / pyTMD / GEBCO)",
+      "nameEn": "Ocean Tides & Global Bathymetry Workflow",
+      "discipline": "earth-env",
+      "disciplineLabel": "地球与环境科学",
+      "badge": "官方",
+      "author": "EOStage",
+      "license": "CC-BY-4.0",
+      "version": "1.0.0",
+      "slashCommand": "/ocean-tides-bathymetry",
+      "shortDescriptionZh": "整合 DGFI-TUM EOT20 海洋潮汐模型、pyTMD 潮汐负荷预测与 GEBCO 2026 / NOAA ETOPO 2022 全球无缝地形水深分析流程。",
+      "overviewZh": "基于开放地球科学规范：面向沿海 InSAR 海洋潮汐负荷（OTL）校正、潮间带红树林瞬时水位标定与大陆架水深掩膜提取，提供可运行 pyTMD + EOT20 Python 示例。",
+      "sharedComponents": [
+        "native-gis-runtime"
+      ],
+      "sharedComponentNote": "推荐在本机 Conda 安装 pyTMD 与 NetCDF4",
+      "workbenchTool": "geodata",
+      "exampleTasks": [
+        "用 TUM EOT20 与 pyTMD 预测杭州湾两景 Sentinel-1 采集时刻之间的瞬时潮差",
+        "用 ETOPO 2022 Bed 与 GEBCO 网格为沿海干涉图生成陆海高程掩膜"
+      ],
+      "fileCount": 2,
+      "totalBytes": 3001,
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 1138,
+          "kind": "skill_md"
+        },
+        {
+          "path": "references/eot20-pytmd-gebco.md",
+          "sizeBytes": 1863,
+          "kind": "reference"
+        }
+      ]
+    },
+    {
+      "id": "cryosphere-glacier-dem",
+      "nameZh": "冰川变化与多期 DEM 三维配准规程 (xDEM)",
+      "nameEn": "Cryosphere & Multi-Epoch DEM Coregistration",
+      "discipline": "earth-env",
+      "disciplineLabel": "地球与环境科学",
+      "badge": "官方",
+      "author": "EOStage",
+      "license": "Apache-2.0",
+      "version": "1.0.0",
+      "slashCommand": "/cryosphere-glacier-dem",
+      "shortDescriptionZh": "基于 xDEM 的冰川表面高程变化与滑坡方量测算规范：垂直基准对齐、稳定基岩掩膜、Nuth & Kääb 三维配准及 NMAD 不确定度估计。",
+      "overviewZh": "基于开放地球科学规范：解决陡峭山地 DEM 水平偏移引起的正弦波假高程偏差问题，串联 EOStage DEM 椭球高基准转换与 xDEM 迭代三维配准及大地测量物质平衡流程。",
+      "sharedComponents": [
+        "native-gis-runtime"
+      ],
+      "sharedComponentNote": "推荐在本机 Conda 安装 xDEM",
+      "workbenchTool": "geodata",
+      "exampleTasks": [
+        "对比历史 SRTM GL1 与 Copernicus GLO-30 计算山地冰川高程年均变化 dh/dt",
+        "如何利用冰川外部稳定基岩剔除多期 DEM 之间随坡向变化的水平偏移？"
+      ],
+      "fileCount": 2,
+      "totalBytes": 2813,
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 1473,
+          "kind": "skill_md"
+        },
+        {
+          "path": "references/xdem-glacier-mass-balance.md",
+          "sizeBytes": 1340,
+          "kind": "reference"
+        }
+      ]
+    },
+    {
+      "id": "landcover-change-clcd",
+      "nameZh": "中国年度 30m 土地覆盖与灾害暴露度规程 (WHU CLCD)",
+      "nameEn": "WHU CLCD Land Cover & Hazard Exposure",
+      "discipline": "earth-env",
+      "disciplineLabel": "地球与环境科学",
+      "badge": "官方",
+      "author": "EOStage",
+      "license": "CC-BY-4.0",
+      "version": "1.0.0",
+      "slashCommand": "/landcover-change-clcd",
+      "shortDescriptionZh": "基于武汉大学 30m 中国年度土地覆盖数据 (CLCD v1.0.4) 的 9 级分类转换矩阵、等面积核算与 InSAR 建成区形变风险暴露分析。",
+      "overviewZh": "基于开放地球科学规范：结合武汉大学 CLCD v1.0.4 长时序 30m 土地利用数据（1985 至今）与 MintPy 地表沉降速率图，定量评估不透水面扩张区的地面沉降风险。",
+      "sharedComponents": [
+        "native-gis-runtime"
+      ],
+      "sharedComponentNote": "共享 GDAL/PROJ 等面积重投影运行时",
+      "workbenchTool": "geodata",
+      "exampleTasks": [
+        "统计 2005–2023 年间耕地转不透水面的面积转移矩阵（使用 CGCS2000 等面积投影）",
+        "将 CLCD 不透水面地类叠加 MintPy 沉降速率图识别高暴露建成区"
+      ],
+      "fileCount": 2,
+      "totalBytes": 2927,
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 1662,
+          "kind": "skill_md"
+        },
+        {
+          "path": "references/whu-clcd-transition-matrix.md",
+          "sizeBytes": 1265,
+          "kind": "reference"
+        }
+      ]
+    },
+    {
+      "id": "eo-foundation-models",
+      "nameZh": "对地观测基础模型与 TorchGeo 深度学习规程",
+      "nameEn": "EO Foundation Models & TorchGeo Workflow",
+      "discipline": "insar-sar",
+      "disciplineLabel": "遥感与雷达测量",
+      "badge": "官方",
+      "author": "EOStage",
+      "license": "MIT",
+      "version": "1.0.0",
+      "slashCommand": "/eo-foundation-models",
+      "shortDescriptionZh": "面向遥感基础模型与深度学习的 TorchGeo 空间对齐采样器、多波段传感器定标匹配、Prithvi/DOFA 推理及空间分块验证规程。",
+      "overviewZh": "面向遥感预训练模型生态：避免用常规 RGB 图像库破坏 16-bit 多光谱或 SAR float32 动态范围与空间坐标系，使用 TorchGeo IntersectionDataset + GridGeoSampler 严防空间泄露。",
+      "sharedComponents": [
+        "native-gis-runtime"
+      ],
+      "sharedComponentNote": "推荐在本机 Conda 安装 TorchGeo",
+      "workbenchTool": "search",
+      "exampleTasks": [
+        "用 TorchGeo IntersectionDataset 对齐 Sentinel-2 多波段与 ESA WorldCover 标签并滑窗采样",
+        "对比 DOFA/Prithvi 与传统 Random Forest 在跨省域迁移时的空间独立验证方案"
+      ],
+      "fileCount": 2,
+      "totalBytes": 2774,
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 1534,
+          "kind": "skill_md"
+        },
+        {
+          "path": "references/torchgeo-foundation-inference.md",
+          "sizeBytes": 1240,
+          "kind": "reference"
+        }
+      ]
+    },
+    {
+      "id": "eo-analysis-recipes",
+      "nameZh": "遥感与生态水文分析配方知识库",
+      "nameEn": "EO & GEE Analysis Recipes Cookbook",
+      "discipline": "insar-sar",
+      "disciplineLabel": "遥感与雷达测量",
+      "badge": "内置",
+      "author": "EOStage",
+      "license": "Apache-2.0",
+      "version": "1.1.0",
+      "slashCommand": "/eo-analysis-recipes",
+      "shortDescriptionZh": "涵盖 83 项 GEE Python 云端算子（含 Cloud Score+、Dynamic World、LandTrendr/CCDC）与 16 项本地 GeoTIFF 统计配方。",
+      "overviewZh": "集成 83 项 Google Earth Engine 云端分析配方（Sentinel-1/2、Cloud Score+、Dynamic World、Landsat RSEI 生态指数、MODIS GPP/NPP、Sentinel-5P 大气 NO2、ERA5-Land 气候距平、TerraClimate、LandTrendr/CCDC 与服务端 Join）及 16 项本地 GeoTIFF 分块流式统计配方，共 99 项即用卡片。",
+      "sharedComponents": [
+        "native-gis-runtime"
+      ],
+      "sharedComponentNote": "配合内置 GEE 云端计算工具或本机 GDAL/PROJ 运行时",
+      "workbenchTool": "gee_cloud_analyze",
+      "exampleTasks": [
+        "检索并应用 MODIS MOD17A2H 全年累计 GPP 与晴空质控合成配方",
+        "按研究区计算 Sentinel-2 HARMONIZED 去云中位数 NDVI 与 NDWI",
+        "对本地多时相 GeoTIFF 执行谐波拟合填补缺测（HANTS）与逐像元 Sen 斜率趋势分析"
+      ],
+      "fileCount": 100,
+      "totalBytes": 204206,
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 15769,
+          "kind": "skill_md"
+        },
+        {
+          "path": "references/align-image-grid.md",
+          "sizeBytes": 1072,
+          "kind": "reference"
+        },
+        {
+          "path": "references/annual-modis-npp.md",
+          "sizeBytes": 1021,
+          "kind": "reference"
+        },
+        {
+          "path": "references/annual-ndvi-fvc.md",
+          "sizeBytes": 1495,
+          "kind": "reference"
+        },
+        {
+          "path": "references/array-temporal-regression.md",
+          "sizeBytes": 1503,
+          "kind": "reference"
+        },
+        {
+          "path": "references/batched-point-sampling.md",
+          "sizeBytes": 1278,
+          "kind": "reference"
+        },
+        {
+          "path": "references/bci-tasseled-cap.md",
+          "sizeBytes": 1142,
+          "kind": "reference"
+        },
+        {
+          "path": "references/biomass-rf-regression.md",
+          "sizeBytes": 1582,
+          "kind": "reference"
+        },
+        {
+          "path": "references/calendar-modis-products.md",
+          "sizeBytes": 1705,
+          "kind": "reference"
+        },
+        {
+          "path": "references/carbon-linear-regression.md",
+          "sizeBytes": 1892,
+          "kind": "reference"
+        },
+        {
+          "path": "references/casa-monthly-npp.md",
+          "sizeBytes": 1257,
+          "kind": "reference"
+        },
+        {
+          "path": "references/ccdc-harmonic-breakpoints.md",
+          "sizeBytes": 3807,
+          "kind": "reference"
+        },
+        {
+          "path": "references/collection-inventory.md",
+          "sizeBytes": 1298,
+          "kind": "reference"
+        },
+        {
+          "path": "references/copernicus-slope.md",
+          "sizeBytes": 1145,
+          "kind": "reference"
+        },
+        {
+          "path": "references/dated-asset-selector.md",
+          "sizeBytes": 1337,
+          "kind": "reference"
+        },
+        {
+          "path": "references/dense-pixel-inference.md",
+          "sizeBytes": 1643,
+          "kind": "reference"
+        },
+        {
+          "path": "references/dynamic-world-lulc.md",
+          "sizeBytes": 3098,
+          "kind": "reference"
+        },
+        {
+          "path": "references/ee-temporal-collection-join.md",
+          "sizeBytes": 3429,
+          "kind": "reference"
+        },
+        {
+          "path": "references/era5-land-climate-anomalies.md",
+          "sizeBytes": 3457,
+          "kind": "reference"
+        },
+        {
+          "path": "references/fractional-vegetation.md",
+          "sizeBytes": 1211,
+          "kind": "reference"
+        },
+        {
+          "path": "references/geodetector-factor.md",
+          "sizeBytes": 2568,
+          "kind": "reference"
+        },
+        {
+          "path": "references/geographic-point-series.md",
+          "sizeBytes": 2396,
+          "kind": "reference"
+        },
+        {
+          "path": "references/geotiff-tile-plan.md",
+          "sizeBytes": 1192,
+          "kind": "reference"
+        },
+        {
+          "path": "references/ghsl-built-change.md",
+          "sizeBytes": 1287,
+          "kind": "reference"
+        },
+        {
+          "path": "references/hls-seasonal-features.md",
+          "sizeBytes": 1830,
+          "kind": "reference"
+        },
+        {
+          "path": "references/hurst-rescaled-range.md",
+          "sizeBytes": 2358,
+          "kind": "reference"
+        },
+        {
+          "path": "references/imerg-rainfall.md",
+          "sizeBytes": 1399,
+          "kind": "reference"
+        },
+        {
+          "path": "references/landsat-clear-series.md",
+          "sizeBytes": 1362,
+          "kind": "reference"
+        },
+        {
+          "path": "references/landsat-historical-fvc.md",
+          "sizeBytes": 1809,
+          "kind": "reference"
+        },
+        {
+          "path": "references/landsat-kndvi.md",
+          "sizeBytes": 1162,
+          "kind": "reference"
+        },
+        {
+          "path": "references/landsat-rgb-render.md",
+          "sizeBytes": 1161,
+          "kind": "reference"
+        },
+        {
+          "path": "references/landsat-rsei.md",
+          "sizeBytes": 4926,
+          "kind": "reference"
+        },
+        {
+          "path": "references/landsat-surface-reflectance.md",
+          "sizeBytes": 1712,
+          "kind": "reference"
+        },
+        {
+          "path": "references/landsat-surface-temperature.md",
+          "sizeBytes": 1823,
+          "kind": "reference"
+        },
+        {
+          "path": "references/landtrendr-disturbance.md",
+          "sizeBytes": 4604,
+          "kind": "reference"
+        },
+        {
+          "path": "references/lst-thermal-sharpening.md",
+          "sizeBytes": 2063,
+          "kind": "reference"
+        },
+        {
+          "path": "references/modis-annual-gpp.md",
+          "sizeBytes": 1576,
+          "kind": "reference"
+        },
+        {
+          "path": "references/modis-day-lst.md",
+          "sizeBytes": 1445,
+          "kind": "reference"
+        },
+        {
+          "path": "references/modis-fpar.md",
+          "sizeBytes": 1379,
+          "kind": "reference"
+        },
+        {
+          "path": "references/modis-lai.md",
+          "sizeBytes": 1349,
+          "kind": "reference"
+        },
+        {
+          "path": "references/modis-ndbsi.md",
+          "sizeBytes": 1702,
+          "kind": "reference"
+        },
+        {
+          "path": "references/modis-ndvi.md",
+          "sizeBytes": 1327,
+          "kind": "reference"
+        },
+        {
+          "path": "references/modis-rsei.md",
+          "sizeBytes": 4699,
+          "kind": "reference"
+        },
+        {
+          "path": "references/monthly-vegetation-condition.md",
+          "sizeBytes": 1603,
+          "kind": "reference"
+        },
+        {
+          "path": "references/ndvi-animation-frames.md",
+          "sizeBytes": 1295,
+          "kind": "reference"
+        },
+        {
+          "path": "references/oli-tasseled-cap.md",
+          "sizeBytes": 1777,
+          "kind": "reference"
+        },
+        {
+          "path": "references/otsu-auto-threshold.md",
+          "sizeBytes": 3619,
+          "kind": "reference"
+        },
+        {
+          "path": "references/pixel-time-correlation.md",
+          "sizeBytes": 1818,
+          "kind": "reference"
+        },
+        {
+          "path": "references/pm25-regional-series.md",
+          "sizeBytes": 1586,
+          "kind": "reference"
+        },
+        {
+          "path": "references/random-forest-land-cover.md",
+          "sizeBytes": 1640,
+          "kind": "reference"
+        },
+        {
+          "path": "references/raster-align.md",
+          "sizeBytes": 1686,
+          "kind": "reference"
+        },
+        {
+          "path": "references/raster-coefficient-variation.md",
+          "sizeBytes": 2253,
+          "kind": "reference"
+        },
+        {
+          "path": "references/raster-detrend.md",
+          "sizeBytes": 2487,
+          "kind": "reference"
+        },
+        {
+          "path": "references/raster-difference.md",
+          "sizeBytes": 1933,
+          "kind": "reference"
+        },
+        {
+          "path": "references/raster-harmonic-gap-fill.md",
+          "sizeBytes": 3374,
+          "kind": "reference"
+        },
+        {
+          "path": "references/raster-historical-fill.md",
+          "sizeBytes": 2065,
+          "kind": "reference"
+        },
+        {
+          "path": "references/raster-kelvin-to-celsius.md",
+          "sizeBytes": 1995,
+          "kind": "reference"
+        },
+        {
+          "path": "references/raster-linear-fill.md",
+          "sizeBytes": 2335,
+          "kind": "reference"
+        },
+        {
+          "path": "references/raster-mean.md",
+          "sizeBytes": 1954,
+          "kind": "reference"
+        },
+        {
+          "path": "references/raster-minmax.md",
+          "sizeBytes": 2028,
+          "kind": "reference"
+        },
+        {
+          "path": "references/raster-pearson.md",
+          "sizeBytes": 2489,
+          "kind": "reference"
+        },
+        {
+          "path": "references/raster-rmse.md",
+          "sizeBytes": 2186,
+          "kind": "reference"
+        },
+        {
+          "path": "references/raster-savgol.md",
+          "sizeBytes": 2539,
+          "kind": "reference"
+        },
+        {
+          "path": "references/raster-savi.md",
+          "sizeBytes": 2054,
+          "kind": "reference"
+        },
+        {
+          "path": "references/raster-trend.md",
+          "sizeBytes": 2633,
+          "kind": "reference"
+        },
+        {
+          "path": "references/red-edge-chlorophyll.md",
+          "sizeBytes": 1384,
+          "kind": "reference"
+        },
+        {
+          "path": "references/reflectance-gap-transfer.md",
+          "sizeBytes": 1693,
+          "kind": "reference"
+        },
+        {
+          "path": "references/reflectance-spatiotemporal-fusion.md",
+          "sizeBytes": 1815,
+          "kind": "reference"
+        },
+        {
+          "path": "references/regional-image-statistics.md",
+          "sizeBytes": 1144,
+          "kind": "reference"
+        },
+        {
+          "path": "references/s1-event-change.md",
+          "sizeBytes": 1733,
+          "kind": "reference"
+        },
+        {
+          "path": "references/s1-inundation.md",
+          "sizeBytes": 1827,
+          "kind": "reference"
+        },
+        {
+          "path": "references/s1-landslide-anomaly.md",
+          "sizeBytes": 1719,
+          "kind": "reference"
+        },
+        {
+          "path": "references/s1-radar-vegetation.md",
+          "sizeBytes": 1699,
+          "kind": "reference"
+        },
+        {
+          "path": "references/s1-speckle-lee-filter.md",
+          "sizeBytes": 3861,
+          "kind": "reference"
+        },
+        {
+          "path": "references/s2-calibrated-canopy-trait.md",
+          "sizeBytes": 1643,
+          "kind": "reference"
+        },
+        {
+          "path": "references/s2-clear-composite.md",
+          "sizeBytes": 1367,
+          "kind": "reference"
+        },
+        {
+          "path": "references/s2-cloud-score-plus.md",
+          "sizeBytes": 3121,
+          "kind": "reference"
+        },
+        {
+          "path": "references/s2-evi-phenology.md",
+          "sizeBytes": 3022,
+          "kind": "reference"
+        },
+        {
+          "path": "references/s2-ndmi.md",
+          "sizeBytes": 1543,
+          "kind": "reference"
+        },
+        {
+          "path": "references/s2-ndti.md",
+          "sizeBytes": 1592,
+          "kind": "reference"
+        },
+        {
+          "path": "references/s2-ndvi.md",
+          "sizeBytes": 1566,
+          "kind": "reference"
+        },
+        {
+          "path": "references/s2-ndwi.md",
+          "sizeBytes": 1543,
+          "kind": "reference"
+        },
+        {
+          "path": "references/s2-water-fraction.md",
+          "sizeBytes": 1611,
+          "kind": "reference"
+        },
+        {
+          "path": "references/s2-wildfire-dnbr.md",
+          "sizeBytes": 3051,
+          "kind": "reference"
+        },
+        {
+          "path": "references/s5p-tropospheric-no2.md",
+          "sizeBytes": 2536,
+          "kind": "reference"
+        },
+        {
+          "path": "references/sen-slope.md",
+          "sizeBytes": 1213,
+          "kind": "reference"
+        },
+        {
+          "path": "references/spectral-threshold-mask.md",
+          "sizeBytes": 942,
+          "kind": "reference"
+        },
+        {
+          "path": "references/srtm-elevation.md",
+          "sizeBytes": 1113,
+          "kind": "reference"
+        },
+        {
+          "path": "references/stream-power-index.md",
+          "sizeBytes": 965,
+          "kind": "reference"
+        },
+        {
+          "path": "references/terraclimate-monthly-series.md",
+          "sizeBytes": 2021,
+          "kind": "reference"
+        },
+        {
+          "path": "references/terraclimate-monthly-water.md",
+          "sizeBytes": 1106,
+          "kind": "reference"
+        },
+        {
+          "path": "references/usle-soil-loss.md",
+          "sizeBytes": 1020,
+          "kind": "reference"
+        },
+        {
+          "path": "references/vegetation-health.md",
+          "sizeBytes": 2140,
+          "kind": "reference"
+        },
+        {
+          "path": "references/vertex-image-inference.md",
+          "sizeBytes": 1610,
+          "kind": "reference"
+        },
+        {
+          "path": "references/viirs-night-radiance.md",
+          "sizeBytes": 1239,
+          "kind": "reference"
+        },
+        {
+          "path": "references/wetness-index.md",
+          "sizeBytes": 992,
+          "kind": "reference"
+        },
+        {
+          "path": "references/worldcover-class-area.md",
+          "sizeBytes": 1245,
+          "kind": "reference"
+        },
+        {
+          "path": "references/worldcover-classifiers.md",
+          "sizeBytes": 2003,
+          "kind": "reference"
+        },
+        {
+          "path": "references/worldcover-stratified-sample.md",
+          "sizeBytes": 1257,
+          "kind": "reference"
+        },
+        {
+          "path": "references/worldpop-population.md",
+          "sizeBytes": 1251,
+          "kind": "reference"
+        }
+      ]
+    },
+    {
+      "id": "eo-agent-capability-routing",
+      "nameZh": "遥感智能体意图与工具匹配",
+      "nameEn": "EO Agent Capability Routing",
+      "discipline": "skill-engineering",
+      "disciplineLabel": "技能工程与编排",
+      "badge": "内置",
+      "author": "EOStage",
+      "license": "Apache-2.0",
+      "version": "1.0.0",
+      "slashCommand": "/eo-agent-capability-routing",
+      "shortDescriptionZh": "将自然语言遥感请求拆解为可验证步骤，按可用工具、产品级别与返回证据选择调用或诚实降级。",
+      "overviewZh": "面向多步遥感任务的意图拆解与工具能力匹配规程：明确检索影像、计算指数、导出栅格与验证落盘四类边界，核查前置访问条件并在能力缺失时保留已完成候选与诚实降级说明。",
+      "sharedComponents": [],
+      "sharedComponentNote": "纯编排与前置核验规程，无额外二进制依赖",
+      "workbenchTool": null,
+      "exampleTasks": [
+        "评估当前可用工具链能否直接完成某县月度无云 NDVI 栅格交付并列出缺失前提"
+      ],
+      "fileCount": 2,
+      "totalBytes": 3130,
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 1907,
+          "kind": "skill_md"
+        },
+        {
+          "path": "references/check-capability-prerequisites.md",
+          "sizeBytes": 1223,
+          "kind": "reference"
+        }
+      ]
+    },
+    {
+      "id": "eo-model-explanation-review",
+      "nameZh": "遥感模型归因与误差解释",
+      "nameEn": "EO Model Explanation Review",
+      "discipline": "earth-env",
+      "disciplineLabel": "地球与环境科学",
+      "badge": "内置",
+      "author": "EOStage",
+      "license": "Apache-2.0",
+      "version": "1.0.0",
+      "slashCommand": "/eo-model-explanation-review",
+      "shortDescriptionZh": "审查遥感分类与回归模型的 SHAP 归因、输出尺度可加性、波段共线性与分区残差误差边界。",
+      "overviewZh": "规范遥感机器学习模型的 SHAP 贡献可加性复核（区分 log-odds 与概率尺度）、红光/近红外/NDVI 共线性特征组解释及分区残差诊断，严禁将模型特征依赖直接外推为生态因果干预结论。",
+      "sharedComponents": [],
+      "sharedComponentNote": "纯模型归因审查与误差诊断规程",
+      "workbenchTool": null,
+      "exampleTasks": [
+        "核查随机森林生物量反演模型的 SHAP 特征归因尺度可加性与高共线波段解释边界"
+      ],
+      "fileCount": 2,
+      "totalBytes": 3055,
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 1852,
+          "kind": "skill_md"
+        },
+        {
+          "path": "references/check-attribution-additivity.md",
+          "sizeBytes": 1203,
+          "kind": "reference"
+        }
+      ]
+    },
+    {
+      "id": "eo-model-transfer-evaluation",
+      "nameZh": "遥感模型跨区域评估与选型",
+      "nameEn": "EO Model Transfer Evaluation",
+      "discipline": "earth-env",
+      "disciplineLabel": "地球与环境科学",
+      "badge": "内置",
+      "author": "EOStage",
+      "license": "Apache-2.0",
+      "version": "1.0.0",
+      "slashCommand": "/eo-model-transfer-evaluation",
+      "shortDescriptionZh": "面向同区插值、跨区迁移与未来预测任务设计空间与时间独立留出验证，核查分组重叠与泄漏。",
+      "overviewZh": "针对遥感分类与回归模型的部署对齐验证规程：按空间块、行政区或时间窗口独立留出，自动核查训练集与测试集分组重叠泄漏，要求输出混淆矩阵、宏 F1 或原单位 MAE/RMSE。",
+      "sharedComponents": [],
+      "sharedComponentNote": "纯空间独立验证与迁移评估规程",
+      "workbenchTool": null,
+      "exampleTasks": [
+        "我要把 A 市训练的 Sentinel-2 土地覆盖模型迁移到 B 市，如何设计无空间泄漏的评估方案？"
+      ],
+      "fileCount": 2,
+      "totalBytes": 2801,
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 1864,
+          "kind": "skill_md"
+        },
+        {
+          "path": "references/audit-group-overlap.md",
+          "sizeBytes": 937,
+          "kind": "reference"
+        }
+      ]
+    },
+    {
+      "id": "eo-workbench-concept",
+      "nameZh": "遥感工作台任务状态与交付设计",
+      "nameEn": "EO Workbench Concept Design",
+      "discipline": "skill-engineering",
+      "disciplineLabel": "技能工程与编排",
+      "badge": "内置",
+      "author": "EOStage",
+      "license": "Apache-2.0",
+      "version": "1.0.0",
+      "slashCommand": "/eo-workbench-concept",
+      "shortDescriptionZh": "将遥感功能需求梳理为用户任务、工作台状态契约、预览与物理落盘分离判据及可复现验收。",
+      "overviewZh": "面向遥感工作台交互与状态机设计规程：严格区分数据可用性、质量合格、在线预览成功与本地文件落盘成功四类状态，确保参数变更后旧预览不冒充新结果。",
+      "sharedComponents": [],
+      "sharedComponentNote": "纯工作台状态契约与验收设计规程",
+      "workbenchTool": null,
+      "exampleTasks": [
+        "把按城市制作月度植被指数图的需求拆解为工作台状态流转、异常兜底与验收条件"
+      ],
+      "fileCount": 2,
+      "totalBytes": 2806,
+      "files": [
+        {
+          "path": "SKILL.md",
+          "sizeBytes": 1825,
+          "kind": "skill_md"
+        },
+        {
+          "path": "references/check-workbench-states.md",
+          "sizeBytes": 981,
+          "kind": "reference"
+        }
+      ]
+    }
+  ],
+  "skillCount": 29
+}

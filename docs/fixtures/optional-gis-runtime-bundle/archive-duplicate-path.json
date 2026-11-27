@@ -1,0 +1,4 @@
+{
+  "archive_entries": ["data/result.tif", "data/result.tif"],
+  "expected_error": "GIS_ARCHIVE_DUPLICATE_PATH"
+}

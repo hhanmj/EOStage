@@ -1,0 +1,27 @@
+{
+  "fixture_contract": "NisarOfficialSubsetEvidenceV1",
+  "status": "official_roadmap_observed_2026-07-28",
+  "source": "https://nisar-docs.asf.alaska.edu/roadmap/",
+  "capabilities": [
+    {
+      "product_type": "GCOV",
+      "operation": "extract individual HDF5 dataset layers to COG",
+      "service": "Harmony",
+      "status": "Complete",
+      "classification": "ProviderGeneratedSubset"
+    },
+    {
+      "product_type": "GCOV",
+      "operation": "dataset spatial subsetting and reprojection",
+      "service": "Harmony",
+      "status": "Pending"
+    },
+    {
+      "product_type": "RSLC",
+      "operation": "spatial subset",
+      "service": null,
+      "status": "Not documented"
+    }
+  ],
+  "expected_result": {"kind": "RSLC_NOT_SUPPORTED", "error": "NISAR_SUBSET_NOT_SUPPORTED"}
+}

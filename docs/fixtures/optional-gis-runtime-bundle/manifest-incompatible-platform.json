@@ -1,0 +1,5 @@
+{
+  "fixture": "manifest-valid.json",
+  "mutation": "platform = linux; architecture = x86_64",
+  "expected_error": "GIS_PLATFORM_UNSUPPORTED"
+}

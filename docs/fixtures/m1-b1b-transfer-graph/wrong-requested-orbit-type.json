@@ -1,0 +1,30 @@
+{
+  "fixture_metadata": {
+    "fixture_version": 1,
+    "fixture_kind": "invalid",
+    "fixture_name": "wrong-requested-orbit-type",
+    "payload_contract": "FrozenTaskSnapshotV3",
+    "offline": true
+  },
+  "base": "single",
+  "mutations": [
+    {
+      "op": "set",
+      "path": "/orbit_associations/0/requested_orbit_type",
+      "value": "MOEORB"
+    }
+  ],
+  "expected": {
+    "accepted": false,
+    "structurally_valid": false,
+    "unified_validation": "structural",
+    "error": {
+      "variant": "invalid_orbit_match",
+      "association": {
+        "kind": "orbit_association",
+        "index": 0
+      },
+      "issue": "requested_orbit_type_not_poeorb"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "contract": "GISRuntimeRecoveryRecord",
+  "recovery_version": 1,
+  "recovery_id": "fixture-startup-diverged",
+  "kind": "no_journal_startup",
+  "outcome": "blocked",
+  "primary_status": "valid",
+  "backup_status": "valid",
+  "active_status": "valid",
+  "actions": [
+    "copy_divergent_ledgers_to_quarantine"
+  ],
+  "authoritative_ledger_sha256": null,
+  "generation": null,
+  "quarantine_paths": [
+    "state/quarantine/startup-diverged/replay-ledger.json",
+    "state/quarantine/startup-diverged/replay-ledger.json.bak"
+  ],
+  "error_code": "GIS_REPLAY_LEDGER_DIVERGED",
+  "created_at": "2026-07-22T02:00:00Z"
+}

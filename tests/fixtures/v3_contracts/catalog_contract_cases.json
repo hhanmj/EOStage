@@ -1,0 +1,262 @@
+{
+  "collection": {
+    "logical_dataset": "optical.sentinel-2.l2a",
+    "provider_id": "copernicus.dataspace.odata",
+    "native_collection_id": "SENTINEL-2",
+    "collection_profile_id": "cdse.sentinel-2.l2a.collection.v1",
+    "identity_rule_id": "cdse.sentinel-2.l2a.identity.v1",
+    "filename_rule_id": "cdse.sentinel-2.l2a.archive-filename.v1",
+    "delivery_model": "archive_first",
+    "production_enabled": false
+  },
+  "query": {
+    "logical_dataset": "optical.sentinel-2.l2a",
+    "provider_id": "copernicus.dataspace.odata",
+    "native_collection_id": "SENTINEL-2",
+    "aoi_geojson": {
+      "type": "Polygon",
+      "coordinates": [[[110.0, 30.0], [111.0, 30.0], [111.0, 31.0], [110.0, 30.0]]]
+    },
+    "cursor": "fixture-page-2",
+    "result_limit": 2,
+    "filters": {
+      "product_type": "S2MSI2A"
+    }
+  },
+  "valid_polygonal_aoi_geojson": [
+    {"type": "MultiPolygon", "coordinates": [[[[110.0, 30.0], [111.0, 30.0], [111.0, 31.0], [110.0, 30.0]]]]},
+    {"type": "Feature", "properties": {"fixture": true}, "geometry": {"type": "Polygon", "coordinates": [[[110.0, 30.0], [111.0, 30.0], [111.0, 31.0], [110.0, 30.0]]]}},
+    {"type": "FeatureCollection", "features": [{"type": "Feature", "properties": {}, "geometry": {"type": "Polygon", "coordinates": [[[110.0, 30.0], [111.0, 30.0], [111.0, 31.0], [110.0, 30.0]]]}}]}
+  ],
+  "valid_feature_footprint_geojson": {
+    "type": "Feature",
+    "properties": {"ordinary_label": "preserve-this-property"},
+    "geometry": {"type": "Polygon", "coordinates": [[[110.0, 30.0], [111.0, 30.0], [111.0, 31.0], [110.0, 30.0]]]}
+  },
+  "response": {
+    "collection": {
+      "logical_dataset": "optical.sentinel-2.l2a",
+      "provider_id": "copernicus.dataspace.odata",
+      "native_collection_id": "SENTINEL-2",
+      "collection_profile_id": "cdse.sentinel-2.l2a.collection.v1",
+      "identity_rule_id": "cdse.sentinel-2.l2a.identity.v1",
+      "filename_rule_id": "cdse.sentinel-2.l2a.archive-filename.v1",
+      "delivery_model": "archive_first",
+      "production_enabled": false
+    },
+    "products": [
+      {
+        "provider_id": "copernicus.dataspace.odata",
+        "product_id": "fixture-uuid-1",
+        "display_name": "S2 fixture one",
+        "source_kind": "sentinel2",
+        "product_kind": "optical_scene",
+        "acquisition_datetime": null,
+        "footprint_geojson": {
+          "type": "Polygon",
+          "coordinates": [[[110.0, 30.0], [111.0, 30.0], [111.0, 31.0], [110.0, 30.0]]]
+        },
+        "footprint_bbox": null,
+        "assets": [
+          {
+            "asset_key": "archive-1",
+            "stable_asset_key": "PROVIDER::fixture::COLLECTION::SENTINEL-2::ITEM::fixture-uuid-1::ASSET::archive-1",
+            "role": "primary",
+            "native_roles": ["archive"],
+            "url": null,
+            "file_name": "fixture-archive.zip",
+            "media_type": "application/zip",
+            "size_bytes": 2048
+          }
+        ],
+        "properties": {},
+        "payload": {}
+      },
+      {
+        "provider_id": "copernicus.dataspace.odata",
+        "product_id": "fixture-uuid-2",
+        "display_name": "S2 fixture two",
+        "source_kind": "sentinel2",
+        "product_kind": "optical_scene",
+        "acquisition_datetime": null,
+        "footprint_geojson": null,
+        "footprint_bbox": null,
+        "assets": [],
+        "properties": {},
+        "payload": {}
+      }
+    ],
+    "stats": {
+      "requested_limit": 2,
+      "matched_count": 3,
+      "request_count": 1,
+      "transport_part_count": 1,
+      "fetched_record_count": 2,
+      "mapped_record_count": 2,
+      "profile_filtered_record_count": 0,
+      "exact_duplicate_record_count": 0,
+      "unique_provider_product_count": 2,
+      "exact_matched_count": 2,
+      "returned_count": 2,
+      "remote_exhausted": false,
+      "working_set_satisfied": true,
+      "elapsed_ms": 0,
+      "truncated": true
+    },
+    "next_cursor": "fixture-page-2",
+    "item_errors": []
+  },
+  "deduplicated_response": {
+    "collection": {
+      "logical_dataset": "optical.sentinel-2.l2a",
+      "provider_id": "copernicus.dataspace.odata",
+      "native_collection_id": "SENTINEL-2",
+      "collection_profile_id": "cdse.sentinel-2.l2a.collection.v1",
+      "identity_rule_id": "cdse.sentinel-2.l2a.identity.v1",
+      "filename_rule_id": "cdse.sentinel-2.l2a.archive-filename.v1",
+      "delivery_model": "archive_first",
+      "production_enabled": false
+    },
+    "products": [
+      {
+        "provider_id": "copernicus.dataspace.odata",
+        "product_id": "deduplicated-uuid-1",
+        "display_name": "Deduplicated fixture one",
+        "source_kind": "sentinel2",
+        "product_kind": "optical_scene",
+        "acquisition_datetime": null,
+        "footprint_geojson": null,
+        "footprint_bbox": null,
+        "assets": [],
+        "properties": {},
+        "payload": {}
+      },
+      {
+        "provider_id": "copernicus.dataspace.odata",
+        "product_id": "deduplicated-uuid-2",
+        "display_name": "Deduplicated fixture two",
+        "source_kind": "sentinel2",
+        "product_kind": "optical_scene",
+        "acquisition_datetime": null,
+        "footprint_geojson": null,
+        "footprint_bbox": null,
+        "assets": [],
+        "properties": {},
+        "payload": {}
+      }
+    ],
+    "stats": {
+      "requested_limit": 2,
+      "matched_count": 3,
+      "request_count": 1,
+      "transport_part_count": 1,
+      "fetched_record_count": 3,
+      "mapped_record_count": 3,
+      "profile_filtered_record_count": 0,
+      "exact_duplicate_record_count": 1,
+      "unique_provider_product_count": 2,
+      "exact_matched_count": 2,
+      "returned_count": 2,
+      "remote_exhausted": true,
+      "working_set_satisfied": true,
+      "elapsed_ms": 0,
+      "truncated": false
+    },
+    "next_cursor": null,
+    "item_errors": []
+  },
+  "oauth_descriptor": {
+    "resolver_id": "cdse.archive.fixture.v1",
+    "scheme": "oauth_bearer_https",
+    "stable_href": "https://catalogue.example.invalid/odata/v1/Products(fixture-uuid)/$value",
+    "requires_credentials": true,
+    "credential_profile": "copernicus-dataspace-default",
+    "resolver_parameters": {}
+  },
+  "valid_oauth_hrefs": ["https://catalogue.example.invalid:443/odata/v1/Products(fixture-uuid)/$value", "https://[2001:db8::1]:443/odata/v1/Products(fixture-uuid)/$value"],
+  "old_asset": {
+    "asset_key": "archive-1",
+    "stable_asset_key": "PROVIDER::fixture::COLLECTION::SENTINEL-2::ITEM::fixture-uuid::ASSET::archive-1",
+    "role": "primary",
+    "url": null,
+    "file_name": null,
+    "media_type": "application/zip",
+    "size_bytes": 2048
+  },
+  "native_role_assets": [
+    {
+      "asset_key": "browse-1",
+      "stable_asset_key": "PROVIDER::fixture::COLLECTION::SENTINEL-2::ITEM::fixture-uuid::ASSET::browse-1",
+      "role": "browse",
+      "native_roles": ["thumbnail", "overview"],
+      "url": null,
+      "file_name": "browse-1.jpg",
+      "media_type": "image/jpeg",
+      "size_bytes": 16
+    },
+    {
+      "asset_key": "auxiliary-unknown",
+      "stable_asset_key": "PROVIDER::fixture::COLLECTION::SENTINEL-2::ITEM::fixture-uuid::ASSET::auxiliary-unknown",
+      "role": "auxiliary",
+      "native_roles": ["unreviewed-native-role"],
+      "url": null,
+      "file_name": "auxiliary.dat",
+      "media_type": "application/octet-stream",
+      "size_bytes": 8
+    },
+    {
+      "asset_key": "browse-2",
+      "stable_asset_key": "PROVIDER::fixture::COLLECTION::SENTINEL-2::ITEM::fixture-uuid::ASSET::browse-2",
+      "role": "browse",
+      "native_roles": ["thumbnail"],
+      "url": null,
+      "file_name": "browse-2.jpg",
+      "media_type": "image/jpeg",
+      "size_bytes": 17
+    }
+  ],
+  "invalid_catalogue_cases": {
+    "bbox_only_query": {
+      "logical_dataset": "optical.sentinel-2.l2a",
+      "provider_id": "copernicus.dataspace.odata",
+      "native_collection_id": "SENTINEL-2",
+      "cursor": null,
+      "result_limit": 1,
+      "filters": {"bbox": [110.0, 30.0, 111.0, 31.0]}
+    },
+    "point_query": {
+      "logical_dataset": "optical.sentinel-2.l2a",
+      "provider_id": "copernicus.dataspace.odata",
+      "native_collection_id": "SENTINEL-2",
+      "aoi_geojson": {"type": "Point", "coordinates": [110.0, 30.0]},
+      "cursor": null,
+      "result_limit": 1,
+      "filters": {}
+    },
+    "line_string_query": {
+      "logical_dataset": "optical.sentinel-2.l2a",
+      "provider_id": "copernicus.dataspace.odata",
+      "native_collection_id": "SENTINEL-2",
+      "aoi_geojson": {"type": "LineString", "coordinates": [[110.0, 30.0], [111.0, 31.0]]},
+      "cursor": null,
+      "result_limit": 1,
+      "filters": {}
+    },
+    "empty_polygon_query": {
+      "logical_dataset": "optical.sentinel-2.l2a",
+      "provider_id": "copernicus.dataspace.odata",
+      "native_collection_id": "SENTINEL-2",
+      "aoi_geojson": {"type": "Polygon", "coordinates": []},
+      "cursor": null,
+      "result_limit": 1,
+      "filters": {}
+    },
+    "invalid_footprint_geojson": {"type": "Point", "coordinates": [110.0, 30.0]},
+    "sensitive_aoi_geojson": {"type": "Feature", "properties": {"ordinary": {"token": "fixture-placeholder"}}, "geometry": {"type": "Polygon", "coordinates": [[[110.0, 30.0], [111.0, 30.0], [111.0, 31.0], [110.0, 30.0]]]}},
+    "crs_aoi_geojson": {"type": "Feature", "crs": "EPSG:3857", "properties": {"fixture": true}, "geometry": {"type": "Polygon", "coordinates": [[[110.0, 30.0], [111.0, 30.0], [111.0, 31.0], [110.0, 30.0]]]}},
+    "sensitive_footprint_geojson": {"type": "Feature", "properties": {"nested": {"authorization": "fixture-placeholder"}}, "geometry": {"type": "Polygon", "coordinates": [[[110.0, 30.0], [111.0, 30.0], [111.0, 31.0], [110.0, 30.0]]]}},
+    "crs_footprint_geojson": {"type": "Polygon", "crs": "EPSG:3857", "coordinates": [[[110.0, 30.0], [111.0, 30.0], [111.0, 31.0], [110.0, 30.0]]]},
+    "invalid_oauth_hrefs": [null, "relative/path", "http://example.invalid/file", "ftp://example.invalid/file", "file:///tmp/file", "https://user@example.invalid/file", "https://example.invalid/file?token=not-allowed", "https://example.invalid/file#fragment", "https://example.invalid:8443/file", "https:///missing-host", "https://exa[mple.invalid/file", "https://example.invalid\\evil/file", "https://example.invalid:/file", "https://example.invalid:443extra/file"],
+    "invalid_native_roles": ["", "bad\u0000role", "bad\nrole", "bad\u0085role"]
+  }
+}

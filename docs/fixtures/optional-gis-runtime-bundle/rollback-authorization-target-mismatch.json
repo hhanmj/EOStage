@@ -1,0 +1,13 @@
+{
+  "fixture_kind": "rollback-authorization-rejection-scenario",
+  "authorization_file": "rollback-authorization-valid.json",
+  "base_request_file": "rollback-request-valid.json",
+  "request_mutation": "target_selection_digest replaced before validation",
+  "evaluation_time": "2026-07-22T01:00:00Z",
+  "requested_target_selection_digest": "e3a730950a2642355ad5db13bca684d83526566a60949d90f280485105915fdc",
+  "authorized_target_selection_digest": "3788ed70d614046c953c8d332e31535376fb15729165cc049a63ab606ec4e897",
+  "expected_error": "GIS_ROLLBACK_TARGET_MISMATCH",
+  "active_after_file": "active-after.json",
+  "replay_floor_after_file": "replay-ledger-valid.json",
+  "receipt_created": false
+}

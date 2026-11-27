@@ -1,0 +1,34 @@
+{
+  "fixture_metadata": {
+    "fixture_version": 1,
+    "fixture_kind": "invalid",
+    "fixture_name": "selected-product-reference-mismatch",
+    "payload_contract": "FrozenTaskSnapshotV3",
+    "offline": true
+  },
+  "base": "single",
+  "mutations": [
+    {
+      "op": "set",
+      "path": "/transfer_items/0/asset_access/reference/stable_asset_key",
+      "value": "fixture:source-a:other"
+    }
+  ],
+  "expected": {
+    "accepted": false,
+    "error": {
+      "variant": "invalid_transfer_graph",
+      "issue": {
+        "kind": "selected_product_reference_mismatch",
+        "transfer": {
+          "kind": "transfer_item",
+          "index": 0
+        },
+        "source": {
+          "kind": "source_item",
+          "index": 0
+        }
+      }
+    }
+  }
+}

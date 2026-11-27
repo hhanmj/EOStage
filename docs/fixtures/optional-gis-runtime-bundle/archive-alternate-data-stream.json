@@ -1,0 +1,4 @@
+{
+  "archive_entry": "data/result.tif:metadata",
+  "expected_error": "GIS_ARCHIVE_ALTERNATE_STREAM"
+}

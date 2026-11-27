@@ -1,0 +1,17 @@
+{
+  "fixture_kind": "no-journal-startup-scenario",
+  "journal_state": "absent",
+  "primary": {"state": "valid", "file": "replay-ledger-valid.json"},
+  "backup": {"state": "invalid", "file": "replay-ledger-corrupt.json"},
+  "active_registry": {"state": "valid", "file": "active-after.json"},
+  "rollback_receipt_file": null,
+  "expected": {
+    "outcome": "repaired_backup",
+    "error_code": null,
+    "authoritative_ledger_file": "replay-ledger-valid.json",
+    "repaired_path": "state/replay-ledger.json.bak",
+    "quarantine_paths": ["state/quarantine/startup-backup-corrupt/replay-ledger.json.bak"],
+    "new_lease_allowed": true,
+    "replay_floor_rebuilt": false
+  }
+}

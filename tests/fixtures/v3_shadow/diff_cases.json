@@ -1,0 +1,46 @@
+{
+  "cases": [
+    {
+      "name": "equal_reordered_objects",
+      "python": {"beta": [1, 2], "alpha": {"value": "一致"}},
+      "rust": {"alpha": {"value": "一致"}, "beta": [1, 2]},
+      "paths": [],
+      "categories": []
+    },
+    {
+      "name": "missing_in_rust",
+      "python": {"nested": {"kept": 1, "missing": 2}},
+      "rust": {"nested": {"kept": 1}},
+      "paths": ["/nested/missing"],
+      "categories": ["missing_in_rust"]
+    },
+    {
+      "name": "missing_in_python",
+      "python": {"items": ["a"]},
+      "rust": {"items": ["a", "b"]},
+      "paths": ["/items/1"],
+      "categories": ["missing_in_python"]
+    },
+    {
+      "name": "type_mismatch",
+      "python": {"count": 1},
+      "rust": {"count": "1"},
+      "paths": ["/count"],
+      "categories": ["type_mismatch"]
+    },
+    {
+      "name": "value_mismatch",
+      "python": {"items": ["same", "python"]},
+      "rust": {"items": ["same", "rust"]},
+      "paths": ["/items/1"],
+      "categories": ["value_mismatch"]
+    },
+    {
+      "name": "escaped_json_pointer",
+      "python": {"a/b": {"x~y": true}},
+      "rust": {"a/b": {"x~y": false}},
+      "paths": ["/a~1b/x~0y"],
+      "categories": ["value_mismatch"]
+    }
+  ]
+}

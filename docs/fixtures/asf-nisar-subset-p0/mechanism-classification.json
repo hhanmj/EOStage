@@ -1,0 +1,40 @@
+{
+  "fixture_contract": "NisarSubsetMechanismClassificationV1",
+  "status": "proposed",
+  "allowed_mechanisms": [
+    "FullProductDownload",
+    "ProviderGeneratedSubset",
+    "RemoteHdf5LayerRead",
+    "RemoteHdf5SpatialWindow",
+    "LocalSubsetAfterDownload"
+  ],
+  "rules": [
+    {
+      "evidence": "complete object transferred",
+      "classification": "FullProductDownload"
+    },
+    {
+      "evidence": "official service creates derived output",
+      "classification": "ProviderGeneratedSubset"
+    },
+    {
+      "evidence": "client reads selected logical datasets remotely",
+      "classification": "RemoteHdf5LayerRead"
+    },
+    {
+      "evidence": "client maps AOI to HDF5 chunks/ranges",
+      "classification": "RemoteHdf5SpatialWindow"
+    },
+    {
+      "evidence": "complete source downloaded before crop",
+      "classification": "LocalSubsetAfterDownload"
+    }
+  ],
+  "forbidden_alias": {
+    "evidence": "HTTP Range only",
+    "classification": "server_side_crop"
+  },
+  "expected_result": {
+    "kind": "closed_classification"
+  }
+}

@@ -1,0 +1,4 @@
+{
+  "archive_entries": ["worker/gis-worker.exe", "../outside.txt"],
+  "expected_error": "GIS_ARCHIVE_UNSAFE"
+}

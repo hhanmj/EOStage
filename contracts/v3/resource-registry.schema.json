@@ -1,0 +1,780 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eostage.local/contracts/v3/resource-registry.schema.json",
+  "title": "EOStage Resource Registry v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "registry_id", "review_version", "resources", "dependencies"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "registry_id": { "const": "eostage.resource-registry.v1" },
+    "review_version": { "$ref": "#/$defs/stableId" },
+    "resources": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/resourceDescriptor" }
+    },
+    "dependencies": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/resourceDependency" }
+    }
+  },
+  "$defs": {
+    "stableId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160,
+      "pattern": "^[a-z0-9._-]+$"
+    },
+    "lifecycle": {
+      "enum": ["reserved", "implemented", "admission_controlled", "retained", "retired"]
+    },
+    "credentialRequirement": { "enum": ["none", "required"] },
+    "runtimeRequirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "build_capability",
+        "runtime_readiness",
+        "credential_readiness",
+        "admission_evidence",
+        "policy_permission"
+      ],
+      "properties": {
+        "build_capability": { "type": "boolean" },
+        "runtime_readiness": { "type": "boolean" },
+        "credential_readiness": { "type": "boolean" },
+        "admission_evidence": { "type": "boolean" },
+        "policy_permission": { "type": "boolean" }
+      }
+    },
+    "providerRoute": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "route_id",
+        "provider_id",
+        "native_collection_id",
+        "implementation_binding_id",
+        "lifecycle",
+        "credential_requirement",
+        "endpoint_class",
+        "priority"
+      ],
+      "properties": {
+        "route_id": { "$ref": "#/$defs/stableId" },
+        "provider_id": { "$ref": "#/$defs/stableId" },
+        "native_collection_id": { "type": ["string", "null"] },
+        "implementation_binding_id": { "$ref": "#/$defs/stableId" },
+        "lifecycle": { "$ref": "#/$defs/lifecycle" },
+        "credential_requirement": { "$ref": "#/$defs/credentialRequirement" },
+        "endpoint_class": { "type": "string", "minLength": 1 },
+        "priority": { "type": "integer", "minimum": 1 },
+        "coverage": { "type": ["string", "null"] }
+      }
+    },
+    "assetRole": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "min_count", "max_count", "media_types"],
+      "properties": {
+        "role": { "enum": ["primary", "metadata", "browse", "thumbnail", "auxiliary"] },
+        "min_count": { "type": "integer", "minimum": 0 },
+        "max_count": { "type": ["integer", "null"], "minimum": 0 },
+        "media_types": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "assetSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["asset_schema_id", "roles"],
+      "properties": {
+        "asset_schema_id": { "$ref": "#/$defs/stableId" },
+        "roles": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/assetRole" }
+        }
+      }
+    },
+    "deliveryProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "delivery_profile_id",
+        "model",
+        "supports_range",
+        "supports_resume",
+        "atomic_promotion"
+      ],
+      "properties": {
+        "delivery_profile_id": { "$ref": "#/$defs/stableId" },
+        "model": {
+          "enum": [
+            "single_archive",
+            "multi_asset",
+            "range_subset",
+            "resolver_file",
+            "tiled_cog",
+            "bbox_api",
+            "user_mediated_request",
+            "user_mediated_import"
+          ]
+        },
+        "supports_range": { "type": "boolean" },
+        "supports_resume": { "type": "boolean" },
+        "atomic_promotion": { "type": "boolean" }
+      }
+    },
+    "validationProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["validation_profile_id", "rules"],
+      "properties": {
+        "validation_profile_id": { "$ref": "#/$defs/stableId" },
+        "rules": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "enum": [
+              "expected_size",
+              "md5",
+              "sha256",
+              "sha512",
+              "media_type",
+              "geo_tiff_decode",
+              "hdf5_semantic",
+              "orbit_filename",
+              "orbit_validity",
+              "gacos_product_pair",
+              "provider_identity"
+            ]
+          }
+        }
+      }
+    },
+    "licenseProvenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["license_id", "source_url", "citation", "provenance_binding_ids"],
+      "properties": {
+        "license_id": { "type": ["string", "null"] },
+        "source_url": { "type": ["string", "null"] },
+        "citation": { "type": ["string", "null"] },
+        "provenance_binding_ids": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "capability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "capability_id",
+        "kind",
+        "lifecycle",
+        "implementation_binding_id",
+        "provider_route_ids",
+        "asset_schema_id",
+        "delivery_profile_id",
+        "validation_profile_id",
+        "credential_requirement",
+        "admission_policy_id",
+        "runtime_requirements"
+      ],
+      "properties": {
+        "capability_id": { "$ref": "#/$defs/stableId" },
+        "kind": {
+          "enum": [
+            "search",
+            "preview",
+            "full_archive",
+            "asset_set",
+            "remote_subset",
+            "resolve",
+            "download",
+            "plan",
+            "import"
+          ]
+        },
+        "lifecycle": { "$ref": "#/$defs/lifecycle" },
+        "implementation_binding_id": {
+          "oneOf": [{ "$ref": "#/$defs/stableId" }, { "type": "null" }]
+        },
+        "provider_route_ids": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/stableId" }
+        },
+        "asset_schema_id": {
+          "oneOf": [{ "$ref": "#/$defs/stableId" }, { "type": "null" }]
+        },
+        "delivery_profile_id": {
+          "oneOf": [{ "$ref": "#/$defs/stableId" }, { "type": "null" }]
+        },
+        "validation_profile_id": {
+          "oneOf": [{ "$ref": "#/$defs/stableId" }, { "type": "null" }]
+        },
+        "credential_requirement": { "$ref": "#/$defs/credentialRequirement" },
+        "admission_policy_id": {
+          "oneOf": [{ "$ref": "#/$defs/stableId" }, { "type": "null" }]
+        },
+        "runtime_requirements": { "$ref": "#/$defs/runtimeRequirements" }
+      }
+    },
+    "common": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "resource_id",
+        "display_name",
+        "descriptor_version",
+        "lifecycle",
+        "implementation_binding_id",
+        "provider_routes",
+        "capabilities",
+        "asset_schemas",
+        "delivery_profiles",
+        "validation_profiles",
+        "license_provenance"
+      ],
+      "properties": {
+        "resource_id": { "$ref": "#/$defs/stableId" },
+        "display_name": { "type": "string", "minLength": 1 },
+        "descriptor_version": { "type": "integer", "minimum": 1 },
+        "lifecycle": { "$ref": "#/$defs/lifecycle" },
+        "implementation_binding_id": {
+          "oneOf": [{ "$ref": "#/$defs/stableId" }, { "type": "null" }]
+        },
+        "provider_routes": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/providerRoute" }
+        },
+        "capabilities": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/capability" }
+        },
+        "asset_schemas": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/assetSchema" }
+        },
+        "delivery_profiles": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/deliveryProfile" }
+        },
+        "validation_profiles": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/validationProfile" }
+        },
+        "license_provenance": { "$ref": "#/$defs/licenseProvenance" }
+      }
+    },
+    "acquisitionTimeRange": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["start", "end"],
+      "properties": {
+        "start": {
+          "type": "string",
+          "format": "date-time",
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+        },
+        "end": {
+          "oneOf": [
+            {
+              "type": "string",
+              "format": "date-time",
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+            },
+            { "type": "null" }
+          ]
+        }
+      }
+    },
+    "registryFilterValueType": {
+      "enum": ["integer", "padded_string"]
+    },
+    "registryFilterPlatformLimit": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["platform", "minimum", "maximum"],
+      "properties": {
+        "platform": { "type": "string", "minLength": 1 },
+        "minimum": { "type": "integer", "minimum": 0 },
+        "maximum": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "registryFilterDescriptor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "supported",
+        "parameter",
+        "label",
+        "value_type",
+        "pattern",
+        "minimum",
+        "maximum",
+        "exact_width",
+        "platform_limits"
+      ],
+      "properties": {
+        "supported": { "const": true },
+        "parameter": { "type": "string", "minLength": 1 },
+        "label": { "type": "string", "minLength": 1 },
+        "value_type": { "$ref": "#/$defs/registryFilterValueType" },
+        "pattern": { "type": "string", "minLength": 1 },
+        "minimum": { "type": ["integer", "null"], "minimum": 0 },
+        "maximum": { "type": ["integer", "null"], "minimum": 0 },
+        "exact_width": { "type": ["integer", "null"], "minimum": 1 },
+        "platform_limits": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/registryFilterPlatformLimit" }
+        }
+      }
+    },
+    "registrySearchAction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["action", "platforms", "product_families", "required_fields"],
+      "properties": {
+        "action": { "type": "string", "minLength": 1 },
+        "platforms": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "product_families": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "required_fields": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "sarSearchProjectionKind": {
+      "enum": ["legacy_asf_search", "typed_catalog_profile"]
+    },
+    "registryScalarValue": {
+      "oneOf": [
+        { "type": "string", "minLength": 1 },
+        { "type": "integer" },
+        { "type": "boolean" }
+      ]
+    },
+    "sarSourceFilterSemantics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["supported_keys", "fixed", "options"],
+      "properties": {
+        "supported_keys": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "fixed": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "$ref": "#/$defs/registryScalarValue" }
+        },
+        "options": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    },
+    "sarSearchSemantics": {
+      "type": "object",
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "properties": {
+            "projection_kind": { "const": "legacy_asf_search" },
+            "logical_dataset": { "type": "null" },
+            "source_filters": { "type": "null" }
+          }
+        },
+        {
+          "properties": {
+            "projection_kind": { "const": "typed_catalog_profile" },
+            "logical_dataset": { "$ref": "#/$defs/stableId" },
+            "source_filters": { "$ref": "#/$defs/sarSourceFilterSemantics" }
+          }
+        }
+      ],
+      "required": [
+        "provider_route_id",
+        "selector",
+        "projection_kind",
+        "projection_order",
+        "logical_dataset",
+        "source_filters",
+        "platforms",
+        "instruments",
+        "processing_levels",
+        "product_families",
+        "beam_modes",
+        "polarizations",
+        "supports_flight_direction",
+        "supports_look_direction",
+        "supports_relative_orbit",
+        "supports_frame",
+        "supports_path",
+        "supports_burst",
+        "frame_filter",
+        "track_filter",
+        "supported_actions"
+      ],
+      "properties": {
+        "provider_route_id": { "$ref": "#/$defs/stableId" },
+        "selector": { "type": "string", "minLength": 1 },
+        "projection_kind": { "$ref": "#/$defs/sarSearchProjectionKind" },
+        "projection_order": { "type": "integer", "minimum": 1 },
+        "logical_dataset": {
+          "oneOf": [{ "$ref": "#/$defs/stableId" }, { "type": "null" }]
+        },
+        "source_filters": {
+          "oneOf": [{ "$ref": "#/$defs/sarSourceFilterSemantics" }, { "type": "null" }]
+        },
+        "platforms": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "instruments": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "processing_levels": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "product_families": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "beam_modes": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "polarizations": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "supports_flight_direction": { "type": "boolean" },
+        "supports_look_direction": { "type": "boolean" },
+        "supports_relative_orbit": { "type": "boolean" },
+        "supports_frame": { "type": "boolean" },
+        "supports_path": { "type": "boolean" },
+        "supports_burst": { "type": "boolean" },
+        "frame_filter": {
+          "oneOf": [{ "$ref": "#/$defs/registryFilterDescriptor" }, { "type": "null" }]
+        },
+        "track_filter": {
+          "oneOf": [{ "$ref": "#/$defs/registryFilterDescriptor" }, { "type": "null" }]
+        },
+        "supported_actions": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/registrySearchAction" }
+        }
+      }
+    },
+    "scienceSemantics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "search_schema_id",
+        "selection_schema_id",
+        "mission",
+        "platforms",
+        "instrument",
+        "product_family",
+        "product_variants",
+        "product_property_ids"
+      ],
+      "properties": {
+        "search_schema_id": { "type": ["string", "null"] },
+        "catalogue_logical_dataset": { "type": ["string", "null"] },
+        "selection_schema_id": { "type": "string", "minLength": 1 },
+        "mission": { "type": "string", "minLength": 1 },
+        "platforms": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "instrument": { "type": ["string", "null"], "minLength": 1 },
+        "product_family": { "type": "string", "minLength": 1 },
+        "product_variants": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "variant_id",
+              "processing_level",
+              "product_type",
+              "specification_version"
+            ],
+            "properties": {
+              "variant_id": { "type": "string", "minLength": 1 },
+              "processing_level": { "type": "string", "minLength": 1 },
+              "product_type": { "type": "string", "minLength": 1 },
+              "specification_version": { "type": ["string", "null"] }
+            }
+          }
+        },
+        "product_property_ids": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "acquisition_time_range": {
+          "oneOf": [{ "$ref": "#/$defs/acquisitionTimeRange" }, { "type": "null" }]
+        },
+        "sar_search": {
+          "oneOf": [{ "$ref": "#/$defs/sarSearchSemantics" }, { "type": "null" }]
+        }
+      }
+    },
+    "orbitSemantics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "supported_platforms",
+        "orbit_product_types",
+        "validity_semantics",
+        "creation_preference",
+        "publication_preference",
+        "matching_policy_id"
+      ],
+      "properties": {
+        "supported_platforms": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "orbit_product_types": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "validity_semantics": { "const": "contains_acquisition_interval" },
+        "creation_preference": { "const": "newest_creation" },
+        "publication_preference": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "matching_policy_id": { "type": "string", "minLength": 1 }
+      }
+    },
+    "demSemantics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "runtime_dataset_id",
+        "coverage",
+        "nominal_resolution",
+        "resolution_unit",
+        "horizontal_crs",
+        "vertical_datum",
+        "tile_scheme",
+        "nodata_semantics"
+      ],
+      "properties": {
+        "runtime_dataset_id": { "type": "string", "minLength": 1 },
+        "coverage": { "type": "string", "minLength": 1 },
+        "nominal_resolution": { "type": "number", "exclusiveMinimum": 0 },
+        "resolution_unit": { "type": "string", "minLength": 1 },
+        "horizontal_crs": { "type": "string", "minLength": 1 },
+        "vertical_datum": { "type": "string", "minLength": 1 },
+        "tile_scheme": { "type": "string", "minLength": 1 },
+        "nodata_semantics": { "type": "string", "minLength": 1 }
+      }
+    },
+    "atmosphericSemantics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "date_binding",
+        "aoi_binding",
+        "max_dates_per_batch",
+        "output_asset_family",
+        "request_semantics"
+      ],
+      "properties": {
+        "date_binding": { "type": "string", "minLength": 1 },
+        "aoi_binding": { "type": "string", "minLength": 1 },
+        "max_dates_per_batch": { "type": "integer", "minimum": 1 },
+        "output_asset_family": { "type": "string", "minLength": 1 },
+        "request_semantics": { "type": "string", "minLength": 1 }
+      }
+    },
+    "scienceDescriptor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["resource_kind", "common", "science"],
+      "properties": {
+        "resource_kind": { "const": "science_dataset" },
+        "common": { "$ref": "#/$defs/common" },
+        "science": { "$ref": "#/$defs/scienceSemantics" }
+      }
+    },
+    "orbitDescriptor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["resource_kind", "common", "orbit"],
+      "properties": {
+        "resource_kind": { "const": "orbit" },
+        "common": { "$ref": "#/$defs/common" },
+        "orbit": { "$ref": "#/$defs/orbitSemantics" }
+      }
+    },
+    "demDescriptor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["resource_kind", "common", "dem"],
+      "properties": {
+        "resource_kind": { "const": "dem" },
+        "common": { "$ref": "#/$defs/common" },
+        "dem": { "$ref": "#/$defs/demSemantics" }
+      }
+    },
+    "atmosphericDescriptor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["resource_kind", "common", "atmospheric"],
+      "properties": {
+        "resource_kind": { "const": "atmospheric" },
+        "common": { "$ref": "#/$defs/common" },
+        "atmospheric": { "$ref": "#/$defs/atmosphericSemantics" }
+      }
+    },
+    "resourceDescriptor": {
+      "oneOf": [
+        { "$ref": "#/$defs/scienceDescriptor" },
+        { "$ref": "#/$defs/orbitDescriptor" },
+        { "$ref": "#/$defs/demDescriptor" },
+        { "$ref": "#/$defs/atmosphericDescriptor" }
+      ]
+    },
+    "consumer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["resource_id", "capability_id", "planning_context_id"],
+      "properties": {
+        "resource_id": { "type": ["string", "null"] },
+        "capability_id": { "type": ["string", "null"] },
+        "planning_context_id": { "type": ["string", "null"] }
+      }
+    },
+    "orbitRequirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "requirement_kind",
+        "target_resource_id",
+        "required",
+        "platform_equality",
+        "validity_contains_acquisition",
+        "preferred_product_types",
+        "matching_policy_id"
+      ],
+      "properties": {
+        "requirement_kind": { "const": "orbit" },
+        "target_resource_id": { "$ref": "#/$defs/stableId" },
+        "required": { "type": "boolean" },
+        "platform_equality": { "type": "boolean" },
+        "validity_contains_acquisition": { "type": "boolean" },
+        "preferred_product_types": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "matching_policy_id": { "type": "string", "minLength": 1 }
+      }
+    },
+    "demCoverageRequirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "requirement_kind",
+        "target_resource_ids",
+        "required",
+        "coverage_contains_aoi",
+        "accepted_horizontal_crs",
+        "accepted_vertical_datums",
+        "selection_policy_id"
+      ],
+      "properties": {
+        "requirement_kind": { "const": "dem_coverage" },
+        "target_resource_ids": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/stableId" }
+        },
+        "required": { "type": "boolean" },
+        "coverage_contains_aoi": { "type": "boolean" },
+        "accepted_horizontal_crs": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "accepted_vertical_datums": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "selection_policy_id": { "type": "string", "minLength": 1 }
+      }
+    },
+    "atmosphericRequirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "requirement_kind",
+        "target_resource_id",
+        "required",
+        "match_acquisition_dates",
+        "bind_processing_aoi",
+        "selection_policy_id"
+      ],
+      "properties": {
+        "requirement_kind": { "const": "atmospheric_date_aoi" },
+        "target_resource_id": { "$ref": "#/$defs/stableId" },
+        "required": { "type": "boolean" },
+        "match_acquisition_dates": { "type": "boolean" },
+        "bind_processing_aoi": { "type": "boolean" },
+        "selection_policy_id": { "type": "string", "minLength": 1 }
+      }
+    },
+    "resourceDependency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dependency_id", "consumer", "requirement"],
+      "properties": {
+        "dependency_id": { "$ref": "#/$defs/stableId" },
+        "consumer": { "$ref": "#/$defs/consumer" },
+        "requirement": {
+          "oneOf": [
+            { "$ref": "#/$defs/orbitRequirement" },
+            { "$ref": "#/$defs/demCoverageRequirement" },
+            { "$ref": "#/$defs/atmosphericRequirement" }
+          ]
+        }
+      }
+    }
+  }
+}

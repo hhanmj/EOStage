@@ -1,0 +1,18 @@
+{
+  "fixture_metadata": {
+    "fixture_version": 1,
+    "fixture_kind": "codec",
+    "fixture_name": "valid-v3-single",
+    "offline": true
+  },
+  "base": "v3_single",
+  "mutations": [],
+  "expected": {
+    "decode_any": {
+      "outcome": "v3"
+    },
+    "v2_reader": {
+      "error_code": "V3_STORE_V2_READER_REJECTED_V3"
+    }
+  }
+}

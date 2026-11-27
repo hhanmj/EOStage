@@ -1,0 +1,24 @@
+{
+  "contract": "GISRuntimeRollbackJournal",
+  "journal_version": 1,
+  "transaction_id": "fixture-rollback-tx-1",
+  "phase": "rollback_required",
+  "request_id": "fixture-rollback-request-1",
+  "authorization_id": "fixture-rollback-base-90-once",
+  "authorization_sha256": "63f7fb78c57b453dd4fafb249f7c0182bdb4431b948c0294c89bd90e66d80d74",
+  "receipt_path": "state/rollback/fixture-rollback-tx-1/receipt.json",
+  "previous_replay_ledger_sha256": "d97d8b310777352012bfee646eaff508f755240c42bda6b7195edee7345ea00c",
+  "candidate_replay_ledger_sha256": "4e94376d1e60bee7cbc6938b9d4a0fedcc7eb262c640904232d860aec4b211df",
+  "previous_replay_generation": 3,
+  "candidate_replay_generation": 4,
+  "previous_active_sha256": "18a5c62ad5f5c4eb50c97dbdb5ec64c7d6ebd523f8ea7ccbf466a9ac3bac8279",
+  "candidate_active_sha256": "54b6a7db73392f3c518a4b74619113f28f819b4cb3899a7e78689629b2ed1b45",
+  "selection_digest": "3788ed70d614046c953c8d332e31535376fb15729165cc049a63ab606ec4e897",
+  "previous_ledger_snapshot_path": "state/rollback/fixture-rollback-tx-1/replay-ledger.previous.json",
+  "candidate_ledger_path": "state/rollback/fixture-rollback-tx-1/replay-ledger.candidate.json",
+  "staging_paths": [
+    "base/0.9.0"
+  ],
+  "created_at": "2026-07-22T01:00:01Z",
+  "updated_at": "2026-07-22T01:00:08Z"
+}

@@ -1,0 +1,10 @@
+{
+  "component_id": "gis-dem-worker-win-x64",
+  "version": "1.0.0",
+  "source_class": "oss-cn",
+  "received_bytes": 13,
+  "expected_bytes": 22,
+  "expected_sha256": "d6e969212877c6e64b6af39a741f1adbce59735da80c9d824a73e8860895b0e1",
+  "range_supported": true,
+  "validator": "fixture-validator-v1"
+}

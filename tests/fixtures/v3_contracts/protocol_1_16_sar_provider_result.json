@@ -1,0 +1,68 @@
+{
+  "products": [
+    {
+      "product_key": "ASF::SENTINEL-1::fixture-sar",
+      "provider_product_key": "ASF::SENTINEL-1::fixture-sar",
+      "provider_product_id": "fixture-sar",
+      "canonical_product_key": null,
+      "identity_rule_id": "asf.fixture.v1",
+      "product_id": "fixture-sar",
+      "scene_id": "fixture-sar",
+      "provider": "ASF",
+      "dataset": "SENTINEL-1",
+      "platform": "S1A",
+      "instrument": null,
+      "processing_level": "SLC",
+      "product_family": "SLC",
+      "beam_mode": null,
+      "beam_swath": null,
+      "polarization": null,
+      "flight_direction": null,
+      "look_direction": null,
+      "relative_orbit": null,
+      "absolute_orbit": null,
+      "frame": null,
+      "asf_frame": null,
+      "path": null,
+      "acquisition_start": null,
+      "acquisition_stop": null,
+      "footprint_geojson": null,
+      "footprint_bbox": null,
+      "download_url": null,
+      "file_name": null,
+      "file_size_remote": null,
+      "checksum": null,
+      "local_path": null,
+      "native_metadata": {
+        "native_roles": ["preserve-product-metadata-role"],
+        "nested": {
+          "native_roles": ["preserve-nested-metadata-role"]
+        }
+      },
+      "burst": null,
+      "assets": [
+        {
+          "asset_key": "fixture-asset",
+          "stable_asset_key": "ASF::SENTINEL-1::fixture-sar::ASSET::fixture-asset",
+          "access_descriptor": null,
+          "role": "primary",
+          "native_roles": ["catalogue-only-native-role"],
+          "url": "https://example.invalid/fixture-sar.zip",
+          "file_name": "fixture-sar.zip",
+          "media_type": "application/zip",
+          "size_bytes": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "requested_limit": 1,
+    "query_limit": 1,
+    "total_count": 1,
+    "candidate_count": 1,
+    "returned_count": 1,
+    "source": "ASF",
+    "cmr_enriched": null
+  }
+}

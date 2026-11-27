@@ -1,0 +1,10 @@
+{
+  "asset_class": "orbit_direct_eof",
+  "frozen": {
+    "reference": {"provider_id":"esa.sentinel1_orbit","collection_id":"SENTINEL-1-ORBIT","provider_product_id":"ORBIT_FIXTURE","provider_product_key":"PROVIDER::esa.sentinel1_orbit::COLLECTION::SENTINEL-1-ORBIT::ITEM::ORBIT_FIXTURE","canonical_product_key":null,"asset_key":"S1A_OPER_AUX_POEORB_FIXTURE.EOF","stable_asset_key":"PROVIDER::esa.sentinel1_orbit::COLLECTION::SENTINEL-1-ORBIT::ITEM::ORBIT_FIXTURE::ASSET::S1A_OPER_AUX_POEORB_FIXTURE.EOF"},
+    "descriptor": {"resolver_id":"public_https","scheme":"public_https","stable_href":"https://s1-orbits.asf.alaska.edu/POEORB/S1A_OPER_AUX_POEORB_FIXTURE.EOF","requires_credentials":false,"credential_profile":null,"resolver_parameters":{}},
+    "role":"auxiliary","file_name":"S1A_OPER_AUX_POEORB_FIXTURE.EOF","expected_size_bytes":512,"checksum_algorithm":null,"checksum_value":null
+  },
+  "legacy": {"provider_id":"esa.sentinel1_orbit","url":"https://s1-orbits.asf.alaska.edu/POEORB/S1A_OPER_AUX_POEORB_FIXTURE.EOF","file_name":"S1A_OPER_AUX_POEORB_FIXTURE.EOF","auth_kind":"none","expected_size":512,"checksum_algorithm":null,"checksum_value":null,"destination":"fixture-output/Sentinel_Orbit/AUX_POEORB/S1A_OPER_AUX_POEORB_FIXTURE.EOF","destination_layout":"sentinel_orbit_aux_poeorb","asset_role":"auxiliary"},
+  "policy": {"output_root":"fixture-output","layout":"sentinel_orbit_aux_poeorb","dataset":"SENTINEL-1-ORBIT","processing_level":"POEORB"}
+}

@@ -1,0 +1,5 @@
+{
+  "fixture": "manifest-valid.json",
+  "mutation": "provides = [gis.convert-dem-vertical-datum.v1]; requires = [gis-elevation-grids-win-x64]; files excludes elevation-grids/fixture-grid.json",
+  "expected_error": "GIS_GRID_MISSING"
+}

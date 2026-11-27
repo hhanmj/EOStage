@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "component_id": "gis-notices-win-x64",
+  "packages": [
+    {
+      "name": "fixture-gis-runtime",
+      "version": "2026.07",
+      "spdx_license": "MIT",
+      "source_repository": "https://example.invalid/insar-studio-fixture-gis-runtime",
+      "license_file": "LICENSES/fixture-MIT.txt",
+      "notice_file": "NOTICE"
+    }
+  ]
+}

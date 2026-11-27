@@ -1,0 +1,36 @@
+{
+  "architecture": "x86_64",
+  "base": {
+    "extension_id": null,
+    "bundle_set_id": "gis-runtime-base",
+    "set_kind": "base",
+    "set_version": "1.0.0",
+    "manifest_sha256": "e0fb53d6b47bc3d2da500cd83f3e92f6208055de16a20e2c458abe0cc7d9c694",
+    "release_sequence": 100,
+    "member_ids": [
+      "gis-dem-worker-win-x64",
+      "gis-gdal-runtime-win-x64",
+      "gis-notices-win-x64",
+      "gis-proj-data-win-x64"
+    ]
+  },
+  "channel": "beta",
+  "contract": "ActiveRuntimeRegistry",
+  "extensions": [
+    {
+      "extension_id": "elevation-grids",
+      "bundle_set_id": "gis-runtime-elevation",
+      "set_kind": "extension",
+      "set_version": "1.0.0",
+      "manifest_sha256": "9de61242583e33aa6606d7405c02ff164117a839d45658e15aefc1ea7deb9410",
+      "release_sequence": 100,
+      "member_ids": [
+        "gis-elevation-grids-win-x64"
+      ]
+    }
+  ],
+  "platform": "windows",
+  "registry_version": 1,
+  "updated_at": "2026-07-22T00:00:00Z",
+  "selection_digest": "bf1f3febfe294095ce177a1bafc4af01b276d0ef7004cf93893a8f16dc270c65"
+}

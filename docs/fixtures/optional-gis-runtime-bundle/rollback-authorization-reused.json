@@ -1,0 +1,11 @@
+{
+  "fixture_kind": "rollback-authorization-rejection-scenario",
+  "authorization_file": "rollback-authorization-valid.json",
+  "request_file": "rollback-request-reuse.json",
+  "existing_receipt_file": "rollback-receipt-committed.json",
+  "requested_transaction_id": "fixture-rollback-tx-2",
+  "expected_error": "GIS_ROLLBACK_AUTHORIZATION_REPLAYED",
+  "active_after_file": "active-rollback-target.json",
+  "replay_floor_after_file": "replay-ledger-rollback-candidate.json",
+  "new_receipt_created": false
+}

@@ -1,0 +1,32 @@
+{
+  "id": "eostage-stac-harmonized-plugin",
+  "name": "EOStage STAC 跨传感器反射率谐波合成扩展插件",
+  "version": "2.1.0",
+  "author": "EOStage",
+  "license": "GPL-3.0-or-later",
+  "discipline": "insar-sar",
+  "description": "按需扩展 Harmonized Sentinel-2 / Landsat C2 跨传感器表面反射率基线偏移校正、QA_PIXEL/SCL 联合云掩膜谐波合成技能包与本地 STAC 索引连接器。",
+  "tags": [
+    "STAC",
+    "HLS 谐波合成",
+    "Sentinel-2",
+    "Landsat C2",
+    "MCP 连接器"
+  ],
+  "enabled": true,
+  "bundledSkills": [
+    {
+      "id": "plugin-skill-stac-harmonized",
+      "name": "STAC 跨传感器表面反射率谐波合成",
+      "description": "Sentinel-2 L2A 与 Landsat Collection 2 Level-2 跨传感器辐射定标对齐与谐波时间序列构建规程",
+      "path": "skills/plugin-skill-stac-harmonized/SKILL.md"
+    }
+  ],
+  "bundledConnector": {
+    "id": "plugin-mcp-eostage-stac",
+    "name": "EOStage Local STAC Indexer MCP",
+    "transport": "stdio",
+    "endpoint": "python -m eostage_stac_mcp --catalog-root ./stac_catalog",
+    "description": "由 EOStage STAC 谐波合成插件挂载的本地 STAC 资产索引与波段元数据校验连接器"
+  }
+}

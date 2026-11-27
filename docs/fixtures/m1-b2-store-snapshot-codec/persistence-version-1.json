@@ -1,0 +1,27 @@
+{
+  "fixture_metadata": {
+    "fixture_version": 1,
+    "fixture_kind": "codec",
+    "fixture_name": "persistence-version-1",
+    "offline": true
+  },
+  "base": "compact_v2",
+  "mutations": [
+    {
+      "op": "set",
+      "path": "/persistence_version",
+      "value": 1
+    }
+  ],
+  "expected": {
+    "decode_any": {
+      "error_code": "V3_STORE_UNSUPPORTED_SNAPSHOT_VERSION"
+    },
+    "v2_reader": {
+      "error_code": "V3_STORE_INVALID_SNAPSHOT"
+    },
+    "business_readers": {
+      "error_code": "V3_STORE_INVALID_SNAPSHOT"
+    }
+  }
+}

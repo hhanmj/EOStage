@@ -1,0 +1,4 @@
+interface:
+  display_name: "DEM 高程基准转换"
+  short_description: "将 EGM96/EGM2008 正高 DEM 转换为 InSAR 所需的 WGS84 椭球高"
+  default_prompt: "使用 /dem-datum-conversion 检查当前 AOI 或本地 DEM 的高程基准并转换为 WGS84 椭球高。"

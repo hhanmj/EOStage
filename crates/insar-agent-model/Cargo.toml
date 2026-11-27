@@ -1,0 +1,16 @@
+[package]
+name = "insar-agent-model"
+version = "0.1.0"
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Cancellable protocol adapters and bounded Agent loop for EOStage."
+
+[dependencies]
+futures-util = "0.3"
+reqwest = { version = "0.12", default-features = false, features = ["json", "stream", "rustls-tls-native-roots", "system-proxy"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+tokio = { version = "1", features = ["macros", "rt", "time", "sync"] }
+tokio-util = "0.7"
+zeroize = "1"

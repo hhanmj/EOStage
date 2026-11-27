@@ -1,0 +1,21 @@
+{
+  "provider_id": "fixture.provider",
+  "source_kind": "sentinel1",
+  "output_root": "E:/InSAR/测试/输出",
+  "items": [
+    {
+      "product_id": "FIXTURE-SCENE-001",
+      "target_path": "E:/InSAR/测试/输出/FIXTURE-SCENE-001.zip",
+      "role": "primary",
+      "expected_size_bytes": 1024,
+      "status": "planned",
+      "properties": {}
+    }
+  ],
+  "requires_credentials": false,
+  "manual_action_required": false,
+  "execution_mode": "direct_download",
+  "submission": {},
+  "legacy_plan": {},
+  "legacy_report": {}
+}

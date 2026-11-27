@@ -1,0 +1,8 @@
+{
+  "resolver_id": "public_https",
+  "scheme": "public_https",
+  "stable_href": "https://example.org/public/file.zip",
+  "requires_credentials": false,
+  "credential_profile": null,
+  "resolver_parameters": {}
+}

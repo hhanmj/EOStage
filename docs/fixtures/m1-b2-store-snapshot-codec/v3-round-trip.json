@@ -1,0 +1,18 @@
+{
+  "fixture_metadata": {
+    "fixture_version": 1,
+    "fixture_kind": "codec",
+    "fixture_name": "v3-round-trip",
+    "offline": true
+  },
+  "base": "v3_single",
+  "mutations": [],
+  "expected": {
+    "decode_any": {
+      "outcome": "v3"
+    },
+    "round_trip": {
+      "outcome": "v3"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": "eostage-era5-geohazard-plugin",
+  "name": "EOStage ERA5 极端降水与地质灾害阈值分析插件",
+  "version": "2.0.0",
+  "author": "EOStage",
+  "license": "GPL-3.0-or-later",
+  "discipline": "earth-env",
+  "description": "集成 ERA5 再分析场、前期有效降雨量 (API) 衰减模型及强降水诱发滑坡 I-D 强度-历时阈值耦合分析。",
+  "tags": [
+    "ERA5",
+    "极端降水",
+    "滑坡阈值"
+  ],
+  "enabled": true,
+  "bundledSkills": [
+    {
+      "id": "plugin-skill-era5-extreme-precip-trigger",
+      "name": "ERA5 极端降水重现期与滑坡激发雨量阈值分析",
+      "description": "基于前期有效降雨量 (API) 与 I-D 强度-历时曲线评估区域群发性滑坡气象危险性",
+      "path": "skills/plugin-skill-era5-extreme-precip-trigger/SKILL.md"
+    }
+  ]
+}

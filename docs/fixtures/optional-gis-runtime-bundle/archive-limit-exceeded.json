@@ -1,0 +1,16 @@
+{
+  "limits": {
+    "max_entries": 100000,
+    "max_single_unpacked_bytes": 4294967296,
+    "max_total_unpacked_bytes": 17179869184,
+    "max_compression_ratio": 1000,
+    "comparison": "strict-greater-than-rejected"
+  },
+  "observed": {
+    "entry_count": 100001,
+    "single_unpacked_bytes": 4294967297,
+    "total_unpacked_bytes": 17179869185,
+    "compression_ratio": 1001
+  },
+  "expected_error": "GIS_ARCHIVE_LIMIT_EXCEEDED"
+}

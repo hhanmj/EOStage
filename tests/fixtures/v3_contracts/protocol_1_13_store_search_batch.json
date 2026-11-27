@@ -1,0 +1,40 @@
+{
+  "protocol_major": 1,
+  "protocol_minor": 13,
+  "request_id": "wire-legacy-1-13",
+  "operation": "store_search_batch",
+  "payload": {
+    "batch": {
+      "schema_version": 1,
+      "batch_id": "wire-legacy-batch",
+      "provider_id": "asf.catalog",
+      "created_at": "2024-01-15T00:00:00Z",
+      "aoi_name": "fixture-aoi",
+      "aoi_geojson": {
+        "type": "Polygon",
+        "coordinates": [[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]]
+      },
+      "query": {},
+      "candidates": [
+        {
+          "item_id": "asf.catalog::SENTINEL-1::fixture",
+          "provider_id": "asf.catalog",
+          "display_name": "fixture.zip",
+          "acquisition_datetime": null,
+          "footprint_geojson": null,
+          "metadata": {},
+          "payload": {},
+          "asset_access": null
+        }
+      ]
+    },
+    "workbench": {
+      "batch_id": "wire-legacy-batch",
+      "checked_item_ids": ["asf.catalog::SENTINEL-1::fixture"],
+      "page_index": 0,
+      "page_size": 24,
+      "revision": 0
+    },
+    "activate_workbench": false
+  }
+}

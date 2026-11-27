@@ -1,0 +1,24 @@
+{
+  "id": "eostage-grace-hydro-plugin",
+  "name": "EOStage GRACE/GRACE-FO 陆地水储量反演插件",
+  "version": "1.1.0",
+  "author": "EOStage",
+  "license": "GPL-3.0-or-later",
+  "discipline": "earth-env",
+  "description": "扩展卫星重力场球谐系数去条带滤波、Mascon 等效水高时间序列提取及区域地下水亏损水平衡核算能力。",
+  "tags": [
+    "GRACE-FO",
+    "陆地水储量",
+    "水文重力",
+    "GWSA"
+  ],
+  "enabled": true,
+  "bundledSkills": [
+    {
+      "id": "plugin-skill-grace-twsa-inversion",
+      "name": "GRACE/GRACE-FO 等效水高与地下水储量变化反演",
+      "description": "基于 CSR/JPL Mascon 与 GLDAS 陆面模型分离区域地下水储量变化 (GWSA)",
+      "path": "skills/plugin-skill-grace-twsa-inversion/SKILL.md"
+    }
+  ]
+}

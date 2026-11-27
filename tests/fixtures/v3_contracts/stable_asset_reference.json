@@ -1,0 +1,9 @@
+{
+  "provider_id": "asf.catalog",
+  "collection_id": "ALOS PALSAR",
+  "provider_product_id": "ALOS-ITEM-001",
+  "provider_product_key": "PROVIDER::asf.catalog::COLLECTION::ALOS PALSAR::ITEM::ALOS-ITEM-001",
+  "canonical_product_key": null,
+  "asset_key": "ALOS-FILE-001",
+  "stable_asset_key": "PROVIDER::asf.catalog::COLLECTION::ALOS PALSAR::ITEM::ALOS-ITEM-001::ASSET::ALOS-FILE-001"
+}

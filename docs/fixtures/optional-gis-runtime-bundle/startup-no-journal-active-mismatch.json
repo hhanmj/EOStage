@@ -1,0 +1,17 @@
+{
+  "fixture_kind": "no-journal-startup-scenario",
+  "journal_state": "absent",
+  "primary": {"state": "valid", "file": "replay-ledger-previous.json"},
+  "backup": {"state": "valid", "file": "replay-ledger-previous.json"},
+  "active_registry": {"state": "valid", "file": "active-after.json"},
+  "rollback_receipt_file": null,
+  "expected": {
+    "outcome": "blocked",
+    "error_code": "GIS_RUNTIME_REGISTRY_LEDGER_MISMATCH",
+    "authoritative_ledger_file": "replay-ledger-previous.json",
+    "repaired_path": null,
+    "quarantine_paths": ["state/quarantine/startup-active-mismatch/active.json"],
+    "new_lease_allowed": false,
+    "replay_floor_rebuilt": false
+  }
+}

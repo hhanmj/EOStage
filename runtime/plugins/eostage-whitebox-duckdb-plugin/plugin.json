@@ -1,0 +1,38 @@
+{
+  "id": "eostage-whitebox-duckdb-plugin",
+  "name": "EOStage WhiteboxTools 水文地貌与 DuckDB Spatial 空间分析插件",
+  "version": "1.2.0",
+  "author": "EOStage",
+  "license": "GPL-3.0-or-later",
+  "discipline": "geohazard",
+  "description": "集成 WhiteboxTools v2.4.0（500+ 洼地刻蚀/填洼、D8/D-Inf 汇流累积、河网提取、小流域划分、TWI 地形湿度指数）与 DuckDB Spatial v1.5.6（GeoParquet 在线流式查询、ST_Read 多源矢量 SQL 空间连接与统计）。",
+  "tags": [
+    "WhiteboxTools",
+    "水文流域分析",
+    "DuckDB Spatial",
+    "GeoParquet",
+    "TWI 地形湿度"
+  ],
+  "enabled": true,
+  "bundledSkills": [
+    {
+      "id": "plugin-skill-whitebox-hydrology",
+      "name": "WhiteboxTools 洼地刻蚀与流域河网水文分析链",
+      "description": "BreachDepressionsLeastCost -> D8Pointer -> D8FlowAccumulation -> ExtractStreams -> Watershed 标准水文地貌工作流",
+      "path": "skills/plugin-skill-whitebox-hydrology/SKILL.md"
+    },
+    {
+      "id": "plugin-skill-duckdb-spatial-sql",
+      "name": "DuckDB Spatial 空间 SQL 与云端 GeoParquet 矢量分析",
+      "description": "使用 DuckDB Spatial 扩展对本地 Shapefile/GeoPackage 或云端 GeoParquet 执行毫秒级空间连接与聚合统计",
+      "path": "skills/plugin-skill-duckdb-spatial-sql/SKILL.md"
+    }
+  ],
+  "bundledConnector": {
+    "id": "plugin-mcp-eostage-whitebox-duckdb",
+    "name": "EOStage WhiteboxTools & DuckDB Spatial Runner",
+    "transport": "stdio",
+    "endpoint": "tauri://application_open_geodata_query",
+    "description": "调用本地 runtime/whitebox-cli 与 runtime/duckdb-cli 执行水文地貌算子与 Spatial SQL 的受控运行时连接器"
+  }
+}
