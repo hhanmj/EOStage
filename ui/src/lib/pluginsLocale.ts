@@ -19,23 +19,19 @@ export const BUNDLED_PLUGIN_LOCALIZATION: Record<
       name: "Google Earth Engine Science Catalog & Cloud Compute Plugin",
       description:
         "Integrates GEE public catalog search, AOI-clipped GeoTIFF exports, spectral/SAR indices, and XYZ tile map previews.",
-      tags: ["Google Earth Engine", "GEE Cloud Compute", "Online AOI Clip", "MCP Connector"],
+      tags: ["Google Earth Engine", "GEE Cloud Compute", "Online AOI Clip", "Native Toolset"],
       skillName: "Google Earth Engine (GEE) Catalog & Cloud Compute Guide",
       skillDescription:
-        "Query built-in GEE catalogs, export AOI-clipped GeoTIFFs, compute spectral indices, and overlay map tile layers",
-      connectorDescription:
-        "Built-in MCP connector for GEE catalog search, cloud clipping, index compute, and map tile previews",
+        "Query built-in GEE catalogs, inspect availability, run cloud analysis, and execute chunked GeoTIFF exports",
     },
     ja: {
       name: "Google Earth Engine 科学カタログ＆クラウド解析プラグイン",
       description:
         "GEE 公開カタログ検索、AOI 切り抜き GeoTIFF 出力、スペクトル・SAR 指数演算、XYZ タイルマッププレビューを統合。",
-      tags: ["Google Earth Engine", "GEE クラウド計算", "AOI 切り抜き", "MCP コネクタ"],
+      tags: ["Google Earth Engine", "GEE クラウド計算", "AOI 切り抜き", "ネイティブツール群"],
       skillName: "Google Earth Engine (GEE) カタログ検索・クラウド計算ガイド",
       skillDescription:
-        "内蔵 GEE カタログ検索、AOI 指定 GeoTIFF エクスポート、オンライン指数計算およびタイルレイヤー重畳の手順",
-      connectorDescription:
-        "GEE 科学カタログ検索・クラウド切り抜き・指数演算・地図タイルプレビュー内蔵 MCP コネクタ",
+        "内蔵 GEE カタログ検索、利用可能性確認、クラウド解析および分割 GeoTIFF エクスポートの手順",
     },
   },
   "eostage-gdal-stream-plugin": {

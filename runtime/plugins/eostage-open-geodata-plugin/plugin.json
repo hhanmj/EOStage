@@ -21,12 +21,5 @@
       "description": "民政部区划/地名、DataV 边界、ERA5 历史气象、OSM 矢量、多镜像开放 DEM 及 WGS84/GCJ02/BD09/CGCS2000 互转",
       "path": "skills/plugin-skill-open-geodata-lbs/SKILL.md"
     }
-  ],
-  "bundledConnector": {
-    "id": "plugin-mcp-eostage-open-geodata",
-    "name": "EOStage Open GeoData & LBS Coordinate Hub",
-    "transport": "stdio",
-    "endpoint": "tauri://application_open_geodata_query",
-    "description": "零密钥公共地理底座查询与国内加密坐标系高精度不动点反演连接器"
-  }
+  ]
 }

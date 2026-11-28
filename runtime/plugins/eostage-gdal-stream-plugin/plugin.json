@@ -21,12 +21,5 @@
       "description": "免整景下载直接对 STAC/COG 资产按 AOI 窗口流式读取并原位计算坡度、山影、TPI/TRI 与 NDVI/NDWI/NBR",
       "path": "skills/plugin-skill-gdal-vsicurl-stream/SKILL.md"
     }
-  ],
-  "bundledConnector": {
-    "id": "plugin-mcp-eostage-gdal-stream",
-    "name": "EOStage Native GDAL /vsicurl/ Stream Engine",
-    "transport": "stdio",
-    "endpoint": "tauri://application_gis_raster_process",
-    "description": "由 EOStage 内置 Native GIS (GDAL/PROJ) 驱动的 /vsicurl/ 在线流式窗口裁剪、地形派生与波段代数执行器"
-  }
+  ]
 }

@@ -8,7 +8,11 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import React, { useState } from "react";
 import { render, cleanup, fireEvent } from "../../test-utils/render-harness";
-import { act } from "@testing-library/react";
+import { act, waitFor } from "@testing-library/react";
+import {
+  registerTestDesktopShellBridge,
+  clearTestDesktopShellBridge,
+} from "@/lib/desktopShellBridge";
 import {
   PluginsAndSkillsPage,
   RuntimeToolsSettingsSection,
@@ -28,6 +32,7 @@ if (typeof globalThis.localStorage === "undefined" && typeof window !== "undefin
 
 test.afterEach(() => {
   cleanup();
+  clearTestDesktopShellBridge();
   if (typeof localStorage !== "undefined") {
     localStorage.clear();
   }
@@ -928,8 +933,8 @@ test("Plugins & Skills Page - 完整交互与真实性测试套件", async (t) =
     fireEvent.click(getByTestId("btn-preview-plugin-skills-eostage-gee-plugin"));
     const previewModal = getByTestId("plugin-skills-preview-modal");
     assert.ok(previewModal.textContent?.includes("未安装 · 仅预览内容"));
-    assert.ok(previewModal.textContent?.includes("gee_search_catalog"));
-    assert.ok(previewModal.textContent?.includes("eostage-gee-mcp"));
+    assert.ok(previewModal.textContent?.includes("gee_catalog_search"));
+    assert.ok(!previewModal.textContent?.includes("eostage-gee-mcp"));
     assert.ok(getByTestId("plugins-browse-view"));
     fireEvent.click(getByTestId("plugin-skills-preview-close-btn"));
     assert.ok(queryByTestId("plugin-skills-preview-modal") === null);
@@ -1012,6 +1017,134 @@ test("Plugins & Skills Page - 完整交互与真实性测试套件", async (t) =
       rtView.getByTestId("runtime-platform-badge-native-gis-runtime").textContent?.trim(),
       "Windows x64 / macOS Apple Silicon"
     );
+  });
+
+  await t.test("9. 已安装已归档插件保持可见可管、多 MCP 预览完整渲染、桌面端卸载失败严格回滚", async () => {
+    const statusPayload = {
+      ok: true,
+      app_data_dir: "/tmp/eostage-test",
+      plugins_dir: "/tmp/eostage-test/plugins",
+      runtime_plugins_dir: "/tmp/eostage-test/runtime/plugins",
+      installed_plugins: [
+        {
+          id: "eostage-sbas-insar-plugin",
+          name: "已归档 SBAS 历史插件",
+          version: "1.0.0",
+          author: "EOStage",
+          license: "GPL-3.0-or-later",
+          discipline: "insar-sar",
+          description: "已归档但用户本机仍安装的旧插件",
+          tags: ["SBAS"],
+          enabled: true,
+          installed: true,
+          is_official: false,
+          install_path: "/tmp/eostage-test/plugins/eostage-sbas-insar-plugin",
+          sha256: "a".repeat(64),
+          total_bytes: 512,
+          file_count: 1,
+          files: ["plugin.json"],
+          bundled_skills: [],
+          bundled_connectors: [],
+        },
+        {
+          id: "multi-mcp-demo",
+          name: "多服务 MCP 测试插件",
+          version: "1.2.0",
+          author: "EOStage",
+          license: "GPL-3.0-or-later",
+          discipline: "gis-spatial",
+          description: "同时声明两台 MCP 服务器",
+          tags: ["MCP"],
+          enabled: true,
+          installed: true,
+          is_official: false,
+          install_path: "/tmp/eostage-test/plugins/multi-mcp-demo",
+          sha256: "b".repeat(64),
+          total_bytes: 1024,
+          file_count: 2,
+          files: ["plugin.json", "mcp.json"],
+          bundled_skills: [
+            {
+              id: "multi-mcp-skill",
+              name: "Multi MCP Skill",
+              description: "Multi server test",
+              prompt: "# Multi MCP\nUse alpha & beta servers.",
+            },
+          ],
+          bundled_connectors: [
+            {
+              id: "plugin-mcp-alpha",
+              name: "Alpha Geo MCP",
+              transport: "http",
+              endpoint: "https://mcp.example.org/alpha",
+              description: "Alpha",
+            },
+            {
+              id: "plugin-mcp-beta",
+              name: "Beta Raster MCP",
+              transport: "stdio",
+              endpoint: "python -m beta_mcp",
+              description: "Beta",
+            },
+          ],
+        },
+      ],
+      available_plugins: [],
+      custom_connectors: [],
+      custom_skills: [],
+    };
+
+    registerTestDesktopShellBridge({
+      kind: "tauri",
+      application: {
+        async getPluginsStatus() {
+          return statusPayload;
+        },
+        async getRuntimeComponents() {
+          return { ok: true, install_root: "/tmp/rt", components: [] };
+        },
+        async uninstallPluginPackage() {
+          throw new Error("模拟磁盘删除权限受限");
+        },
+      },
+    } as any);
+
+    const { getByTestId, queryByTestId } = render(
+      <PluginsAndSkillsPage
+        initialTab="plugins"
+        getPluginsStatusOverride={async () => statusPayload as any}
+      />,
+    );
+
+    await waitFor(() => {
+      assert.ok(getByTestId("plugin-suite-card-eostage-sbas-insar-plugin"));
+      assert.ok(getByTestId("plugin-retired-badge-eostage-sbas-insar-plugin"));
+      assert.ok(getByTestId("plugin-suite-card-multi-mcp-demo"));
+    });
+
+    // 浏览市场中只保留现役插件 (4 官方 + 1 非归档自定义 = 5)，绝不显示已归档插件
+    fireEvent.click(getByTestId("plugins-subtab-browse"));
+    assert.equal(getByTestId("plugins-subtab-browse").textContent, "浏览市场 (5)");
+    assert.ok(queryByTestId("browse-plugin-card-eostage-sbas-insar-plugin") === null);
+
+    // 切回已添加并预览多服务 MCP 插件，必须完整渲染两台服务器
+    fireEvent.click(getByTestId("plugins-subtab-added"));
+    fireEvent.click(getByTestId("plugin-view-skills-btn-multi-mcp-demo"));
+    assert.ok(getByTestId("plugin-preview-connector-plugin-mcp-alpha"));
+    assert.ok(getByTestId("plugin-preview-connector-plugin-mcp-beta"));
+    fireEvent.click(getByTestId("plugin-skills-preview-close-btn"));
+
+    // 桌面端卸载失败时必须完整回滚状态并提示错误，且不写入虚假 localStorage
+    fireEvent.click(getByTestId("plugin-remove-btn-eostage-sbas-insar-plugin"));
+    assert.ok(getByTestId("sp-popconfirm"));
+    fireEvent.click(getByTestId("popconfirm-confirm-btn"));
+
+    await waitFor(() => {
+      assert.ok(getByTestId("plugin-suite-card-eostage-sbas-insar-plugin"));
+      assert.ok(
+        getByTestId("plugins-feedback-banner").textContent?.includes("模拟磁盘删除权限受限")
+      );
+    });
   });
 });
 

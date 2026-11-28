@@ -303,7 +303,15 @@ export interface PluginSuiteItem {
     endpoint: string;
     description: string;
   };
+  bundledConnectors?: Array<{
+    id: string;
+    name: string;
+    transport: "http" | "stdio";
+    endpoint: string;
+    description: string;
+  }>;
   isCustomImport?: boolean;
+  isRetired?: boolean;
 }
 
 const DEFAULT_INSTALLED_PLUGIN_IDS: string[] = [];
@@ -316,6 +324,10 @@ export const RETIRED_MARKETPLACE_PLUGIN_IDS = new Set<string>([
   "eostage-sbas-insar-plugin",
   "eostage-stac-harmonized-plugin",
   "eostage-whitebox-duckdb-plugin",
+  "eostage-eo-recipes-plugin",
+  "eostage-gee-cookbook-plugin",
+  "eostage-gee-practice-plugin",
+  "eostage-eo-methodology-plugin",
 ]);
 
 export const MARKETPLACE_PLUGIN_SUITES: PluginSuiteItem[] = [
@@ -326,27 +338,19 @@ export const MARKETPLACE_PLUGIN_SUITES: PluginSuiteItem[] = [
     author: "EOStage",
     license: "GPL-3.0-or-later",
     description:
-      "集成 Google Earth Engine (GEE) 公共遥感目录检索、按 AOI 云端裁剪 GeoTIFF 导出、光谱/雷达指数在线计算与 XYZ 在线瓦片图层预览。",
+      "集成 Google Earth Engine (GEE) 公共遥感目录检索、数据集选型、按 AOI 云端导出预演、云端分析、分块安全导出与配额状态诊断原生工具集。",
     discipline: "earth-env",
-    tags: ["Google Earth Engine", "GEE 云端计算", "AOI 在线裁剪", "MCP 连接器"],
+    tags: ["Google Earth Engine", "GEE 云端计算", "AOI 在线裁剪", "原生工具集"],
     bundledSkills: [
       {
         id: "gee-assistant",
         name: "Google Earth Engine (GEE) 遥感科学检索与云端计算规程",
         description:
-          "调用内置 GEE 目录检索、按 AOI 裁剪导出 GeoTIFF、在线光谱指数解算与地图瓦片图层叠加规程",
+          "按 EOStage 原生 GEE 工具链执行目录检索、可用性核查、导出预演、云端分析与分块 GeoTIFF 导出",
         prompt:
-          "# Google Earth Engine (GEE) 科学目录与云端计算规程\n1. 使用 gee_search_catalog 检索研究区 AOI 与时间窗口内的可用 Collection / Image Asset；\n2. 使用 gee_clip_download 按 AOI 在线裁剪并落盘配准 GeoTIFF；\n3. 使用 gee_compute_index 或 gee_map_tiles 生成指数栅格或在线瓦片叠加至地图工作台。",
+          "# Google Earth Engine Catalog & Cloud Compute Workflow (`gee-assistant`)\n1. Call `gee_quota_status` first to verify GEE OAuth / Cloud Project readiness;\n2. Use `gee_catalog_search` / `gee_dataset_advisor` and `gee_check_availability` to verify scene counts over the active AOI;\n3. Execute `gee_cloud_analyze` or `gee_script_inspect`, then verify dimensions with `gee_export_preflight` before running `gee_chunked_download`.",
       },
     ],
-    bundledConnector: {
-      id: "eostage-gee-mcp",
-      name: "EOStage GEE Catalog & Compute MCP",
-      transport: "stdio",
-      endpoint: "eostage-gee-mcp --stdio",
-      description:
-        "内置 Google Earth Engine 科学目录检索、云端裁剪、指数计算与在线瓦片图层 MCP 连接器",
-    },
   },
   {
     id: "eostage-gdal-stream-plugin",
@@ -1674,27 +1678,21 @@ export function PluginsAndSkillsPage({
           metaMap[pkg.id] = pkg;
         }
       }
+      // Keep retired plugins when already installed so users can inspect/toggle/uninstall them
       for (const pkg of status.installed_plugins || []) {
-        if (!RETIRED_MARKETPLACE_PLUGIN_IDS.has(pkg.id)) {
-          metaMap[pkg.id] = pkg;
-        }
+        metaMap[pkg.id] = pkg;
       }
       setBackendPluginMeta(metaMap);
 
       const installedSet = new Set<string>(
-        (status.installed_plugins || [])
-          .filter((p: PluginPackageEntry) => !RETIRED_MARKETPLACE_PLUGIN_IDS.has(p.id))
-          .map((p: PluginPackageEntry) => p.id),
+        (status.installed_plugins || []).map((p: PluginPackageEntry) => p.id),
       );
       setInstalledPluginIds(installedSet);
       saveInstalledPluginIds(installedSet);
 
       const disabledSet = new Set<string>(
         (status.installed_plugins || [])
-          .filter(
-            (p: PluginPackageEntry) =>
-              !p.enabled && !RETIRED_MARKETPLACE_PLUGIN_IDS.has(p.id),
-          )
+          .filter((p: PluginPackageEntry) => !p.enabled)
           .map((p: PluginPackageEntry) => p.id),
       );
       setDisabledPluginIds(disabledSet);
@@ -1704,16 +1702,35 @@ export function PluginsAndSkillsPage({
       const installedCustomEntries: PluginPackageEntry[] = [];
       const seenBackendIds = new Set<string>();
       for (const p of status.installed_plugins || []) {
-        if (
-          !seenBackendIds.has(p.id) &&
-          !builtinIds.has(p.id) &&
-          !RETIRED_MARKETPLACE_PLUGIN_IDS.has(p.id)
-        ) {
+        if (!seenBackendIds.has(p.id) && !builtinIds.has(p.id)) {
           seenBackendIds.add(p.id);
           installedCustomEntries.push(p);
         }
       }
-      const diskCustomSuites: PluginSuiteItem[] = installedCustomEntries.map((p: PluginPackageEntry) => ({
+      const diskCustomSuites: PluginSuiteItem[] = installedCustomEntries.map((p: PluginPackageEntry) => {
+        const mappedConnectors =
+          p.bundled_connectors && p.bundled_connectors.length > 0
+            ? p.bundled_connectors.map((c) => ({
+                id: c.id,
+                name: c.name,
+                transport: (c.transport === "stdio" ? "stdio" : "http") as "http" | "stdio",
+                endpoint: c.endpoint,
+                description: c.description,
+              }))
+            : p.bundled_connector
+              ? [
+                  {
+                    id: p.bundled_connector.id,
+                    name: p.bundled_connector.name,
+                    transport: (p.bundled_connector.transport === "stdio" ? "stdio" : "http") as
+                      | "http"
+                      | "stdio",
+                    endpoint: p.bundled_connector.endpoint,
+                    description: p.bundled_connector.description,
+                  },
+                ]
+              : undefined;
+        return {
           id: p.id,
           name: p.name,
           version: p.version,
@@ -1734,18 +1751,13 @@ export function PluginsAndSkillsPage({
             description: sk.description,
             prompt: sk.prompt,
           })),
-          bundledConnector: p.bundled_connector
-            ? {
-                id: p.bundled_connector.id,
-                name: p.bundled_connector.name,
-                transport: p.bundled_connector.transport === "stdio" ? "stdio" : "http",
-                endpoint: p.bundled_connector.endpoint,
-                description: p.bundled_connector.description,
-              }
-            : undefined,
+          bundledConnector: mappedConnectors?.[0],
+          bundledConnectors: mappedConnectors,
           isOfficial: false,
           isCustomImport: true,
-        }));
+          isRetired: RETIRED_MARKETPLACE_PLUGIN_IDS.has(p.id),
+        };
+      });
       setCustomPlugins(diskCustomSuites);
       saveCustomPlugins(diskCustomSuites);
 
@@ -1847,7 +1859,7 @@ export function PluginsAndSkillsPage({
     const merged = [...MARKETPLACE_PLUGIN_SUITES];
     const seenIds = new Set(merged.map((m) => m.id));
     for (const c of customPlugins) {
-      if (!seenIds.has(c.id) && !RETIRED_MARKETPLACE_PLUGIN_IDS.has(c.id)) {
+      if (!seenIds.has(c.id)) {
         merged.push(c);
         seenIds.add(c.id);
       }
@@ -1855,15 +1867,37 @@ export function PluginsAndSkillsPage({
     return merged.map((rawSuite) => {
       const suite = localizePluginSuite(rawSuite);
       const meta = backendPluginMeta[suite.id];
-      if (!meta) return suite;
+      const isRetired = suite.isRetired || RETIRED_MARKETPLACE_PLUGIN_IDS.has(suite.id);
+      if (!meta) {
+        return isRetired ? { ...suite, isRetired: true } : suite;
+      }
+      const metaConnectors =
+        meta.bundled_connectors && meta.bundled_connectors.length > 0
+          ? meta.bundled_connectors.map((c) => ({
+              id: c.id,
+              name: c.name,
+              transport: (c.transport === "stdio" ? "stdio" : "http") as "http" | "stdio",
+              endpoint: c.endpoint,
+              description: c.description,
+            }))
+          : suite.bundledConnectors;
       return {
         ...suite,
         installPath: meta.install_path || suite.installPath,
         sha256: meta.sha256 || suite.sha256,
         fileCount: meta.files?.length ?? suite.fileCount,
+        bundledConnectors: metaConnectors,
+        bundledConnector: metaConnectors?.[0] ?? suite.bundledConnector,
+        isRetired,
       };
     });
   }, [customPlugins, backendPluginMeta, localizePluginSuite]);
+
+  const browseBasePlugins = useMemo(() => {
+    return allAvailablePlugins.filter(
+      (suite) => !suite.isRetired && !RETIRED_MARKETPLACE_PLUGIN_IDS.has(suite.id),
+    );
+  }, [allAvailablePlugins]);
 
   const addedPlugins = useMemo(() => {
     return allAvailablePlugins.filter((suite) => {
@@ -1885,7 +1919,7 @@ export function PluginsAndSkillsPage({
   }, [allAvailablePlugins, installedPluginIds, pluginAuthorFilter, pluginSearch]);
 
   const browsePlugins = useMemo(() => {
-    return allAvailablePlugins.filter((suite) => {
+    return browseBasePlugins.filter((suite) => {
       if (
         pluginAuthorFilter !== "all" &&
         suite.author !== pluginAuthorFilter
@@ -1901,7 +1935,7 @@ export function PluginsAndSkillsPage({
         (suite.tags || []).some((tag) => tag.toLowerCase().includes(q))
       );
     });
-  }, [allAvailablePlugins, pluginAuthorFilter, pluginSearch]);
+  }, [browseBasePlugins, pluginAuthorFilter, pluginSearch]);
 
   const totalAddedPluginCount = useMemo(() => {
     return allAvailablePlugins.filter((s) => installedPluginIds.has(s.id))
@@ -1957,6 +1991,9 @@ export function PluginsAndSkillsPage({
           .filter((s) => NATIVE_REMOTE_SENSING_SKILL_IDS.has(s.id))
           .map((s) => localizeAgentSkillForDisplay(s, locale));
       }
+      if (Array.isArray(suite.bundledSkills) || suite.isRetired) {
+        return [];
+      }
       return skills
         .filter((s) => s.id === "skill-creator")
         .map((s) => localizeAgentSkillForDisplay(s, locale));
@@ -1967,14 +2004,15 @@ export function PluginsAndSkillsPage({
   const handleTogglePluginSuite = (suite: PluginSuiteItem) => {
     const suiteSkills = getSuiteSkills(suite);
     const isCurrentlyDisabled = disabledPluginIds.has(suite.id);
-    const prevDisabledPlugins = new Set(disabledPluginIds);
     const prevDisabledSkills = loadDisabledSkillIds();
     const isDesktop = isTauriDesktopHost();
     setDisabledPluginIds((prev) => {
       const next = new Set(prev);
       if (isCurrentlyDisabled) next.delete(suite.id);
       else next.add(suite.id);
-      saveDisabledPluginIds(next);
+      if (!isDesktop) {
+        saveDisabledPluginIds(next);
+      }
       return next;
     });
     if (!isDesktop) {
@@ -1983,23 +2021,39 @@ export function PluginsAndSkillsPage({
       }
       setDisabledSkillIds(loadDisabledSkillIds());
     }
-    void setPluginEnabledBackend(suite.id, isCurrentlyDisabled)
-      .then(() => syncPluginsFromBackend())
-      .catch((err: any) => {
-        saveDisabledPluginIds(prevDisabledPlugins);
-        setDisabledPluginIds(prevDisabledPlugins);
+    const rollbackToggle = (msg?: string) => {
+      setDisabledPluginIds((prev) => {
+        const reverted = new Set(prev);
+        if (isCurrentlyDisabled) reverted.add(suite.id);
+        else reverted.delete(suite.id);
         if (!isDesktop) {
-          for (const sk of suiteSkills) {
-            toggleSkillEnabled(sk.id, !prevDisabledSkills.has(sk.id));
-          }
-          setDisabledSkillIds(loadDisabledSkillIds());
+          saveDisabledPluginIds(reverted);
         }
-        setPluginsBanner({
-          type: "error",
-          text:
-            err?.message ||
-            t("shell.pluginsPage.togglePluginFailedRollback", { name: suite.name }),
-        });
+        return reverted;
+      });
+      if (!isDesktop) {
+        for (const sk of suiteSkills) {
+          toggleSkillEnabled(sk.id, !prevDisabledSkills.has(sk.id));
+        }
+        setDisabledSkillIds(loadDisabledSkillIds());
+      }
+      setPluginsBanner({
+        type: "error",
+        text:
+          msg ||
+          t("shell.pluginsPage.togglePluginFailedRollback", { name: suite.name }),
+      });
+    };
+    void setPluginEnabledBackend(suite.id, isCurrentlyDisabled)
+      .then((res) => {
+        if (isDesktop && res && !res.ok) {
+          rollbackToggle();
+          return;
+        }
+        return syncPluginsFromBackend();
+      })
+      .catch((err: any) => {
+        rollbackToggle(err?.message);
       });
   };
 
@@ -2115,27 +2169,78 @@ export function PluginsAndSkillsPage({
   };
 
   const performRemovePlugin = (suite: PluginSuiteItem) => {
+    const isDesktop = isTauriDesktopHost();
+    const successText =
+      suite.isCustomImport || suite.isOfficial === false
+        ? t("shell.pluginsPage.removedLocalPlugin", { name: suite.name })
+        : t("shell.pluginsPage.removedCataloguePlugin", { name: suite.name });
+
+    if (!isDesktop) {
+      setInstalledPluginIds((prev) => {
+        const next = new Set(prev);
+        next.delete(suite.id);
+        saveInstalledPluginIds(next);
+        return next;
+      });
+      if (suite.isCustomImport || suite.isOfficial === false) {
+        setCustomPlugins((prev) => {
+          const nextCustom = prev.filter((c) => c.id !== suite.id);
+          saveCustomPlugins(nextCustom);
+          return nextCustom;
+        });
+      }
+      setPluginsBanner({ type: "success", text: successText });
+      void uninstallPluginPackageBackend(suite.id)
+        .then(() => syncPluginsFromBackend())
+        .catch(() => {});
+      return;
+    }
+
+    const wasCustom = suite.isCustomImport || suite.isOfficial === false;
+    const prevInstalled = new Set(installedPluginIds);
+    const prevDisabled = new Set(disabledPluginIds);
+    const prevCustom = customPlugins;
+
     setInstalledPluginIds((prev) => {
       const next = new Set(prev);
       next.delete(suite.id);
-      saveInstalledPluginIds(next);
       return next;
     });
-    if (suite.isCustomImport || suite.isOfficial === false) {
-      const nextCustom = customPlugins.filter((c) => c.id !== suite.id);
-      setCustomPlugins(nextCustom);
-      saveCustomPlugins(nextCustom);
-    }
-    setPluginsBanner({
-      type: "success",
-      text:
-        suite.isCustomImport || suite.isOfficial === false
-          ? t("shell.pluginsPage.removedLocalPlugin", { name: suite.name })
-          : t("shell.pluginsPage.removedCataloguePlugin", { name: suite.name }),
+    setDisabledPluginIds((prev) => {
+      const next = new Set(prev);
+      next.delete(suite.id);
+      return next;
     });
+    if (wasCustom) {
+      setCustomPlugins((prev) => prev.filter((c) => c.id !== suite.id));
+    }
+
+    const rollbackRemove = (errMsg?: string) => {
+      setInstalledPluginIds(prevInstalled);
+      setDisabledPluginIds(prevDisabled);
+      if (wasCustom) {
+        setCustomPlugins(prevCustom);
+      }
+      setPluginsBanner({
+        type: "error",
+        text:
+          errMsg ||
+          t("shell.pluginsPage.removePluginFailedRollback", { name: suite.name }),
+      });
+    };
+
     void uninstallPluginPackageBackend(suite.id)
-      .then(() => syncPluginsFromBackend())
-      .catch(() => {});
+      .then((res) => {
+        if (!res || !res.ok) {
+          rollbackRemove();
+          return;
+        }
+        setPluginsBanner({ type: "success", text: successText });
+        return syncPluginsFromBackend();
+      })
+      .catch((err: any) => {
+        rollbackRemove(err?.message);
+      });
   };
 
   const handleRemovePlugin = (suite: PluginSuiteItem, anchorEl?: HTMLElement | null) => {
@@ -3974,7 +4079,7 @@ export function PluginsAndSkillsPage({
                         : "text-sp-text hover:bg-sp-hover",
                     )}
                   >
-                    {t("shell.pluginsPage.browseMarketplaceCount", { count: allAvailablePlugins.length })}
+                    {t("shell.pluginsPage.browseMarketplaceCount", { count: browseBasePlugins.length })}
                   </button>
                 </div>
               </div>
@@ -4093,7 +4198,10 @@ export function PluginsAndSkillsPage({
                   "all",
                   ...Array.from(
                     new Set(
-                      allAvailablePlugins
+                      (pluginFilter === "added"
+                        ? allAvailablePlugins.filter((p) => installedPluginIds.has(p.id))
+                        : browseBasePlugins
+                      )
                         .map((p) => p.author)
                         .filter((a) => typeof a === "string" && a.trim().length > 0),
                     ),
@@ -4298,6 +4406,14 @@ export function PluginsAndSkillsPage({
                             <code className="rounded bg-sp-card px-1.5 py-0.5 font-mono text-xs text-sp-text-muted">
                               v{suite.version}
                             </code>
+                            {suite.isRetired && (
+                              <span
+                                data-testid={`plugin-retired-badge-${suite.id}`}
+                                className="rounded bg-sp-card px-2 py-0.5 text-xs font-medium text-sp-text-muted border border-sp-line"
+                              >
+                                {t("shell.pluginsPage.archivedPluginBadge")}
+                              </span>
+                            )}
                             <span
                               className={cn(
                                 "text-xs font-medium",
@@ -4856,17 +4972,26 @@ export function PluginsAndSkillsPage({
                 {t("shell.pluginsPage.pluginVsSkillNoteBody")}
               </div>
 
-              {previewPluginSuite.bundledConnector && (
-                <div className="rounded-sp-sm border border-sp-line bg-sp-card px-3 py-2 text-xs text-sp-text-secondary flex items-center justify-between gap-2 flex-wrap">
+              {(previewPluginSuite.bundledConnectors && previewPluginSuite.bundledConnectors.length > 0
+                ? previewPluginSuite.bundledConnectors
+                : previewPluginSuite.bundledConnector
+                  ? [previewPluginSuite.bundledConnector]
+                  : []
+              ).map((conn) => (
+                <div
+                  key={conn.id}
+                  data-testid={`plugin-preview-connector-${conn.id}`}
+                  className="rounded-sp-sm border border-sp-line bg-sp-card px-3 py-2 text-xs text-sp-text-secondary flex items-center justify-between gap-2 flex-wrap"
+                >
                   <span>
                     {t("shell.pluginsPage.companionConnectorLabel")}
-                    <strong className="text-sp-text">{previewPluginSuite.bundledConnector.name}</strong>
+                    <strong className="text-sp-text">{conn.name}</strong>
                   </span>
                   <code className="font-mono text-xs text-sp-text-muted">
-                    {previewPluginSuite.bundledConnector.transport}: {previewPluginSuite.bundledConnector.endpoint}
+                    {conn.transport}: {conn.endpoint}
                   </code>
                 </div>
-              )}
+              ))}
 
               {getSuiteSkills(previewPluginSuite).map((sk) => (
                 <div

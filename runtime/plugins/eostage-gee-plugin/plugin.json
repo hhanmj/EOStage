@@ -1,0 +1,24 @@
+{
+  "id": "eostage-gee-plugin",
+  "name": "Google Earth Engine 科学目录与云端计算插件",
+  "version": "1.0.0",
+  "author": "EOStage",
+  "license": "GPL-3.0-or-later",
+  "discipline": "earth-env",
+  "description": "集成 Google Earth Engine (GEE) 公共遥感目录检索、数据集选型、按 AOI 云端导出预演、云端分析、分块安全导出与配额状态诊断原生工具集。",
+  "tags": [
+    "Google Earth Engine",
+    "GEE 云端计算",
+    "AOI 在线裁剪",
+    "原生工具集"
+  ],
+  "enabled": true,
+  "bundledSkills": [
+    {
+      "id": "gee-assistant",
+      "name": "Google Earth Engine (GEE) 遥感科学检索与云端计算规程",
+      "description": "按 EOStage 原生 GEE 工具链执行目录检索、可用性核查、导出预演、云端分析与分块 GeoTIFF 导出",
+      "path": "skills/gee-assistant/SKILL.md"
+    }
+  ]
+}

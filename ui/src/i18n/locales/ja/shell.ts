@@ -429,6 +429,8 @@ export const shell: Messages["shell"] = {
     previewPluginAria: "プラグイン同梱スキルのプレビュー：{name}",
     installedDisabledBadge: "導入済み · 無効",
     installedEnabledBadge: "導入済み · 有効",
+    archivedPluginBadge: "アーカイブ済み",
+    removePluginFailedRollback: "プラグイン「{name}」の削除に失敗したため元の状態に戻しました",
     notInstalledPreviewBadge: "未導入 · プレビュー表示",
     pluginPreviewMeta: "作者：{author} · バージョン v{version} · {count} 件のスキル",
     closeSkillPreviewAria: "スキルプレビューを閉じる",

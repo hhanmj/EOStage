@@ -21,12 +21,5 @@
       "description": "解析 MapGIS 6.x 二进制及明码点线面文件头、坐标系、属性表并无损导出为 .shp 或 .geojson",
       "path": "skills/plugin-skill-mapgis-compat/SKILL.md"
     }
-  ],
-  "bundledConnector": {
-    "id": "plugin-mcp-eostage-mapgis",
-    "name": "EOStage Native MapGIS 6.x Vector Converter",
-    "transport": "stdio",
-    "endpoint": "tauri://application_mapgis_convert",
-    "description": "由 EOStage Rust 原生引擎驱动的 MapGIS 6.x 二进制/明码拓扑还原与 Shapefile/GeoJSON 转换连接器"
-  }
+  ]
 }

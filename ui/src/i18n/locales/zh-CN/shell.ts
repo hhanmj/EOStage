@@ -427,6 +427,8 @@ export const shell = {
     previewPluginAria: "预览插件包含的技能：{name}",
     installedDisabledBadge: "已安装 · 已停用",
     installedEnabledBadge: "已安装 · 已启用",
+    archivedPluginBadge: "已归档",
+    removePluginFailedRollback: "移出插件「{name}」失败，已恢复原状态",
     notInstalledPreviewBadge: "未安装 · 仅预览内容",
     pluginPreviewMeta: "作者：{author} · 版本：v{version} · 内置 {count} 项技能",
     closeSkillPreviewAria: "关闭技能预览弹窗",

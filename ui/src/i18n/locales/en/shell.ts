@@ -429,6 +429,8 @@ export const shell: Messages["shell"] = {
     previewPluginAria: "Preview plugin skills: {name}",
     installedDisabledBadge: "Installed · Disabled",
     installedEnabledBadge: "Installed · Enabled",
+    archivedPluginBadge: "Archived",
+    removePluginFailedRollback: "Failed to remove plugin “{name}”; previous state restored",
     notInstalledPreviewBadge: "Not Installed · Preview",
     pluginPreviewMeta: "Author: {author} · v{version} · {count} skill(s)",
     closeSkillPreviewAria: "Close skill preview",

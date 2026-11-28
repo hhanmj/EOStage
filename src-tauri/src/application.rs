@@ -6588,6 +6588,14 @@ fn pick_url_str(val: Option<&serde_json::Value>) -> String {
     String::new()
 }
 
+fn is_forbidden_internal_connector_endpoint(raw: &str) -> bool {
+    let trimmed = raw
+        .trim()
+        .trim_matches(|c| c == '"' || c == '\'')
+        .trim();
+    trimmed.to_ascii_lowercase().starts_with("tauri://")
+}
+
 fn parse_mcp_servers_from_value(
     val: Option<&serde_json::Value>,
 ) -> Vec<ExtensionRegistryMcpServer> {
@@ -6635,6 +6643,11 @@ fn parse_mcp_servers_from_value(
                 .unwrap_or("")
                 .trim()
                 .to_string();
+            if is_forbidden_internal_connector_endpoint(&command)
+                || is_forbidden_internal_connector_endpoint(&url)
+            {
+                continue;
+            }
             let transport = obj
                 .get("type")
                 .or_else(|| obj.get("transport"))
@@ -6709,6 +6722,11 @@ fn parse_mcp_servers_from_value(
                 .unwrap_or("")
                 .trim()
                 .to_string();
+            if is_forbidden_internal_connector_endpoint(&command)
+                || is_forbidden_internal_connector_endpoint(&url)
+            {
+                continue;
+            }
             let transport = obj
                 .get("type")
                 .or_else(|| obj.get("transport"))
@@ -9476,7 +9494,7 @@ fn parse_plugin_connector_from_obj(
     default_id: &str,
     default_name: &str,
     default_desc: &str,
-) -> PluginBundledConnectorEntry {
+) -> Option<PluginBundledConnectorEntry> {
     let id = obj
         .get("id")
         .and_then(|v| v.as_str())
@@ -9502,6 +9520,11 @@ fn parse_plugin_connector_from_obj(
         .and_then(|v| v.as_str())
         .map(str::trim)
         .filter(|s| !s.is_empty());
+    if explicit_url.is_some_and(is_forbidden_internal_connector_endpoint)
+        || command.is_some_and(is_forbidden_internal_connector_endpoint)
+    {
+        return None;
+    }
     let args: Vec<String> = obj
         .get("args")
         .and_then(|v| v.as_array())
@@ -9518,6 +9541,9 @@ fn parse_plugin_connector_from_obj(
     } else {
         "stdio://mcp".to_string()
     };
+    if is_forbidden_internal_connector_endpoint(&endpoint) {
+        return None;
+    }
     let transport = obj
         .get("transport")
         .or_else(|| obj.get("type"))
@@ -9550,21 +9576,23 @@ fn parse_plugin_connector_from_obj(
         .filter(|s| !s.is_empty())
         .unwrap_or(default_desc)
         .to_string();
-    PluginBundledConnectorEntry {
+    Some(PluginBundledConnectorEntry {
         id,
         name,
         transport,
         endpoint,
         description,
-    }
+    })
 }
 
 fn push_unique_plugin_connector(
     list: &mut Vec<PluginBundledConnectorEntry>,
-    entry: PluginBundledConnectorEntry,
+    entry: Option<PluginBundledConnectorEntry>,
 ) {
-    if !entry.id.trim().is_empty() && !list.iter().any(|existing| existing.id == entry.id) {
-        list.push(entry);
+    if let Some(entry) = entry {
+        if !entry.id.trim().is_empty() && !list.iter().any(|existing| existing.id == entry.id) {
+            list.push(entry);
+        }
     }
 }
 
@@ -10862,13 +10890,31 @@ fn install_plugin_from_raw_content_at(
             .map_err(|e| format!("PLUGIN_SKILL_WRITE_FAILED: {e}"))?;
         }
 
-        if let Some(mcp_servers) = parsed.get("mcpServers") {
-            let mcp_doc = serde_json::json!({ "mcpServers": mcp_servers });
-            std::fs::write(
-                target_dir.join("mcp.json"),
-                serde_json::to_string_pretty(&mcp_doc).unwrap_or_default(),
-            )
-            .map_err(|e| format!("PLUGIN_MCP_WRITE_FAILED: {e}"))?;
+        if let Some(mcp_servers) = parsed.get("mcpServers").and_then(|v| v.as_object()) {
+            let filtered: serde_json::Map<String, serde_json::Value> = mcp_servers
+                .iter()
+                .filter(|(_, cfg)| {
+                    cfg.as_object().is_some_and(|obj| {
+                        let cmd = obj.get("command").and_then(|x| x.as_str()).unwrap_or("");
+                        let url = obj
+                            .get("url")
+                            .or_else(|| obj.get("endpoint"))
+                            .and_then(|x| x.as_str())
+                            .unwrap_or("");
+                        !is_forbidden_internal_connector_endpoint(cmd)
+                            && !is_forbidden_internal_connector_endpoint(url)
+                    })
+                })
+                .map(|(k, v)| (k.clone(), v.clone()))
+                .collect();
+            if !filtered.is_empty() {
+                let mcp_doc = serde_json::json!({ "mcpServers": filtered });
+                std::fs::write(
+                    target_dir.join("mcp.json"),
+                    serde_json::to_string_pretty(&mcp_doc).unwrap_or_default(),
+                )
+                .map_err(|e| format!("PLUGIN_MCP_WRITE_FAILED: {e}"))?;
+            }
         } else if !mcp_from_list.is_empty() {
             let mut mcp_map = serde_json::Map::new();
             for srv in &mcp_from_list {
@@ -13997,6 +14043,104 @@ mod extension_hub_and_component_install_tests {
         assert!(list.iter().any(|s| s.id == "remote-sar-check"));
         handle.join().unwrap();
         let _ = std::fs::remove_dir_all(&root);
+    }
+
+    #[test]
+    fn runtime_gee_plugin_installs_cleanly_and_fake_tauri_mcp_connectors_are_rejected() {
+        let app_data = temp_test_root("gee-install-and-no-tauri-mcp");
+        let rt_plugins = discover_runtime_plugins_dir();
+        assert!(
+            rt_plugins.join("eostage-gee-plugin/plugin.json").is_file(),
+            "runtime/plugins/eostage-gee-plugin/plugin.json must exist at {}",
+            rt_plugins.display()
+        );
+
+        let gee_res = install_plugin_package_at(
+            &app_data,
+            &rt_plugins,
+            &PluginInstallRequest {
+                plugin_id: Some("eostage-gee-plugin".to_string()),
+                source_path: None,
+                raw_content: None,
+                fallback_name: None,
+            },
+        )
+        .expect("installing bundled eostage-gee-plugin from runtime/plugins succeeds");
+        let installed_gee = gee_res.installed_plugin.expect("installed_plugin");
+        assert_eq!(installed_gee.id, "eostage-gee-plugin");
+        assert_eq!(installed_gee.bundled_skills.len(), 1);
+        assert_eq!(installed_gee.bundled_skills[0].id, "gee-assistant");
+        assert!(
+            installed_gee.bundled_skills[0]
+                .prompt
+                .contains("gee_catalog_search"),
+            "gee-assistant SKILL.md should document real native GEE tool names"
+        );
+        assert!(
+            installed_gee.bundled_connectors.is_empty(),
+            "native GEE plugin must not advertise fake MCP connectors"
+        );
+
+        for pid in [
+            "eostage-gdal-stream-plugin",
+            "eostage-open-geodata-plugin",
+            "eostage-mapgis-compat-plugin",
+        ] {
+            let pkg = inspect_plugin_package_dir(&rt_plugins.join(pid), false, true)
+                .unwrap_or_else(|| panic!("missing runtime plugin {pid}"));
+            assert!(
+                pkg.bundled_connectors.is_empty(),
+                "native plugin {pid} must not ship fake tauri:// MCP stubs: {:?}",
+                pkg.bundled_connectors
+            );
+        }
+
+        // Defense-in-depth: even if a legacy/third-party manifest contains tauri://, strip it everywhere.
+        let fake_plugin_dir = app_data.join("plugins/legacy-fake-tauri-plugin");
+        std::fs::create_dir_all(&fake_plugin_dir).unwrap();
+        std::fs::write(
+            fake_plugin_dir.join("plugin.json"),
+            serde_json::json!({
+                "id": "legacy-fake-tauri-plugin",
+                "name": "Legacy Tauri Stub",
+                "version": "1.0.0",
+                "bundledConnector": {
+                    "id": "fake-tauri-conn",
+                    "name": "Fake Tauri",
+                    "transport": "stdio",
+                    "endpoint": "tauri://application_fake"
+                }
+            })
+            .to_string(),
+        )
+        .unwrap();
+        std::fs::write(
+            fake_plugin_dir.join("mcp.json"),
+            serde_json::json!({
+                "mcpServers": {
+                    "fake-srv": {
+                        "id": "plugin-mcp-fake-srv",
+                        "transport": "stdio",
+                        "command": "TAURI://application_fake"
+                    }
+                }
+            })
+            .to_string(),
+        )
+        .unwrap();
+        let fake_pkg = inspect_plugin_package_dir(&fake_plugin_dir, true, false).unwrap();
+        assert!(
+            fake_pkg.bundled_connectors.is_empty(),
+            "tauri:// endpoints must be stripped from bundled_connectors: {:?}",
+            fake_pkg.bundled_connectors
+        );
+        let eff = load_effective_mcp_connectors_at(&app_data, &rt_plugins);
+        assert!(
+            !eff.iter().any(|c| c.endpoint.to_ascii_lowercase().starts_with("tauri://")),
+            "load_effective_mcp_connectors_at must never expose tauri:// endpoints: {eff:?}"
+        );
+
+        let _ = std::fs::remove_dir_all(&app_data);
     }
 
     #[test]
