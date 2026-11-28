@@ -10688,6 +10688,7 @@ export interface ManagedPluginPackage {
   files: string[];
   bundled_skills: ManagedPluginBundledSkillEntry[];
   bundled_connector?: ManagedPluginBundledConnectorEntry | null;
+  bundled_connectors?: ManagedPluginBundledConnectorEntry[];
 }
 
 export type PluginPackageEntry = ManagedPluginPackage;

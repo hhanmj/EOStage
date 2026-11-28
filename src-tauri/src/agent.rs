@@ -802,7 +802,9 @@ impl UnifiedApplication for DesktopGeeAgentService {
             },
         ]);
         if let Some(dir) = app_data_dir.as_deref() {
-            let connectors = crate::application::load_custom_connectors_at(dir);
+            let rt_plugins = crate::application::discover_runtime_plugins_dir();
+            let connectors =
+                crate::application::load_effective_mcp_connectors_at(dir, &rt_plugins);
             if !connectors.is_empty() {
                 let mut mcp_tools = crate::mcp_client::cached_active_extension_tools(&connectors);
                 for td in &mut mcp_tools {
@@ -821,7 +823,9 @@ impl UnifiedApplication for DesktopGeeAgentService {
     ) -> Option<Result<Value, ErrorClass>> {
         if tool_id.starts_with("mcp__") {
             let dir = self.inner.data_root()?;
-            let connectors = crate::application::load_custom_connectors_at(&dir);
+            let rt_plugins = crate::application::discover_runtime_plugins_dir();
+            let connectors =
+                crate::application::load_effective_mcp_connectors_at(&dir, &rt_plugins);
             return crate::mcp_client::call_connector_tool(&connectors, tool_id, input).map(Ok);
         }
         if tool_id == "skill_read" {
@@ -1533,6 +1537,22 @@ fn execute_skill_read(app_data_dir: Option<&Path>, input: &Value) -> Value {
     let Some((skill_dir, source_label, available_files, inline_fallback)) =
         resolve_skill_dir_and_source(app_data_dir, skill_id)
     else {
+        if let Some(data_dir) = app_data_dir {
+            let rt_plugins = crate::application::discover_runtime_plugins_dir();
+            let plugins =
+                crate::application::load_installed_plugin_packages_at(data_dir, &rt_plugins);
+            if let Some(disabled_owner) = plugins.iter().find(|plugin| {
+                !plugin.enabled && plugin.bundled_skills.iter().any(|sk| sk.id == skill_id)
+            }) {
+                return json!({
+                    "ok": false,
+                    "skill_id": skill_id,
+                    "plugin_id": disabled_owner.id,
+                    "error": "PLUGIN_DISABLED",
+                    "message": format!("技能 `{skill_id}` 所属插件 `{}` 已停用，请先启用该插件", disabled_owner.name),
+                });
+            }
+        }
         return json!({
             "ok": false,
             "skill_id": skill_id,
@@ -6517,6 +6537,105 @@ data: [DONE]
         );
         assert_eq!(batch["ok"], true, "{batch}");
         assert_eq!(batch["files"].as_array().unwrap().len(), 2, "{batch}");
+    }
+
+    #[test]
+    fn disabled_plugin_suppresses_skill_read_and_extension_mcp_tools() {
+        let uniq = format!(
+            "{}-{}",
+            std::process::id(),
+            std::time::SystemTime::now()
+                .duration_since(std::time::UNIX_EPOCH)
+                .unwrap()
+                .as_nanos()
+        );
+        let root = std::env::temp_dir().join(format!("eostage-disabled-plugin-{uniq}"));
+        let rt_plugins = root.join("empty-rt");
+        std::fs::create_dir_all(&rt_plugins).unwrap();
+
+        let payload = r#"{
+            "id": "eostage-test-owned-plugin",
+            "name": "Owned Test Plugin",
+            "version": "1.0.0",
+            "runtime_compatibility": "eostage_native",
+            "skill": {
+                "id": "owned-test-skill",
+                "name": "Owned Test Skill",
+                "content": "---\nname: owned-test-skill\ndescription: test\n---\n# Owned Skill\nRun step 1."
+            },
+            "mcp_servers": [
+                {
+                    "id": "owned-srv",
+                    "command": "",
+                    "args": [],
+                    "env": {},
+                    "url": "https://owned.example.invalid/mcp",
+                    "transport": "http"
+                }
+            ]
+        }"#;
+        crate::application::install_plugin_package_at(
+            &root,
+            &rt_plugins,
+            &crate::application::PluginInstallRequest {
+                plugin_id: None,
+                source_path: None,
+                raw_content: Some(payload.to_string()),
+                fallback_name: None,
+            },
+        )
+        .expect("install owned plugin");
+
+        // Enabled: prompt lists skill, skill_read succeeds, effective connectors include owned-srv.
+        let enabled_prompt = build_desktop_extension_system_prompt(Some(&root));
+        assert!(enabled_prompt.contains("owned-test-skill"));
+        let read_ok = execute_skill_read(Some(&root), &json!({ "skill_id": "owned-test-skill" }));
+        assert_eq!(read_ok["ok"], true, "{read_ok}");
+        assert_eq!(read_ok["source"], "plugin:eostage-test-owned-plugin");
+        assert!(
+            crate::application::load_effective_mcp_connectors_at(&root, &rt_plugins)
+                .iter()
+                .any(|c| c.id == "plugin-mcp-owned-srv")
+        );
+
+        // Disabled: skill suppressed in prompt, skill_read returns PLUGIN_DISABLED, connector suppressed.
+        crate::application::set_plugin_enabled_at(
+            &root,
+            &rt_plugins,
+            "eostage-test-owned-plugin",
+            false,
+        )
+        .expect("disable plugin");
+        let disabled_prompt = build_desktop_extension_system_prompt(Some(&root));
+        assert!(!disabled_prompt.contains("owned-test-skill"));
+        let read_disabled =
+            execute_skill_read(Some(&root), &json!({ "skill_id": "owned-test-skill" }));
+        assert_eq!(read_disabled["ok"], false, "{read_disabled}");
+        assert_eq!(read_disabled["error"], "PLUGIN_DISABLED", "{read_disabled}");
+        assert!(
+            !crate::application::load_effective_mcp_connectors_at(&root, &rt_plugins)
+                .iter()
+                .any(|c| c.id == "plugin-mcp-owned-srv")
+        );
+
+        // Re-enabled: both skill and connector are restored.
+        crate::application::set_plugin_enabled_at(
+            &root,
+            &rt_plugins,
+            "eostage-test-owned-plugin",
+            true,
+        )
+        .expect("re-enable plugin");
+        let restored_read =
+            execute_skill_read(Some(&root), &json!({ "skill_id": "owned-test-skill" }));
+        assert_eq!(restored_read["ok"], true, "{restored_read}");
+        assert!(
+            crate::application::load_effective_mcp_connectors_at(&root, &rt_plugins)
+                .iter()
+                .any(|c| c.id == "plugin-mcp-owned-srv")
+        );
+
+        let _ = std::fs::remove_dir_all(&root);
     }
 
     #[test]

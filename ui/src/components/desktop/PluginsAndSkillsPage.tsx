@@ -1764,36 +1764,43 @@ export function PluginsAndSkillsPage({
         saveCustomConnectors(mappedConns);
       }
 
-      if (Array.isArray(status.custom_skills) && status.custom_skills.length > 0) {
-        const localSkills = loadCustomSkills();
-        const byId = new Map<string, AgentSkill>(
-          localSkills.map((s) => [s.id, s]),
-        );
-        let changed = false;
-        for (const sk of status.custom_skills) {
-          if (!byId.has(sk.id)) {
-            byId.set(sk.id, {
-              id: sk.id,
-              name: sk.name,
-              description: sk.description,
-              overview: sk.description,
-              prompt: sk.prompt,
-              isBuiltin: false,
-              category: "custom",
-              discipline: "custom",
-              author: sk.author || "EOStage",
-              license: sk.license || "Apache-2.0",
-              version: sk.version || "1.0.0",
-              slashCommand: sk.slash_command || `/${sk.id}`,
-              sourceLabel: t("shell.pluginsPage.pluginSourceTag"),
-              updatedAt: sk.updated_at || new Date().toISOString(),
-            });
-            changed = true;
-          }
-        }
-        if (changed) {
-          saveCustomSkills(Array.from(byId.values()));
+      if (Array.isArray(status.custom_skills)) {
+        const mappedCustomSkills: AgentSkill[] = status.custom_skills.map((sk) => ({
+          id: sk.id,
+          name: sk.name,
+          description: sk.description,
+          overview: sk.description,
+          prompt: sk.prompt,
+          isBuiltin: false,
+          category: "custom",
+          discipline: "custom",
+          author: sk.author || "EOStage",
+          license: sk.license || "Apache-2.0",
+          version: sk.version || "1.0.0",
+          slashCommand: sk.slash_command || `/${sk.id}`,
+          sourceLabel:
+            sk.author && sk.author.toLowerCase() === "user"
+              ? t("shell.pluginsPage.categoryCustom")
+              : t("shell.pluginsPage.pluginSourceTag"),
+          updatedAt: sk.updated_at || new Date().toISOString(),
+        }));
+        if (isTauriDesktopHost()) {
+          saveCustomSkills(mappedCustomSkills);
           refreshSkills();
+        } else if (mappedCustomSkills.length > 0) {
+          const localSkills = loadCustomSkills();
+          const byId = new Map<string, AgentSkill>(localSkills.map((s) => [s.id, s]));
+          let changed = false;
+          for (const item of mappedCustomSkills) {
+            if (!byId.has(item.id)) {
+              byId.set(item.id, item);
+              changed = true;
+            }
+          }
+          if (changed) {
+            saveCustomSkills(Array.from(byId.values()));
+            refreshSkills();
+          }
         }
       }
     } catch {
@@ -1962,6 +1969,7 @@ export function PluginsAndSkillsPage({
     const isCurrentlyDisabled = disabledPluginIds.has(suite.id);
     const prevDisabledPlugins = new Set(disabledPluginIds);
     const prevDisabledSkills = loadDisabledSkillIds();
+    const isDesktop = isTauriDesktopHost();
     setDisabledPluginIds((prev) => {
       const next = new Set(prev);
       if (isCurrentlyDisabled) next.delete(suite.id);
@@ -1969,19 +1977,23 @@ export function PluginsAndSkillsPage({
       saveDisabledPluginIds(next);
       return next;
     });
-    for (const sk of suiteSkills) {
-      toggleSkillEnabled(sk.id, isCurrentlyDisabled);
+    if (!isDesktop) {
+      for (const sk of suiteSkills) {
+        toggleSkillEnabled(sk.id, isCurrentlyDisabled);
+      }
+      setDisabledSkillIds(loadDisabledSkillIds());
     }
-    setDisabledSkillIds(loadDisabledSkillIds());
     void setPluginEnabledBackend(suite.id, isCurrentlyDisabled)
       .then(() => syncPluginsFromBackend())
       .catch((err: any) => {
         saveDisabledPluginIds(prevDisabledPlugins);
         setDisabledPluginIds(prevDisabledPlugins);
-        for (const sk of suiteSkills) {
-          toggleSkillEnabled(sk.id, !prevDisabledSkills.has(sk.id));
+        if (!isDesktop) {
+          for (const sk of suiteSkills) {
+            toggleSkillEnabled(sk.id, !prevDisabledSkills.has(sk.id));
+          }
+          setDisabledSkillIds(loadDisabledSkillIds());
         }
-        setDisabledSkillIds(loadDisabledSkillIds());
         setPluginsBanner({
           type: "error",
           text:
@@ -1992,7 +2004,8 @@ export function PluginsAndSkillsPage({
   };
 
   const handleInstallPlugin = (suite: PluginSuiteItem) => {
-    if (suite.bundledSkills && suite.bundledSkills.length > 0) {
+    const isDesktop = isTauriDesktopHost();
+    if (!isDesktop && suite.bundledSkills && suite.bundledSkills.length > 0) {
       const currentCustom = loadCustomSkills();
       const existingIds = new Set(currentCustom.map((s) => s.id));
       const newSkills: AgentSkill[] = [];
@@ -2021,7 +2034,7 @@ export function PluginsAndSkillsPage({
         refreshSkills();
       }
     }
-    if (suite.bundledConnector) {
+    if (!isDesktop && suite.bundledConnector) {
       const currentConns = loadCustomConnectors();
       if (!currentConns.some((c) => c.id === suite.bundledConnector!.id)) {
         const nextConns: CustomConnectorItem[] = [
@@ -2035,31 +2048,33 @@ export function PluginsAndSkillsPage({
         saveCustomConnectors(nextConns);
       }
     }
-    setInstalledPluginIds((prev) => {
-      const next = new Set(prev);
-      next.add(suite.id);
-      saveInstalledPluginIds(next);
-      return next;
-    });
-    setDisabledPluginIds((prev) => {
-      const next = new Set(prev);
-      next.delete(suite.id);
-      saveDisabledPluginIds(next);
-      return next;
-    });
     const suiteSkills = getSuiteSkills(suite);
-    for (const sk of suiteSkills) {
-      toggleSkillEnabled(sk.id, true);
+    if (!isDesktop) {
+      setInstalledPluginIds((prev) => {
+        const next = new Set(prev);
+        next.add(suite.id);
+        saveInstalledPluginIds(next);
+        return next;
+      });
+      setDisabledPluginIds((prev) => {
+        const next = new Set(prev);
+        next.delete(suite.id);
+        saveDisabledPluginIds(next);
+        return next;
+      });
+      for (const sk of suiteSkills) {
+        toggleSkillEnabled(sk.id, true);
+      }
+      setDisabledSkillIds(loadDisabledSkillIds());
+      setPluginsBanner({
+        type: "success",
+        text: t("shell.pluginsPage.addPluginSuccess", {
+          name: suite.name,
+          author: localizeSkillAuthor(suite.author, locale),
+          count: suiteSkills.length,
+        }),
+      });
     }
-    setDisabledSkillIds(loadDisabledSkillIds());
-    setPluginsBanner({
-      type: "success",
-      text: t("shell.pluginsPage.addPluginSuccess", {
-        name: suite.name,
-        author: localizeSkillAuthor(suite.author, locale),
-        count: suiteSkills.length,
-      }),
-    });
 
     void installPluginPackage({ plugin_id: suite.id })
       .then((res) => {
@@ -2082,12 +2097,14 @@ export function PluginsAndSkillsPage({
         }
       })
       .catch((err: any) => {
-        setInstalledPluginIds((prev) => {
-          const next = new Set(prev);
-          next.delete(suite.id);
-          saveInstalledPluginIds(next);
-          return next;
-        });
+        if (!isDesktop) {
+          setInstalledPluginIds((prev) => {
+            const next = new Set(prev);
+            next.delete(suite.id);
+            saveInstalledPluginIds(next);
+            return next;
+          });
+        }
         setPluginsBanner({
           type: "error",
           text:
@@ -2280,40 +2297,43 @@ export function PluginsAndSkillsPage({
         return;
       }
 
+      const isDesktop = isTauriDesktopHost();
       let newPlugin: PluginSuiteItem;
       const importedSkillIds: string[] = [];
 
       if (rawText.startsWith("{")) {
         const parsed = JSON.parse(rawText);
-        if (Array.isArray(parsed.skills) && parsed.skills.length > 0) {
-          importCustomSkillsFromJson(JSON.stringify(parsed.skills));
-          refreshSkills();
-        }
-        if (parsed.mcpServers && typeof parsed.mcpServers === "object") {
-          const currentConns = loadCustomConnectors();
-          const addedConns: CustomConnectorItem[] = [];
-          for (const [serverKey, serverCfg] of Object.entries<any>(
-            parsed.mcpServers,
-          )) {
-            addedConns.push({
-              id: `plugin-mcp-${Date.now()}-${serverKey}`,
-              name: serverCfg?.name || serverKey,
-              transport: serverCfg?.command ? "stdio" : "http",
-              endpoint:
-                serverCfg?.url ||
-                serverCfg?.endpoint ||
-                serverCfg?.command ||
-                "stdio://mcp",
-              description:
-                serverCfg?.description ||
-                t("shell.pluginsPage.pluginMcpDesc", { key: serverKey }),
-              enabled: true,
-            });
+        if (!isDesktop) {
+          if (Array.isArray(parsed.skills) && parsed.skills.length > 0) {
+            importCustomSkillsFromJson(JSON.stringify(parsed.skills));
+            refreshSkills();
           }
-          if (addedConns.length > 0) {
-            const merged = [...currentConns, ...addedConns];
-            setCustomConnectors(merged);
-            saveCustomConnectors(merged);
+          if (parsed.mcpServers && typeof parsed.mcpServers === "object") {
+            const currentConns = loadCustomConnectors();
+            const addedConns: CustomConnectorItem[] = [];
+            for (const [serverKey, serverCfg] of Object.entries<any>(
+              parsed.mcpServers,
+            )) {
+              addedConns.push({
+                id: `plugin-mcp-${Date.now()}-${serverKey}`,
+                name: serverCfg?.name || serverKey,
+                transport: serverCfg?.command ? "stdio" : "http",
+                endpoint:
+                  serverCfg?.url ||
+                  serverCfg?.endpoint ||
+                  serverCfg?.command ||
+                  "stdio://mcp",
+                description:
+                  serverCfg?.description ||
+                  t("shell.pluginsPage.pluginMcpDesc", { key: serverKey }),
+                enabled: true,
+              });
+            }
+            if (addedConns.length > 0) {
+              const merged = [...currentConns, ...addedConns];
+              setCustomConnectors(merged);
+              saveCustomConnectors(merged);
+            }
           }
         }
         const pluginAuthor =
@@ -2336,7 +2356,7 @@ export function PluginsAndSkillsPage({
           isCustomImport: true,
         };
       } else {
-        if (rawText) {
+        if (!isDesktop && rawText) {
           importCustomSkillsFromJson(rawText);
           refreshSkills();
         }
@@ -2355,19 +2375,21 @@ export function PluginsAndSkillsPage({
         };
       }
 
-      const nextCustom = [
-        ...customPlugins.filter((c) => c.id !== newPlugin.id),
-        newPlugin,
-      ];
-      setCustomPlugins(nextCustom);
-      saveCustomPlugins(nextCustom);
+      if (!isDesktop) {
+        const nextCustom = [
+          ...customPlugins.filter((c) => c.id !== newPlugin.id),
+          newPlugin,
+        ];
+        setCustomPlugins(nextCustom);
+        saveCustomPlugins(nextCustom);
 
-      setInstalledPluginIds((prev) => {
-        const next = new Set(prev);
-        next.add(newPlugin.id);
-        saveInstalledPluginIds(next);
-        return next;
-      });
+        setInstalledPluginIds((prev) => {
+          const next = new Set(prev);
+          next.add(newPlugin.id);
+          saveInstalledPluginIds(next);
+          return next;
+        });
+      }
 
       const lwId = rawPath
         ? startLongWork({
@@ -2391,9 +2413,22 @@ export function PluginsAndSkillsPage({
             }));
             void syncPluginsFromBackend();
           }
+          if (isDesktop) {
+            setPluginImportModalOpen(false);
+            setPluginImportName("");
+            setPluginImportPath("");
+            setPluginImportText("");
+            setPluginFilter("added");
+            setPluginsBanner({
+              type: "success",
+              text: t("shell.pluginsPage.importAndEnabledToast", {
+                name: installed?.name || newPlugin.name,
+              }),
+            });
+          }
           if (lwId) {
             completeLongWork(lwId, {
-              doneTitle: t("shell.pluginsPage.importPluginDone", { name: newPlugin.name }),
+              doneTitle: t("shell.pluginsPage.importPluginDone", { name: installed?.name || newPlugin.name }),
               doneSubtitle: t("shell.pluginsPage.enabledClickView"),
               onOpen: () => setActiveTab("plugins"),
             });
@@ -2405,15 +2440,17 @@ export function PluginsAndSkillsPage({
           setPluginsBanner({ type: "error", text: msg });
         });
 
-      setPluginImportModalOpen(false);
-      setPluginImportName("");
-      setPluginImportPath("");
-      setPluginImportText("");
-      setPluginFilter("added");
-      setPluginsBanner({
-        type: "success",
-        text: t("shell.pluginsPage.importAndEnabledToast", { name: newPlugin.name }),
-      });
+      if (!isDesktop) {
+        setPluginImportModalOpen(false);
+        setPluginImportName("");
+        setPluginImportPath("");
+        setPluginImportText("");
+        setPluginFilter("added");
+        setPluginsBanner({
+          type: "success",
+          text: t("shell.pluginsPage.importAndEnabledToast", { name: newPlugin.name }),
+        });
+      }
     } catch (err: any) {
       setPluginsBanner({
         type: "error",

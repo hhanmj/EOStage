@@ -9333,6 +9333,8 @@ pub struct ManagedPluginPackage {
     pub bundled_skills: Vec<PluginBundledSkillEntry>,
     #[serde(default, alias = "bundledConnector")]
     pub bundled_connector: Option<PluginBundledConnectorEntry>,
+    #[serde(default, alias = "bundledConnectors")]
+    pub bundled_connectors: Vec<PluginBundledConnectorEntry>,
 }
 
 #[derive(Debug, Clone, serde::Serialize, serde::Deserialize, PartialEq, Eq)]
@@ -9449,6 +9451,148 @@ fn sanitize_plugin_id(raw: &str) -> String {
     }
 }
 
+fn shell_quote_stdio_words(command: &str, args: &[String]) -> String {
+    let mut tokens = Vec::with_capacity(1 + args.len());
+    for raw in std::iter::once(command).chain(args.iter().map(String::as_str)) {
+        let trimmed = raw.trim();
+        if trimmed.is_empty() {
+            continue;
+        }
+        if trimmed
+            .chars()
+            .any(|c| c.is_whitespace() || c == '"' || c == '\'' || c == '\\')
+        {
+            let escaped = trimmed.replace('\\', "\\\\").replace('"', "\\\"");
+            tokens.push(format!("\"{escaped}\""));
+        } else {
+            tokens.push(trimmed.to_string());
+        }
+    }
+    tokens.join(" ")
+}
+
+fn parse_plugin_connector_from_obj(
+    obj: &serde_json::Map<String, serde_json::Value>,
+    default_id: &str,
+    default_name: &str,
+    default_desc: &str,
+) -> PluginBundledConnectorEntry {
+    let id = obj
+        .get("id")
+        .and_then(|v| v.as_str())
+        .map(str::trim)
+        .filter(|s| !s.is_empty())
+        .unwrap_or(default_id)
+        .to_string();
+    let name = obj
+        .get("name")
+        .and_then(|v| v.as_str())
+        .map(str::trim)
+        .filter(|s| !s.is_empty())
+        .unwrap_or(default_name)
+        .to_string();
+    let explicit_url = obj
+        .get("endpoint")
+        .or_else(|| obj.get("url"))
+        .and_then(|v| v.as_str())
+        .map(str::trim)
+        .filter(|s| !s.is_empty());
+    let command = obj
+        .get("command")
+        .and_then(|v| v.as_str())
+        .map(str::trim)
+        .filter(|s| !s.is_empty());
+    let args: Vec<String> = obj
+        .get("args")
+        .and_then(|v| v.as_array())
+        .map(|arr| {
+            arr.iter()
+                .filter_map(|v| v.as_str().map(|s| s.to_string()))
+                .collect()
+        })
+        .unwrap_or_default();
+    let endpoint = if let Some(u) = explicit_url {
+        u.to_string()
+    } else if let Some(cmd) = command {
+        shell_quote_stdio_words(cmd, &args)
+    } else {
+        "stdio://mcp".to_string()
+    };
+    let transport = obj
+        .get("transport")
+        .or_else(|| obj.get("type"))
+        .and_then(|v| v.as_str())
+        .map(str::trim)
+        .filter(|s| !s.is_empty())
+        .map(|s| {
+            if s.eq_ignore_ascii_case("streamable_http")
+                || s.eq_ignore_ascii_case("streamable-http")
+                || s.eq_ignore_ascii_case("sse")
+            {
+                "http".to_string()
+            } else {
+                s.to_ascii_lowercase()
+            }
+        })
+        .unwrap_or_else(|| {
+            if command.is_some() {
+                "stdio".to_string()
+            } else if endpoint.starts_with("http://") || endpoint.starts_with("https://") {
+                "http".to_string()
+            } else {
+                "stdio".to_string()
+            }
+        });
+    let description = obj
+        .get("description")
+        .and_then(|v| v.as_str())
+        .map(str::trim)
+        .filter(|s| !s.is_empty())
+        .unwrap_or(default_desc)
+        .to_string();
+    PluginBundledConnectorEntry {
+        id,
+        name,
+        transport,
+        endpoint,
+        description,
+    }
+}
+
+fn push_unique_plugin_connector(
+    list: &mut Vec<PluginBundledConnectorEntry>,
+    entry: PluginBundledConnectorEntry,
+) {
+    if !entry.id.trim().is_empty() && !list.iter().any(|existing| existing.id == entry.id) {
+        list.push(entry);
+    }
+}
+
+fn compute_plugin_package_sha256(plugin_dir: &std::path::Path, sorted_files: &[String]) -> String {
+    use sha2::{Digest, Sha256};
+
+    let mut hasher = Sha256::new();
+    hasher.update(b"eostage-plugin-v1\0");
+    for rel in sorted_files {
+        let full = plugin_dir.join(rel);
+        let Ok(meta) = std::fs::symlink_metadata(&full) else {
+            continue;
+        };
+        if meta.file_type().is_symlink() || !meta.is_file() {
+            continue;
+        }
+        let Ok(bytes) = std::fs::read(&full) else {
+            continue;
+        };
+        hasher.update(rel.as_bytes());
+        hasher.update(b"\0");
+        hasher.update((bytes.len() as u64).to_le_bytes());
+        hasher.update(&bytes);
+        hasher.update(b"\0");
+    }
+    format!("{:x}", hasher.finalize())
+}
+
 fn collect_plugin_files_recursive(
     base: &std::path::Path,
     current: &std::path::Path,
@@ -9462,15 +9606,26 @@ fn collect_plugin_files_recursive(
     sorted.sort_by_key(|e| e.file_name());
     for entry in sorted {
         let p = entry.path();
-        if p.is_dir() {
+        let Ok(meta) = std::fs::symlink_metadata(&p) else {
+            continue;
+        };
+        if meta.file_type().is_symlink() {
+            continue;
+        }
+        if meta.is_dir() {
             collect_plugin_files_recursive(base, &p, files, total_bytes);
-        } else if p.is_file() {
-            if let Ok(meta) = std::fs::metadata(&p) {
-                *total_bytes = total_bytes.saturating_add(meta.len());
-            }
+        } else if meta.is_file() {
             if let Ok(rel) = p.strip_prefix(base) {
                 let rel_str = rel.to_string_lossy().replace('\\', "/");
-                if rel_str != ".disabled" {
+                let file_name = rel
+                    .file_name()
+                    .and_then(|s| s.to_str())
+                    .unwrap_or("");
+                if rel_str != ".disabled"
+                    && file_name != ".DS_Store"
+                    && file_name != "Thumbs.db"
+                {
+                    *total_bytes = total_bytes.saturating_add(meta.len());
                     files.push(rel_str);
                 }
             }
@@ -9483,18 +9638,13 @@ pub fn inspect_plugin_package_dir(
     installed: bool,
     is_official: bool,
 ) -> Option<ManagedPluginPackage> {
-    use sha2::{Digest, Sha256};
-
     let manifest_path = plugin_dir.join("plugin.json");
-    if !manifest_path.is_file() {
+    let manifest_meta = std::fs::symlink_metadata(&manifest_path).ok()?;
+    if manifest_meta.file_type().is_symlink() || !manifest_meta.is_file() {
         return None;
     }
     let raw_bytes = std::fs::read(&manifest_path).ok()?;
     let val: serde_json::Value = serde_json::from_slice(&raw_bytes).ok()?;
-
-    let mut hasher = Sha256::new();
-    hasher.update(&raw_bytes);
-    let sha256 = format!("{:x}", hasher.finalize());
 
     let dir_name = plugin_dir
         .file_name()
@@ -9553,11 +9703,17 @@ pub fn inspect_plugin_package_dir(
 
     let disabled_marker = plugin_dir.join(".disabled").is_file();
     let json_enabled = val.get("enabled").and_then(|v| v.as_bool()).unwrap_or(true);
-    let enabled = json_enabled && !disabled_marker;
+    let enabled = if installed {
+        !disabled_marker
+    } else {
+        json_enabled && !disabled_marker
+    };
 
     let mut files = Vec::new();
     let mut total_bytes = 0u64;
     collect_plugin_files_recursive(plugin_dir, plugin_dir, &mut files, &mut total_bytes);
+    files.sort();
+    let sha256 = compute_plugin_package_sha256(plugin_dir, &files);
 
     let mut bundled_skills = Vec::new();
     if let Some(arr) = val
@@ -9615,7 +9771,9 @@ pub fn inspect_plugin_package_dir(
     let skills_subdir = plugin_dir.join("skills");
     if skills_subdir.is_dir() {
         if let Ok(entries) = std::fs::read_dir(&skills_subdir) {
-            for entry in entries.flatten() {
+            let mut dirs: Vec<_> = entries.flatten().collect();
+            dirs.sort_by_key(|e| e.file_name());
+            for entry in dirs {
                 let p = entry.path();
                 if p.is_dir() {
                     let sk_id = entry.file_name().to_string_lossy().to_string();
@@ -9636,79 +9794,85 @@ pub fn inspect_plugin_package_dir(
         }
     }
 
-    let mut bundled_connector = None;
+    let mut bundled_connectors = Vec::new();
+    if let Some(arr) = val
+        .get("bundledConnectors")
+        .or_else(|| val.get("bundled_connectors"))
+        .and_then(|v| v.as_array())
+    {
+        for (idx, item) in arr.iter().enumerate() {
+            if let Some(conn_obj) = item.as_object() {
+                let default_id = if idx == 0 {
+                    format!("plugin-mcp-{id}")
+                } else {
+                    format!("plugin-mcp-{id}-{}", idx + 1)
+                };
+                push_unique_plugin_connector(
+                    &mut bundled_connectors,
+                    parse_plugin_connector_from_obj(conn_obj, &default_id, &name, &description),
+                );
+            }
+        }
+    }
     if let Some(conn_obj) = val
         .get("bundledConnector")
         .or_else(|| val.get("bundled_connector"))
         .and_then(|v| v.as_object())
     {
-        bundled_connector = Some(PluginBundledConnectorEntry {
-            id: conn_obj
-                .get("id")
-                .and_then(|v| v.as_str())
-                .unwrap_or(&format!("plugin-mcp-{id}"))
-                .to_string(),
-            name: conn_obj
-                .get("name")
-                .and_then(|v| v.as_str())
-                .unwrap_or(&name)
-                .to_string(),
-            transport: conn_obj
-                .get("transport")
-                .and_then(|v| v.as_str())
-                .unwrap_or("stdio")
-                .to_string(),
-            endpoint: conn_obj
-                .get("endpoint")
-                .and_then(|v| v.as_str())
-                .unwrap_or("stdio://mcp")
-                .to_string(),
-            description: conn_obj
-                .get("description")
-                .and_then(|v| v.as_str())
-                .unwrap_or(&description)
-                .to_string(),
-        });
-    } else {
-        let mcp_path = plugin_dir.join("mcp.json");
-        if let Ok(mcp_raw) = std::fs::read_to_string(&mcp_path) {
-            if let Ok(mcp_val) = serde_json::from_str::<serde_json::Value>(&mcp_raw) {
-                if let Some(servers) = mcp_val.get("mcpServers").and_then(|v| v.as_object()) {
-                    if let Some((srv_key, srv_cfg)) = servers.iter().next() {
-                        bundled_connector = Some(PluginBundledConnectorEntry {
-                            id: srv_cfg
-                                .get("id")
-                                .and_then(|v| v.as_str())
-                                .unwrap_or(&format!("plugin-mcp-{srv_key}"))
-                                .to_string(),
-                            name: srv_cfg
-                                .get("name")
-                                .and_then(|v| v.as_str())
-                                .unwrap_or(srv_key)
-                                .to_string(),
-                            transport: srv_cfg
-                                .get("transport")
-                                .and_then(|v| v.as_str())
-                                .unwrap_or("stdio")
-                                .to_string(),
-                            endpoint: srv_cfg
-                                .get("endpoint")
-                                .or_else(|| srv_cfg.get("command"))
-                                .or_else(|| srv_cfg.get("url"))
-                                .and_then(|v| v.as_str())
-                                .unwrap_or("stdio://mcp")
-                                .to_string(),
-                            description: srv_cfg
-                                .get("description")
-                                .and_then(|v| v.as_str())
-                                .unwrap_or(&description)
-                                .to_string(),
-                        });
+        push_unique_plugin_connector(
+            &mut bundled_connectors,
+            parse_plugin_connector_from_obj(
+                conn_obj,
+                &format!("plugin-mcp-{id}"),
+                &name,
+                &description,
+            ),
+        );
+    }
+
+    let mcp_path = plugin_dir.join("mcp.json");
+    if let Ok(mcp_raw) = std::fs::read_to_string(&mcp_path) {
+        if let Ok(mcp_val) = serde_json::from_str::<serde_json::Value>(&mcp_raw) {
+            if let Some(servers) = mcp_val.get("mcpServers").and_then(|v| v.as_object()) {
+                let mut keys: Vec<_> = servers.keys().cloned().collect();
+                keys.sort();
+                for srv_key in keys {
+                    if let Some(srv_cfg) = servers.get(&srv_key).and_then(|v| v.as_object()) {
+                        push_unique_plugin_connector(
+                            &mut bundled_connectors,
+                            parse_plugin_connector_from_obj(
+                                srv_cfg,
+                                &format!("plugin-mcp-{srv_key}"),
+                                &srv_key,
+                                &description,
+                            ),
+                        );
                     }
                 }
             }
         }
+    } else if let Some(servers) = val
+        .get("mcpServers")
+        .or_else(|| val.get("mcp_servers"))
+        .and_then(|v| v.as_object())
+    {
+        let mut keys: Vec<_> = servers.keys().cloned().collect();
+        keys.sort();
+        for srv_key in keys {
+            if let Some(srv_cfg) = servers.get(&srv_key).and_then(|v| v.as_object()) {
+                push_unique_plugin_connector(
+                    &mut bundled_connectors,
+                    parse_plugin_connector_from_obj(
+                        srv_cfg,
+                        &format!("plugin-mcp-{srv_key}"),
+                        &srv_key,
+                        &description,
+                    ),
+                );
+            }
+        }
     }
+    let bundled_connector = bundled_connectors.first().cloned();
 
     Some(ManagedPluginPackage {
         id,
@@ -9729,6 +9893,7 @@ pub fn inspect_plugin_package_dir(
         files,
         bundled_skills,
         bundled_connector,
+        bundled_connectors,
     })
 }
 
@@ -10088,6 +10253,157 @@ pub fn import_custom_skill_folder_at(
     Ok(record)
 }
 
+pub fn load_installed_plugin_packages_at(
+    app_data_dir: &std::path::Path,
+    runtime_plugins_dir: &std::path::Path,
+) -> Vec<ManagedPluginPackage> {
+    let plugins_dir = app_data_dir.join("plugins");
+    let mut installed_plugins = Vec::new();
+    if let Ok(entries) = std::fs::read_dir(&plugins_dir) {
+        let mut dirs: Vec<_> = entries.flatten().collect();
+        dirs.sort_by_key(|e| e.file_name());
+        for entry in dirs {
+            let p = entry.path();
+            let Ok(meta) = std::fs::symlink_metadata(&p) else {
+                continue;
+            };
+            if meta.file_type().is_symlink() || !meta.is_dir() {
+                continue;
+            }
+            let is_official = runtime_plugins_dir.join(entry.file_name()).is_dir();
+            if let Some(pkg) = inspect_plugin_package_dir(&p, true, is_official) {
+                installed_plugins.push(pkg);
+            }
+        }
+    }
+    installed_plugins
+}
+
+fn cleanup_legacy_plugin_copies_at(
+    app_data_dir: &std::path::Path,
+    plugins: &[ManagedPluginPackage],
+) {
+    if plugins.is_empty() {
+        return;
+    }
+    // Remove unedited legacy copies created by earlier releases that duplicated
+    // plugin-owned skills into `skills_custom/`. Always preserve user-authored or
+    // user-edited skills.
+    let custom_skills = load_custom_skills_at(app_data_dir);
+    for sk in &custom_skills {
+        if sk.author.trim().eq_ignore_ascii_case("User") {
+            continue;
+        }
+        let matches_plugin_copy = plugins.iter().any(|p| {
+            p.bundled_skills.iter().any(|bundled| {
+                bundled.id == sk.id && bundled.prompt.trim() == sk.prompt.trim()
+            })
+        });
+        if matches_plugin_copy {
+            let _ = delete_custom_skill_at(app_data_dir, &sk.id);
+        }
+    }
+
+    // Remove exact legacy plugin connector clones from `connectors_custom.json`,
+    // explicitly preserving user-authored entries such as `plugin-mcp-rustgis`.
+    let custom_connectors = load_custom_connectors_at(app_data_dir);
+    let mut changed = false;
+    let filtered: Vec<CustomConnectorRecord> = custom_connectors
+        .into_iter()
+        .filter(|conn| {
+            if conn.id == "plugin-mcp-rustgis" {
+                return true;
+            }
+            let matches_plugin_copy = plugins.iter().any(|p| {
+                p.bundled_connectors.iter().any(|bundled| {
+                    bundled.id == conn.id
+                        && bundled.endpoint == conn.endpoint
+                        && bundled.transport == conn.transport
+                })
+            });
+            if matches_plugin_copy {
+                changed = true;
+                false
+            } else {
+                true
+            }
+        })
+        .collect();
+    if changed {
+        let _ = save_custom_connectors_at(app_data_dir, &filtered);
+    }
+}
+
+pub fn load_effective_mcp_connectors_at(
+    app_data_dir: &std::path::Path,
+    runtime_plugins_dir: &std::path::Path,
+) -> Vec<CustomConnectorRecord> {
+    let mut effective = load_custom_connectors_at(app_data_dir);
+    let mut seen_ids: std::collections::HashSet<String> =
+        effective.iter().map(|c| c.id.clone()).collect();
+
+    let mut installed = load_installed_plugin_packages_at(app_data_dir, runtime_plugins_dir);
+    installed.sort_by(|a, b| a.id.cmp(&b.id));
+    for plugin in installed {
+        if !plugin.enabled {
+            continue;
+        }
+        let mut conns = plugin.bundled_connectors;
+        conns.sort_by(|a, b| a.id.cmp(&b.id));
+        for conn in conns {
+            if seen_ids.insert(conn.id.clone()) {
+                effective.push(CustomConnectorRecord {
+                    id: conn.id,
+                    name: conn.name,
+                    transport: conn.transport,
+                    endpoint: conn.endpoint,
+                    description: conn.description,
+                    enabled: true,
+                });
+            }
+        }
+    }
+    effective
+}
+
+pub fn resolve_connector_for_probe_at(
+    app_data_dir: &std::path::Path,
+    runtime_plugins_dir: &std::path::Path,
+    connector_id: &str,
+) -> Result<CustomConnectorRecord, String> {
+    if let Some(custom) = load_custom_connectors_at(app_data_dir)
+        .into_iter()
+        .find(|c| c.id == connector_id)
+    {
+        return Ok(custom);
+    }
+    let mut installed = load_installed_plugin_packages_at(app_data_dir, runtime_plugins_dir);
+    installed.sort_by(|a, b| a.id.cmp(&b.id));
+    for plugin in &installed {
+        if let Some(conn) = plugin
+            .bundled_connectors
+            .iter()
+            .find(|c| c.id == connector_id)
+        {
+            if !plugin.enabled {
+                return Err(format!(
+                    "PLUGIN_DISABLED: 所属插件 '{}' 已停用，请先启用后再探测工具",
+                    plugin.name
+                ));
+            }
+            return Ok(CustomConnectorRecord {
+                id: conn.id.clone(),
+                name: conn.name.clone(),
+                transport: conn.transport.clone(),
+                endpoint: conn.endpoint.clone(),
+                description: conn.description.clone(),
+                enabled: true,
+            });
+        }
+    }
+    Err(format!("V3_CONNECTOR_NOT_FOUND: 未找到连接器 '{connector_id}'"))
+}
+
 pub fn inspect_plugins_status_at(
     app_data_dir: &std::path::Path,
     runtime_plugins_dir: &std::path::Path,
@@ -10095,23 +10411,8 @@ pub fn inspect_plugins_status_at(
     let plugins_dir = app_data_dir.join("plugins");
     std::fs::create_dir_all(&plugins_dir).map_err(|e| format!("PLUGINS_DIR_CREATE_FAILED: {e}"))?;
 
-    let mut installed_plugins = Vec::new();
-    let mut installed_ids = std::collections::HashSet::new();
-
-    if let Ok(entries) = std::fs::read_dir(&plugins_dir) {
-        let mut dirs: Vec<_> = entries.flatten().collect();
-        dirs.sort_by_key(|e| e.file_name());
-        for entry in dirs {
-            let p = entry.path();
-            if p.is_dir() {
-                let is_official = runtime_plugins_dir.join(entry.file_name()).is_dir();
-                if let Some(pkg) = inspect_plugin_package_dir(&p, true, is_official) {
-                    installed_ids.insert(pkg.id.clone());
-                    installed_plugins.push(pkg);
-                }
-            }
-        }
-    }
+    let installed_plugins = load_installed_plugin_packages_at(app_data_dir, runtime_plugins_dir);
+    cleanup_legacy_plugin_copies_at(app_data_dir, &installed_plugins);
 
     let mut available_plugins = Vec::new();
     if runtime_plugins_dir.is_dir() {
@@ -10363,38 +10664,7 @@ pub fn install_plugin_package_at(
     let pkg = inspect_plugin_package_dir(&installed_target_dir, true, false)
         .ok_or_else(|| "PLUGIN_VERIFY_FAILED: 安装后无法读取 plugin.json".to_string())?;
 
-    for sk in &pkg.bundled_skills {
-        let _ = save_custom_skill_at(
-            app_data_dir,
-            &CustomSkillRecord {
-                id: sk.id.clone(),
-                name: sk.name.clone(),
-                description: sk.description.clone(),
-                prompt: sk.prompt.clone(),
-                author: pkg.author.clone(),
-                license: pkg.license.clone(),
-                version: pkg.version.clone(),
-                slash_command: format!("/{}", sk.id),
-                updated_at: now_iso_timestamp(),
-                enabled: true,
-            },
-        );
-    }
-    if let Some(conn) = &pkg.bundled_connector {
-        let mut conns = load_custom_connectors_at(app_data_dir);
-        if !conns.iter().any(|c| c.id == conn.id) {
-            conns.push(CustomConnectorRecord {
-                id: conn.id.clone(),
-                name: conn.name.clone(),
-                transport: conn.transport.clone(),
-                endpoint: conn.endpoint.clone(),
-                description: conn.description.clone(),
-                enabled: true,
-            });
-            let _ = save_custom_connectors_at(app_data_dir, &conns);
-        }
-    }
-
+    crate::mcp_client::invalidate_connector_cache(None);
     let status = inspect_plugins_status_at(app_data_dir, runtime_plugins_dir)?;
     Ok(PluginMutationResponse {
         ok: true,
@@ -10696,37 +10966,7 @@ fn install_plugin_from_raw_content_at(
 
     let pkg = inspect_plugin_package_dir(&dst_dir, true, false)
         .ok_or_else(|| "PLUGIN_VERIFY_FAILED: 导入后无法读取 plugin.json".to_string())?;
-    for sk in &pkg.bundled_skills {
-        let _ = save_custom_skill_at(
-            app_data_dir,
-            &CustomSkillRecord {
-                id: sk.id.clone(),
-                name: sk.name.clone(),
-                description: sk.description.clone(),
-                prompt: sk.prompt.clone(),
-                author: pkg.author.clone(),
-                license: pkg.license.clone(),
-                version: pkg.version.clone(),
-                slash_command: format!("/{}", sk.id),
-                updated_at: now_iso_timestamp(),
-                enabled: true,
-            },
-        );
-    }
-    if let Some(conn) = &pkg.bundled_connector {
-        let mut conns = load_custom_connectors_at(app_data_dir);
-        if !conns.iter().any(|c| c.id == conn.id) {
-            conns.push(CustomConnectorRecord {
-                id: conn.id.clone(),
-                name: conn.name.clone(),
-                transport: conn.transport.clone(),
-                endpoint: conn.endpoint.clone(),
-                description: conn.description.clone(),
-                enabled: true,
-            });
-            let _ = save_custom_connectors_at(app_data_dir, &conns);
-        }
-    }
+    crate::mcp_client::invalidate_connector_cache(None);
     let status = inspect_plugins_status_at(app_data_dir, runtime_plugins_dir)?;
     Ok(PluginMutationResponse {
         ok: true,
@@ -10748,22 +10988,14 @@ pub fn set_plugin_enabled_at(
     if !manifest_path.is_file() {
         return Err(format!("PLUGIN_NOT_INSTALLED: 插件 '{safe_id}' 尚未安装"));
     }
-    if let Ok(raw) = std::fs::read_to_string(&manifest_path) {
-        if let Ok(mut val) = serde_json::from_str::<serde_json::Value>(&raw) {
-            if let Some(obj) = val.as_object_mut() {
-                obj.insert("enabled".to_string(), serde_json::Value::Bool(enabled));
-            }
-            if let Ok(pretty) = serde_json::to_string_pretty(&val) {
-                let _ = std::fs::write(&manifest_path, pretty);
-            }
-        }
-    }
     let disabled_marker = plugin_dir.join(".disabled");
     if enabled {
         let _ = std::fs::remove_file(&disabled_marker);
     } else {
-        let _ = std::fs::write(&disabled_marker, b"disabled");
+        std::fs::write(&disabled_marker, b"disabled")
+            .map_err(|e| format!("PLUGIN_TOGGLE_FAILED: {e}"))?;
     }
+    crate::mcp_client::invalidate_connector_cache(None);
     let pkg = inspect_plugin_package_dir(&plugin_dir, true, false);
     let status = inspect_plugins_status_at(app_data_dir, runtime_plugins_dir)?;
     Ok(PluginMutationResponse {
@@ -10786,21 +11018,13 @@ pub fn uninstall_plugin_package_at(
     let safe_id = sanitize_plugin_id(plugin_id);
     let plugin_dir = app_data_dir.join("plugins").join(&safe_id);
     if let Some(pkg) = inspect_plugin_package_dir(&plugin_dir, true, false) {
-        for sk in &pkg.bundled_skills {
-            let _ = delete_custom_skill_at(app_data_dir, &sk.id);
-        }
-        if let Some(conn) = &pkg.bundled_connector {
-            let conns: Vec<_> = load_custom_connectors_at(app_data_dir)
-                .into_iter()
-                .filter(|c| c.id != conn.id)
-                .collect();
-            let _ = save_custom_connectors_at(app_data_dir, &conns);
-        }
+        cleanup_legacy_plugin_copies_at(app_data_dir, &[pkg]);
     }
     if plugin_dir.exists() {
         std::fs::remove_dir_all(&plugin_dir)
             .map_err(|e| format!("PLUGIN_UNINSTALL_FAILED: {e}"))?;
     }
+    crate::mcp_client::invalidate_connector_cache(None);
     let status = inspect_plugins_status_at(app_data_dir, runtime_plugins_dir)?;
     Ok(PluginMutationResponse {
         ok: true,
@@ -13192,7 +13416,15 @@ mod extension_hub_and_component_install_tests {
                 .join("plugins/eostage-stac-harmonized-plugin/mcp.json")
                 .is_file());
             assert_eq!(res.status.installed_plugins.len(), 1);
-            assert!(!res.status.custom_connectors.is_empty());
+            assert!(
+                res.status.custom_connectors.is_empty(),
+                "installing a plugin must not clone its connector into user custom_connectors"
+            );
+            let installed_stac = &res.status.installed_plugins[0];
+            assert!(
+                !installed_stac.bundled_connectors.is_empty(),
+                "installed STAC plugin must expose bundled_connectors directly"
+            );
         }
 
         // 3. Create a real .zip plugin package and install from source_path
@@ -13408,16 +13640,233 @@ mod extension_hub_and_component_install_tests {
         assert!(app_data
             .join("plugins/dsh-stac-mcp-bundle/skills/dsh-stac-skill/SKILL.md")
             .is_file());
-        assert!(ok_res
+        assert!(
+            ok_res.status.custom_skills.is_empty(),
+            "plugin-bundled skill must remain plugin-owned and NOT copy into custom_skills"
+        );
+        assert!(
+            ok_res.status.custom_connectors.is_empty(),
+            "plugin-bundled connector must remain plugin-owned and NOT copy into custom_connectors"
+        );
+        let bundle = ok_res
+            .installed_plugin
+            .as_ref()
+            .expect("installed_plugin metadata");
+        assert!(
+            bundle
+                .bundled_skills
+                .iter()
+                .any(|s| s.id == "dsh-stac-skill"),
+            "installed_plugin owns dsh-stac-skill"
+        );
+        assert!(
+            bundle
+                .bundled_connectors
+                .iter()
+                .any(|c| c.id == "plugin-mcp-stac-endpoint" && c.name == "stac-endpoint"),
+            "installed_plugin owns bundled connector in bundled_connectors"
+        );
+        let eff_conns = load_effective_mcp_connectors_at(&app_data, &rt_plugins);
+        assert!(
+            eff_conns
+                .iter()
+                .any(|c| c.id == "plugin-mcp-stac-endpoint" && c.enabled),
+            "effective MCP connectors include enabled plugin connector"
+        );
+
+        let _ = std::fs::remove_dir_all(&app_data);
+    }
+
+    #[test]
+    fn plugin_ownership_whole_package_sha256_multi_server_and_disable_uninstall_isolation() {
+        let app_data = temp_test_root("plugin-ownership-slice1");
+        let rt_plugins = app_data.join("empty-rt-plugins");
+        let _ = std::fs::create_dir_all(&rt_plugins);
+
+        // 1. Seed a user-authored custom skill + custom connector whose IDs collide with a plugin.
+        save_custom_skill_at(
+            &app_data,
+            &CustomSkillRecord {
+                id: "colliding-skill".to_string(),
+                name: "User Custom Skill".to_string(),
+                description: "User authored".to_string(),
+                prompt: "# User Original Prompt\nNever overwrite or delete me.".to_string(),
+                author: "User".to_string(),
+                license: "MIT".to_string(),
+                version: "1.0.0".to_string(),
+                slash_command: "/colliding-skill".to_string(),
+                updated_at: "2026-11-28T00:00:00Z".to_string(),
+                enabled: true,
+            },
+        )
+        .unwrap();
+        save_custom_connectors_at(
+            &app_data,
+            &[CustomConnectorRecord {
+                id: "plugin-mcp-alpha".to_string(),
+                name: "User Alpha Override".to_string(),
+                transport: "http".to_string(),
+                endpoint: "https://user.example.org/mcp".to_string(),
+                description: "User owned".to_string(),
+                enabled: true,
+            }],
+        )
+        .unwrap();
+
+        // Also seed a legacy unedited copy inside skills_custom that SHOULD be pruned.
+        save_custom_skill_at(
+            &app_data,
+            &CustomSkillRecord {
+                id: "plugin-only-skill".to_string(),
+                name: "Legacy Copied Skill".to_string(),
+                description: "Old clone".to_string(),
+                prompt: "---\nname: plugin-only-skill\n---\n# Plugin Skill\nOriginal body v1."
+                    .to_string(),
+                author: "EOStage".to_string(),
+                license: "Apache-2.0".to_string(),
+                version: "1.0.0".to_string(),
+                slash_command: "/plugin-only-skill".to_string(),
+                updated_at: "2026-11-28T00:00:00Z".to_string(),
+                enabled: true,
+            },
+        )
+        .unwrap();
+
+        // 2. Build a multi-file .zip plugin with two skills + two stdio/http servers in mcp.json.
+        let zip_path = app_data.join("multi-cap-plugin.zip");
+        {
+            let file = std::fs::File::create(&zip_path).unwrap();
+            let mut zip = zip::ZipWriter::new(file);
+            let opts = zip::write::SimpleFileOptions::default()
+                .compression_method(zip::CompressionMethod::Deflated);
+            zip.start_file("plugin.json", opts).unwrap();
+            zip.write_all(
+                r#"{
+  "id": "eostage-multi-cap-plugin",
+  "name": "Multi Capability Plugin",
+  "version": "1.0.0",
+  "author": "EOStage",
+  "license": "Apache-2.0",
+  "description": "Multi-server MCP + skills test package"
+}"#
+                .as_bytes(),
+            )
+            .unwrap();
+            zip.start_file("mcp.json", opts).unwrap();
+            zip.write_all(
+                r#"{
+  "mcpServers": {
+    "alpha": { "url": "https://plugin.example.org/alpha" },
+    "beta": { "command": "rustgis-cli", "args": ["mcp", "--yes"] }
+  }
+}"#
+                .as_bytes(),
+            )
+            .unwrap();
+            zip.start_file("skills/colliding-skill/SKILL.md", opts)
+                .unwrap();
+            zip.write_all(b"# Plugin Colliding Skill\nPlugin body.").unwrap();
+            zip.start_file("skills/plugin-only-skill/SKILL.md", opts)
+                .unwrap();
+            zip.write_all(b"---\nname: plugin-only-skill\n---\n# Plugin Skill\nOriginal body v1.")
+                .unwrap();
+            zip.finish().unwrap();
+        }
+
+        let res = install_plugin_package_at(
+            &app_data,
+            &rt_plugins,
+            &PluginInstallRequest {
+                plugin_id: None,
+                source_path: Some(zip_path.to_string_lossy().to_string()),
+                raw_content: None,
+                fallback_name: None,
+            },
+        )
+        .expect("install multi-cap plugin");
+        let pkg = res.installed_plugin.expect("installed_plugin");
+        let initial_sha = pkg.sha256.clone();
+        assert_eq!(pkg.bundled_connectors.len(), 2);
+        assert!(pkg
+            .bundled_connectors
+            .iter()
+            .any(|c| c.id == "plugin-mcp-beta" && c.endpoint == "rustgis-cli mcp --yes"));
+
+        // Legacy unedited clone was pruned; user-authored colliding skill & connector survived!
+        assert!(!res
             .status
             .custom_skills
             .iter()
-            .any(|s| s.id == "dsh-stac-skill"));
-        assert!(ok_res
-            .status
-            .custom_connectors
+            .any(|s| s.id == "plugin-only-skill"));
+        assert_eq!(
+            load_custom_skills_at(&app_data)
+                .iter()
+                .find(|s| s.id == "colliding-skill")
+                .expect("user skill preserved")
+                .prompt,
+            "# User Original Prompt\nNever overwrite or delete me."
+        );
+        let eff = load_effective_mcp_connectors_at(&app_data, &rt_plugins);
+        assert_eq!(
+            eff.iter()
+                .find(|c| c.id == "plugin-mcp-alpha")
+                .unwrap()
+                .endpoint,
+            "https://user.example.org/mcp"
+        );
+        assert!(eff.iter().any(|c| c.id == "plugin-mcp-beta"));
+
+        // 3. Disabling suppresses plugin-owned MCP connector & leaves SHA256 identical!
+        let disabled = set_plugin_enabled_at(
+            &app_data,
+            &rt_plugins,
+            "eostage-multi-cap-plugin",
+            false,
+        )
+        .expect("disable plugin");
+        assert_eq!(
+            disabled.installed_plugin.as_ref().unwrap().sha256,
+            initial_sha,
+            "toggling enablement must not mutate plugin.json or sha256"
+        );
+        let eff_disabled = load_effective_mcp_connectors_at(&app_data, &rt_plugins);
+        assert!(!eff_disabled.iter().any(|c| c.id == "plugin-mcp-beta"));
+        let probe_err =
+            resolve_connector_for_probe_at(&app_data, &rt_plugins, "plugin-mcp-beta").unwrap_err();
+        assert!(probe_err.starts_with("PLUGIN_DISABLED:"), "got: {probe_err}");
+
+        // 4. Whole-package SHA256 changes if a bundled SKILL.md changes while plugin.json is untouched.
+        std::fs::write(
+            app_data.join("plugins/eostage-multi-cap-plugin/skills/plugin-only-skill/SKILL.md"),
+            b"---\nname: plugin-only-skill\n---\n# Tampered Body\n",
+        )
+        .unwrap();
+        let re_enabled = set_plugin_enabled_at(
+            &app_data,
+            &rt_plugins,
+            "eostage-multi-cap-plugin",
+            true,
+        )
+        .expect("re-enable plugin");
+        assert_ne!(
+            re_enabled.installed_plugin.as_ref().unwrap().sha256,
+            initial_sha,
+            "whole-package sha256 must detect changes outside plugin.json"
+        );
+
+        // 5. Uninstall removes plugin dir without touching user-authored colliding skill/connector.
+        uninstall_plugin_package_at(&app_data, &rt_plugins, "eostage-multi-cap-plugin")
+            .expect("uninstall plugin");
+        assert!(!app_data.join("plugins/eostage-multi-cap-plugin").exists());
+        assert!(load_custom_skills_at(&app_data)
             .iter()
-            .any(|c| c.id == "plugin-mcp-stac-endpoint" && c.name == "stac-endpoint"));
+            .any(|s| s.id == "colliding-skill"));
+        assert!(load_custom_connectors_at(&app_data)
+            .iter()
+            .any(|c| c.id == "plugin-mcp-alpha"));
+        assert!(!load_effective_mcp_connectors_at(&app_data, &rt_plugins)
+            .iter()
+            .any(|c| c.id == "plugin-mcp-beta"));
 
         let _ = std::fs::remove_dir_all(&app_data);
     }

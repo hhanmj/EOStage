@@ -5364,13 +5364,17 @@ pub async fn application_custom_connector_probe_tools(
     tauri::async_runtime::spawn_blocking(move || {
         let state = app.state::<ApplicationServiceState>();
         let app_data = crate::application::resolve_app_data_dir(&state);
-        let items = crate::application::load_custom_connectors_at(&app_data);
-        let Some(connector) = items.into_iter().find(|c| c.id == connector_id) else {
-            return Err(ShellError::application_service_with_context(
-                "V3_CONNECTOR_NOT_FOUND",
-                format!("未找到连接器 '{connector_id}'"),
-            ));
-        };
+        let rt_plugins = crate::application::discover_runtime_plugins_dir();
+        let connector =
+            crate::application::resolve_connector_for_probe_at(&app_data, &rt_plugins, &connector_id)
+                .map_err(|err| {
+                    let code = if err.starts_with("PLUGIN_DISABLED:") {
+                        "PLUGIN_DISABLED"
+                    } else {
+                        "V3_CONNECTOR_NOT_FOUND"
+                    };
+                    ShellError::application_service_with_context(code, err)
+                })?;
         crate::mcp_client::invalidate_connector_cache(Some(&connector.id));
         Ok(crate::mcp_client::probe_connector_tools(&connector))
     })
