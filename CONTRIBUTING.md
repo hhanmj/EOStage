@@ -46,9 +46,17 @@ If you self-host or test an external Stage-2 atlas pack matching `atlasCatalog.j
    Vite builds and `scripts/check_atlas_cdn_csp.mjs` fail closed if `VITE_EO_ATLAS_CDN_BASE_URL` points to an origin missing from the Tauri CSP allowlist.
 3. **Self-hosted licensing**: maintainers hosting an external pack are responsible for supplying appropriate imagery rights and attributions for their hosted assets.
 
-## Contribution Rules
+## Contributing Rules
 
 - **Minimal, Focused Changes:** Keep each PR scoped to one clear bug fix or feature with matching unit/interaction tests.
 - **Scientific & Data Integrity:** Never fabricate metadata, bypass credential redaction, or silently substitute distinct scientific products.
 - **Third-Party Code & Licensing:** All contributions must be compatible with **GPL-3.0-or-later**. Do not copy unlicensed third-party code or assets into the repository; any properly licensed external adaptation must be recorded in [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
 - **Developer Certificate of Origin (DCO 1.1):** External contributions are accepted under DCO 1.1. Please sign off commits with `git commit -s` (`Signed-off-by: Name <email>`).
+
+## Contributing Skills & Plugins
+
+EOStage enforces strict five-layer boundaries (see [PRODUCT.md](PRODUCT.md#extension-skill-plugin-mcp--runtime-component-principles)):
+
+- **Skills (`SKILL.md`):** Canonical instructions MUST be structured English specifying trigger conditions, inputs/units, decision rules, failure/stop conditions, deliverable, and verification protocol, accompanied by localized card metadata (`zh-CN`, `en`, `ja`) and worked + adverse test examples. Do not submit short persona prompts or pure textbook excerpts as standalone skills.
+- **Plugins:** Must bundle at least one genuinely executable capability verified end-to-end through EOStage (real MCP server, bounded adapter, or reviewed script runner) plus a minimal fixture and complete package integrity coverage; methodology-only submissions belong under **Skills**, never **Plugins**.
+- **MCP Connectors & Runtime Components:** Only declare real MCP stdio/Streamable HTTP endpoints (not `tauri://` internal wrappers) and declare shared heavy runtime dependencies (GDAL/PROJ, vertical grids) by component ID without duplicating binaries.

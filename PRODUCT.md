@@ -156,6 +156,21 @@ EOStage should feel precise, calm, technical, and work-focused. It is a desktop 
 7. Useful failure reasons instead of generic failure labels.
 8. Minimal data collection and no hidden user tracking.
 
+## Extension, Skill, Plugin, MCP & Runtime Component Principles
+
+1. **Five distinct runtime layers (never conflated):**
+   - **System Rules**: Host-enforced safety invariants (tool permissions, two-step confirmation gates, path containment, credential isolation, and evidence rules). Ship with the host, always apply to the relevant Agent mode, are never exposed as a toggleable user skill, and never contain sensor recipes or scientific thresholds.
+   - **Skill**: A standalone or plugin-owned scientific or operational playbook loaded on demand via progressive disclosure. Canonical LLM instructions (`SKILL.md`) MUST be written in structured English covering trigger scope, inputs and units, decision rules, failure/stop conditions, deliverable, and verification protocol; user-facing card metadata (title, summary, prerequisites, example prompts) is localized (`zh-CN`, `en`, `ja`). Reject 4-line filler prompts, persona fluff, and duplicated textbook excerpts; index general reference material separately from executable procedures.
+   - **Plugin**: An independently installable, disableable, and removable capability extension bundle from an identified publisher for co-creation. A Plugin MUST contribute at least one genuinely executable capability verified through an ordinary EOStage invocation path (real MCP server, bounded script runner/adapter, or verified host extension) plus a minimal passing fixture; methodology-only bundles MUST publish as Skills, never disguised as Plugins.
+   - **MCP Connector**: A real local stdio or remote Streamable HTTP server instance that completes initialization handshake and tool discovery before reporting connected. Built-in host operations use native adapters/channels rather than wrapping `tauri://` commands as fake MCP servers.
+   - **Runtime Component**: A shared, host-managed local dependency (such as GDAL/PROJ, EGM vertical datum grids, or the bounded compatibility worker) with platform metadata, whole-package integrity verification, and readiness probes. Plugins and Skills declare component dependencies by ID; uninstalling a plugin never deletes shared components needed by the host or other extensions.
+2. **Package ownership and whole-package integrity:**
+   - The Rust host is the single authoritative owner of installed packages, enablement state, and effective skills/connectors (`publisher/package/item` isolation).
+   - Installing a plugin MUST NOT copy plugin-owned skills or connectors into user-authored custom stores (`skills_custom` / `connectors_custom`); disabling a parent plugin MUST suppress all of its bundled skills and connectors at both discovery and invocation; uninstalling a plugin MUST remove only artifacts owned by that plugin without deleting user-authored entries.
+   - Integrity digests MUST hash the complete package contents deterministically (manifest, `SKILL.md`, references, scripts, `mcp.json`, excluding mutable `.disabled` state), never `plugin.json` alone.
+3. **Intent-oriented Extension UX:**
+   - Organize top-level discovery and management around user intent (**Extensions → Discover** and **Extensions → Installed**, with deep links to **Settings → Connections** and **Settings → Runtime Components**), keeping retired installed packages manageable and cleanly uninstallable.
+
 ## Anti-References
 
 Do not turn core workflows into:
