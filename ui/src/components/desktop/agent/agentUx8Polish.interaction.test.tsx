@@ -945,7 +945,7 @@ test("Agent 8 项体验打磨与排队/立即引导交互测试套件", async (s
       cleanup();
 
       // `/` 过滤已停用技能 & `@` 弹出数据源引用菜单
-      toggleSkillEnabled("builtin-s1-insar-pair-workflow", false);
+      toggleSkillEnabled("radar-satellite-analysis", false);
       try {
         let draftVal = "";
         function ComposerHarness() {
@@ -970,9 +970,8 @@ test("Agent 8 项体验打磨与排队/立即引导交互测试套件", async (s
         const input = compView.getByRole("textbox", { name: "科学需求输入框" });
         fireEvent.change(input, { target: { value: "/" } });
         assert.ok(compView.getByTestId("agent-skill-picker"));
-        assert.equal(
-          compView.queryByTestId("skill-picker-item-builtin-s1-insar-pair-workflow"),
-          null
+        assert.ok(
+          compView.queryByTestId("skill-picker-item-radar-satellite-analysis") === null
         );
         fireEvent.change(input, { target: { value: "请帮我检索 @sen" } });
         const mentionPicker = compView.getByTestId("agent-dataset-mention-picker");
@@ -980,7 +979,7 @@ test("Agent 8 项体验打磨与排队/立即引导交互测试套件", async (s
         fireEvent.click(compView.getByTestId("mention-dataset-Sentinel-1"));
         assert.ok(draftVal.includes("@Sentinel-1 "));
       } finally {
-        toggleSkillEnabled("builtin-s1-insar-pair-workflow", true);
+        toggleSkillEnabled("radar-satellite-analysis", true);
         cleanup();
       }
     }

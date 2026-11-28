@@ -172,13 +172,16 @@ BUNDLE_ALL_TEXT_IDS = {
     "eo-model-transfer-evaluation",
     "eo-workbench-concept",
     "gee-textbook-cookbook",
+    "radar-satellite-analysis",
+    "dem-datum-conversion",
+    "s1-precise-orbit",
 }
 
 PARTIAL_METADATA_OVERRIDES: dict[str, dict] = {
     "gee-textbook-cookbook": {
-        "version": "1.1.0",
-        "shortDescriptionZh": "系统讲解 GEE 云端架构、Cloud Score+ 与 SCL 选型、谐波与趋势对比、Olofsson 无偏面积估计及服务端 DAG 性能调优。",
-        "overviewZh": "面向 Google Earth Engine Python 开发与遥感科学方法学的五章系统手册：光学去云与基线对齐、谐波回归与趋势/断点模型选型、空间独立交叉验证与 Olofsson (2014) 无偏面积、水文地形与 EOStage 分块导出，以及服务端性能避坑（禁盲目 clip/reproject、tileScale、ee.Join 选型与排错）；与 99 项即用配方库 eo-analysis-recipes 互补。",
+        "version": "1.2.0",
+        "shortDescriptionZh": "系统讲解 GEE 云端架构、Cloud Score+ 与 SCL 选型、谐波与趋势对比、Olofsson 无偏面积估计及 EECU 配额、跨传感器协调、QA 缩放与 DAG 排错 15 篇规程。",
+        "overviewZh": "面向 Google Earth Engine Python 开发与遥感科学方法学的统一手册（5 章方法学教材 + 10 张工程实战守则卡）：覆盖光学去云与基线对齐、谐波回归与趋势/断点选型、空间独立交叉验证与 Olofsson (2014) 无偏面积、水文地形与预演分块导出，以及 EECU 配额控制、多传感器 QA/定标矩阵、S1 线性功率边界、数据血缘台账与服务端 DAG 性能调优；与 99 项即用配方库 eo-analysis-recipes 互补。",
     },
     "skill-creator": {
         "author": "Anthropic (anthropics/skills)",
@@ -189,14 +192,21 @@ PARTIAL_METADATA_OVERRIDES: dict[str, dict] = {
         "nameEn": "SAR & Radar Satellite Analysis",
         "author": "EOStage",
         "license": "GPL-3.0-or-later",
-        "version": "2.2.0",
-        "shortDescriptionZh": "面向 Sentinel-1（SLC/GRD/SLC-BURST）、NISAR L/S 波段与 ALOS-2 的 SAR/InSAR 数据准备、精密轨道匹配、DEM 高程基准转换与后向散射/相干性分析。",
-        "overviewZh": "覆盖 EOStage 核心 SAR 与 InSAR 数据准备流程：包括 Sentinel-1 SLC-BURST 与升降轨分轨选景、POEORB/RESORB 精密轨道匹配、NISAR L/S 波段 AOI 空间子集裁剪、Copernicus/SRTM DEM 转 WGS84 椭球高、GACOS 大气延迟批处理，以及 dB 转线性功率统计与斑点滤波规程。",
+        "version": "2.3.0",
+        "shortDescriptionZh": "面向 Sentinel-1（IW SLC 基线配对 / GRD / SLC-BURST）、ALOS-2 L 波段条带干涉、NISAR L/S 波段、精密轨道与 DEM 椭球高对齐及后向散射分析。",
+        "overviewZh": "覆盖 EOStage 核心 SAR 与 InSAR 数据准备与干涉配对规程：包括 Sentinel-1 IW SLC 时空基线配对分支（Bperp < 150 m 与 6/12/24 天重访）、ALOS-2 PALSAR-2 L 波段植被穿透条带（SM1/SM3）滑坡与同震配对分支、POEORB/RESORB 精密轨道匹配、NISAR L/S 波段 AOI HDF5 子集裁剪、WGS84 椭球高 DEM 转换、GACOS 大气延迟批处理，以及 GRD dB 转线性功率与斑点滤波规程。",
         "exampleTasks": [
-            "结合当前研究区检索 Sentinel-1 升降轨 SLC-BURST 影像并匹配 AUX_POEORB 精密轨道",
+            "结合当前研究区检索 Sentinel-1 升降轨 IW SLC 影像，按 Bperp < 150 m 规划干涉对并匹配 AUX_POEORB 精密轨道",
+            "针对高植被覆盖山区检索 ALOS-2 L 波段 SM1/SM3（HH 极化）干涉像对并规划配套 WGS84 椭球高 DEM",
             "如何针对数十 GB 的 NISAR L 波段 RSLC 数据仅按研究区 AOI 做远端 HDF5 子集裁剪？",
             "对 Sentinel-1 GRD VV/VH 分贝栅格做时空平均前，为什么必须先转换为线性功率？",
         ],
+    },
+    "dem-datum-conversion": {
+        "version": "1.1.0",
+    },
+    "s1-precise-orbit": {
+        "version": "1.1.0",
     },
 }
 

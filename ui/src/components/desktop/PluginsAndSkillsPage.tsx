@@ -1958,7 +1958,7 @@ export function PluginsAndSkillsPage({
           .map((s) => localizeAgentSkillForDisplay(s, locale));
       }
       return skills
-        .filter((s) => s.id === "skill-creator" || s.id.startsWith("builtin-"))
+        .filter((s) => s.id === "skill-creator")
         .map((s) => localizeAgentSkillForDisplay(s, locale));
     },
     [skills, locale, t],

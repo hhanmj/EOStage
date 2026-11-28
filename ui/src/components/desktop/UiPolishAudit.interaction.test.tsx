@@ -158,21 +158,21 @@ test("UI Polish Audit - 6 大交互细节核验与端到端测试套件", async 
     const { getByRole, getByText, getByTestId } = render(<DefaultWrapper />);
     const attachBtn = getByRole("button", { name: "附加范围或文件" });
 
-    // 1) 点击工作流：弹出真实技能选择器并注入工作流提示词
+    // 1) 点击工作流：弹出真实技能选择器并注入权威技能提示词
     fireEvent.click(attachBtn);
     const workflowBtn = getByText("工作流");
     fireEvent.click(workflowBtn);
-    const pairItem = getByTestId("skill-picker-item-builtin-s1-insar-pair-workflow");
+    const pairItem = getByTestId("skill-picker-item-radar-satellite-analysis");
     fireEvent.click(pairItem);
-    assert.equal(textValue.includes("合成孔径雷达（SAR）干涉测量工程师"), true);
+    assert.equal(textValue.includes("Radar & SAR Satellite Analysis"), true);
 
     // 2) 点击插件与技能：弹出真实技能选择器并注入技能提示词
     fireEvent.click(attachBtn);
     const skillsBtn = getByText("插件与技能");
     fireEvent.click(skillsBtn);
-    const coreItem = getByTestId("skill-picker-item-builtin-insar-copilot-core");
+    const coreItem = getByTestId("skill-picker-item-dem-datum-conversion");
     fireEvent.click(coreItem);
-    assert.equal(textValue.includes("EOStage 的数据准备助手"), true);
+    assert.equal(textValue.includes("DEM Vertical Datum Conversion"), true);
   });
 
   // 2. 权限菜单：气泡风格，三档选项，无冗余配置

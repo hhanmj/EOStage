@@ -138,10 +138,6 @@ export const GEOSCIENCE_SKILL_JA_NAMES: Record<string, string> = {
   "core-sar-s1": "Sentinel-1 / NISAR 迅速検索",
   "core-optical-cloud": "低雲量光学マルチスペクトル選定",
   "core-dem-convert": "DEM 計画・標高基準変換",
-  "builtin-insar-copilot-core": "EOStage データ準備・タスク編成コア規程",
-  "builtin-s1-insar-pair-workflow": "Sentinel-1 時空間基線ペア選定ワークフロー",
-  "builtin-dem-datum-alignment-workflow": "DEM 標高基準自動整合ワークフロー",
-  "builtin-precise-orbit-poeorb-workflow": "Sentinel 精密軌道 POEORB 一括照合ワークフロー",
 };
 
 const SKILL_BADGE_MAP: Record<Exclude<Locale, "zh-CN">, Record<string, string>> = {

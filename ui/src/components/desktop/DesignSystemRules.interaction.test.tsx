@@ -119,22 +119,22 @@ test("EOStage UI 设计规范回归验证套件（同心圆角、固定控件尺
 
       const slashBtn = view.getByLabelText("选择技能与工作流");
       fireEvent.click(slashBtn);
-      const item = view.getByTestId("skill-picker-item-builtin-s1-insar-pair-workflow");
+      const item = view.getByTestId("skill-picker-item-radar-satellite-analysis");
       fireEvent.click(item);
 
-      const chip = view.getByTestId("composer-skill-chip-builtin-s1-insar-pair-workflow");
-      assert.ok(chip.textContent?.includes("Sentinel-1 时空基线配对工作流"));
+      const chip = view.getByTestId("composer-skill-chip-radar-satellite-analysis");
+      assert.ok(chip.textContent?.includes("SAR 与雷达卫星分析"));
       assert.equal(chip.textContent?.trim().startsWith("/"), false, "skill chip must not show leading /");
 
       const textarea = view.container.querySelector("textarea") as HTMLTextAreaElement;
       assert.equal(textarea.value, "请处理西安区域");
-      assert.ok(latestWireValue.includes("合成孔径雷达（SAR）干涉测量工程师"));
+      assert.ok(latestWireValue.includes("Radar & SAR Satellite Analysis"));
       assert.ok(latestWireValue.startsWith("请处理西安区域\n\n"));
 
       // 点击芯片移除按钮恢复纯文本
       const removeBtn = chip.querySelector("button")!;
       fireEvent.click(removeBtn);
-      assert.equal(view.queryByTestId("composer-skill-chip-builtin-s1-insar-pair-workflow"), null);
+      assert.ok(view.queryByTestId("composer-skill-chip-radar-satellite-analysis") === null);
       assert.equal(latestWireValue, "请处理西安区域");
 
       // 在输入框中输入 `/insar` 自动弹出技能选择器，并校验左对齐与不压缩词条描述

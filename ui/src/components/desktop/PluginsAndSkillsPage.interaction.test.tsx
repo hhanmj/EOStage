@@ -68,7 +68,10 @@ test("Plugins & Skills Page - 完整交互与真实性测试套件", async (t) =
 
     const { getByTestId, queryByTestId } = render(<PluginsAndSkillsPage />);
 
-    // 1) 验证内置全部核心与地学技能展示，且 4 个核心工作流技能已归正为 EOStage（无旧称 ScenePort）
+    // 1) 验证内置全部 29 个权威地学技能展示，且已下线的薄工作流/核心规则不再作为用户技能暴露
+    assert.equal(BUILTIN_SKILLS.length, 29);
+    assert.ok(queryByTestId("skill-card-builtin-insar-copilot-core") === null);
+    assert.ok(queryByTestId("skill-card-builtin-s1-insar-pair-workflow") === null);
     for (const builtin of BUILTIN_SKILLS) {
       assert.ok(
         getByTestId(`skill-card-${builtin.id}`),
@@ -79,26 +82,26 @@ test("Plugins & Skills Page - 完整交互与真实性测试套件", async (t) =
 
     // 2) 搜索过滤
     const searchInput = getByTestId("skills-search-input") as HTMLInputElement;
-    fireEvent.change(searchInput, { target: { value: "基线配对" } });
-    assert.ok(getByTestId("skill-card-builtin-s1-insar-pair-workflow"));
-    assert.equal(queryByTestId("skill-card-builtin-insar-copilot-core"), null);
+    fireEvent.change(searchInput, { target: { value: "ALOS-2" } });
+    assert.ok(getByTestId("skill-card-radar-satellite-analysis"));
+    assert.ok(queryByTestId("skill-card-dem-datum-conversion") === null);
 
     // 清空搜索
     fireEvent.change(searchInput, { target: { value: "" } });
 
     // 3) Owner 要求：将卡片「查看技能包 + 查看提示词」整合为「查看 + 复制」，在查看器内展示提示词与包目录以释放 3 列空间，且技能启停采用开关按钮 (role="switch")
-    const skillSwitch = getByTestId("toggle-enable-skill-btn-builtin-insar-copilot-core");
+    const skillSwitch = getByTestId("toggle-enable-skill-btn-radar-satellite-analysis");
     assert.equal(skillSwitch.getAttribute("role"), "switch");
     assert.equal(skillSwitch.getAttribute("aria-checked"), "true");
     fireEvent.click(skillSwitch);
     assert.equal(skillSwitch.getAttribute("aria-checked"), "false");
 
     const inspectBtn = getByTestId(
-      "inspect-skill-btn-builtin-insar-copilot-core"
+      "inspect-skill-btn-radar-satellite-analysis"
     );
     fireEvent.click(inspectBtn);
     assert.ok(getByTestId("skill-package-inspector"));
-    assert.ok(getByTestId("prompt-content-builtin-insar-copilot-core"));
+    assert.ok(getByTestId("prompt-content-radar-satellite-analysis"));
     assert.ok(getByTestId("inspector-copy-skill-btn"));
     const inspectorSwitch = getByTestId("inspector-toggle-enable-btn");
     assert.equal(inspectorSwitch.getAttribute("role"), "switch");
@@ -107,7 +110,7 @@ test("Plugins & Skills Page - 完整交互与真实性测试套件", async (t) =
     assert.equal(inspectorSwitch.getAttribute("aria-checked"), "true");
     fireEvent.click(getByTestId("close-skill-inspector-btn"));
     assert.equal(
-      getByTestId("toggle-enable-skill-btn-builtin-insar-copilot-core").getAttribute("aria-checked"),
+      getByTestId("toggle-enable-skill-btn-radar-satellite-analysis").getAttribute("aria-checked"),
       "true",
     );
 
@@ -1058,19 +1061,19 @@ test("AgentComposer - 技能与工作流真实注入测试", async (t) => {
     const skillPicker = getByTestId("agent-skill-picker");
     assert.ok(skillPicker);
 
-    // 4) 点击「哨兵1号干涉基线配对工作流 (InSAR Pair Finder)」
+    // 4) 点击「SAR 与雷达卫星分析」
     const pairWorkflowItem = getByTestId(
-      "skill-picker-item-builtin-s1-insar-pair-workflow"
+      "skill-picker-item-radar-satellite-analysis"
     );
     fireEvent.click(pairWorkflowItem);
 
     // 5) 弹层自动关闭
-    assert.equal(queryByTestId("agent-skill-picker"), null);
+    assert.ok(queryByTestId("agent-skill-picker") === null);
 
-    // 6) 验证输入框已被真实注入该内置工作流的提示词
+    // 6) 验证输入框已被真实注入该内置权威技能的英文规程提示词
     assert.ok(
-      currentInput.includes("合成孔径雷达（SAR）干涉测量工程师"),
-      "输入框应包含工作流提示词核心内容"
+      currentInput.includes("Radar & SAR Satellite Analysis"),
+      "输入框应包含 SAR 权威技能英文提示词核心内容"
     );
   });
 
@@ -1107,12 +1110,12 @@ test("AgentComposer - 技能与工作流真实注入测试", async (t) => {
     fireEvent.click(workflowMenuItem);
 
     const pairWorkflowItem = getByTestId(
-      "skill-picker-item-builtin-s1-insar-pair-workflow"
+      "skill-picker-item-radar-satellite-analysis"
     );
     fireEvent.click(pairWorkflowItem);
 
     // 验证开头保留了原输入，后追加了完整提示词
     assert.ok(currentInput.startsWith("请处理陕西省西安市区域\n\n"));
-    assert.ok(currentInput.includes("合成孔径雷达（SAR）干涉测量工程师"));
+    assert.ok(currentInput.includes("Radar & SAR Satellite Analysis"));
   });
 });

@@ -6834,13 +6834,21 @@ data: [DONE]
         let textbook_files = embedded_builtin_skill_files("gee-textbook-cookbook");
         assert_eq!(
             textbook_files.len(),
-            6,
-            "expected SKILL.md + 5 handbook chapters in gee-textbook-cookbook, got {}",
+            16,
+            "expected SKILL.md + 5 handbook chapters + 10 practice cards in gee-textbook-cookbook, got {}",
             textbook_files.len()
+        );
+        let radar_files = embedded_builtin_skill_files("radar-satellite-analysis");
+        assert_eq!(
+            radar_files.len(),
+            3,
+            "expected SKILL.md + 2 pairing branches in radar-satellite-analysis, got {}",
+            radar_files.len()
         );
         for (sid, rel_files) in [
             ("eo-analysis-recipes", recipe_files),
             ("gee-textbook-cookbook", textbook_files),
+            ("radar-satellite-analysis", radar_files),
         ] {
             for rel in rel_files {
                 let raw = read_embedded_builtin_skill_file(sid, &rel)
@@ -6860,6 +6868,13 @@ data: [DONE]
             }
         }
 
+        let core_rule_probe =
+            execute_skill_read(None, &json!({ "skill_id": "builtin-insar-copilot-core" }));
+        assert_eq!(
+            core_rule_probe["ok"], false,
+            "System rules must not be exposed via skill_read: {core_rule_probe}"
+        );
+
         for (sid, kw) in [
             ("eo-analysis-recipes", "modis_annual_gpp"),
             ("eo-analysis-recipes", "landsat-rsei"),
@@ -6870,6 +6885,9 @@ data: [DONE]
             ("eo-analysis-recipes", "Ccdc"),
             ("eo-analysis-recipes", "Otsu"),
             ("gee-textbook-cookbook", "tileScale"),
+            ("gee-textbook-cookbook", "EECU"),
+            ("radar-satellite-analysis", "ALOS-2"),
+            ("radar-satellite-analysis", "Bperp"),
         ] {
             let query_res = execute_skill_read(
                 None,

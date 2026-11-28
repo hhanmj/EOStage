@@ -10510,30 +10510,6 @@ export async function fetchExtensionRegistry(
         capabilities: ["bounded-compatibility-operations"],
         platforms: ["windows-x86_64"],
       },
-      {
-        id: "skill-alos2-stripmap-insar",
-        name: "ALOS-2 PALSAR-2 L波段植被穿透形变监测工作流",
-        kind: "skill",
-        version: "1.0.0",
-        description: "针对高植被覆盖山区滑坡与同震形变的 ALOS-2 L波段条带模式检索与配对提示词技能",
-        package: `${baseDir}skills/skill-alos2-stripmap-insar.json`,
-        sha256: "8c3e1b4d9a6f0e2c5b7d8e9f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b",
-        size: 1420,
-        install_root: "localStorage",
-        capabilities: ["sar", "alos2"],
-        skill: {
-          id: "hub-skill-alos2-stripmap-insar",
-          name_zh: "ALOS-2 PALSAR-2 L波段植被穿透形变监测工作流",
-          name_en: "ALOS-2 PALSAR-2 L-band Vegetation Penetration InSAR Workflow",
-          category: "sar",
-          description_zh:
-            "针对高植被覆盖山区滑坡与同震形变的 ALOS-2 L波段条带模式（SM1/SM3）检索、极化筛选与干涉对组合工作流。",
-          description_en:
-            "ALOS-2 L-band stripmap search and interferometric pairing workflow for densely vegetated landslide and coseismic deformation.",
-          prompt_template:
-            "你是一位精通 L 波段（波长约 23.6 cm）合成孔径雷达干涉测量（InSAR）的专家。在高植被覆盖山区或大梯度同震形变场景下，C 波段容易发生时间失相干，请引导用户完成 ALOS-2 PALSAR-2 数据准备：\n1. 确认目标区域（working_aoi 或 context_aoi）与重点监测时段；\n2. 使用 search_start 检索 ALOS-2 产品，优先筛选 Fine Beam (SM1/SM3, HH 或 HH+HV 极化)，固定同一升降轨方向（ASCENDING 或 DESCENDING）及一致的 Path/Frame；\n3. 结合 COP30/NASADEM 高程数据，规划配套的椭球高 DEM 转换任务；\n4. 通过 propose_plan 提交完整检索与下载计划供用户在确认卡上审批。",
-        },
-      },
     ],
   };
 }
